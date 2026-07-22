@@ -16,6 +16,14 @@ summary scores this layer **6.0/10 maturity, 6.0/10 bottleneck severity** — mo
 deep bottlenecks (memory, security) because the core pipeline works, but constrained by the
 unforgiving latency budget that makes everything harder.
 
+Voice is also the agent interface most people will actually *experience* first-hand — through
+customer-service lines, scheduling assistants, and increasingly consumer devices — which makes it
+the layer where the general public forms its intuitions about whether "AI agents" work. A voice
+agent that stumbles on latency or interruption does more reputational damage than a clunky text
+agent, because the failure is immediate, audible, and emotionally salient. That raises the stakes
+on getting the engineering right, and it is part of why this layer attracts such intense platform
+competition despite the core pipeline being, in principle, well understood.
+
 The defining number: **natural conversation requires end-to-end round-trip latency under ~900ms,
 with sub-700ms widely accepted as good and sub-500ms as excellent.** That budget — from the
 moment the user stops speaking to the moment the agent starts speaking — must accommodate
