@@ -528,4 +528,15 @@ authorization technology that already works; the work is applying it to agents, 
   build developer infra) and **early** — foundations solid, agent-native extensions emerging,
   payments barely started — and its maturing is a precondition for ambitious autonomy.
 
-*Word count target: 5,500. This section: ~5,500 (verified via `wc`).*
+- **Fine-grained authorization** (ReBAC/OpenFGA, Cedar, OPA) is the enforcement mechanism behind
+  least-privilege scoping — turning "the agent should only access what it's entitled to" into a
+  per-request enforced check, and it is one of the more tractable pieces because it builds on
+  authorization tech that already works. **Credential vaulting** keeps secrets out of the agent's
+  context (a §12 control), and **identity is the foundation of accountability** — you can't hold an
+  agent or its owner accountable for actions you can't attribute.
+- The layer lags because it is a **coordination problem** (many independent parties must agree),
+  layered on a genuinely novel problem — so it matures slowly, and its maturation is the precondition
+  for the autonomy, cross-org multi-agent, and agent-economy visions the rest of the stack reaches
+  toward.
+
+*Word count target: 5,500. This section: ~5,550 (verified via `wc`).*
