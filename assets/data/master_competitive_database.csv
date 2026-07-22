@@ -61,3 +61,15 @@ Onyx (Danswer),retrieval,shipped-reliable,seed,Y Combinator,Open-source self-hos
 Elastic,retrieval,shipped-reliable,public,Elastic NV,Mature hybrid BM25+vector search infrastructure,OpenSearch;vector DBs,official
 Neo4j,retrieval,shipped-reliable,series-f,Eurazeo;GV,Graph database powering graph-RAG,Microsoft GraphRAG,official
 LlamaIndex,retrieval,shipped-reliable,series-a,unknown,Document-centric RAG and agentic document workflows,LangChain;Haystack,official
+Anthropic Computer Use,computer-use,demoed-brittle,subsidiary,Anthropic,Leading OSWorld scores; general vision-based desktop control,OpenAI Operator;Google Mariner,official
+OpenAI Operator / CUA,computer-use,demoed-brittle,subsidiary,OpenAI,Consumer browser agent plus computer-use API,Anthropic Computer Use;Google Mariner,official
+Google Project Mariner,computer-use,demoed-brittle,subsidiary,Google,Gemini browser agent with deep Chrome integration,OpenAI Operator,official
+Simular,computer-use,demoed-brittle,seed,unknown,Open framework; first to clear human OSWorld baseline,Anthropic;H Company,inferred
+Browserbase,computer-use,shipped-reliable,series-b,Kleiner Perkins;CRV,Managed headless browser sandboxes at scale for agents,Anchor Browser;Scrapybara,inferred
+Browser Use,computer-use,shipped-reliable,seed,Y Combinator,Popular open-source DOM+vision browser automation library,Stagehand;Skyvern,inferred
+Skyvern,computer-use,demoed-brittle,seed,Y Combinator,Vision+DOM web workflow and form automation,Browser Use;Reworkd,inferred
+H Company (Runner H),computer-use,demoed-brittle,seed,Accel;UiPath;Eurazeo,Efficient smaller web-action models (European),Simular;OpenAI,inferred
+Anchor Browser / Scrapybara,computer-use,shipped-reliable,seed,unknown,Isolated agent browser and computer sandboxes,Browserbase,inferred
+Manus,computer-use,demoed-brittle,series-a,Benchmark,Viral autonomous general computer-use agent,OpenAI Operator;Anthropic,inferred
+Amazon Nova Act,computer-use,demoed-brittle,public,Amazon,AWS-integrated browser action model and SDK,OpenAI CUA;Google Mariner,official
+UiPath,computer-use,shipped-reliable,public,UiPath,Enterprise RPA incumbent pivoting to agentic automation,Automation Anywhere;Microsoft Power Automate,official
