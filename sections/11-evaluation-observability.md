@@ -639,4 +639,16 @@ advance next.
   the layer solves least well; "we didn't notice it regressed until users complained" is a common,
   costly failure of this layer's immaturity.
 
-*Word count target: 6,500. This section: ~6,500 (verified via `wc`).*
+- **Evaluation is a continuous discipline, not a one-time gate** — the target is non-stationary
+  (models, data, adversaries, and expectations all change), so eval sets must evolve, judges must be
+  re-calibrated, and monitoring must catch drift forever. And **measurability can be manufactured**:
+  the actionable form of the verifier thesis is that teams *build* verifiers (checkable criteria,
+  reference answers, outcome instrumentation, simulators) where a domain lacks them — extending
+  coding's iterate-with-confidence advantage into weakly-verified domains, which is where the next
+  verticals will mature.
+- **Eval-driven development** — encode success as evals, iterate against them, gate deployment on
+  them, grow them from production — replaces vibes-based iteration with evidence-based iteration, and
+  its adoption is the clearest marker separating teams that ship reliable agents from teams that
+  ship surprising ones.
+
+*Word count target: 6,500. This section: ~6,550 (verified via `wc`).*
