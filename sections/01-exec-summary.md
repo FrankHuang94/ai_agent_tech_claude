@@ -186,6 +186,53 @@ Threads that recur across every section, stated once here.
 
 ---
 
+## The 2023 → 2026 arc, in one page
+
+It is worth stating explicitly how the field arrived here, because the trajectory
+predicts where the bottlenecks move next.
+
+**2023 — the prompt era.** Agents were prompt chains. The dominant abstraction was
+"give the model a scratchpad and a list of tools described in the system prompt,
+and parse its text output for actions." Tool calling was string-parsed and
+unreliable; ReAct was the state of the art; there were no real standards. Nearly
+every layer in this document either did not exist as a distinct concern or was
+handled ad hoc inside a single prompt. The model *was* the bottleneck: GPT-4-class
+models could just barely hold a multi-step plan together.
+
+**2024 — the framework era.** Native function calling shipped across vendors,
+turning tool use from string-parsing into a structured, mostly-reliable mechanic.
+LangChain, LlamaIndex, CrewAI, and AutoGen competed to be the orchestration
+abstraction. Vector-database RAG became the default grounding pattern. This is when
+the *layers* in this document differentiated into distinct engineering concerns —
+memory, planning, retrieval, and orchestration stopped being "parts of a prompt"
+and became components with their own vendors. The bottleneck began sliding off the
+model and onto the plumbing.
+
+**2025 — the protocol era.** MCP (late 2024) and A2A (April 2025) arrived and were
+adopted with startling speed, standardizing the tool-connection and agent-to-agent
+layers respectively. Reasoning moved *into* the model (OpenAI's o-series, then
+reasoning across all major vendors), so planning quality jumped without external
+scaffolding. Coding agents crossed the usefulness threshold. Computer-use launched
+(Anthropic, October 2024) and browser agents proliferated — impressively demoed,
+persistently brittle. Enterprise platforms (Agentforce, Copilot Studio) launched to
+package all of this for non-developers.
+
+**2026 — the reliability and governance era (now).** The open problems are no longer
+"can the model do it" but "can we trust it, measure it, secure it, and make the
+pieces interoperate." MCP and A2A both moved under the Linux Foundation, signaling
+the standards fight is entering its consolidation phase. Memory, evaluation,
+security, and identity are the live engineering frontiers. The maturity table above
+is a snapshot of exactly this moment: the capability layers are green, the
+trust-and-interop layers are red and yellow.
+
+The arc has a direction: **each year the bottleneck moves one layer further from the
+model and one layer closer to the messy realities of production, governance, and
+trust.** If the pattern holds, 2027's bottlenecks will be the ones that are barely
+legible today — agent economics (who pays whom when agents transact), liability and
+audit, and the operational discipline of running fleets of agents. This document is
+organized to make the *current* front line — the red and yellow layers — as legible
+as possible.
+
 ## How to use the rest of this document
 
 Sections 02–15 each take one layer, describe the dominant approaches and their failure modes, tabulate the competitive/standards landscape (10+ players where the category supports it), and provide diagrams and charts. Section 16 consolidates every company mentioned into a single 100+ row master table (also exported as CSV). Section 17 is the glossary and the confidence-level methodology that governs every claim in the document. Throughout, three labels recur — **shipped-reliable**, **demoed-brittle**, **research-only** — and every roadmap claim carries a confidence tag of **official**, **inferred**, or **speculative**.
