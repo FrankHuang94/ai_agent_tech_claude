@@ -543,6 +543,74 @@ than a global on/off, run materially cheaper and often *better* agents.
 
 ---
 
+## The reasoning paradigm's short history
+
+The layer's evolution is worth tracing because it explains the current split between
+saturated benchmarks and unsolved long-horizon planning. In **2022–2023**, the key
+discovery was **chain-of-thought prompting** — simply asking the model to "think step by
+step" markedly improved reasoning, revealing that the capability was latent in the model
+and needed eliciting. This spawned an era of *prompt-engineered reasoning*:
+self-consistency (sample many chains, take the majority answer), tree-of-thought,
+and elaborate external reasoning structures, all trying to squeeze more reasoning out of
+models that weren't specifically trained for it.
+
+**2023–2024** brought ReAct and the agent explosion — interleaving reasoning with tool
+use — and a wave of external planning scaffolding (task decomposers, planner-executor
+architectures). The reasoning was still substantially *external*: the cleverness lived in
+the prompt structures and control flow wrapped around a general model.
+
+**Late 2024 into 2025** was the inflection: **reasoning models trained with RL over
+verifiable rewards**. Suddenly the model did internally, and far better, much of what the
+external scaffolding had been doing — extended thinking, self-checking, exploring
+alternatives. Reasoning benchmarks that had crept up slowly began to fall rapidly.
+Test-time compute became a named, tunable axis. The external scaffolding didn't
+disappear, but its center of gravity shifted from "make the model reason" (now the model
+reasons natively) to "structure long-horizon tasks the native reasoning still can't hold
+together."
+
+**2026** is the current settling: single-response reasoning is near-solved at the
+frontier and commoditizing at the middle (open reasoning models), while the unsolved
+residue — long-horizon planning, faithful reasoning, reasoning grounded in messy
+multimodal perception — is sharply visible precisely *because* the easier parts got
+solved. The bottleneck moved, exactly as the executive summary's arc predicts: each year
+it slides from "can the model reason at all" toward "can we sustain, trust, and ground
+that reasoning over long real-world tasks."
+
+## Planning failures in the wild: a field taxonomy
+
+Beyond the abstract failure modes, it is worth cataloguing how planning breaks in real
+deployed agents, because the patterns are consistent across systems:
+
+- **The confident wrong turn.** The agent commits early to an approach that seems
+  reasonable, and because reactive execution doesn't revisit the top-level choice, it
+  pursues the wrong strategy thoroughly and efficiently — arriving confidently at a wrong
+  or irrelevant result. The fix is a deliberative check on the *approach* before
+  investing in execution.
+- **The infinite-polish loop.** Given a "make it good" goal without a clear done
+  condition, an agent reflects and revises indefinitely, never deciding it's finished.
+  Reflection without a stopping criterion becomes thrashing. The fix is explicit
+  completion criteria and step budgets.
+- **The dropped subtask.** In a multi-step plan, the agent completes most subtasks but
+  silently omits one, and — lacking a global checklist it verifies against — never
+  notices. The fix is an explicit, externalized plan/todo the agent checks off (a
+  procedural-memory pattern, §03).
+- **The premature convergence.** The agent stops gathering information too early and
+  plans on incomplete data, because it doesn't recognize what it doesn't know. The fix is
+  prompting for and verifying information-sufficiency before committing to a plan.
+- **The lost thread.** On a long task, the agent gradually optimizes for local subtasks
+  in ways that collectively drift from the original goal, because the goal has scrolled
+  out of salient context. The fix is keeping the goal pinned in resident working memory
+  and periodically re-grounding against it.
+
+The unifying observation: **most real planning failures are failures of the deliberative
+and verification layers, not of per-step reasoning.** The model reasons fine within each
+step; what breaks is maintaining a correct global strategy, knowing when to stop, and
+checking that the plan was actually completed. This is why the highest-leverage
+reliability investments in this layer are structural (externalized plans, completion
+criteria, boundary verification, pinned goals) rather than "use a smarter model" — the
+smarter model already reasons well per-step; it is the *scaffolding around long-horizon
+coherence* that is the bottleneck.
+
 ## Roadmap and outlook (confidence-tagged)
 
 - **Reasoning benchmarks keep saturating; new harder ones keep appearing** *(official
