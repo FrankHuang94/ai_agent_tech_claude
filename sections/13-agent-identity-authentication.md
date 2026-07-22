@@ -530,7 +530,10 @@ authorization technology that already works; the work is applying it to agents, 
 - The **agent-as-economic-actor** vision (agents paying agents, autonomous purchasing, agent budgets)
   is one of the widest capability-vs-infrastructure gaps in the document: the potential value is
   enormous, and the trust/identity/payment infrastructure to realize it safely — this layer — is
-  barely built, making agentic commerce a most-watched-but-least-mature frontier.
+  barely built, making agentic commerce a most-watched-but-least-mature frontier. In short: the
+  agent economy runs entirely on this layer, and this layer is the least finished of them all, which
+  makes its steady, coordination-dependent maturation one of the quietly decisive storylines of the
+  next few years.
 
 - **Fine-grained authorization** (ReBAC/OpenFGA, Cedar, OPA) is the enforcement mechanism behind
   least-privilege scoping — turning "the agent should only access what it's entitled to" into a
