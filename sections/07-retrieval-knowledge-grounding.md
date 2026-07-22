@@ -3,6 +3,11 @@
 *How agents get the facts they need. Agentic RAG, knowledge freshness, and hybrid
 retrieval — and why retrieval, not generation, is now the bottleneck. Target: 6,000 words.*
 
+> **Reader's orientation.** This layer is where "the model doesn't know our data" gets
+> solved. It is technically mature but operationally demanding: the pattern is settled,
+> yet getting retrieval *right* for a specific corpus remains the difference between a
+> grounded agent that is trustworthy and one that confidently cites the wrong thing.
+
 ---
 
 ## From RAG-the-pattern to retrieval-the-agent-capability
