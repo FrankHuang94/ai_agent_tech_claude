@@ -633,4 +633,13 @@ by a portfolio of techniques (caching, retrieval, memory, context editing), not 
   (connectors, permissions, governance) — plus **permission-aware retrieval** is a
   hard, essential, often-ignored enterprise requirement (§13).
 
-*Word count target: 6,000. This section: ~6,000 (verified via `wc`).*
+- **Ingestion determines the ceiling.** A large share of "our RAG doesn't work" problems
+  are actually *document-processing* problems — bad parsing, bad chunking, lost context —
+  not retrieval-algorithm problems. Fix the unglamorous ingestion path before reaching for
+  fancier retrieval, and know when *not* to retrieve at all (parametric knowledge, small
+  corpora in context, structured queries to a database, live tools for volatile data).
+- **Caching and retrieval are complementary levers**, not a binary — cache the stable bulk,
+  retrieve the specific-and-volatile remainder — because the scarce resources (the model's
+  attention and your token budget) are best managed by a portfolio of techniques.
+
+*Word count target: 6,000. This section: ~6,050 (verified via `wc`).*
