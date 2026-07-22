@@ -1,0 +1,8 @@
+approach,latency_ms,answer_quality,cost_score
+Naive vector (top-k),40,62,2
+Hybrid (BM25+dense),70,71,3
+Hybrid + rerank,140,82,5
+Graph RAG,220,84,7
+Agentic multi-hop RAG,900,88,8
+Agentic grep/direct (code),350,86,4
+Long-context stuffing,600,68,9

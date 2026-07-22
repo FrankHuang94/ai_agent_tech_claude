@@ -49,3 +49,15 @@ ACP (AGNTCY),standards,demoed-brittle,open-source-project,Cisco;LangChain;LlamaI
 ANP (Agent Network Protocol),standards,research-only,open-source-project,open community,Decentralized DID-based P2P agent networks,A2A,inferred
 AGNTCY / OASF,standards,demoed-brittle,open-source-project,Cisco;Outshift,Open agent schema for discovery/identity (Internet of Agents),A2A Agent Cards,official
 IBM watsonx Orchestrate / BeeAI,multi-agent,shipped-reliable,public,IBM,ACP-native enterprise multi-agent orchestration,MS Agent Framework;Google ADK,official
+Contextual AI,retrieval,shipped-reliable,series-a,Greycroft;Bain Capital Ventures,End-to-end enterprise grounded-RAG platform from RAG originator,Vectara;Glean,official
+Vectara,retrieval,shipped-reliable,series-a,unknown,Managed RAG-as-a-service with hallucination reduction,Contextual AI;Onyx,official
+Glean,retrieval,shipped-reliable,series-f,Kleiner Perkins;Sequoia;Coatue,Enterprise work-wide search and knowledge graph with agents,Vectara;Onyx,official
+Cohere,retrieval,shipped-reliable,series-d+,Inovia;NVIDIA;Salesforce,Best-in-class rerank and embedding models for enterprise,Voyage AI;OpenAI,official
+Voyage AI,retrieval,shipped-reliable,subsidiary,MongoDB,High-quality domain embeddings and rerankers,Cohere;OpenAI,official
+Exa,retrieval,shipped-reliable,series-a,Lightspeed;NEA,Neural web search API built for agents,Tavily;Perplexity,inferred
+Tavily,retrieval,shipped-reliable,seed,unknown,Search-and-extract web API tuned for agent consumption,Exa;Brave Search API,inferred
+Perplexity,retrieval,shipped-reliable,series-d+,IVP;NEA;NVIDIA,Grounded answer engine with citations and API,Exa;vendor web search,official
+Onyx (Danswer),retrieval,shipped-reliable,seed,Y Combinator,Open-source self-hostable enterprise search and RAG,Glean;Vectara,inferred
+Elastic,retrieval,shipped-reliable,public,Elastic NV,Mature hybrid BM25+vector search infrastructure,OpenSearch;vector DBs,official
+Neo4j,retrieval,shipped-reliable,series-f,Eurazeo;GV,Graph database powering graph-RAG,Microsoft GraphRAG,official
+LlamaIndex,retrieval,shipped-reliable,series-a,unknown,Document-centric RAG and agentic document workflows,LangChain;Haystack,official

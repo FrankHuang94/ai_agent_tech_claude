@@ -1,0 +1,6 @@
+stage,ragas_score
+Naive vector top-k,62
++ Hybrid (add BM25),71
++ Reranking (top-50 to top-5),82
++ Query rewriting,85
++ Agentic iterate/verify,89
