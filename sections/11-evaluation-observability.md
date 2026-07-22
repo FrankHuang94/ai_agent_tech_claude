@@ -581,6 +581,42 @@ unglamorous — it is the measurement infrastructure the whole agent enterprise 
 
 ---
 
+## Manufacturing verifiers: extending measurability
+
+The deepest strategic insight of this layer, tying it to the verifier thesis that runs through the
+whole document, is that **measurability is not fixed — you can manufacture it.** The reason coding
+(§09) is the most mature vertical is that it *has* cheap verifiers (tests); the reason open-ended
+agent tasks lag is that they *lack* them. But teams are not stuck with whatever verifiers a domain
+comes with — a large part of the eval craft is *creating* verifiers where none exist:
+
+- **Write checkable criteria.** Turn "is this summary good?" into checkable sub-criteria (does it
+  cover the key points? is it faithful to the source? is it under the length limit?), converting a
+  fuzzy judgment into a set of cheaper checks — some rule-based, some LLM-judged.
+- **Add reference answers.** Curate known-good outputs so new outputs can be compared against a
+  reference, manufacturing a comparison signal where the domain gave none.
+- **Instrument outcomes.** For tasks with a real-world outcome (did the user complete their
+  purchase? did the ticket get resolved?), instrument that outcome as the ultimate verifier — the
+  most production-predictive signal, manufactured by measuring what actually happened.
+- **Build domain simulators.** For interactive tasks, build a simulated environment with a
+  checkable end-state (τ-bench's approach) — manufacturing a verifier for multi-turn behavior.
+
+The strategic reframing: **the maturity of any agent application is partly a choice, made by how
+much verifier-manufacturing effort the team invests.** A domain that looks weakly-verified (customer
+support, research, content) can be made more tractable by constructing criteria, references,
+outcome instrumentation, and simulators — turning it partway into a coding-like domain where
+iteration is confident. This is the actionable form of the verifier thesis: rather than lamenting
+that your domain lacks cheap verifiers, *build them*, and you extend the reliability and iteration
+speed that coding enjoys into your domain. The eval layer, properly understood, is not just
+*measuring* agents — it is *manufacturing the measurability* that makes agents improvable, which is
+why it gates progress everywhere and why investing in it pays off across the whole stack.
+
+The corollary for the field: as verifier-manufacturing techniques mature and spread (better
+LLM-judge calibration, standard outcome instrumentation, reusable simulators), *more* domains cross
+from weakly-verified to well-verified, and those domains' agents mature faster — which predicts that
+the next verticals to mature will be the ones where someone figures out how to cheaply verify
+success. Watching *where verifiers get manufactured* is watching where agent reliability will
+advance next.
+
 ## Section takeaways
 
 - Evaluation is the **silent bottleneck behind every other bottleneck** (maturity 4.5, severity
