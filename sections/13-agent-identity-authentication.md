@@ -462,6 +462,41 @@ rest of the stack is reaching toward.
 
 ---
 
+## Fine-grained authorization: the scoping engine
+
+Underneath the OAuth delegation flow sits the question of *what specifically* an agent is allowed to
+do — **fine-grained authorization (FGA)** — and this is where permission scoping (§12's load-bearing
+defense) becomes concrete. Coarse OAuth scopes ("email.read") are a start, but real agent
+authorization often needs finer control: *this* agent can read *these specific* records for *this*
+user in *this* context, but not others.
+
+The relevant technologies, mostly adapted from modern authorization systems:
+
+- **Relationship-based access control (ReBAC).** Systems like **OpenFGA** (CNCF, inspired by Google
+  Zanzibar) and **Auth0 FGA** model permissions as relationships ("user X can view document Y
+  because X is a member of team Z that owns Y"), enabling fine-grained, context-aware authorization
+  decisions. For agents, this means an agent's access can be scoped to exactly the resources the
+  on-behalf-of user is entitled to, checked per-request.
+- **Policy-as-code.** Engines like **Cedar** (AWS's authorization language) and **OPA/Rego** (Open
+  Policy Agent) express authorization policies as code, evaluated at decision time — letting teams
+  define precisely what agents can do under what conditions, and change it without redeploying.
+- **Permission-aware retrieval and action.** Tying FGA into the agent's actions means every tool
+  call and every retrieval (§07) checks the requesting principal's permissions — so the agent
+  physically cannot retrieve or act on resources the user isn't entitled to. This is how the
+  permission-aware retrieval requirement (§07) and least-privilege action (§12) are actually
+  implemented: an FGA check gates each access.
+
+The importance for agents: **fine-grained authorization is the enforcement mechanism behind
+least-privilege scoping** — it's what turns "the agent should only access what it's entitled to" from
+a principle into an enforced reality, checked on every access. As agents act across more resources on
+behalf of more users, coarse scopes become inadequate and FGA becomes necessary — which is why the
+authorization vendors (OpenFGA/Auth0 FGA, Cedar, OPA, and specialists like Oso and Permit.io) are
+increasingly positioning for the agent use case. The maturity here is better than the payment
+sub-layer (FGA technology is real and adopted for non-agent uses) but its *application to agents* —
+wiring FGA checks into every agent action and retrieval — is emerging practice, not yet default. It
+is, however, one of the more tractable pieces of the identity layer, because it builds on
+authorization technology that already works; the work is applying it to agents, not inventing it.
+
 ## Section takeaways
 
 - Agent identity/auth is the **lowest-maturity layer** (3.0) — a problem invented in real time: how an
