@@ -666,6 +666,70 @@ standards layer maturing faster than the reliability layer beneath it.
 
 ---
 
+## Communication semantics: what agents actually say to each other
+
+A subtle design dimension that separates robust multi-agent systems from fragile ones is
+the *semantics* of inter-agent communication — not the transport (A2A handles that) but
+*what* agents communicate and how precisely. Three levels of communication richness, in
+increasing sophistication:
+
+- **Result-passing.** The simplest: an agent returns its output, the next agent consumes
+  it. Adequate for pipelines, but lossy — the receiving agent gets the *what* without the
+  *why*, the confidence, or the caveats, which is a root cause of error cascade (a
+  downstream agent can't tell a shaky result from a solid one).
+- **Structured hand-off with metadata.** The agent returns its result *plus* metadata:
+  confidence, assumptions made, what it couldn't verify, and open questions. This lets
+  the receiving agent (or supervisor) reason about *how much to trust* the result and
+  whether to verify it — directly mitigating error cascade. Sophisticated systems
+  standardize a hand-off schema so every result carries this metadata.
+- **Negotiation and clarification.** The richest: agents can ask each other clarifying
+  questions before committing, negotiate the task specification, and push back ("this
+  task is underspecified; do you mean X or Y?"). This mitigates the telephone-game and
+  ambiguous-contract failures at their source, but it adds round-trips (cost/latency) and
+  its own failure modes (agents negotiating endlessly). Used judiciously at high-stakes
+  hand-offs, it is valuable; used everywhere, it is overhead.
+
+The design guidance: **carry confidence and caveats across hand-offs, not just results**,
+because the single highest-value piece of information for preventing error cascade is a
+downstream agent knowing how much to trust what it received. This is under-implemented —
+most multi-agent systems pass bare results — and it is one of the cheaper, higher-impact
+reliability improvements available in the layer.
+
+## Implementing the supervisor pattern well
+
+Since the supervisor/worker pattern is the recommended reliable default, it is worth
+detailing what *good* supervisor implementation looks like, because the pattern's
+reliability depends heavily on execution:
+
+- **The supervisor owns the plan and the integration, not the work.** It decomposes,
+  delegates, and synthesizes — but it should not also try to do the subtasks itself, or
+  the separation of concerns (and the context isolation benefit) collapses.
+- **Explicit, verifiable task contracts.** Each delegation should specify the subtask
+  precisely enough that the worker can't reasonably misinterpret it, *and* specify what a
+  successful result looks like so completion can be verified. Vague delegations are the
+  root of dropped/duplicated/wrong work.
+- **Result verification before integration.** The supervisor checks each worker's result
+  for usability (not empty, not an error-in-disguise, meets the contract) *before*
+  building on it — the single most important error-cascade defense.
+- **A global checklist.** The supervisor maintains an explicit, externalized list of
+  subtasks and their status (a procedural-memory pattern, §03), and verifies all are
+  complete before declaring the task done — preventing the silent dropped-subtask
+  failure.
+- **Bounded delegation depth.** Keep the hierarchy shallow (avoid deep supervisor-of-
+  supervisor-of-supervisor chains) to limit telephone-game drift and coordination
+  overhead; each layer of delegation adds both.
+- **Graceful degradation.** When a worker fails unrecoverably, the supervisor decides:
+  retry, delegate to an alternative, complete the task without that piece, or escalate to
+  a human — rather than the whole system failing because one worker did.
+
+Done this way, the supervisor pattern contains most of the coordination failure modes:
+the centralized plan prevents dropped/duplicated work, verification prevents cascade, the
+checklist prevents silent omission, and bounded depth limits drift. It is not
+coincidence that this is the pattern the mature frameworks (LangGraph's supervisor,
+CrewAI's hierarchical process, the vendor SDKs' handoffs) all converged on — it is the
+structure that makes multi-agent as reliable as multi-agent gets, which is still less
+reliable than a single agent, which is why the "only when needed" guidance stands.
+
 ## Section takeaways
 
 - Separate **connection** (the protocol/plumbing problem, being solved by standards) from
