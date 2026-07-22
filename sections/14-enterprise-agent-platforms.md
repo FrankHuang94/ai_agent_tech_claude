@@ -25,7 +25,9 @@ originates. What the platform adds is the enterprise-grade *wrapper*: the data i
 governance, the low-code accessibility, the compliance, the support. That distinction matters because
 it explains both why the incumbents (who own the data and relationships, not better agent tech) are
 so well-positioned, and why the competitive battle here is fought over distribution and ecosystem
-rather than over raw capability. This is a go-to-market layer as much as a technology layer.
+rather than over raw capability. This is a go-to-market layer as much as a technology layer — and in enterprise software, distribution
+and trusted relationships have historically beaten superior technology more often than not, which is
+the incumbents' deepest structural advantage here.
 
 The scale is real. Salesforce reports Agentforce closing ~29,000 deals since launch reaching ~$800M
 ARR; Microsoft reports Copilot Studio with ~160,000 organizations running 400,000+ custom agents;
