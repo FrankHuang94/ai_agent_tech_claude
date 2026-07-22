@@ -584,6 +584,32 @@ pattern into a reliable production capability.
 
 ---
 
+## Retrieval and prompt caching: an economic interaction
+
+A practical interaction worth flagging: **prompt caching changes retrieval economics.**
+When a large, stable block of context (a reference corpus, a long system prompt, a set of
+documents) is reused across many queries, prompt caching lets the model reuse the
+already-processed context at a fraction of the cost and latency of reprocessing it. This
+shifts some of the calculus between retrieval and context-stuffing:
+
+- For a **stable, moderately-sized corpus queried repeatedly**, caching the whole corpus in
+  context can be economical — you pay the full processing cost once and reuse it cheaply,
+  sidestepping retrieval-miss risk. This is a genuine (if bounded) case for "put more in
+  context" that caching enables.
+- For **large or frequently-changing corpora**, retrieval remains necessary — you can't
+  cache what doesn't fit or what keeps changing (cache invalidation on every change defeats
+  the benefit).
+- The **hybrid** that emerges: cache the stable, always-relevant context (system prompt,
+  core reference material) and *retrieve* the query-specific, volatile, or large remainder.
+  This optimizes both cost and freshness.
+
+The takeaway: **caching and retrieval are complementary levers on the same problem — how to
+get the model the context it needs cheaply** — and the sophisticated design uses caching for
+the stable bulk and retrieval for the specific-and-volatile remainder, rather than treating
+"retrieve" versus "stuff in context" as a binary. This is another instance of the recurring
+theme that the scarce resources — the model's attention and your token budget — are managed
+by a portfolio of techniques (caching, retrieval, memory, context editing), not by any one.
+
 ## Section takeaways
 
 - **Retrieval, not generation, is the bottleneck** for grounded accuracy in 2026 — wrong
