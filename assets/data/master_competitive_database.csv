@@ -35,3 +35,11 @@ Instructor,tool-use,shipped-reliable,open-source-project,community,Pythonic vali
 Outlines,tool-use,shipped-reliable,open-source-project,community,Grammar-constrained decoding guaranteeing valid structure,XGrammar;llguidance,official
 Pipedream,tool-use,shipped-reliable,series-a,unknown,Thousands of app connectors exposed as MCP tools,Composio;Zapier,official
 Zapier (MCP),tool-use,shipped-reliable,bootstrapped,unknown,Massive integration catalog bridged to agents via MCP,Pipedream;Composio,official
+OpenAI,planning-reasoning,shipped-reliable,series-e+,Microsoft;Thrive;SoftBank,Test-time-compute reasoning pioneer (o-series lineage),Anthropic;Google DeepMind,official
+Anthropic,planning-reasoning,shipped-reliable,series-f,Google;Amazon;Lightspeed,Extended thinking that transfers to long agentic tasks,OpenAI;Google DeepMind,official
+Google DeepMind,planning-reasoning,shipped-reliable,subsidiary,Alphabet,Gemini reasoning with AlphaProof/search heritage,OpenAI;Anthropic,official
+DeepSeek,planning-reasoning,shipped-reliable,bootstrapped,High-Flyer,Low-cost open-weight reasoning models,Qwen;Meta,official
+xAI,planning-reasoning,shipped-reliable,series-d+,Valor;a16z;Sequoia,Grok reasoning with self-play and chain verification,OpenAI;Google DeepMind,inferred
+Qwen (Alibaba),planning-reasoning,shipped-reliable,public,Alibaba,Competitive open-weight reasoning models,DeepSeek;Meta,official
+Meta (Llama),planning-reasoning,shipped-reliable,public,Meta,Open-weight models at ecosystem scale,Qwen;DeepSeek,official
+ARC Prize / Epoch AI,eval-observability,shipped-reliable,research-lab,unknown,Builds frontier reasoning benchmarks (ARC-AGI/FrontierMath),internal evals,official
