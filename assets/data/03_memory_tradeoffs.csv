@@ -1,0 +1,8 @@
+approach,retrieval_latency_ms,persistence_score,cost_score,recall_quality
+In-context (window only),5,1,2,6
+Context editing / compaction,15,3,3,6.5
+Vector memory (semantic),60,7,5,7
+Graph memory (temporal KG),140,8,7,8.5
+Hybrid vector+graph,110,9,8,9
+File-based (agent-managed),40,8,3,7
+Managed thread store (vendor),50,6,4,6.5

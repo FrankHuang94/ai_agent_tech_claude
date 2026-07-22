@@ -1,0 +1,7 @@
+system,architecture,dmr_accuracy,notes
+Hybrid (Zep Graphiti),temporal graph+vector,94.8,Temporal knowledge graph
+Letta (MemGPT),in-context core+archival,93.4,Memory-first stateful agent
+Mem0,vector fact extraction,91.0,Drop-in memory layer
+LangMem,vector+summaries,88.0,LangGraph-native
+Full-context baseline,no external memory,82.0,Everything in window
+Vanilla RAG baseline,naive vector,80.0,Chunk retrieval

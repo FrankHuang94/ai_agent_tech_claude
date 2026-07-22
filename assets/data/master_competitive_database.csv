@@ -15,3 +15,17 @@ DSPy,orchestration,demoed-brittle,research-lab,Stanford,Compiles/optimizes promp
 Vercel AI SDK,orchestration,shipped-reliable,series-e,Accel;GV;Notable Capital,Default thin client for TypeScript web-embedded agents,Mastra;Genkit,official
 Mastra,orchestration,demoed-brittle,seed,unknown,TypeScript-native full orchestration framework,Vercel AI SDK;LangGraph.js,inferred
 AWS Strands / Bedrock Agents,orchestration,shipped-reliable,public,Amazon,Managed agent runtime deeply integrated with AWS Bedrock,Google ADK;MS Agent Framework,official
+Mem0,memory,shipped-reliable,series-a,Basis Set Ventures,Simplest drop-in extracted-fact memory; AWS Agent SDK provider,Zep;LangMem;Letta,official
+Zep,memory,shipped-reliable,seed,unknown,Bi-temporal knowledge graph (Graphiti) for temporal/relational recall,Mem0;Cognee,official
+Letta,memory,shipped-reliable,seed,Felicis,Memory-first stateful agents; OS-style core/archival paging,Mem0;LangMem,official
+LangMem,memory,shipped-reliable,series-b,IVP;Sequoia,LangGraph-native memory SDK,Mem0;Zep,official
+Cognee,memory,demoed-brittle,seed,unknown,Governed org-wide memory control plane (ECL pipeline),Zep;Mem0,inferred
+Anthropic Memory Tool,memory,shipped-reliable,subsidiary,Anthropic,Transparent client-side file memory with context editing,OpenAI memory;Vertex Memory Bank,official
+OpenAI Memory,memory,shipped-reliable,subsidiary,OpenAI,Invisible background user profiles in ChatGPT,Anthropic Memory Tool;Google,official
+Vertex Memory Bank,memory,shipped-reliable,subsidiary,Google,Managed memory for Vertex Agent Engine,AWS AgentCore Memory;OpenAI,official
+AWS AgentCore Memory,memory,shipped-reliable,public,Amazon,Managed memory in AgentCore backed by Mem0 partnership,Vertex Memory Bank;Azure,official
+Pinecone,memory,shipped-reliable,series-b,Andreessen Horowitz;ICONIQ,Managed vector DB substrate moving up into memory,Weaviate;Qdrant,official
+Weaviate,memory,shipped-reliable,series-b,Index Ventures;Battery,Open-source vector DB with agent memory features,Pinecone;Qdrant,official
+Qdrant,memory,shipped-reliable,series-a,Spark Capital,High-performance open-source vector DB,Weaviate;Pinecone,official
+Chroma,memory,shipped-reliable,series-a,unknown,Developer-friendly embedded vector store,Qdrant;Weaviate,official
+Redis (Agent Memory),memory,shipped-reliable,public,Redis,Sub-ms KV plus vector for low-latency working memory,Pinecone;pgvector,official
