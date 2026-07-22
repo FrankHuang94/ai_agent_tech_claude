@@ -43,3 +43,9 @@ xAI,planning-reasoning,shipped-reliable,series-d+,Valor;a16z;Sequoia,Grok reason
 Qwen (Alibaba),planning-reasoning,shipped-reliable,public,Alibaba,Competitive open-weight reasoning models,DeepSeek;Meta,official
 Meta (Llama),planning-reasoning,shipped-reliable,public,Meta,Open-weight models at ecosystem scale,Qwen;DeepSeek,official
 ARC Prize / Epoch AI,eval-observability,shipped-reliable,research-lab,unknown,Builds frontier reasoning benchmarks (ARC-AGI/FrontierMath),internal evals,official
+MCP (Model Context Protocol),standards,shipped-reliable,open-source-project,Linux Foundation;Anthropic;OpenAI;Google;AWS,Won the tool/context connection layer; 18k+ servers,A2A;ACP,official
+A2A (Agent2Agent),standards,demoed-brittle,open-source-project,Linux Foundation;Google;Salesforce;ServiceNow,Leading agent-to-agent standard with Agent Cards,ACP;ANP,official
+ACP (AGNTCY),standards,demoed-brittle,open-source-project,Cisco;LangChain;LlamaIndex;Dell;Oracle;Red Hat,REST/HTTP-verb runtime-neutral agent messaging,A2A,official
+ANP (Agent Network Protocol),standards,research-only,open-source-project,open community,Decentralized DID-based P2P agent networks,A2A,inferred
+AGNTCY / OASF,standards,demoed-brittle,open-source-project,Cisco;Outshift,Open agent schema for discovery/identity (Internet of Agents),A2A Agent Cards,official
+IBM watsonx Orchestrate / BeeAI,multi-agent,shipped-reliable,public,IBM,ACP-native enterprise multi-agent orchestration,MS Agent Framework;Google ADK,official
