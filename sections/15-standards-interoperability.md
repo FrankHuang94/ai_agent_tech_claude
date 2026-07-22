@@ -582,6 +582,61 @@ connects.
 
 ---
 
+## The deeper lesson: standards as coordination technology
+
+Stepping back, the agent-standards story illustrates something important about how the whole field
+progresses. Standards are **coordination technology** — they let independent parties build on shared
+foundations without central control — and their maturation follows a different logic than capability
+(§05) or product (§09) maturation. Capability improves when a lab trains a better model; a standard
+matures only when an *ecosystem agrees*, which requires aligned incentives, credible neutral
+governance, and enough shared pain to overcome each party's temptation to control the standard itself.
+
+This is why the standards story is simultaneously the "most contested" dimension and one of the
+fastest-consolidating in practice: contested because standards are inherently power contests, fast-
+consolidating because the coordination incentives happened to align strongly (universal pain,
+multi-vendor balance where no one could dominate, historical lesson-learning). When those conditions
+hold — universal aligned demand, no dominant player, credible neutral governance — standards consolidate
+fast (MCP). When they don't — fuzzy interface, vendor lock-in incentive, or genuine multi-power contest
+— they lag (agent definition, memory, payments). The tractability logic that governs every layer
+governs standards too: **standards consolidate where coordination is easy (clean interface, aligned
+incentives, no dominant defector) and lag where it's hard.**
+
+The implication for reading the rest of the field: **watch the coordination conditions to predict
+which standards emerge next.** A layer developing a clean interface with universal pain and no strong
+lock-in incentive (the way the tool layer did) will standardize; a layer with a fuzzy interface or
+where vendors profit from lock-in (memory, agent definition) will resist standardization until those
+conditions change. The standards stack will keep filling in from the layers where coordination is
+easiest toward the layers where it's hardest — which predicts observability (OTel, easy) and agent-to-
+agent (A2A, moderately easy) settling before agent-definition and memory (hard, lock-in-favoring).
+
+## Standards and the shape of the ecosystem
+
+Finally, standards *shape the competitive structure* of the entire agent ecosystem, which is why they
+matter beyond their technical role. The open, layered, neutrally-governed standards stack has profound
+structural consequences:
+
+- **It commoditizes the connection layer**, so value migrates up (to agent logic, products, and
+  data) and down (to models and infrastructure) rather than being captured at the connection layer —
+  no one owns "how agents connect," which prevents a connection-layer monopoly.
+- **It reduces lock-in**, which favors best-of-breed assembly (pick the best tool, the best agent,
+  the best model, connected via standards) over single-vendor stacks — good for buyers, and the reason
+  enterprises (§14) champion the standards as a lock-in hedge.
+- **It enables the ecosystem to be larger than any vendor**, because open standards let a long tail of
+  participants (18,000+ MCP servers, thousands of agent builders) contribute — the network effects that
+  make the ecosystem valuable are only possible *because* it's open.
+- **It shifts competition to where value genuinely is** — model capability, product/workflow value,
+  data, and trust — rather than to controlling proprietary plumbing. This is healthier for the
+  ecosystem and for buyers than a world where one vendor owned the connective tissue.
+
+The structural reading: **the open standards stack is why the agent ecosystem is a multi-vendor
+ecosystem rather than a single-vendor platform** — and that structure, more than any individual
+technology, shapes where value accrues and how the whole field competes. The standards are not just
+plumbing; they are the constitutional structure of the agent economy, determining that it's an open
+market rather than a walled garden. That this constitutional structure came together so fast, and so
+open, is one of the more consequential and under-appreciated developments in the whole agent story —
+it set the ecosystem on an open trajectory at exactly the formative moment when it could have gone
+proprietary.
+
 ## Section takeaways
 
 - Standards is the **most contested dimension** (contestedness 9.0) but consolidating **unusually
