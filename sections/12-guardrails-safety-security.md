@@ -606,6 +606,56 @@ via a legitimate-looking tool call.
 
 ---
 
+## Trust boundaries and the architecture of caution
+
+The most useful mental model for architecting secure agents is **trust boundaries** — explicitly
+mapping which parts of the system trust which, and treating everything across a boundary as
+potentially hostile. Applied to agents:
+
+- **All external content is across a trust boundary.** Web pages, emails, documents, retrieved
+  content (§07), tool results from third parties (§04), and other agents' outputs (§06) are
+  *untrusted data*, never trusted instructions — no matter how authoritative they look. The
+  discipline of "treat all ingested content as untrusted" is the input-side expression of the whole
+  security posture.
+- **Tools and MCP servers are across a trust boundary.** A third-party MCP server (§04/§15) is
+  untrusted code you're granting your agent access to; its tool descriptions and results can be
+  malicious (MCP poisoning). Vetting, sandboxing, and scoping third-party tools is essential as the
+  MCP ecosystem grows.
+- **Each privilege level is a trust boundary.** The low-privilege agent shouldn't be trusted with
+  high-privilege capabilities; separate identities and scoping enforce the boundary (§13).
+- **The model itself is, in a sense, across a trust boundary.** Because the model can be hijacked,
+  the *safe* architecture doesn't fully trust the model's decisions on consequential actions — it
+  gates them structurally. "Don't trust the model with irreversible actions without a gate" is
+  treating the model as operating across a trust boundary from the consequential systems.
+
+The **architecture of caution** that falls out: map the trust boundaries, treat everything across
+them as hostile, and place your load-bearing controls (scoping, gating, egress, sandboxing) *at* the
+boundaries. This is standard security thinking (zero-trust, defense-in-depth) applied to the novel
+agent context — and it works precisely because it doesn't depend on the unsolvable problem
+(preventing injection) but on the solvable one (limiting what a compromised component can reach
+across a boundary). Teams that architect agents with explicit trust boundaries and boundary controls
+build defensibly; teams that trust the model to be careful build fragilely.
+
+## Why this layer defines the field's near-term ceiling
+
+It is worth stating plainly why security is the layer that most constrains where agents can go. Every
+other bottleneck (memory, planning, computer-use) limits how *capable* agents are; security limits
+how much *autonomy we can safely grant* even capable agents. An agent could be brilliant at a task
+and still be undeployable for it if the task involves sensitive data and consequential actions and
+the security to do it safely doesn't exist. This is why security is the *gating* factor for
+enterprise autonomy: it doesn't cap capability, it caps *trust*, and trust is what autonomy requires.
+
+The practical consequence, threaded through this whole document, is that **2026's "autonomous" agents
+are mostly semi-autonomous by necessity** — humans in the loop on consequential actions, blast radius
+limited, high-stakes autonomy constrained — not because the agents can't do the work, but because we
+can't yet trust them to do it unsupervised without unacceptable risk. The path to genuinely
+autonomous high-stakes agents runs *through* this layer: until prompt injection is meaningfully more
+defensible, or until architectures reliably contain a compromised agent's blast radius to acceptable
+levels, the human stays in the loop on anything that matters. Security is therefore not just one
+layer among fifteen — it is the layer that, more than any other, determines how far the whole agent
+enterprise can go in the near term. Progress here — even the un-glamorous progress of
+"managing an unsolvable problem better" — unlocks autonomy that no capability improvement alone can.
+
 ## Section takeaways
 
 - Security is the **highest-severity, lowest-maturity layer** (maturity 3.5, severity 9.0) and the
