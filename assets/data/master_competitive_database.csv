@@ -1,1 +1,17 @@
 company,category,maturity,funding_stage,key_backers,differentiator,main_competitors,source_confidence
+LangGraph,orchestration,shipped-reliable,series-b,IVP;Sequoia;Benchmark;CapitalG,Durable checkpointed graph execution with deepest production tooling,MS Agent Framework;Google ADK;CrewAI,official
+LangChain,orchestration,shipped-reliable,series-b,IVP;Sequoia;Benchmark;CapitalG,Largest agent ecosystem and integration breadth,LlamaIndex;vendor SDKs,official
+CrewAI,orchestration,shipped-reliable,series-a,Insight Partners;boldstart;Craft Ventures,Role/crew metaphor; fastest path to multi-agent demo,AutoGen;LangGraph,official
+AutoGen,orchestration,shipped-reliable,subsidiary,Microsoft,Emergent conversational multi-agent (folding into MS Agent Framework),CrewAI;MS Agent Framework,official
+Microsoft Agent Framework,orchestration,shipped-reliable,subsidiary,Microsoft,AutoGen+Semantic Kernel merged; Azure-native durable execution,LangGraph;Google ADK,official
+LlamaIndex,orchestration,shipped-reliable,series-a,unknown,Data/RAG-first with agentic document workflows,LangChain;Haystack,official
+OpenAI Agents SDK,orchestration,shipped-reliable,subsidiary,OpenAI,Ships with GPT models; built-in tracing and handoffs,Claude Agent SDK;LangGraph,official
+Claude Agent SDK,orchestration,shipped-reliable,subsidiary,Anthropic,Battle-tested via Claude Code; strong MCP/tool-use,OpenAI Agents SDK;LangGraph,official
+Google ADK,orchestration,shipped-reliable,subsidiary,Google,Code-first model-agnostic; Vertex and A2A native,MS Agent Framework;LangGraph,official
+Pydantic AI,orchestration,shipped-reliable,seed,unknown,Type-safe validated Python agents with self-correction,LangGraph;LlamaIndex,official
+Semantic Kernel,orchestration,shipped-reliable,subsidiary,Microsoft,Enterprise .NET heritage; unifying into MS Agent Framework,MS Agent Framework,official
+Haystack (deepset),orchestration,shipped-reliable,series-b,unknown,Mature NLP/RAG pipelines with agent additions,LlamaIndex;LangChain,official
+DSPy,orchestration,demoed-brittle,research-lab,Stanford,Compiles/optimizes prompts against a metric instead of hand-tuning,LangChain;Pydantic AI,inferred
+Vercel AI SDK,orchestration,shipped-reliable,series-e,Accel;GV;Notable Capital,Default thin client for TypeScript web-embedded agents,Mastra;Genkit,official
+Mastra,orchestration,demoed-brittle,seed,unknown,TypeScript-native full orchestration framework,Vercel AI SDK;LangGraph.js,inferred
+AWS Strands / Bedrock Agents,orchestration,shipped-reliable,public,Amazon,Managed agent runtime deeply integrated with AWS Bedrock,Google ADK;MS Agent Framework,official
