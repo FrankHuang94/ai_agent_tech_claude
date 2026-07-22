@@ -133,3 +133,17 @@ Agentic Commerce Protocol,identity-auth,demoed-brittle,subsidiary,OpenAI;Stripe,
 x402,identity-auth,demoed-brittle,public,Coinbase,HTTP 402 stablecoin micropayments for agents,AP2;card networks,official
 Visa Intelligent Commerce,identity-auth,demoed-brittle,public,Visa,Tokenized agent card credentials with spend controls,Mastercard Agent Pay;ACP,official
 Mastercard Agent Pay,identity-auth,demoed-brittle,public,Mastercard,Agent Pay tokens on existing card rails,Visa;ACP,official
+Salesforce Agentforce,enterprise-platform,shipped-reliable,public,Salesforce,CRM-native customer-facing agents; ~$800M ARR,Microsoft Copilot Studio;ServiceNow,official
+Microsoft Copilot Studio,enterprise-platform,shipped-reliable,public,Microsoft,M365-ubiquitous low-code employee agents; 160k orgs,Agentforce;Google Agentspace,official
+ServiceNow AI Agents,enterprise-platform,shipped-reliable,public,ServiceNow,Workflow-data-fabric IT/HR service agents with governance,Copilot Studio;Agentforce,official
+SAP Joule,enterprise-platform,shipped-reliable,public,SAP,ERP/business-process-native agents,Microsoft;Workday,official
+Google Agentspace / Gemini Enterprise,enterprise-platform,shipped-reliable,subsidiary,Google,Open cross-system enterprise agent layer; A2A-native,Copilot Studio;AWS,official
+AWS Bedrock AgentCore,enterprise-platform,shipped-reliable,public,Amazon,Model-agnostic managed enterprise agent runtime,Google Agentspace;Azure,official
+Workday Illuminate,enterprise-platform,shipped-reliable,public,Workday,HR/finance-data-native agents,SAP Joule;Microsoft,official
+Atlassian Rovo,enterprise-platform,shipped-reliable,public,Atlassian,Agents across dev/collaboration tools,Microsoft;Glean,official
+UiPath Agentic Automation,enterprise-platform,shipped-reliable,public,UiPath,Agents plus deterministic RPA execution,Automation Anywhere;Microsoft,official
+Kore.ai,enterprise-platform,shipped-reliable,series-d+,Vistara;NVIDIA,Vendor-neutral enterprise CX/conversational agents,Agentforce;Sierra,inferred
+Harvey,enterprise-platform,shipped-reliable,series-e,Sequoia;Kleiner Perkins;GV,Legal-domain agent platform,Legora;incumbents,inferred
+Glean,enterprise-platform,shipped-reliable,series-f,Kleiner Perkins;Sequoia,Cross-app enterprise work agents on knowledge graph,Microsoft;Dust,official
+Dust,enterprise-platform,shipped-reliable,series-a,Sequoia,Neutral cross-app employee agent platform,Glean;Copilot Studio,inferred
+Adobe AEP Agent Orchestrator,enterprise-platform,shipped-reliable,public,Adobe,Marketing/creative-data-native agents,Salesforce;Microsoft,official
