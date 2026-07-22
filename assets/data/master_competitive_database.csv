@@ -147,3 +147,6 @@ Harvey,enterprise-platform,shipped-reliable,series-e,Sequoia;Kleiner Perkins;GV,
 Glean,enterprise-platform,shipped-reliable,series-f,Kleiner Perkins;Sequoia,Cross-app enterprise work agents on knowledge graph,Microsoft;Dust,official
 Dust,enterprise-platform,shipped-reliable,series-a,Sequoia,Neutral cross-app employee agent platform,Glean;Copilot Studio,inferred
 Adobe AEP Agent Orchestrator,enterprise-platform,shipped-reliable,public,Adobe,Marketing/creative-data-native agents,Salesforce;Microsoft,official
+OpenTelemetry (GenAI),standards,shipped-reliable,open-source-project,CNCF;community,Vendor-neutral agent tracing/observability standard,vendor tracing,official
+OAuth 2.1 / OIDC,standards,shipped-reliable,open-source-project,IETF,Delegated-authorization foundation reused for agents,proprietary auth,official
+Linux Foundation (Agentic AI Foundation),standards,shipped-reliable,open-source-project,Anthropic;OpenAI;Google;Microsoft;AWS,Neutral governance home for MCP and agent standards,vendor control,official

@@ -1,0 +1,12 @@
+date,milestone,track
+2024-11,MCP launched (Anthropic),MCP
+2025-03,OpenAI adopts MCP,MCP
+2025-04,A2A launched (Google),A2A
+2025-05,Google adopts MCP,MCP
+2025-06,A2A donated to Linux Foundation,A2A
+2025-07,ACP donated to LF (AGNTCY),ACP
+2025-09,Agentic Commerce Protocol (OpenAI+Stripe),Payments
+2025-10,AP2 announced (Google),Payments
+2025-12,MCP donated to LF (Agentic AI Foundation),MCP
+2026-04,A2A passes 150 orgs; v1.0.1,A2A
+2026-06,MCP registry ~18k servers,MCP
