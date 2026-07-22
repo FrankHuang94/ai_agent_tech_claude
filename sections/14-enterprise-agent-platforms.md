@@ -514,6 +514,35 @@ then sobering, converging toward measured production deployment. What's distinct
 the *breadth* — it's not one category being disrupted but *every* enterprise-software category
 simultaneously adding agents, which is why the layer is so crowded and contested.
 
+## Agent marketplaces and the ecosystem play
+
+An emerging dimension of the platform battle is **agent marketplaces** — the platforms building
+ecosystems where third parties (ISVs, partners, the enterprise's own teams) publish pre-built agents
+that others can discover, buy, and deploy. This mirrors the app-store/app-exchange strategy that
+made previous platforms sticky:
+
+- **Salesforce's AgentExchange, Microsoft's agent marketplace, ServiceNow's store**, and others let
+  partners distribute agents and let enterprises find pre-built agents for common use cases —
+  extending the platform's value through an ecosystem and deepening lock-in (agents built for one
+  marketplace don't trivially move).
+- **The ecosystem flywheel.** A marketplace with many quality agents attracts more enterprises,
+  which attracts more agent-builders, which attracts more enterprises — the classic platform
+  flywheel, now for agents. The incumbents with existing partner ecosystems (Salesforce's ISV base,
+  Microsoft's) have a head start replicating it for agents.
+- **The standards tension.** Marketplaces are inherently platform-specific (deepening lock-in),
+  which is in tension with the enterprise's standards-based portability desire — so the marketplaces
+  increasingly support MCP/A2A to let marketplace agents interoperate, balancing ecosystem lock-in
+  against portability demands.
+
+The strategic point: **agent marketplaces are how the platforms convert a product into an
+ecosystem**, extending value and stickiness beyond the platform's own agents to a whole third-party
+economy — and the incumbents' existing partner ecosystems give them another advantage in building
+them. Whether these marketplaces become genuinely valuable (like the successful app stores) or
+struggle (like many enterprise-software marketplaces did) depends on whether third-party agents
+deliver enough value to sustain the flywheel, which is still being determined. But the *strategy* —
+own the marketplace, own the ecosystem, deepen the moat — is a clear part of the platform land-grab,
+and it is another front on which incumbents leverage their existing partner relationships.
+
 ## Roadmap and outlook (confidence-tagged)
 
 - **Incumbents dominate via data/workflow moats** *(official trend; high confidence).* Salesforce,
