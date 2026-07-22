@@ -649,4 +649,17 @@ connector advantage that anchors the incumbents becomes a standard everyone has.
   **standards (MCP/A2A) support is the enterprise's lock-in hedge**; and **semi-autonomous with
   human oversight** is the production reality.
 
-*Word count target: 6,500. This section: ~6,500 (verified via `wc`).*
+- The deeper strategic contest is **system of record vs. system of action** — incumbents extend their
+  data moats into agents to avoid being demoted to back-end data stores below a new neutral agent
+  layer; the likely outcome is contested coexistence. Enterprises use **standards (MCP/A2A) as a
+  lock-in hedge**, making standards support a procurement requirement and enterprises a key demand-side
+  driver of §15's consolidation.
+- Value is gated by **integration breadth and data readiness** (the unglamorous connector/plumbing
+  moat, slowly commoditized by MCP), and adoption is as much **organizational transformation**
+  (change management, workforce, process redesign) as technology — with a maturity curve from
+  experimentation → point solutions → process integration → agentic operations, where most
+  enterprises sit at "point solutions in production" and stage 4 remains gated by the field's
+  security/reliability/identity bottlenecks. **Agent marketplaces** are the ecosystem play deepening
+  the moat.
+
+*Word count target: 6,500. This section: ~6,550 (verified via `wc`).*
