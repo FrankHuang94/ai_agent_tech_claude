@@ -608,6 +608,38 @@ verifiers made every step measurable and therefore improvable.
 
 ---
 
+## Why coding is the template for the whole field
+
+It is worth closing by making explicit what the rest of this document borrows from coding,
+because coding agents are not just the most mature vertical — they are the *template* other
+verticals are trying to copy. Every hard agent problem that coding largely solved, it solved by
+exploiting the cheap verifier, and the techniques that worked there are precisely the ones
+propagating outward:
+
+- **Verifier-driven iteration** (write, check, fix) is the reflection/error-recovery pattern
+  (§04/§05) working well *because* the check is cheap — and other verticals are learning to
+  manufacture verifiers (rubrics, tests, tool checks) to enable the same loop.
+- **Agentic search over the source** (grep-style codebase exploration) beat indexed RAG for
+  code (§07), and the "investigate the source directly with tools" pattern is spreading to other
+  domains where the source is navigable.
+- **CodeAct** (act by writing code) originated in coding and is generalizing to tool use
+  broadly (§04), softening the many-tools problem across the stack.
+- **PR-boundary human review** — oversight at the output boundary rather than every keystroke —
+  is the human-in-the-loop pattern (§02) that scales, and it generalizes to any agent whose work
+  can be reviewed as a discrete deliverable.
+- **Sandboxed execution** (§08) was hardened by coding's need to run untrusted generated code,
+  and the same infrastructure serves computer-use.
+
+The unifying insight: **coding agents are the field's R&D lab because the cheap verifier let
+them iterate faster than any other vertical, and the patterns that emerged there are the
+patterns being ported everywhere a verifier can be built.** When you see another agent vertical
+mature, it is usually because someone found or manufactured a verifier for it — turning a
+weakly-verified domain into a coding-like one. This is the deepest reason coding matters beyond
+its own market: it is the proof that the verifier thesis works, and the source of the techniques
+that extend agent reliability into the rest of the stack. The question for any new agent
+application is, first, "what is the cheap verifier here?" — and coding is where the field learned
+to ask it.
+
 ## Section takeaways
 
 - Coding agents are **the most mature agent vertical** (maturity 7.5) and the **proof of the
