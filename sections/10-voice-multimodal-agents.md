@@ -536,6 +536,56 @@ the forcing function for latency and real-time responsiveness.
 
 ---
 
+## Designing voice agents: what changes from text
+
+Building a good voice agent is not "put a text agent behind a phone line" — the medium changes the
+design in ways that trip up teams porting text agents to voice:
+
+- **Responses must be short.** Text users skim long responses; voice users must *listen* to every
+  word in real time, and a long spoken response is painful. Voice agents need terse, conversational
+  responses — a sentence or two, not a paragraph — which means the prompting and the whole
+  interaction design differ from text.
+- **No visual formatting.** Voice can't use bullet points, tables, or links; information must be
+  conveyed conversationally and sequentially, which constrains how much and what kind of
+  information an agent can deliver by voice. Complex information often needs a visual channel
+  (send a text/email) alongside the voice.
+- **Confirmation and grounding are spoken.** Critical details (a phone number, a date, a name)
+  must be confirmed audibly ("so that's the 3pm on Tuesday, correct?") because there's no screen
+  to show them and STT errors are common — a design pattern voice requires that text doesn't.
+- **The agent must handle the mess of speech.** Interruptions, "um"s, corrections mid-sentence,
+  and ambiguity are constant in speech and must be handled gracefully, where text input is
+  comparatively clean and deliberate.
+- **Personality and voice matter.** The choice of voice, pace, and conversational style is part of
+  the product in a way text tone isn't — a voice agent *has a voice*, and that voice carries brand
+  and trust. This is design territory (voice selection, persona) that text agents don't have.
+
+The design lesson: **voice is a distinct interaction medium requiring its own design discipline** —
+terse conversational responses, audible confirmation, interruption-tolerance, and deliberate voice/
+persona choice — not a text agent with speech bolted on. Teams that treat voice as "text agent +
+TTS" produce voice agents that are technically functional and experientially poor, because they
+ignore how differently humans process spoken versus written interaction. The best voice agents are
+designed *for* voice from the start.
+
+## Accessibility and the inclusion imperative
+
+Worth emphasizing as more than a footnote: voice agents have real **accessibility** value, and
+doing them well is an inclusion issue. Voice interfaces serve users who can't easily type or read
+(motor or visual impairments), users who prefer speech, users in hands-busy contexts (driving,
+cooking), and users with limited literacy. A well-built voice agent can be genuinely empowering for
+these users — expanding who can access digital services.
+
+But the flip side is that **poor voice performance excludes people**: an agent that fails on
+non-standard accents, dialects, speech differences (stutters, atypical speech), or non-dominant
+languages effectively locks those users out. Speech technology has historically underperformed on
+exactly these populations (accented speech, underrepresented languages, atypical speech patterns),
+so building voice agents that work *equitably* across the diversity of human speech is both a
+technical challenge and an inclusion responsibility. The 2026 state is uneven — voice agents work
+well for standard speech in major languages and less well at the margins — and closing that gap is
+both an ethical imperative and a market opportunity (the underserved populations are large). As
+with the safety issues, the capability is advancing faster than the equitable-coverage work, and
+inclusion deserves deliberate attention rather than being assumed to follow automatically from
+better models.
+
 ## Section takeaways
 
 - Voice adds a constraint no other layer faces so severely: **real-time latency** — natural
