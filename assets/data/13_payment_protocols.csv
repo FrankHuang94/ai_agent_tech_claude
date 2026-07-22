@@ -1,0 +1,6 @@
+protocol,backer,mechanism,maturity
+AP2 (Agent Payments Protocol),Google + networks,Signed mandates / spend limits,3
+Agentic Commerce Protocol (ACP),OpenAI + Stripe,Delegated checkout tokens,4
+x402,Coinbase,HTTP 402 stablecoin micropayments,3
+Visa Intelligent Commerce,Visa,Tokenized card credentials for agents,4
+Mastercard Agent Pay,Mastercard,Agentic tokens / Agent Pay,4

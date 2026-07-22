@@ -1,0 +1,11 @@
+standard,domain,maturity_score,status
+OAuth 2.1 + PKCE,delegated user auth,9,adopted
+OIDC,identity,9,adopted
+RFC 8693 token exchange,scope reduction,7,adopted
+SPIFFE/SVID,machine identity,7,adopted
+MCP OAuth (spec-required),agent-server auth,6,emerging
+Okta Cross App Access (XAA),cross-app agent auth,4,emerging
+Microsoft Entra Agent ID,agent identity,5,emerging
+AP2 (agent payments),payments,3,proposed
+Agentic Commerce Protocol,commerce,3,proposed
+x402 (HTTP 402 stablecoin),micropayments,3,proposed

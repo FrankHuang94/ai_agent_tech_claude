@@ -123,3 +123,13 @@ Mindgard,guardrails-security,shipped-reliable,seed,unknown,Continuous automated 
 Straiker,guardrails-security,demoed-brittle,seed,unknown,Full-chain agent runtime security and telemetry,Zenity;Lakera,inferred
 Guardrails AI,guardrails-security,shipped-reliable,seed,Zetta;GV,Open composable output and policy guardrails,NeMo Guardrails;LLM Guard,inferred
 NeMo Guardrails,guardrails-security,shipped-reliable,subsidiary,NVIDIA,Programmable open-source guardrail framework,Guardrails AI;LLM Guard,official
+Okta / Auth0,identity-auth,shipped-reliable,public,Okta,Cross App Access and Auth for GenAI agent delegation,Microsoft Entra;WorkOS,official
+Microsoft Entra Agent ID,identity-auth,shipped-reliable,subsidiary,Microsoft,Agents as governed first-class enterprise identities,Okta;Google,official
+WorkOS,identity-auth,shipped-reliable,series-b,Sequoia;a16z,Developer-first auth infrastructure for AI apps and agents,Stytch;Descope,inferred
+Stytch,identity-auth,shipped-reliable,series-b,Coatue;Benchmark,Embedded agent and user authentication,WorkOS;Descope,inferred
+Descope,identity-auth,shipped-reliable,series-a,Lightspeed;GGV,Flow-based agentic authentication,Stytch;WorkOS,inferred
+AP2 (Agent Payments Protocol),identity-auth,demoed-brittle,open-source-project,Google;payment networks,Signed spend mandates for agent payments,Agentic Commerce Protocol;x402,official
+Agentic Commerce Protocol,identity-auth,demoed-brittle,subsidiary,OpenAI;Stripe,Delegated checkout tokens for agent commerce,AP2;x402,official
+x402,identity-auth,demoed-brittle,public,Coinbase,HTTP 402 stablecoin micropayments for agents,AP2;card networks,official
+Visa Intelligent Commerce,identity-auth,demoed-brittle,public,Visa,Tokenized agent card credentials with spend controls,Mastercard Agent Pay;ACP,official
+Mastercard Agent Pay,identity-auth,demoed-brittle,public,Mastercard,Agent Pay tokens on existing card rails,Visa;ACP,official
