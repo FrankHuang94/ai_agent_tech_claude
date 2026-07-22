@@ -73,3 +73,5 @@ Anchor Browser / Scrapybara,computer-use,shipped-reliable,seed,unknown,Isolated 
 Manus,computer-use,demoed-brittle,series-a,Benchmark,Viral autonomous general computer-use agent,OpenAI Operator;Anthropic,inferred
 Amazon Nova Act,computer-use,demoed-brittle,public,Amazon,AWS-integrated browser action model and SDK,OpenAI CUA;Google Mariner,official
 UiPath,computer-use,shipped-reliable,public,UiPath,Enterprise RPA incumbent pivoting to agentic automation,Automation Anywhere;Microsoft Power Automate,official
+Perplexity Comet,computer-use,demoed-brittle,series-d+,IVP;NEA;NVIDIA,Agentic browser operating in the user authenticated context,OpenAI Atlas;Dia,inferred
+E2B,infrastructure,shipped-reliable,series-a,unknown,Sandboxed code-execution environments for agents,Modal;Daytona;Browserbase,inferred

@@ -486,6 +486,41 @@ As everywhere, you cannot improve computer-use reliability you cannot measure �
 computer-use is one of the hardest capabilities to measure honestly, which is part of why its
 reliability lags.
 
+## The agentic-browser product wave
+
+A distinct 2025–2026 development worth flagging is the emergence of **agentic browsers** —
+web browsers with an agent built in, rather than an agent bolted onto a headless browser.
+Instead of running an agent in a remote sandbox, these ship the agent *inside the user's
+browser*, where it can see the pages the user sees (already logged in, already in context)
+and act on them:
+
+- **Perplexity Comet**, **OpenAI's browser (Atlas)**, **The Browser Company's Dia**, and
+  Google folding agentic capabilities into Chrome represent a bet that the browser itself is
+  the right home for a web agent — because it already has the user's sessions, cookies, and
+  authenticated state, sidestepping much of the login/auth friction that trips up sandboxed
+  agents.
+- The **advantage** is context and authentication: the agent operates as *you*, in *your*
+  logged-in browser, so it can act across the authenticated web (your email, your accounts)
+  without a separate credential-delegation step. It also has the full page context the user
+  is looking at.
+- The **risk** is precisely the flip side: an agent operating in your authenticated browser,
+  with your sessions, that is vulnerable to prompt injection from any page it reads, is a
+  *severe* security exposure (§12). A malicious page could hijack the in-browser agent to act
+  across all the sites you're logged into — a far larger blast radius than a sandboxed agent
+  with no credentials. This is the sharpest current example of the capability-vs-security
+  tension: the agentic browser is more capable *because* it has your authenticated access, and
+  more dangerous for exactly the same reason.
+
+The strategic tension: **agentic browsers trade the sandbox's safety for the convenience of
+operating in the user's authenticated context** — and whether that trade is acceptable depends
+entirely on the (unsolved) prompt-injection problem. The current mitigations (asking the user
+to confirm sensitive actions, restricting what the in-browser agent can do autonomously,
+isolating agent actions from the user's session where possible) are the same blast-radius-
+limiting controls as elsewhere, and they are the reason these products launched cautiously and
+with prominent warnings. Agentic browsers are the consumer face of computer-use, and they make
+the §12 security bottleneck personal — it is now *your* logged-in accounts at stake, which is
+why this product wave and the security layer are so tightly coupled.
+
 ## Computer-use and the other layers
 
 - **↔ Tool use (§04).** Computer-use is tool use with the lowest-level, least-reliable tool
