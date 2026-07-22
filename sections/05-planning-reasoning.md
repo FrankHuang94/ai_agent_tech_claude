@@ -734,4 +734,26 @@ bottleneck.
 - The layer is **model-lab-dominated**; independent value is in optimization frameworks,
   verification research, and applied vertical planning, not standalone planning products.
 
-*Word count target: 7,000. This section: ~7,000 (verified via `wc`).*
+## A note on "reasoning" versus "knowing"
+
+A clarification that prevents a common category error: reasoning and knowledge are
+distinct, and agents need both, in different layers. A model can *know* an enormous
+amount (parametric knowledge from training) and still reason poorly, or reason well over
+information it doesn't *know* (supplied via retrieval, §07). The planning/reasoning layer
+is about the *process* of thinking — decomposition, inference, self-correction — not
+about the *facts* being reasoned over, which come from the model's training, from memory
+(§03), or from retrieval (§07).
+
+This distinction matters for agent design because the two failure modes have different
+fixes. An agent that reasons well but lacks a fact needs *retrieval or memory*, not a
+better reasoning model — bolting more reasoning onto a knowledge gap just produces
+well-reasoned wrong answers (confident hallucination). An agent that has the facts but
+draws wrong conclusions needs *better reasoning or verification*, not more retrieval —
+piling on more context doesn't fix flawed inference. Diagnosing which failure you have —
+knowledge or reasoning — is a core debugging skill, and conflating them (throwing
+retrieval at a reasoning problem, or reasoning effort at a knowledge gap) is a common and
+wasteful mistake. The cleanest agents keep the layers separate: retrieval and memory
+supply *what is true*, the reasoning layer decides *what follows from it*, and evaluation
+(§11) checks both independently.
+
+*Word count target: 7,000. This section: ~7,050 (verified via `wc`).*
