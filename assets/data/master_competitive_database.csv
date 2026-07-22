@@ -1,152 +1,150 @@
 company,category,maturity,funding_stage,key_backers,differentiator,main_competitors,source_confidence
-LangGraph,orchestration,shipped-reliable,series-b,IVP;Sequoia;Benchmark;CapitalG,Durable checkpointed graph execution with deepest production tooling,MS Agent Framework;Google ADK;CrewAI,official
-LangChain,orchestration,shipped-reliable,series-b,IVP;Sequoia;Benchmark;CapitalG,Largest agent ecosystem and integration breadth,LlamaIndex;vendor SDKs,official
-CrewAI,orchestration,shipped-reliable,series-a,Insight Partners;boldstart;Craft Ventures,Role/crew metaphor; fastest path to multi-agent demo,AutoGen;LangGraph,official
 AutoGen,orchestration,shipped-reliable,subsidiary,Microsoft,Emergent conversational multi-agent (folding into MS Agent Framework),CrewAI;MS Agent Framework,official
-Microsoft Agent Framework,orchestration,shipped-reliable,subsidiary,Microsoft,AutoGen+Semantic Kernel merged; Azure-native durable execution,LangGraph;Google ADK,official
-LlamaIndex,orchestration,shipped-reliable,series-a,unknown,Data/RAG-first with agentic document workflows,LangChain;Haystack,official
-OpenAI Agents SDK,orchestration,shipped-reliable,subsidiary,OpenAI,Ships with GPT models; built-in tracing and handoffs,Claude Agent SDK;LangGraph,official
+AWS Strands / Bedrock Agents,orchestration,shipped-reliable,public,Amazon,Managed agent runtime deeply integrated with AWS Bedrock,Google ADK;MS Agent Framework,official
 Claude Agent SDK,orchestration,shipped-reliable,subsidiary,Anthropic,Battle-tested via Claude Code; strong MCP/tool-use,OpenAI Agents SDK;LangGraph,official
+CrewAI,orchestration,shipped-reliable,series-a,Insight Partners;boldstart;Craft Ventures,Role/crew metaphor; fastest path to multi-agent demo,AutoGen;LangGraph,official
+DSPy,orchestration,demoed-brittle,research-lab,Stanford,Compiles/optimizes prompts against a metric instead of hand-tuning,LangChain;Pydantic AI,inferred
 Google ADK,orchestration,shipped-reliable,subsidiary,Google,Code-first model-agnostic; Vertex and A2A native,MS Agent Framework;LangGraph,official
+Haystack (deepset),orchestration,shipped-reliable,series-b,unknown,Mature NLP/RAG pipelines with agent additions,LlamaIndex;LangChain,official
+LangChain,orchestration,shipped-reliable,series-b,IVP;Sequoia;Benchmark;CapitalG,Largest agent ecosystem and integration breadth,LlamaIndex;vendor SDKs,official
+LangGraph,orchestration,shipped-reliable,series-b,IVP;Sequoia;Benchmark;CapitalG,Durable checkpointed graph execution with deepest production tooling,MS Agent Framework;Google ADK;CrewAI,official
+LlamaIndex,orchestration,shipped-reliable,series-a,unknown,Data/RAG-first with agentic document workflows,LangChain;Haystack,official
+Mastra,orchestration,demoed-brittle,seed,unknown,TypeScript-native full orchestration framework,Vercel AI SDK;LangGraph.js,inferred
+Microsoft Agent Framework,orchestration,shipped-reliable,subsidiary,Microsoft,AutoGen+Semantic Kernel merged; Azure-native durable execution,LangGraph;Google ADK,official
+OpenAI Agents SDK,orchestration,shipped-reliable,subsidiary,OpenAI,Ships with GPT models; built-in tracing and handoffs,Claude Agent SDK;LangGraph,official
 Pydantic AI,orchestration,shipped-reliable,seed,unknown,Type-safe validated Python agents with self-correction,LangGraph;LlamaIndex,official
 Semantic Kernel,orchestration,shipped-reliable,subsidiary,Microsoft,Enterprise .NET heritage; unifying into MS Agent Framework,MS Agent Framework,official
-Haystack (deepset),orchestration,shipped-reliable,series-b,unknown,Mature NLP/RAG pipelines with agent additions,LlamaIndex;LangChain,official
-DSPy,orchestration,demoed-brittle,research-lab,Stanford,Compiles/optimizes prompts against a metric instead of hand-tuning,LangChain;Pydantic AI,inferred
 Vercel AI SDK,orchestration,shipped-reliable,series-e,Accel;GV;Notable Capital,Default thin client for TypeScript web-embedded agents,Mastra;Genkit,official
-Mastra,orchestration,demoed-brittle,seed,unknown,TypeScript-native full orchestration framework,Vercel AI SDK;LangGraph.js,inferred
-AWS Strands / Bedrock Agents,orchestration,shipped-reliable,public,Amazon,Managed agent runtime deeply integrated with AWS Bedrock,Google ADK;MS Agent Framework,official
-Mem0,memory,shipped-reliable,series-a,Basis Set Ventures,Simplest drop-in extracted-fact memory; AWS Agent SDK provider,Zep;LangMem;Letta,official
-Zep,memory,shipped-reliable,seed,unknown,Bi-temporal knowledge graph (Graphiti) for temporal/relational recall,Mem0;Cognee,official
-Letta,memory,shipped-reliable,seed,Felicis,Memory-first stateful agents; OS-style core/archival paging,Mem0;LangMem,official
-LangMem,memory,shipped-reliable,series-b,IVP;Sequoia,LangGraph-native memory SDK,Mem0;Zep,official
-Cognee,memory,demoed-brittle,seed,unknown,Governed org-wide memory control plane (ECL pipeline),Zep;Mem0,inferred
 Anthropic Memory Tool,memory,shipped-reliable,subsidiary,Anthropic,Transparent client-side file memory with context editing,OpenAI memory;Vertex Memory Bank,official
-OpenAI Memory,memory,shipped-reliable,subsidiary,OpenAI,Invisible background user profiles in ChatGPT,Anthropic Memory Tool;Google,official
-Vertex Memory Bank,memory,shipped-reliable,subsidiary,Google,Managed memory for Vertex Agent Engine,AWS AgentCore Memory;OpenAI,official
 AWS AgentCore Memory,memory,shipped-reliable,public,Amazon,Managed memory in AgentCore backed by Mem0 partnership,Vertex Memory Bank;Azure,official
-Pinecone,memory,shipped-reliable,series-b,Andreessen Horowitz;ICONIQ,Managed vector DB substrate moving up into memory,Weaviate;Qdrant,official
-Weaviate,memory,shipped-reliable,series-b,Index Ventures;Battery,Open-source vector DB with agent memory features,Pinecone;Qdrant,official
-Qdrant,memory,shipped-reliable,series-a,Spark Capital,High-performance open-source vector DB,Weaviate;Pinecone,official
 Chroma,memory,shipped-reliable,series-a,unknown,Developer-friendly embedded vector store,Qdrant;Weaviate,official
+Cognee,memory,demoed-brittle,seed,unknown,Governed org-wide memory control plane (ECL pipeline),Zep;Mem0,inferred
+LangMem,memory,shipped-reliable,series-b,IVP;Sequoia,LangGraph-native memory SDK,Mem0;Zep,official
+Letta,memory,shipped-reliable,seed,Felicis,Memory-first stateful agents; OS-style core/archival paging,Mem0;LangMem,official
+Mem0,memory,shipped-reliable,series-a,Basis Set Ventures,Simplest drop-in extracted-fact memory; AWS Agent SDK provider,Zep;LangMem;Letta,official
+OpenAI Memory,memory,shipped-reliable,subsidiary,OpenAI,Invisible background user profiles in ChatGPT,Anthropic Memory Tool;Google,official
+Pinecone,memory,shipped-reliable,series-b,Andreessen Horowitz;ICONIQ,Managed vector DB substrate moving up into memory,Weaviate;Qdrant,official
+Qdrant,memory,shipped-reliable,series-a,Spark Capital,High-performance open-source vector DB,Weaviate;Pinecone,official
 Redis (Agent Memory),memory,shipped-reliable,public,Redis,Sub-ms KV plus vector for low-latency working memory,Pinecone;pgvector,official
-Composio,tool-use,shipped-reliable,seed,unknown,Managed authenticated tool integrations for 250+ apps,Arcade.dev;Pipedream,inferred
+Vertex Memory Bank,memory,shipped-reliable,subsidiary,Google,Managed memory for Vertex Agent Engine,AWS AgentCore Memory;OpenAI,official
+Weaviate,memory,shipped-reliable,series-b,Index Ventures;Battery,Open-source vector DB with agent memory features,Pinecone;Qdrant,official
+Zep,memory,shipped-reliable,seed,unknown,Bi-temporal knowledge graph (Graphiti) for temporal/relational recall,Mem0;Cognee,official
 Arcade.dev,tool-use,shipped-reliable,seed,unknown,Tool calling with per-user delegated OAuth,Composio;native MCP,inferred
+Composio,tool-use,shipped-reliable,seed,unknown,Managed authenticated tool integrations for 250+ apps,Arcade.dev;Pipedream,inferred
 Instructor,tool-use,shipped-reliable,open-source-project,community,Pythonic validate-and-retry structured extraction,Outlines;Pydantic AI,official
 Outlines,tool-use,shipped-reliable,open-source-project,community,Grammar-constrained decoding guaranteeing valid structure,XGrammar;llguidance,official
 Pipedream,tool-use,shipped-reliable,series-a,unknown,Thousands of app connectors exposed as MCP tools,Composio;Zapier,official
 Zapier (MCP),tool-use,shipped-reliable,bootstrapped,unknown,Massive integration catalog bridged to agents via MCP,Pipedream;Composio,official
-OpenAI,planning-reasoning,shipped-reliable,series-e+,Microsoft;Thrive;SoftBank,Test-time-compute reasoning pioneer (o-series lineage),Anthropic;Google DeepMind,official
 Anthropic,planning-reasoning,shipped-reliable,series-f,Google;Amazon;Lightspeed,Extended thinking that transfers to long agentic tasks,OpenAI;Google DeepMind,official
-Google DeepMind,planning-reasoning,shipped-reliable,subsidiary,Alphabet,Gemini reasoning with AlphaProof/search heritage,OpenAI;Anthropic,official
 DeepSeek,planning-reasoning,shipped-reliable,bootstrapped,High-Flyer,Low-cost open-weight reasoning models,Qwen;Meta,official
-xAI,planning-reasoning,shipped-reliable,series-d+,Valor;a16z;Sequoia,Grok reasoning with self-play and chain verification,OpenAI;Google DeepMind,inferred
-Qwen (Alibaba),planning-reasoning,shipped-reliable,public,Alibaba,Competitive open-weight reasoning models,DeepSeek;Meta,official
+Google DeepMind,planning-reasoning,shipped-reliable,subsidiary,Alphabet,Gemini reasoning with AlphaProof/search heritage,OpenAI;Anthropic,official
 Meta (Llama),planning-reasoning,shipped-reliable,public,Meta,Open-weight models at ecosystem scale,Qwen;DeepSeek,official
-ARC Prize / Epoch AI,eval-observability,shipped-reliable,research-lab,unknown,Builds frontier reasoning benchmarks (ARC-AGI/FrontierMath),internal evals,official
-MCP (Model Context Protocol),standards,shipped-reliable,open-source-project,Linux Foundation;Anthropic;OpenAI;Google;AWS,Won the tool/context connection layer; 18k+ servers,A2A;ACP,official
-A2A (Agent2Agent),standards,demoed-brittle,open-source-project,Linux Foundation;Google;Salesforce;ServiceNow,Leading agent-to-agent standard with Agent Cards,ACP;ANP,official
-ACP (AGNTCY),standards,demoed-brittle,open-source-project,Cisco;LangChain;LlamaIndex;Dell;Oracle;Red Hat,REST/HTTP-verb runtime-neutral agent messaging,A2A,official
-ANP (Agent Network Protocol),standards,research-only,open-source-project,open community,Decentralized DID-based P2P agent networks,A2A,inferred
-AGNTCY / OASF,standards,demoed-brittle,open-source-project,Cisco;Outshift,Open agent schema for discovery/identity (Internet of Agents),A2A Agent Cards,official
+OpenAI,planning-reasoning,shipped-reliable,series-e+,Microsoft;Thrive;SoftBank,Test-time-compute reasoning pioneer (o-series lineage),Anthropic;Google DeepMind,official
+Qwen (Alibaba),planning-reasoning,shipped-reliable,public,Alibaba,Competitive open-weight reasoning models,DeepSeek;Meta,official
+xAI,planning-reasoning,shipped-reliable,series-d+,Valor;a16z;Sequoia,Grok reasoning with self-play and chain verification,OpenAI;Google DeepMind,inferred
 IBM watsonx Orchestrate / BeeAI,multi-agent,shipped-reliable,public,IBM,ACP-native enterprise multi-agent orchestration,MS Agent Framework;Google ADK,official
-Contextual AI,retrieval,shipped-reliable,series-a,Greycroft;Bain Capital Ventures,End-to-end enterprise grounded-RAG platform from RAG originator,Vectara;Glean,official
-Vectara,retrieval,shipped-reliable,series-a,unknown,Managed RAG-as-a-service with hallucination reduction,Contextual AI;Onyx,official
-Glean,retrieval,shipped-reliable,series-f,Kleiner Perkins;Sequoia;Coatue,Enterprise work-wide search and knowledge graph with agents,Vectara;Onyx,official
 Cohere,retrieval,shipped-reliable,series-d+,Inovia;NVIDIA;Salesforce,Best-in-class rerank and embedding models for enterprise,Voyage AI;OpenAI,official
-Voyage AI,retrieval,shipped-reliable,subsidiary,MongoDB,High-quality domain embeddings and rerankers,Cohere;OpenAI,official
-Exa,retrieval,shipped-reliable,series-a,Lightspeed;NEA,Neural web search API built for agents,Tavily;Perplexity,inferred
-Tavily,retrieval,shipped-reliable,seed,unknown,Search-and-extract web API tuned for agent consumption,Exa;Brave Search API,inferred
-Perplexity,retrieval,shipped-reliable,series-d+,IVP;NEA;NVIDIA,Grounded answer engine with citations and API,Exa;vendor web search,official
-Onyx (Danswer),retrieval,shipped-reliable,seed,Y Combinator,Open-source self-hostable enterprise search and RAG,Glean;Vectara,inferred
+Contextual AI,retrieval,shipped-reliable,series-a,Greycroft;Bain Capital Ventures,End-to-end enterprise grounded-RAG platform from RAG originator,Vectara;Glean,official
 Elastic,retrieval,shipped-reliable,public,Elastic NV,Mature hybrid BM25+vector search infrastructure,OpenSearch;vector DBs,official
+Exa,retrieval,shipped-reliable,series-a,Lightspeed;NEA,Neural web search API built for agents,Tavily;Perplexity,inferred
+Glean,retrieval,shipped-reliable,series-f,Kleiner Perkins;Sequoia;Coatue,Enterprise work-wide search and knowledge graph with agents,Vectara;Onyx,official
 Neo4j,retrieval,shipped-reliable,series-f,Eurazeo;GV,Graph database powering graph-RAG,Microsoft GraphRAG,official
-LlamaIndex,retrieval,shipped-reliable,series-a,unknown,Document-centric RAG and agentic document workflows,LangChain;Haystack,official
-Anthropic Computer Use,computer-use,demoed-brittle,subsidiary,Anthropic,Leading OSWorld scores; general vision-based desktop control,OpenAI Operator;Google Mariner,official
-OpenAI Operator / CUA,computer-use,demoed-brittle,subsidiary,OpenAI,Consumer browser agent plus computer-use API,Anthropic Computer Use;Google Mariner,official
-Google Project Mariner,computer-use,demoed-brittle,subsidiary,Google,Gemini browser agent with deep Chrome integration,OpenAI Operator,official
-Simular,computer-use,demoed-brittle,seed,unknown,Open framework; first to clear human OSWorld baseline,Anthropic;H Company,inferred
-Browserbase,computer-use,shipped-reliable,series-b,Kleiner Perkins;CRV,Managed headless browser sandboxes at scale for agents,Anchor Browser;Scrapybara,inferred
-Browser Use,computer-use,shipped-reliable,seed,Y Combinator,Popular open-source DOM+vision browser automation library,Stagehand;Skyvern,inferred
-Skyvern,computer-use,demoed-brittle,seed,Y Combinator,Vision+DOM web workflow and form automation,Browser Use;Reworkd,inferred
-H Company (Runner H),computer-use,demoed-brittle,seed,Accel;UiPath;Eurazeo,Efficient smaller web-action models (European),Simular;OpenAI,inferred
-Anchor Browser / Scrapybara,computer-use,shipped-reliable,seed,unknown,Isolated agent browser and computer sandboxes,Browserbase,inferred
-Manus,computer-use,demoed-brittle,series-a,Benchmark,Viral autonomous general computer-use agent,OpenAI Operator;Anthropic,inferred
+Onyx (Danswer),retrieval,shipped-reliable,seed,Y Combinator,Open-source self-hostable enterprise search and RAG,Glean;Vectara,inferred
+Perplexity,retrieval,shipped-reliable,series-d+,IVP;NEA;NVIDIA,Grounded answer engine with citations and API,Exa;vendor web search,official
+Tavily,retrieval,shipped-reliable,seed,unknown,Search-and-extract web API tuned for agent consumption,Exa;Brave Search API,inferred
+Vectara,retrieval,shipped-reliable,series-a,unknown,Managed RAG-as-a-service with hallucination reduction,Contextual AI;Onyx,official
+Voyage AI,retrieval,shipped-reliable,subsidiary,MongoDB,High-quality domain embeddings and rerankers,Cohere;OpenAI,official
 Amazon Nova Act,computer-use,demoed-brittle,public,Amazon,AWS-integrated browser action model and SDK,OpenAI CUA;Google Mariner,official
-UiPath,computer-use,shipped-reliable,public,UiPath,Enterprise RPA incumbent pivoting to agentic automation,Automation Anywhere;Microsoft Power Automate,official
+Anchor Browser / Scrapybara,computer-use,shipped-reliable,seed,unknown,Isolated agent browser and computer sandboxes,Browserbase,inferred
+Anthropic Computer Use,computer-use,demoed-brittle,subsidiary,Anthropic,Leading OSWorld scores; general vision-based desktop control,OpenAI Operator;Google Mariner,official
+Browser Use,computer-use,shipped-reliable,seed,Y Combinator,Popular open-source DOM+vision browser automation library,Stagehand;Skyvern,inferred
+Browserbase,computer-use,shipped-reliable,series-b,Kleiner Perkins;CRV,Managed headless browser sandboxes at scale for agents,Anchor Browser;Scrapybara,inferred
+Google Project Mariner,computer-use,demoed-brittle,subsidiary,Google,Gemini browser agent with deep Chrome integration,OpenAI Operator,official
+H Company (Runner H),computer-use,demoed-brittle,seed,Accel;UiPath;Eurazeo,Efficient smaller web-action models (European),Simular;OpenAI,inferred
+Manus,computer-use,demoed-brittle,series-a,Benchmark,Viral autonomous general computer-use agent,OpenAI Operator;Anthropic,inferred
+OpenAI Operator / CUA,computer-use,demoed-brittle,subsidiary,OpenAI,Consumer browser agent plus computer-use API,Anthropic Computer Use;Google Mariner,official
 Perplexity Comet,computer-use,demoed-brittle,series-d+,IVP;NEA;NVIDIA,Agentic browser operating in the user authenticated context,OpenAI Atlas;Dia,inferred
-E2B,infrastructure,shipped-reliable,series-a,unknown,Sandboxed code-execution environments for agents,Modal;Daytona;Browserbase,inferred
-Cursor (Anysphere),coding,shipped-reliable,series-c,Thrive;a16z;Accel,AI-native IDE with best-in-class editor UX; $500M+ ARR,GitHub Copilot;Windsurf,inferred
-GitHub Copilot,coding,shipped-reliable,subsidiary,Microsoft,Largest install base; default in the developer toolchain,Cursor;Gemini Code Assist,official
+Simular,computer-use,demoed-brittle,seed,unknown,Open framework; first to clear human OSWorld baseline,Anthropic;H Company,inferred
+Skyvern,computer-use,demoed-brittle,seed,Y Combinator,Vision+DOM web workflow and form automation,Browser Use;Reworkd,inferred
+UiPath,computer-use,shipped-reliable,public,UiPath,Enterprise RPA incumbent pivoting to agentic automation,Automation Anywhere;Microsoft Power Automate,official
+Aider,coding,shipped-reliable,open-source-project,community,Popular open-source terminal pair-programmer,Claude Code;Cline,official
+Amazon Q Developer / Kiro,coding,shipped-reliable,public,Amazon,AWS-integrated coding agent,GitHub Copilot;Gemini,official
 Claude Code,coding,shipped-reliable,subsidiary,Anthropic,Raw Opus capability via thin CLI with agentic codebase search,Codex CLI;Cursor,official
+Cline / Roo Code,coding,shipped-reliable,open-source-project,community,Open-source agentic VS Code extension,Cursor;GitHub Copilot,inferred
 Codex CLI,coding,shipped-reliable,subsidiary,OpenAI,GPT-5.x coding via CLI; top Terminal-Bench scores,Claude Code;Gemini CLI,official
 Cognition (Devin),coding,demoed-brittle,series-c,Founders Fund;8VC,Agent-first autonomous software engineering; absorbed Windsurf,GitHub Copilot agent;OpenHands,inferred
+Cursor (Anysphere),coding,shipped-reliable,series-c,Thrive;a16z;Accel,AI-native IDE with best-in-class editor UX; $500M+ ARR,GitHub Copilot;Windsurf,inferred
 Gemini Code Assist / CLI,coding,shipped-reliable,subsidiary,Google,Gemini 3.x coding with Google Cloud integration,Codex CLI;Claude Code,official
-OpenHands (All Hands AI),coding,shipped-reliable,seed,unknown,Open-source autonomous software engineering agent and SDK,Devin;Aider,inferred
-Aider,coding,shipped-reliable,open-source-project,community,Popular open-source terminal pair-programmer,Claude Code;Cline,official
-Cline / Roo Code,coding,shipped-reliable,open-source-project,community,Open-source agentic VS Code extension,Cursor;GitHub Copilot,inferred
-Replit Agent,coding,shipped-reliable,series-b,a16z;Coatue,Build-and-deploy full apps in the browser,Lovable;Cursor,inferred
-Lovable,coding,shipped-reliable,series-a,Accel,Prompt-to-app builder for web front-ends,v0;Bolt,inferred
-Amazon Q Developer / Kiro,coding,shipped-reliable,public,Amazon,AWS-integrated coding agent,GitHub Copilot;Gemini,official
+GitHub Copilot,coding,shipped-reliable,subsidiary,Microsoft,Largest install base; default in the developer toolchain,Cursor;Gemini Code Assist,official
 JetBrains AI / Junie,coding,shipped-reliable,bootstrapped,JetBrains,Native agent in JetBrains IDEs,Cursor;Copilot,official
-Modal,infrastructure,shipped-reliable,series-a,Redpoint;a16z,Serverless sandboxed compute for agent code execution,E2B;Daytona,inferred
-OpenAI Realtime API,voice-multimodal,shipped-reliable,subsidiary,OpenAI,Lowest-latency native speech-to-speech with prosody,Google Gemini Live;Amazon Nova Sonic,official
-ElevenLabs,voice-multimodal,shipped-reliable,series-c,a16z;ICONIQ;Sequoia,Best-in-class voice quality and multilingual TTS with agent stack,Cartesia;PlayHT,official
-Deepgram,voice-multimodal,shipped-reliable,series-b,Y Combinator;Nvidia,Fast accurate streaming speech-to-text,AssemblyAI;Whisper,official
-Cartesia,voice-multimodal,shipped-reliable,series-a,Index Ventures;Lightspeed,Ultra-low first-audio-latency TTS,ElevenLabs;PlayHT,inferred
-Vapi,voice-multimodal,shipped-reliable,series-a,Bessemer;Abstract,Modular multi-provider voice-agent orchestration platform,Retell AI;Bland AI,inferred
-Retell AI,voice-multimodal,shipped-reliable,seed,Y Combinator,HIPAA-ready low-latency voice-agent orchestration,Vapi;Bland AI,inferred
-Bland AI,voice-multimodal,shipped-reliable,series-a,Emergence;Scale angels,Outbound voice calling at scale,Vapi;Retell AI,inferred
-LiveKit,voice-multimodal,shipped-reliable,series-b,Altimeter;Redpoint,Real-time WebRTC media infra plus Agents framework,Daily/Pipecat,official
-Pipecat (Daily),voice-multimodal,shipped-reliable,series-b,unknown,Open-source voice-agent pipeline framework,LiveKit Agents,official
-Google Gemini Live,voice-multimodal,shipped-reliable,subsidiary,Google,Native multimodal including real-time video,OpenAI Realtime;Amazon,official
-AssemblyAI,voice-multimodal,shipped-reliable,series-c,Accel;Insight,Speech-to-text with rich audio intelligence,Deepgram;Whisper,official
-Sierra,voice-multimodal,shipped-reliable,series-b,Sequoia;Benchmark,Enterprise customer-experience voice and chat agents,Decagon;vendor CX,inferred
-Decagon,voice-multimodal,shipped-reliable,series-c,a16z;Accel,AI customer-support agents for enterprises,Sierra;Sierra,inferred
+Lovable,coding,shipped-reliable,series-a,Accel,Prompt-to-app builder for web front-ends,v0;Bolt,inferred
+OpenHands (All Hands AI),coding,shipped-reliable,seed,unknown,Open-source autonomous software engineering agent and SDK,Devin;Aider,inferred
+Replit Agent,coding,shipped-reliable,series-b,a16z;Coatue,Build-and-deploy full apps in the browser,Lovable;Cursor,inferred
 Amazon Nova Sonic,voice-multimodal,shipped-reliable,public,Amazon,AWS-integrated speech-to-speech model,OpenAI Realtime;Google,official
-LangSmith,eval-observability,shipped-reliable,series-b,IVP;Sequoia;Benchmark,Tightest LangGraph-integrated trace and eval for builders,Braintrust;Arize,official
-Braintrust,eval-observability,shipped-reliable,series-b,ICONIQ;a16z;Greylock,Unified eval and observability as one quality-management workflow,LangSmith;Arize,inferred
+AssemblyAI,voice-multimodal,shipped-reliable,series-c,Accel;Insight,Speech-to-text with rich audio intelligence,Deepgram;Whisper,official
+Bland AI,voice-multimodal,shipped-reliable,series-a,Emergence;Scale angels,Outbound voice calling at scale,Vapi;Retell AI,inferred
+Cartesia,voice-multimodal,shipped-reliable,series-a,Index Ventures;Lightspeed,Ultra-low first-audio-latency TTS,ElevenLabs;PlayHT,inferred
+Decagon,voice-multimodal,shipped-reliable,series-c,a16z;Accel,AI customer-support agents for enterprises,Sierra;Sierra,inferred
+Deepgram,voice-multimodal,shipped-reliable,series-b,Y Combinator;Nvidia,Fast accurate streaming speech-to-text,AssemblyAI;Whisper,official
+ElevenLabs,voice-multimodal,shipped-reliable,series-c,a16z;ICONIQ;Sequoia,Best-in-class voice quality and multilingual TTS with agent stack,Cartesia;PlayHT,official
+Google Gemini Live,voice-multimodal,shipped-reliable,subsidiary,Google,Native multimodal including real-time video,OpenAI Realtime;Amazon,official
+LiveKit,voice-multimodal,shipped-reliable,series-b,Altimeter;Redpoint,Real-time WebRTC media infra plus Agents framework,Daily/Pipecat,official
+OpenAI Realtime API,voice-multimodal,shipped-reliable,subsidiary,OpenAI,Lowest-latency native speech-to-speech with prosody,Google Gemini Live;Amazon Nova Sonic,official
+Pipecat (Daily),voice-multimodal,shipped-reliable,series-b,unknown,Open-source voice-agent pipeline framework,LiveKit Agents,official
+Retell AI,voice-multimodal,shipped-reliable,seed,Y Combinator,HIPAA-ready low-latency voice-agent orchestration,Vapi;Bland AI,inferred
+Sierra,voice-multimodal,shipped-reliable,series-b,Sequoia;Benchmark,Enterprise customer-experience voice and chat agents,Decagon;vendor CX,inferred
+Vapi,voice-multimodal,shipped-reliable,series-a,Bessemer;Abstract,Modular multi-provider voice-agent orchestration platform,Retell AI;Bland AI,inferred
+ARC Prize / Epoch AI,eval-observability,shipped-reliable,research-lab,unknown,Builds frontier reasoning benchmarks (ARC-AGI/FrontierMath),internal evals,official
 Arize AI,eval-observability,shipped-reliable,series-c,TCV;Battery,Enterprise-scale LLM/agent production monitoring; OSS Phoenix,Braintrust;Datadog,official
-Langfuse,eval-observability,shipped-reliable,seed,Lightspeed;Y Combinator,Genuinely open-source self-hostable OTel-native tracing and eval,Arize Phoenix;LangSmith,official
-Galileo,eval-observability,shipped-reliable,series-b,Battery;Scale angels,Production evaluators integrated with guardrails,Braintrust;Patronus,inferred
-Latitude,eval-observability,demoed-brittle,seed,Y Combinator,Agent-first open-source evaluation,Langfuse;LangSmith,inferred
-Datadog LLM Observability,eval-observability,shipped-reliable,public,Datadog,LLM observability integrated into existing APM suite,Arize;New Relic,official
-Weights & Biases (Weave),eval-observability,shipped-reliable,series-c,Coatue;Insight,LLM eval tied to the broader W&B ML platform,LangSmith;Braintrust,official
-Patronus AI,eval-observability,shipped-reliable,series-a,Lightspeed;Datadog,Automated eval and hallucination/safety detection,Galileo;Arize,inferred
+Braintrust,eval-observability,shipped-reliable,series-b,ICONIQ;a16z;Greylock,Unified eval and observability as one quality-management workflow,LangSmith;Arize,inferred
 Confident AI (DeepEval),eval-observability,shipped-reliable,seed,Y Combinator,Pytest-style open-source LLM evaluation framework,Langfuse;Latitude,inferred
+Datadog LLM Observability,eval-observability,shipped-reliable,public,Datadog,LLM observability integrated into existing APM suite,Arize;New Relic,official
+Galileo,eval-observability,shipped-reliable,series-b,Battery;Scale angels,Production evaluators integrated with guardrails,Braintrust;Patronus,inferred
+Langfuse,eval-observability,shipped-reliable,seed,Lightspeed;Y Combinator,Genuinely open-source self-hostable OTel-native tracing and eval,Arize Phoenix;LangSmith,official
+LangSmith,eval-observability,shipped-reliable,series-b,IVP;Sequoia;Benchmark,Tightest LangGraph-integrated trace and eval for builders,Braintrust;Arize,official
+Latitude,eval-observability,demoed-brittle,seed,Y Combinator,Agent-first open-source evaluation,Langfuse;LangSmith,inferred
+Patronus AI,eval-observability,shipped-reliable,series-a,Lightspeed;Datadog,Automated eval and hallucination/safety detection,Galileo;Arize,inferred
+Weights & Biases (Weave),eval-observability,shipped-reliable,series-c,Coatue;Insight,LLM eval tied to the broader W&B ML platform,LangSmith;Braintrust,official
+Guardrails AI,guardrails-security,shipped-reliable,seed,Zetta;GV,Open composable output and policy guardrails,NeMo Guardrails;LLM Guard,inferred
+HiddenLayer,guardrails-security,shipped-reliable,series-b,M12;Ten Eleven,Model-focused AI threat detection and response,Protect AI;Lakera,inferred
 Lakera,guardrails-security,shipped-reliable,subsidiary,Check Point,Runtime prompt-injection and policy guardrails,Palo Alto Prisma AIRS;HiddenLayer,official
+Mindgard,guardrails-security,shipped-reliable,seed,unknown,Continuous automated AI red-teaming,Lakera;garak,inferred
+NeMo Guardrails,guardrails-security,shipped-reliable,subsidiary,NVIDIA,Programmable open-source guardrail framework,Guardrails AI;LLM Guard,official
 Protect AI,guardrails-security,shipped-reliable,subsidiary,Palo Alto Networks,MLSecOps and AI security lifecycle (now Prisma AIRS),Robust Intelligence;HiddenLayer,official
 Robust Intelligence,guardrails-security,shipped-reliable,subsidiary,Cisco,AI firewall and validation (now Cisco AI Defense),Protect AI;Lakera,official
-HiddenLayer,guardrails-security,shipped-reliable,series-b,M12;Ten Eleven,Model-focused AI threat detection and response,Protect AI;Lakera,inferred
-Zenity,guardrails-security,shipped-reliable,series-b,Intel Capital;DTCP,Security and governance for enterprise agents and copilots,Wiz;Straiker,inferred
-Wiz,guardrails-security,shipped-reliable,public,Google,AI security posture management within cloud security,Palo Alto;Orca,official
-Mindgard,guardrails-security,shipped-reliable,seed,unknown,Continuous automated AI red-teaming,Lakera;garak,inferred
 Straiker,guardrails-security,demoed-brittle,seed,unknown,Full-chain agent runtime security and telemetry,Zenity;Lakera,inferred
-Guardrails AI,guardrails-security,shipped-reliable,seed,Zetta;GV,Open composable output and policy guardrails,NeMo Guardrails;LLM Guard,inferred
-NeMo Guardrails,guardrails-security,shipped-reliable,subsidiary,NVIDIA,Programmable open-source guardrail framework,Guardrails AI;LLM Guard,official
-Okta / Auth0,identity-auth,shipped-reliable,public,Okta,Cross App Access and Auth for GenAI agent delegation,Microsoft Entra;WorkOS,official
-Microsoft Entra Agent ID,identity-auth,shipped-reliable,subsidiary,Microsoft,Agents as governed first-class enterprise identities,Okta;Google,official
-WorkOS,identity-auth,shipped-reliable,series-b,Sequoia;a16z,Developer-first auth infrastructure for AI apps and agents,Stytch;Descope,inferred
-Stytch,identity-auth,shipped-reliable,series-b,Coatue;Benchmark,Embedded agent and user authentication,WorkOS;Descope,inferred
-Descope,identity-auth,shipped-reliable,series-a,Lightspeed;GGV,Flow-based agentic authentication,Stytch;WorkOS,inferred
-AP2 (Agent Payments Protocol),identity-auth,demoed-brittle,open-source-project,Google;payment networks,Signed spend mandates for agent payments,Agentic Commerce Protocol;x402,official
+Wiz,guardrails-security,shipped-reliable,public,Google,AI security posture management within cloud security,Palo Alto;Orca,official
+Zenity,guardrails-security,shipped-reliable,series-b,Intel Capital;DTCP,Security and governance for enterprise agents and copilots,Wiz;Straiker,inferred
 Agentic Commerce Protocol,identity-auth,demoed-brittle,subsidiary,OpenAI;Stripe,Delegated checkout tokens for agent commerce,AP2;x402,official
-x402,identity-auth,demoed-brittle,public,Coinbase,HTTP 402 stablecoin micropayments for agents,AP2;card networks,official
-Visa Intelligent Commerce,identity-auth,demoed-brittle,public,Visa,Tokenized agent card credentials with spend controls,Mastercard Agent Pay;ACP,official
+AP2 (Agent Payments Protocol),identity-auth,demoed-brittle,open-source-project,Google;payment networks,Signed spend mandates for agent payments,Agentic Commerce Protocol;x402,official
+Descope,identity-auth,shipped-reliable,series-a,Lightspeed;GGV,Flow-based agentic authentication,Stytch;WorkOS,inferred
 Mastercard Agent Pay,identity-auth,demoed-brittle,public,Mastercard,Agent Pay tokens on existing card rails,Visa;ACP,official
-Salesforce Agentforce,enterprise-platform,shipped-reliable,public,Salesforce,CRM-native customer-facing agents; ~$800M ARR,Microsoft Copilot Studio;ServiceNow,official
-Microsoft Copilot Studio,enterprise-platform,shipped-reliable,public,Microsoft,M365-ubiquitous low-code employee agents; 160k orgs,Agentforce;Google Agentspace,official
-ServiceNow AI Agents,enterprise-platform,shipped-reliable,public,ServiceNow,Workflow-data-fabric IT/HR service agents with governance,Copilot Studio;Agentforce,official
-SAP Joule,enterprise-platform,shipped-reliable,public,SAP,ERP/business-process-native agents,Microsoft;Workday,official
-Google Agentspace / Gemini Enterprise,enterprise-platform,shipped-reliable,subsidiary,Google,Open cross-system enterprise agent layer; A2A-native,Copilot Studio;AWS,official
-AWS Bedrock AgentCore,enterprise-platform,shipped-reliable,public,Amazon,Model-agnostic managed enterprise agent runtime,Google Agentspace;Azure,official
-Workday Illuminate,enterprise-platform,shipped-reliable,public,Workday,HR/finance-data-native agents,SAP Joule;Microsoft,official
-Atlassian Rovo,enterprise-platform,shipped-reliable,public,Atlassian,Agents across dev/collaboration tools,Microsoft;Glean,official
-UiPath Agentic Automation,enterprise-platform,shipped-reliable,public,UiPath,Agents plus deterministic RPA execution,Automation Anywhere;Microsoft,official
-Kore.ai,enterprise-platform,shipped-reliable,series-d+,Vistara;NVIDIA,Vendor-neutral enterprise CX/conversational agents,Agentforce;Sierra,inferred
-Harvey,enterprise-platform,shipped-reliable,series-e,Sequoia;Kleiner Perkins;GV,Legal-domain agent platform,Legora;incumbents,inferred
-Glean,enterprise-platform,shipped-reliable,series-f,Kleiner Perkins;Sequoia,Cross-app enterprise work agents on knowledge graph,Microsoft;Dust,official
-Dust,enterprise-platform,shipped-reliable,series-a,Sequoia,Neutral cross-app employee agent platform,Glean;Copilot Studio,inferred
+Microsoft Entra Agent ID,identity-auth,shipped-reliable,subsidiary,Microsoft,Agents as governed first-class enterprise identities,Okta;Google,official
+Okta / Auth0,identity-auth,shipped-reliable,public,Okta,Cross App Access and Auth for GenAI agent delegation,Microsoft Entra;WorkOS,official
+Stytch,identity-auth,shipped-reliable,series-b,Coatue;Benchmark,Embedded agent and user authentication,WorkOS;Descope,inferred
+Visa Intelligent Commerce,identity-auth,demoed-brittle,public,Visa,Tokenized agent card credentials with spend controls,Mastercard Agent Pay;ACP,official
+WorkOS,identity-auth,shipped-reliable,series-b,Sequoia;a16z,Developer-first auth infrastructure for AI apps and agents,Stytch;Descope,inferred
+x402,identity-auth,demoed-brittle,public,Coinbase,HTTP 402 stablecoin micropayments for agents,AP2;card networks,official
 Adobe AEP Agent Orchestrator,enterprise-platform,shipped-reliable,public,Adobe,Marketing/creative-data-native agents,Salesforce;Microsoft,official
-OpenTelemetry (GenAI),standards,shipped-reliable,open-source-project,CNCF;community,Vendor-neutral agent tracing/observability standard,vendor tracing,official
-OAuth 2.1 / OIDC,standards,shipped-reliable,open-source-project,IETF,Delegated-authorization foundation reused for agents,proprietary auth,official
+Atlassian Rovo,enterprise-platform,shipped-reliable,public,Atlassian,Agents across dev/collaboration tools,Microsoft;Glean,official
+AWS Bedrock AgentCore,enterprise-platform,shipped-reliable,public,Amazon,Model-agnostic managed enterprise agent runtime,Google Agentspace;Azure,official
+Dust,enterprise-platform,shipped-reliable,series-a,Sequoia,Neutral cross-app employee agent platform,Glean;Copilot Studio,inferred
+Google Agentspace / Gemini Enterprise,enterprise-platform,shipped-reliable,subsidiary,Google,Open cross-system enterprise agent layer; A2A-native,Copilot Studio;AWS,official
+Harvey,enterprise-platform,shipped-reliable,series-e,Sequoia;Kleiner Perkins;GV,Legal-domain agent platform,Legora;incumbents,inferred
+Kore.ai,enterprise-platform,shipped-reliable,series-d+,Vistara;NVIDIA,Vendor-neutral enterprise CX/conversational agents,Agentforce;Sierra,inferred
+Microsoft Copilot Studio,enterprise-platform,shipped-reliable,public,Microsoft,M365-ubiquitous low-code employee agents; 160k orgs,Agentforce;Google Agentspace,official
+Salesforce Agentforce,enterprise-platform,shipped-reliable,public,Salesforce,CRM-native customer-facing agents; ~$800M ARR,Microsoft Copilot Studio;ServiceNow,official
+SAP Joule,enterprise-platform,shipped-reliable,public,SAP,ERP/business-process-native agents,Microsoft;Workday,official
+ServiceNow AI Agents,enterprise-platform,shipped-reliable,public,ServiceNow,Workflow-data-fabric IT/HR service agents with governance,Copilot Studio;Agentforce,official
+UiPath Agentic Automation,enterprise-platform,shipped-reliable,public,UiPath,Agents plus deterministic RPA execution,Automation Anywhere;Microsoft,official
+Workday Illuminate,enterprise-platform,shipped-reliable,public,Workday,HR/finance-data-native agents,SAP Joule;Microsoft,official
+A2A (Agent2Agent),standards,demoed-brittle,open-source-project,Linux Foundation;Google;Salesforce;ServiceNow,Leading agent-to-agent standard with Agent Cards,ACP;ANP,official
+ACP (AGNTCY),standards,demoed-brittle,open-source-project,Cisco;LangChain;LlamaIndex;Dell;Oracle;Red Hat,REST/HTTP-verb runtime-neutral agent messaging,A2A,official
+AGNTCY / OASF,standards,demoed-brittle,open-source-project,Cisco;Outshift,Open agent schema for discovery/identity (Internet of Agents),A2A Agent Cards,official
+ANP (Agent Network Protocol),standards,research-only,open-source-project,open community,Decentralized DID-based P2P agent networks,A2A,inferred
 Linux Foundation (Agentic AI Foundation),standards,shipped-reliable,open-source-project,Anthropic;OpenAI;Google;Microsoft;AWS,Neutral governance home for MCP and agent standards,vendor control,official
+MCP (Model Context Protocol),standards,shipped-reliable,open-source-project,Linux Foundation;Anthropic;OpenAI;Google;AWS,Won the tool/context connection layer; 18k+ servers,A2A;ACP,official
+OAuth 2.1 / OIDC,standards,shipped-reliable,open-source-project,IETF,Delegated-authorization foundation reused for agents,proprietary auth,official
+OpenTelemetry (GenAI),standards,shipped-reliable,open-source-project,CNCF;community,Vendor-neutral agent tracing/observability standard,vendor tracing,official
+E2B,infrastructure,shipped-reliable,series-a,unknown,Sandboxed code-execution environments for agents,Modal;Daytona;Browserbase,inferred
+Modal,infrastructure,shipped-reliable,series-a,Redpoint;a16z,Serverless sandboxed compute for agent code execution,E2B;Daytona,inferred
