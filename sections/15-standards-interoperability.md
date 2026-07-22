@@ -681,4 +681,9 @@ proprietary.
   which is precisely the precondition for everything else in this document to eventually cohere into a
   working, interoperable agent stack rather than a set of vendor silos.
 
-*Word count target: 6,500. This section: ~6,550 (verified via `wc`).*
+The bottom line for the standards layer: it is the one place in this document where the trajectory is
+clearly, structurally positive, and where the field's collective behavior — choosing open, neutral,
+layered standards over proprietary control — has already largely determined a good outcome for the
+layers that matter most.
+
+*Word count target: 6,500. This section: ~6,600 (verified via `wc`).*
