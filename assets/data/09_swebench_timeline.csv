@@ -1,0 +1,8 @@
+date,swebench_verified,milestone
+2023-10,4,GPT-4 baseline
+2024-03,14,Devin launch
+2024-08,33,Agentless / SWE-agent
+2024-12,55,Claude 3.5 agents
+2025-05,72,Frontier coding agents
+2025-12,83,Opus/GPT-5 class
+2026-06,90,Best frontier configs

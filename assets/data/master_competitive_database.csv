@@ -75,3 +75,17 @@ Amazon Nova Act,computer-use,demoed-brittle,public,Amazon,AWS-integrated browser
 UiPath,computer-use,shipped-reliable,public,UiPath,Enterprise RPA incumbent pivoting to agentic automation,Automation Anywhere;Microsoft Power Automate,official
 Perplexity Comet,computer-use,demoed-brittle,series-d+,IVP;NEA;NVIDIA,Agentic browser operating in the user authenticated context,OpenAI Atlas;Dia,inferred
 E2B,infrastructure,shipped-reliable,series-a,unknown,Sandboxed code-execution environments for agents,Modal;Daytona;Browserbase,inferred
+Cursor (Anysphere),coding,shipped-reliable,series-c,Thrive;a16z;Accel,AI-native IDE with best-in-class editor UX; $500M+ ARR,GitHub Copilot;Windsurf,inferred
+GitHub Copilot,coding,shipped-reliable,subsidiary,Microsoft,Largest install base; default in the developer toolchain,Cursor;Gemini Code Assist,official
+Claude Code,coding,shipped-reliable,subsidiary,Anthropic,Raw Opus capability via thin CLI with agentic codebase search,Codex CLI;Cursor,official
+Codex CLI,coding,shipped-reliable,subsidiary,OpenAI,GPT-5.x coding via CLI; top Terminal-Bench scores,Claude Code;Gemini CLI,official
+Cognition (Devin),coding,demoed-brittle,series-c,Founders Fund;8VC,Agent-first autonomous software engineering; absorbed Windsurf,GitHub Copilot agent;OpenHands,inferred
+Gemini Code Assist / CLI,coding,shipped-reliable,subsidiary,Google,Gemini 3.x coding with Google Cloud integration,Codex CLI;Claude Code,official
+OpenHands (All Hands AI),coding,shipped-reliable,seed,unknown,Open-source autonomous software engineering agent and SDK,Devin;Aider,inferred
+Aider,coding,shipped-reliable,open-source-project,community,Popular open-source terminal pair-programmer,Claude Code;Cline,official
+Cline / Roo Code,coding,shipped-reliable,open-source-project,community,Open-source agentic VS Code extension,Cursor;GitHub Copilot,inferred
+Replit Agent,coding,shipped-reliable,series-b,a16z;Coatue,Build-and-deploy full apps in the browser,Lovable;Cursor,inferred
+Lovable,coding,shipped-reliable,series-a,Accel,Prompt-to-app builder for web front-ends,v0;Bolt,inferred
+Amazon Q Developer / Kiro,coding,shipped-reliable,public,Amazon,AWS-integrated coding agent,GitHub Copilot;Gemini,official
+JetBrains AI / Junie,coding,shipped-reliable,bootstrapped,JetBrains,Native agent in JetBrains IDEs,Cursor;Copilot,official
+Modal,infrastructure,shipped-reliable,series-a,Redpoint;a16z,Serverless sandboxed compute for agent code execution,E2B;Daytona,inferred

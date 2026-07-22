@@ -1,0 +1,7 @@
+agent,swebench_verified,category
+Fable 5 (frontier config),95.0,frontier
+Claude Code (Opus 4.8),87.6,shipped
+Codex CLI (GPT-5.5),85.0,shipped
+Gemini CLI (Gemini 3.1 Pro),80.6,shipped
+OpenHands (+ open model),68.0,open
+Devin (SWE 1.6),58.0,autonomous
