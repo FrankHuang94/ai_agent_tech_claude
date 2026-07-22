@@ -605,4 +605,14 @@ better models.
   **composed best-of-breed stack** often beats a single vendor on the latency/quality/cost
   frontier — though single-vendor S2S trades that for simplicity and the lowest latency.
 
-*Word count target: 6,000. This section: ~6,000 (verified via `wc`).*
+- **Production voice is a telephony/noisy-audio engineering problem** (bad phone audio, accents,
+  endpointing) — the gap between demo and product — and **voice is a distinct design medium** (terse
+  spoken responses, audible confirmation, interruption-tolerance, deliberate voice/persona), not a
+  text agent with TTS bolted on.
+- **Voice is a forcing function for real-time architecture** (fast-front/slow-back, streaming,
+  async tools) whose techniques benefit all interactive agents — and it carries sharp
+  **safety/ethics** stakes (AI disclosure, voice-cloning fraud, emotional manipulation) and
+  **accessibility/inclusion** responsibilities where capability is currently ahead of the
+  safeguards and equitable coverage.
+
+*Word count target: 6,000. This section: ~6,050 (verified via `wc`).*
