@@ -13,6 +13,16 @@ layer* — because it addresses a problem that barely existed two years ago and 
 real time: **how does an agent act on your behalf, across many systems, without you handing it your
 passwords — and how do you scope, revoke, and audit what it's allowed to do?**
 
+The reason this layer lags is instructive. Capability layers (reasoning, coding, computer-use) can
+be advanced by a single lab improving a model. Identity, by contrast, is inherently a *coordination*
+problem — it only works if the agent, the identity provider, the resource being accessed, and often
+several intermediaries all agree on how authority is represented, delegated, and verified. That
+requires standards, adoption, and trust across independent parties, which is slow by nature — the
+same reason standards (§15) are contested. You cannot unilaterally invent agent identity; you have to
+get an ecosystem to agree on it, and ecosystems agree slowly. This coordination-dependence, layered
+on top of a genuinely novel problem, is why identity is the least-mature layer despite being one of
+the most consequential.
+
 This is not a hypothetical concern; it is the binding constraint on much of the rest of the stack.
 §04 noted that the hard part of a real tool is authentication, not the API call. §06 named agent
 identity/trust as the gating constraint on cross-organization multi-agent. §12 made permission
