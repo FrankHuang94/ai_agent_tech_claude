@@ -657,4 +657,16 @@ proprietary.
 - **Enterprises drive consolidation** (standards as a lock-in hedge, §14); the real remaining lock-in
   gap is the **internal agent definition** (§02), where no standard yet exists.
 
-*Word count target: 6,500. This section: ~6,500 (verified via `wc`).*
+- **Practically, adopt now**: MCP (tools), A2A (agent-to-agent, mild caution), OpenTelemetry
+  (observability), and OAuth 2.1 (auth) — these are settled-enough to build on; wait on payments, and
+  accept that the internal agent definition (§02) and memory (§03) remain non-portable because their
+  fuzzy interfaces and lock-in incentives resist standardization.
+- **Standards are coordination technology** that mature only when an *ecosystem agrees* — so they
+  consolidate fast where coordination is easy (universal pain, no dominant defector, neutral
+  governance: MCP) and lag where it's hard (lock-in incentives: agent definition, memory). And they
+  **shape the ecosystem's structure**: the open, layered, neutrally-governed stack is *why* the agent
+  economy is an open multi-vendor market rather than a walled garden — arguably the most consequential
+  and under-appreciated development in the whole agent story, set at the formative moment it could have
+  gone proprietary.
+
+*Word count target: 6,500. This section: ~6,550 (verified via `wc`).*
