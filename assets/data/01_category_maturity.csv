@@ -1,0 +1,16 @@
+category,maturity_score,contestedness,bottleneck_severity
+Orchestration frameworks,7.5,6.0,4.0
+Memory systems,4.5,7.5,8.0
+Tool use / function calling,7.0,3.0,4.5
+Planning & reasoning,5.0,5.0,8.5
+Multi-agent coordination,4.0,8.5,7.0
+Retrieval / grounding,7.0,4.0,5.0
+Computer-use / browser,4.0,6.0,8.0
+Coding agents,7.5,5.5,3.5
+Voice & multimodal,6.0,5.0,6.0
+Evaluation & observability,4.5,6.5,8.5
+Guardrails & security,3.5,7.0,9.0
+Identity & auth,3.0,8.0,7.5
+Enterprise platforms,6.0,7.0,5.0
+Standards & interop,4.0,9.0,6.5
+Infrastructure / runtime,6.5,5.0,5.5
