@@ -18,6 +18,16 @@ humans in the loop — rather than *preventing compromise*, because prevention i
 possible. Until this changes, "autonomous" agents in serious contexts will remain semi-autonomous
 by necessity.
 
+There is a temptation, common among teams excited about agent capabilities, to treat security as a
+box to check late — add a guardrail, ship, move on. This section argues the opposite: security is not
+a feature to bolt on but a *constraint that must shape the architecture from the start*, because the
+core vulnerability (prompt injection) cannot be patched away and the only effective defenses are
+structural. A team that designs an agent for capability first and security second will find that
+retrofitting real security means re-architecting — re-scoping permissions, re-drawing trust
+boundaries, inserting gates — because the security lives in the architecture, not in a filter you add
+at the end. The teams that ship deployable high-stakes agents are the ones that internalized this and
+designed for containment from day one.
+
 The core shift that makes agent security categorically harder than chatbot security is captured in
 one sentence that recurs across the field: **when a chatbot is manipulated, it says something it
 shouldn't; when an agent is manipulated, it *does* something it shouldn't.** A jailbroken chatbot
