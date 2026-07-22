@@ -682,4 +682,17 @@ controlled) envelope is the difference between computer-use delivering value and
 - Deploy computer-use **for short, defined, failure-tolerant tasks with a human in the loop**
   today; unattended long-horizon computer use is not yet trustworthy for consequential work.
 
-*Word count target: 6,500. This section: ~6,500 (verified via `wc`).*
+- **Grounding is moving from raw pixels to structure** (set-of-marks, screen-parsing models
+  like OmniParser, DOM targeting) — introducing structure, real or synthesized, is the main
+  reliability lever, and it is why browser and structure-aware agents lead.
+- **Enterprise computer-use is more tractable than consumer** (controlled environment,
+  repeatable tasks) despite the consumer demos getting the attention; and the layer is
+  **converging with RPA** — adaptive agent understanding layered onto RPA-grade execution and
+  governance — rather than wholesale replacing it, because the unattended-reliability bar RPA
+  meets is exactly where agents are weakest.
+- **Prefer sanctioned access (APIs, MCP, agent-friendly interfaces) over adversarial GUI
+  automation** — it is more reliable, safer, and legally cleaner than an arms race against
+  anti-bot defenses. **Agentic browsers** make the security tension personal by operating in
+  your authenticated context, which is powerful and dangerous for the same reason.
+
+*Word count target: 6,500. This section: ~6,550 (verified via `wc`).*
