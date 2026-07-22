@@ -23,6 +23,15 @@ is following the same path a year behind. This section maps the landscape, expla
 consolidating so fast, examines the genuinely open contests (A2A vs. ACP, the payments land-grab),
 and uses historical standards fights to predict where it lands.
 
+Why does a document about *technology* devote a full section to *standards*? Because in a multi-vendor
+ecosystem, the standards are not a footnote to the technology — they are what decides whether the
+technology composes into a coherent whole or fractures into incompatible islands. An agent stack where
+every capability layer is excellent but nothing interoperates is worth far less than the sum of its
+parts. The standards are the difference between fifteen brilliant layers that snap together and
+fifteen brilliant layers that don't. That is why this "non-technology" layer is one of the most
+strategically important in the document, and why its unusually fast, unusually cooperative
+consolidation is such a consequential piece of good news for the field.
+
 ---
 
 ## The layered standards stack, revisited
