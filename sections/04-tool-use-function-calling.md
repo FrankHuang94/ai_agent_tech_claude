@@ -681,4 +681,13 @@ immature evaluation layer (§11) to be *operated* well.
   infrastructure, and authenticated tool/integration platforms** — the last of which
   merges with the identity layer (§13), since real tools are mostly an auth problem.
 
-*Word count target: 6,500. This section: ~6,500 (verified via `wc`).*
+- **Compounding error is the quantitative heart of the layer.** 95% per-step
+  reliability is a coin flip by ~15 steps; the frontier is *shorter chains and
+  mid-chain verification*, not marginally higher per-call accuracy. Parallel calls and
+  CodeAct composition reduce round-trips and error surface at once.
+- **Long-running and async tools are the same problem as human-in-the-loop pauses** —
+  both need a durable, resumable runtime — and you cannot improve tool reliability you
+  cannot see, so per-tool, per-argument, and failure-recovery observability (§11) is
+  the highest-leverage investment for operating this otherwise-mature layer well.
+
+*Word count target: 6,500. This section: ~6,550 (verified via `wc`).*
