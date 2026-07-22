@@ -534,6 +534,70 @@ simultaneously adding agents, which is why the layer is so crowded and contested
 
 ---
 
+## Interoperability as the enterprise's lock-in hedge
+
+A dynamic worth developing because it shapes the whole layer's future: enterprises, having learned
+hard lessons about vendor lock-in from previous software eras, are actively using **standards
+(MCP, A2A) as a hedge** against agent-platform lock-in — and this is reshaping how the platforms
+position:
+
+- **Enterprises demand portability.** Burned by past lock-in, sophisticated enterprise buyers ask
+  "can I move my agents/tools/data if I switch platforms?" and prefer platforms that support open
+  standards (MCP for tools §04/§15, A2A for agent-to-agent §06) over fully-proprietary ones. Standards
+  support is becoming a procurement requirement.
+- **The platforms respond by supporting standards — cautiously.** Even the ecosystem-anchored
+  incumbents add MCP/A2A support (Google is A2A-native; the others add MCP tool support) because
+  refusing would cost deals — while still designing for stickiness through data integration and
+  workflow depth. The result is platforms that are *interoperable at the edges* (tools, agent-to-agent)
+  but *sticky at the core* (data, workflows, governance). Enterprises get portability of the pieces
+  that are easy to standardize and lock-in on the pieces that aren't.
+- **The multi-platform reality.** Large enterprises end up running *multiple* agent platforms
+  (Agentforce for CX, Copilot Studio for productivity, custom for differentiation), and want them to
+  *interoperate* — driving demand for cross-platform agent orchestration and the standards that enable
+  it. No single platform serves all of a large enterprise's needs, so interop across platforms becomes
+  a real requirement, not just a lock-in hedge.
+
+The strategic implication: **the standards (§15) function as the enterprise's insurance policy against
+platform lock-in**, and enterprise demand is a major force pushing even proprietary platforms toward
+interoperability. This is a healthy dynamic — it means the lock-in is bounded (your tools and
+agent-to-agent connections are portable even if your platform isn't), and it connects this layer
+directly to §15's standards story: enterprises adopting agents at scale are a primary *demand-side*
+driver of the standards' consolidation, because they need the portability the standards provide. The
+platforms that embrace this (offering both deep integration *and* standards-based portability) reduce
+buyer lock-in anxiety and win deals; those that resist it face procurement friction.
+
+## Integration and connectors: the unglamorous moat
+
+Beneath the agent capability, a large part of enterprise-platform value — and a real competitive moat
+— is the **breadth and quality of integrations/connectors** to enterprise systems, because an agent is
+only as useful as the systems it can reach:
+
+- **Connector breadth.** The platforms compete on how many enterprise systems they connect to
+  out-of-the-box (databases, SaaS apps, legacy systems). An agent that can't reach the system holding
+  the relevant data is useless, so pre-built connectors are a key value-add and a real moat (building
+  and maintaining hundreds of connectors is hard, ongoing work). The incumbents' existing integration
+  ecosystems (Salesforce's AppExchange, Microsoft's connectors, MuleSoft, etc.) are a genuine
+  advantage.
+- **MCP as the connector standard.** MCP (§04/§15) is increasingly the *standard* way to expose
+  enterprise systems to agents, and the growing ecosystem of MCP servers (18,000+) means agents can
+  connect to more systems via a common protocol — partially commoditizing the connector advantage over
+  time, and giving enterprises a standard integration path that reduces platform lock-in on the
+  integration axis.
+- **Data readiness.** Even with connectors, agents need the underlying enterprise data to be
+  accessible, clean, and permissioned (§07's ingestion problem, §13's permission-aware access at the
+  enterprise level) — and much enterprise data isn't, making "data readiness" a common gating
+  constraint on enterprise agent value. The unglamorous data-plumbing work (§07's "ingestion
+  determines the ceiling") applies at enterprise scale.
+
+The integration reality: **enterprise agent value is gated by integration breadth and data
+readiness** — the agent capability is table stakes (shared underlying tech), but reaching the right
+systems with the right data, permissioned correctly, is the hard, moat-worthy work. This is another
+reason incumbents (with existing integration ecosystems and data) are well-positioned, and another
+place where the unglamorous plumbing, not the flashy agent capability, determines real-world value.
+MCP's spread is slowly commoditizing the connector layer, which over time erodes this incumbent moat —
+a dynamic worth watching, as it could shift advantage toward the neutral cross-platform players if the
+connector advantage that anchors the incumbents becomes a standard everyone has.
+
 ## Section takeaways
 
 - Enterprise agent platforms are the **packaging/distribution layer** (maturity 6.0, contestedness
