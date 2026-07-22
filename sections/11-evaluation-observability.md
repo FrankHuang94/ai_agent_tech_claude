@@ -16,6 +16,16 @@ agent better than last week's?" slows iteration on memory, planning, tools, secu
 vertical. You cannot safely improve what you cannot measure, and agents are genuinely hard to
 measure.
 
+There is an unglamorous truth beneath the excitement about agent capabilities: most teams building
+agents cannot confidently answer basic questions about their own systems — how often the agent
+succeeds, whether last week's change helped, which step fails most, what a given fix cost in
+quality elsewhere. Not because the questions are exotic, but because answering them requires
+measurement infrastructure that is genuinely hard to build and easy to defer under shipping
+pressure. The result is an industry that talks about agent capability in the language of
+benchmarks while operating its own agents substantially in the dark. Closing that gap — between
+what teams claim their agents can do and what they can actually measure their agents doing — is the
+quiet, central work of this layer.
+
 The core problem is stark: **the field cannot reliably tell whether an agent regressed.** A prompt
 change, a model upgrade, a new tool — did it make the agent better or worse? For traditional
 software, tests answer this. For agents, the answer is murky: benchmarks are gameable and don't
