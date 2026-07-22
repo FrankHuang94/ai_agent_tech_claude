@@ -18,6 +18,15 @@ incumbent is fighting to own it). The defining fact of 2026 is that **enterprise
 from pilot budgets to production commitments**, and the platform vendors are in a land-grab to be
 where those production agents live.
 
+It is worth being clear about what this layer *is not*: it is not where the hard agent technology
+gets invented. Every capability an enterprise platform offers — reasoning, memory, tool use,
+retrieval, guardrails — comes from the layers below, which the platform assembles rather than
+originates. What the platform adds is the enterprise-grade *wrapper*: the data integration, the
+governance, the low-code accessibility, the compliance, the support. That distinction matters because
+it explains both why the incumbents (who own the data and relationships, not better agent tech) are
+so well-positioned, and why the competitive battle here is fought over distribution and ecosystem
+rather than over raw capability. This is a go-to-market layer as much as a technology layer.
+
 The scale is real. Salesforce reports Agentforce closing ~29,000 deals since launch reaching ~$800M
 ARR; Microsoft reports Copilot Studio with ~160,000 organizations running 400,000+ custom agents;
 the enterprise AI-agent market is projected to grow from ~$7.8B (2025) toward ~$52.6B (2030) at a
