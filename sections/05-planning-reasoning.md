@@ -733,6 +733,11 @@ bottleneck.
   horizon" is a better progress measure than any single benchmark.
 - The layer is **model-lab-dominated**; independent value is in optimization frameworks,
   verification research, and applied vertical planning, not standalone planning products.
+- **Reasoning and knowledge are distinct layers with distinct fixes**: a well-reasoned
+  wrong answer is usually a knowledge/retrieval gap, and a well-informed wrong conclusion
+  is a reasoning/verification gap — diagnosing which you have is a core skill, and
+  conflating them wastes effort. Reasoning is also **commoditizing at the middle** (open
+  reasoning models) even as the frontier and long-horizon reliability stay contested.
 
 ## A note on "reasoning" versus "knowing"
 
