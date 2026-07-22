@@ -29,3 +29,9 @@ Weaviate,memory,shipped-reliable,series-b,Index Ventures;Battery,Open-source vec
 Qdrant,memory,shipped-reliable,series-a,Spark Capital,High-performance open-source vector DB,Weaviate;Pinecone,official
 Chroma,memory,shipped-reliable,series-a,unknown,Developer-friendly embedded vector store,Qdrant;Weaviate,official
 Redis (Agent Memory),memory,shipped-reliable,public,Redis,Sub-ms KV plus vector for low-latency working memory,Pinecone;pgvector,official
+Composio,tool-use,shipped-reliable,seed,unknown,Managed authenticated tool integrations for 250+ apps,Arcade.dev;Pipedream,inferred
+Arcade.dev,tool-use,shipped-reliable,seed,unknown,Tool calling with per-user delegated OAuth,Composio;native MCP,inferred
+Instructor,tool-use,shipped-reliable,open-source-project,community,Pythonic validate-and-retry structured extraction,Outlines;Pydantic AI,official
+Outlines,tool-use,shipped-reliable,open-source-project,community,Grammar-constrained decoding guaranteeing valid structure,XGrammar;llguidance,official
+Pipedream,tool-use,shipped-reliable,series-a,unknown,Thousands of app connectors exposed as MCP tools,Composio;Zapier,official
+Zapier (MCP),tool-use,shipped-reliable,bootstrapped,unknown,Massive integration catalog bridged to agents via MCP,Pipedream;Composio,official
