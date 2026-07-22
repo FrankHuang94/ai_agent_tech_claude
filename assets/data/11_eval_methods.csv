@@ -1,0 +1,8 @@
+method,cost_per_eval,signal_quality,production_predictiveness
+Public benchmark,1,3,3
+Static test set (curated),3,6,5
+LLM-as-judge,4,6,6
+Code/rule-based check,2,7,6
+Human expert eval,9,9,8
+Production A/B + user signals,7,8,9
+Trajectory / step-level eval,6,7,8

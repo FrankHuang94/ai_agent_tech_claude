@@ -103,3 +103,13 @@ AssemblyAI,voice-multimodal,shipped-reliable,series-c,Accel;Insight,Speech-to-te
 Sierra,voice-multimodal,shipped-reliable,series-b,Sequoia;Benchmark,Enterprise customer-experience voice and chat agents,Decagon;vendor CX,inferred
 Decagon,voice-multimodal,shipped-reliable,series-c,a16z;Accel,AI customer-support agents for enterprises,Sierra;Sierra,inferred
 Amazon Nova Sonic,voice-multimodal,shipped-reliable,public,Amazon,AWS-integrated speech-to-speech model,OpenAI Realtime;Google,official
+LangSmith,eval-observability,shipped-reliable,series-b,IVP;Sequoia;Benchmark,Tightest LangGraph-integrated trace and eval for builders,Braintrust;Arize,official
+Braintrust,eval-observability,shipped-reliable,series-b,ICONIQ;a16z;Greylock,Unified eval and observability as one quality-management workflow,LangSmith;Arize,inferred
+Arize AI,eval-observability,shipped-reliable,series-c,TCV;Battery,Enterprise-scale LLM/agent production monitoring; OSS Phoenix,Braintrust;Datadog,official
+Langfuse,eval-observability,shipped-reliable,seed,Lightspeed;Y Combinator,Genuinely open-source self-hostable OTel-native tracing and eval,Arize Phoenix;LangSmith,official
+Galileo,eval-observability,shipped-reliable,series-b,Battery;Scale angels,Production evaluators integrated with guardrails,Braintrust;Patronus,inferred
+Latitude,eval-observability,demoed-brittle,seed,Y Combinator,Agent-first open-source evaluation,Langfuse;LangSmith,inferred
+Datadog LLM Observability,eval-observability,shipped-reliable,public,Datadog,LLM observability integrated into existing APM suite,Arize;New Relic,official
+Weights & Biases (Weave),eval-observability,shipped-reliable,series-c,Coatue;Insight,LLM eval tied to the broader W&B ML platform,LangSmith;Braintrust,official
+Patronus AI,eval-observability,shipped-reliable,series-a,Lightspeed;Datadog,Automated eval and hallucination/safety detection,Galileo;Arize,inferred
+Confident AI (DeepEval),eval-observability,shipped-reliable,seed,Y Combinator,Pytest-style open-source LLM evaluation framework,Langfuse;Latitude,inferred
