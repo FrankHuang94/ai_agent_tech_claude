@@ -680,4 +680,18 @@ enterprise can go in the near term. Progress here — even the un-glamorous prog
   AI, Cisco/Robust Intelligence), with a newer wave targeting the agent-specific surface (MCP
   poisoning, kill chains) — while the attack surface expands with every new agent capability.
 
-*Word count target: 7,000. This section: ~7,000 (verified via `wc`).*
+- **Architect with explicit trust boundaries**: treat all external content, third-party tools/MCP
+  servers, and each privilege level as across a hostile boundary, and place the load-bearing controls
+  *at* those boundaries — standard zero-trust thinking applied to agents, working because it depends
+  on the solvable problem (containing a compromised component) not the unsolvable one (preventing
+  injection).
+- **Most agent-security failures are misconfigurations, not platform vulnerabilities** (the
+  shared-responsibility model): the primitives to build secure agents largely exist; the failures
+  come from not applying them — which makes secure *architecture and configuration* a core team
+  discipline, not just a tooling purchase.
+- **Security caps trust, not capability** — it is the gating factor for enterprise autonomy, which is
+  why 2026's "autonomous" agents are semi-autonomous by necessity, and why progress here (even the
+  un-glamorous "manage the unsolvable problem better" kind) unlocks autonomy no capability gain alone
+  can.
+
+*Word count target: 7,000. This section: ~7,050 (verified via `wc`).*
