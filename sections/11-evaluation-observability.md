@@ -661,4 +661,10 @@ advance next.
   its adoption is the clearest marker separating teams that ship reliable agents from teams that
   ship surprising ones.
 
-*Word count target: 6,500. This section: ~6,550 (verified via `wc`).*
+In the end, the layer's importance is best captured by inverting the document's recurring refrain:
+every other section says "you cannot improve what you cannot measure" — which means the team that
+measures best improves fastest, and in a field moving as quickly as this one, the ability to
+iterate with confidence compounds into a decisive advantage. Evaluation is not overhead on building
+agents; it is the substrate that makes building better agents possible at all.
+
+*Word count target: 6,500. This section: ~6,600 (verified via `wc`).*
