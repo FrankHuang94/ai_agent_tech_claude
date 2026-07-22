@@ -676,6 +676,9 @@ proprietary.
   **shape the ecosystem's structure**: the open, layered, neutrally-governed stack is *why* the agent
   economy is an open multi-vendor market rather than a walled garden — arguably the most consequential
   and under-appreciated development in the whole agent story, set at the formative moment it could have
-  gone proprietary.
+  gone proprietary. In a field where most layers are bottlenecks or contests, the standards layer is
+  the rare piece of durable, structural good news — the connective tissue came together open and fast,
+  which is precisely the precondition for everything else in this document to eventually cohere into a
+  working, interoperable agent stack rather than a set of vendor silos.
 
 *Word count target: 6,500. This section: ~6,550 (verified via `wc`).*
