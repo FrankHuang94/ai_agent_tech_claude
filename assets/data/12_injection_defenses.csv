@@ -1,0 +1,8 @@
+defense,attack_success_rate,note
+No defense,86,Baseline undefended agent
+Prompt-level instructions,64,"Please ignore injected instructions"
+Input/output filtering,41,Classifier-based guardrail
+Fine-tuned robustness,33,Model trained against injection
+Filtering + fine-tuning,22,Combined model defenses
++ Least-privilege scoping,11,Blast radius limited
++ Human-in-loop on risky actions,4,Defense-in-depth (residual risk remains)

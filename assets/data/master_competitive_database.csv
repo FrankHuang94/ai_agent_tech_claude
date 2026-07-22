@@ -113,3 +113,13 @@ Datadog LLM Observability,eval-observability,shipped-reliable,public,Datadog,LLM
 Weights & Biases (Weave),eval-observability,shipped-reliable,series-c,Coatue;Insight,LLM eval tied to the broader W&B ML platform,LangSmith;Braintrust,official
 Patronus AI,eval-observability,shipped-reliable,series-a,Lightspeed;Datadog,Automated eval and hallucination/safety detection,Galileo;Arize,inferred
 Confident AI (DeepEval),eval-observability,shipped-reliable,seed,Y Combinator,Pytest-style open-source LLM evaluation framework,Langfuse;Latitude,inferred
+Lakera,guardrails-security,shipped-reliable,subsidiary,Check Point,Runtime prompt-injection and policy guardrails,Palo Alto Prisma AIRS;HiddenLayer,official
+Protect AI,guardrails-security,shipped-reliable,subsidiary,Palo Alto Networks,MLSecOps and AI security lifecycle (now Prisma AIRS),Robust Intelligence;HiddenLayer,official
+Robust Intelligence,guardrails-security,shipped-reliable,subsidiary,Cisco,AI firewall and validation (now Cisco AI Defense),Protect AI;Lakera,official
+HiddenLayer,guardrails-security,shipped-reliable,series-b,M12;Ten Eleven,Model-focused AI threat detection and response,Protect AI;Lakera,inferred
+Zenity,guardrails-security,shipped-reliable,series-b,Intel Capital;DTCP,Security and governance for enterprise agents and copilots,Wiz;Straiker,inferred
+Wiz,guardrails-security,shipped-reliable,public,Google,AI security posture management within cloud security,Palo Alto;Orca,official
+Mindgard,guardrails-security,shipped-reliable,seed,unknown,Continuous automated AI red-teaming,Lakera;garak,inferred
+Straiker,guardrails-security,demoed-brittle,seed,unknown,Full-chain agent runtime security and telemetry,Zenity;Lakera,inferred
+Guardrails AI,guardrails-security,shipped-reliable,seed,Zetta;GV,Open composable output and policy guardrails,NeMo Guardrails;LLM Guard,inferred
+NeMo Guardrails,guardrails-security,shipped-reliable,subsidiary,NVIDIA,Programmable open-source guardrail framework,Guardrails AI;LLM Guard,official
