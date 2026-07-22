@@ -78,7 +78,7 @@ flowchart TD
     PLAN --> REWRITE[Rewrite / expand query]
     REWRITE --> HYBRID[Hybrid retrieve:<br/>BM25 + dense]
     HYBRID --> RERANK[Rerank top-N to top-k]
-    RERANK --> EVAL{Results sufficient<br/>& relevant?}
+    RERANK --> EVAL{"Results sufficient<br/>& relevant?"}
     EVAL -->|No: gaps remain| REFORM[Reformulate / multi-hop /<br/>different source]
     REFORM --> HYBRID
     EVAL -->|Yes| GROUND[Ground answer in sources]

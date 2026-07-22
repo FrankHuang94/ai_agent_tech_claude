@@ -35,7 +35,32 @@ these companies do only one thing.
 
 ## The shape of the landscape
 
-Before the table, the shape. Two summary charts capture the structure of the 149-entity database.
+Before the table, the shape. The database's 149 entities resolve into a recognizable structure — a
+two-tier market of big-tech giants and independent specialists, with cross-cutting infrastructure and
+standards underneath everyone:
+
+```mermaid
+flowchart TD
+    DB[149 entities] --> BIG[Big-tech ~53<br/>public + subsidiary]
+    DB --> IND[Independent startups ~81<br/>seed → late stage]
+    DB --> OSS[OSS / standards / labs ~15]
+    BIG --> BL[Frontier labs:<br/>vertically integrate up the stack]
+    BIG --> CL[Clouds + app incumbents:<br/>managed everything + platforms]
+    IND --> BOT[Bottleneck layers:<br/>memory, computer-use, eval,<br/>security, identity, voice]
+    IND --> APP[Application layers:<br/>coding, CX, enterprise agents]
+    OSS --> INFRA[Cross-cutting substrate:<br/>MCP, A2A, OTel, vector DBs,<br/>sandboxes — serve everyone]
+    BOT -.startups cluster in bottlenecks.-> DB
+    BL -.labs appear in every category.-> DB
+
+    classDef big fill:#e0e7ff,stroke:#4f46e5,color:#312e81;
+    classDef ind fill:#dbeafe,stroke:#2563eb,color:#1e3a8a;
+    classDef oss fill:#dcfce7,stroke:#16a34a,color:#14532d;
+    class BIG,BL,CL big;
+    class IND,BOT,APP ind;
+    class OSS,INFRA oss;
+```
+
+Two summary charts quantify this structure across the 149-entity database.
 
 ![Company count by category](../assets/charts/16_count_by_category.png)
 

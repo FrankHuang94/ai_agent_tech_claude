@@ -12,8 +12,10 @@ Mermaid diagrams. Every competitive claim is tagged with a confidence level and 
 delivery-maturity label (see [methodology](sections/17-appendix-glossary-methodology.md)).
 
 > **Generation date:** 2026-07-22
-> **Scope:** 15 technical categories + executive summary + master database + appendix
-> **Total length:** 100,000+ words across all section files
+> **Scope:** 15 technical categories + executive summary + master database + appendix (17 files)
+> **Total length:** ~104,000 words across all section files
+> **Master database:** 149 deduplicated companies/entities across 15 categories ([CSV](assets/data/master_competitive_database.csv))
+> **Visuals:** 33 generated charts + native Mermaid diagrams in every section
 
 ---
 

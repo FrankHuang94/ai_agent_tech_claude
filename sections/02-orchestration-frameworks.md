@@ -623,7 +623,7 @@ flowchart TD
     C -->|Full orchestration in TS| C2[Mastra / Genkit]
     B -->|Python / polyglot| D{Committed to one model vendor?}
     D -->|Yes, all-in on one| D1[That vendor's SDK<br/>OpenAI / Claude / Google ADK]
-    D -->|No, need multi-model| E{Durability & control-flow needs?}
+    D -->|No, need multi-model| E{"Durability & control-flow needs?"}
     E -->|Long-running, human-in-loop,<br/>retries, audit| F{Enterprise .NET / Azure?}
     F -->|Yes| F1[MS Agent Framework]
     F -->|No| F2[LangGraph]

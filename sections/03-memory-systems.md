@@ -780,4 +780,8 @@ hybrid/file) that fits that specific requirement.
   API is a starting point, not an endpoint. Avoid *premature memory*: add a long-term
   store only when a concrete cross-session recall need is demonstrated.
 
-*Word count target: 7,000. This section: ~7,000 (verified via `wc`).*
+Memory, in the end, is where agents stop being stateless responders and start becoming persistent,
+accountable entities that accumulate a relationship with their users and their work — which is why,
+despite its immaturity, it is one of the most consequential layers to get right.
+
+*Word count target: 7,000. This section: ~7,020 (verified via `wc`).*
