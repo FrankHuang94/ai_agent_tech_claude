@@ -399,6 +399,66 @@ simultaneously: genuinely empowering for prototypes and simple apps, genuinely i
 consequential production software without developer involvement. It is the coding-agent story
 in miniature — transformative within the well-verified common case, bounded outside it.
 
+## Coding benchmarks: a closer look
+
+Because coding has the field's richest evaluation story, it is worth understanding the
+benchmark landscape and its caveats — both because it explains the capability claims and because
+it illustrates the §11 evaluation problems in a domain that handles them relatively well.
+
+- **SWE-bench (and SWE-bench Verified).** The headline benchmark: resolve real GitHub issues from
+  popular Python repositories such that the project's existing tests pass. *Verified* is a
+  human-validated subset filtering out unsolvable or ambiguous instances. It is realistic and
+  hard, which is why it became the standard — but it is Python-centric, the issues may be in
+  training data (contamination), and scores are extremely sensitive to the *scaffold* (the agent
+  harness around the model), so "X scores Y%" conflates model and scaffold.
+- **Terminal-Bench.** Tests agents on realistic *terminal* tasks (not just code fixes but
+  environment setup, tooling, multi-step CLI work), better capturing the breadth of real
+  development. Codex CLI with GPT-5.5 led it in 2026, ahead of Claude Code and Gemini CLI —
+  a different ranking than SWE-bench, illustrating that *which* benchmark you cite changes who's
+  "best."
+- **SWE-bench Multimodal / Pro / and successors.** Harder, broader variants (multi-language,
+  larger tasks, visual elements) built to escape saturation and contamination as the original
+  saturates — the same benchmark-treadmill dynamic as §05's reasoning benchmarks.
+- **Live/uncontaminated benchmarks.** Because contamination is a real concern (issues in
+  training data inflate scores), *live* benchmarks drawn from issues created *after* a model's
+  training cutoff are increasingly valued as a cleaner signal.
+
+The meta-lesson connects to §11: **even coding — the best-instrumented vertical — has contested,
+harness-sensitive, contamination-prone benchmarks where the ranking depends on which test you
+cite.** Coding handles evaluation *better* than any other vertical (it has automatic verifiers),
+and it is *still* messy — which is a sobering indicator of how hard evaluation is everywhere else
+(§11). The practical guidance for buyers: **don't choose a coding agent on a single headline
+score**; the scaffold, the language, the task distribution, and contamination all matter, and
+the right choice depends on your actual codebase and workflow far more than on a leaderboard
+position.
+
+## Open vs. closed models for coding
+
+As with reasoning (§05), coding capability is available in both frontier-closed and strong-open
+forms, and the split shapes the market:
+
+- **Frontier-closed models** (the ones behind Claude Code, Codex, Gemini) hold the top of the
+  coding-capability leaderboards and power most of the highest-performing agents, including the
+  independent tools (Cursor runs on frontier models).
+- **Strong open models** (DeepSeek, Qwen-Coder, and others) provide competent coding capability
+  that is self-hostable — critical for enterprises that cannot send proprietary code to external
+  APIs. Open-model-based agents (OpenHands with open models, self-hosted setups) trade some
+  capability for data control and cost.
+- **The economic pressure** is the same as elsewhere: open coding models at a fraction of
+  frontier cost are attractive for high-volume or cost-sensitive use, while the frontier retains
+  a quality lead on the hardest tasks. The model-routing pattern (frontier for hard, open for
+  routine) applies to coding as much as to general reasoning.
+
+The strategic consequence for the coding-agent market: **the scaffold/product layer (the agent
+harness, the ACI, the workflow, the enterprise plumbing) is where independents build durable
+value, because the underlying coding capability is increasingly available from multiple
+providers, open and closed.** A coding agent tied to exactly one closed model is more exposed
+than one that can route across models — which is why multi-model support is becoming a
+competitive feature, and why the enterprise segment (data control, self-hosting) is a natural
+home for open-model-based coding agents. This mirrors the orchestration story (§02): value
+migrates to the durable scaffold/product/workflow layer as the raw capability commoditizes
+across providers.
+
 ## Coding agents and the other layers
 
 - **↔ Planning (§05).** Coding is where long-horizon planning is most mature, *because* the
