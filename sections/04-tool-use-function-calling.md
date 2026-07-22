@@ -660,6 +660,30 @@ in practice, one of the highest-leverage things a team can do to make an agent
 reliable — which is why this layer, mature as its mechanics are, still depends on the
 immature evaluation layer (§11) to be *operated* well.
 
+## Why this layer matured and others didn't
+
+It is worth closing with the deeper reason tool use matured so much faster than
+memory, security, or evaluation — because the reason is instructive for predicting
+which *other* layers will mature next. Tool use had three properties that make a
+capability tractable: a **clean interface** (a function with typed parameters is a
+crisp, well-bounded contract), a **cheap verifier** (you can automatically check
+whether a tool call was well-formed and, often, whether it produced the right state
+change — hence BFCL judging by post-execution system state), and a **strong prior in
+the training data** (models saw vast amounts of code and JSON, so structured calls
+were close to their existing competence). Where all three hold, a capability
+commoditizes fast.
+
+Contrast the bottleneck layers. Memory lacks a cheap verifier (you cannot easily score
+"did it maintain a coherent memory over six months") and lacks a clean interface (what
+to remember is a fuzzy judgment). Security lacks a verifier entirely (you cannot prove
+the absence of a successful injection). Evaluation *is* the missing-verifier problem
+made explicit. The pattern generalizes the executive summary's fifth thesis:
+**a layer commoditizes roughly in proportion to how cheaply and cleanly its success can
+be verified** — and tool use scored high on all three tractability properties, which is
+why it is the mature foundation the rest of the stack stands on. Layers that can borrow
+tool use's cheap verifiers (coding, §09, which has tests) matured alongside it; layers
+that cannot (memory, security) remain bottlenecks regardless of model progress.
+
 ## Section takeaways
 
 - Tool use is the **least-contested, fastest-matured layer** (maturity 7.0,
