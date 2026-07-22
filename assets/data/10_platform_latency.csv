@@ -1,0 +1,7 @@
+platform,latency_ms,approach
+OpenAI Realtime (S2S),510,speech-to-speech
+Retell AI (cascade opt),680,orchestrated cascade
+Cartesia+Deepgram stack,700,cascade
+Vapi,780,orchestrated cascade
+LiveKit Agents,820,cascade framework
+Pipecat (self-composed),850,cascade framework

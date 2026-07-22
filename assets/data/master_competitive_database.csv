@@ -89,3 +89,17 @@ Lovable,coding,shipped-reliable,series-a,Accel,Prompt-to-app builder for web fro
 Amazon Q Developer / Kiro,coding,shipped-reliable,public,Amazon,AWS-integrated coding agent,GitHub Copilot;Gemini,official
 JetBrains AI / Junie,coding,shipped-reliable,bootstrapped,JetBrains,Native agent in JetBrains IDEs,Cursor;Copilot,official
 Modal,infrastructure,shipped-reliable,series-a,Redpoint;a16z,Serverless sandboxed compute for agent code execution,E2B;Daytona,inferred
+OpenAI Realtime API,voice-multimodal,shipped-reliable,subsidiary,OpenAI,Lowest-latency native speech-to-speech with prosody,Google Gemini Live;Amazon Nova Sonic,official
+ElevenLabs,voice-multimodal,shipped-reliable,series-c,a16z;ICONIQ;Sequoia,Best-in-class voice quality and multilingual TTS with agent stack,Cartesia;PlayHT,official
+Deepgram,voice-multimodal,shipped-reliable,series-b,Y Combinator;Nvidia,Fast accurate streaming speech-to-text,AssemblyAI;Whisper,official
+Cartesia,voice-multimodal,shipped-reliable,series-a,Index Ventures;Lightspeed,Ultra-low first-audio-latency TTS,ElevenLabs;PlayHT,inferred
+Vapi,voice-multimodal,shipped-reliable,series-a,Bessemer;Abstract,Modular multi-provider voice-agent orchestration platform,Retell AI;Bland AI,inferred
+Retell AI,voice-multimodal,shipped-reliable,seed,Y Combinator,HIPAA-ready low-latency voice-agent orchestration,Vapi;Bland AI,inferred
+Bland AI,voice-multimodal,shipped-reliable,series-a,Emergence;Scale angels,Outbound voice calling at scale,Vapi;Retell AI,inferred
+LiveKit,voice-multimodal,shipped-reliable,series-b,Altimeter;Redpoint,Real-time WebRTC media infra plus Agents framework,Daily/Pipecat,official
+Pipecat (Daily),voice-multimodal,shipped-reliable,series-b,unknown,Open-source voice-agent pipeline framework,LiveKit Agents,official
+Google Gemini Live,voice-multimodal,shipped-reliable,subsidiary,Google,Native multimodal including real-time video,OpenAI Realtime;Amazon,official
+AssemblyAI,voice-multimodal,shipped-reliable,series-c,Accel;Insight,Speech-to-text with rich audio intelligence,Deepgram;Whisper,official
+Sierra,voice-multimodal,shipped-reliable,series-b,Sequoia;Benchmark,Enterprise customer-experience voice and chat agents,Decagon;vendor CX,inferred
+Decagon,voice-multimodal,shipped-reliable,series-c,a16z;Accel,AI customer-support agents for enterprises,Sierra;Sierra,inferred
+Amazon Nova Sonic,voice-multimodal,shipped-reliable,public,Amazon,AWS-integrated speech-to-speech model,OpenAI Realtime;Google,official

@@ -1,0 +1,7 @@
+component,cascade_ms,speech_to_speech_ms
+Speech-to-text (STT),260,0
+Network / VAD turn detection,120,90
+LLM inference,290,0
+Speech-to-speech model,0,420
+Text-to-speech (TTS),90,0
+Total,760,510
