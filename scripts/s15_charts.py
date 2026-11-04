@@ -13,9 +13,9 @@ OUT = os.path.join(HERE, "..", "assets", "charts")
 
 # --- Chart 1: standards timeline ---
 df = pd.read_csv(os.path.join(DATA, "15_standards_timeline.csv"))
-tracks = {"MCP": PALETTE[0], "A2A": PALETTE[2], "ACP": PALETTE[3], "Payments": PALETTE[4]}
-tracky = {"MCP": 4, "A2A": 3, "ACP": 2, "Payments": 1}
-fig, ax = plt.subplots(figsize=(13, 6.5))
+tracks = {"MCP": PALETTE[0], "A2A": PALETTE[2], "ACP/AGNTCY": PALETTE[3], "Payments": PALETTE[4], "AAIF": PALETTE[5]}
+tracky = {"AAIF": 5, "MCP": 4, "A2A": 3, "ACP/AGNTCY": 2, "Payments": 1}
+fig, ax = plt.subplots(figsize=(15, 7))
 x = np.arange(len(df))
 for i, r in df.iterrows():
     y = tracky[r["track"]]
@@ -29,12 +29,13 @@ for t, yv in tracky.items():
         ax.plot(idx, [yv]*len(idx), color=tracks[t], lw=1.6, alpha=0.4, zorder=1)
 ax.set_yticks(list(tracky.values())); ax.set_yticklabels(list(tracky.keys()))
 ax.set_xticks(x); ax.set_xticklabels(df["date"], rotation=45, ha="right", fontsize=8)
-ax.set_ylim(0.3, 5)
+ax.set_ylim(0.3, 6.3)
+ax.set_xlim(-0.6, len(df) + 1.2)
 ax.grid(axis="y", visible=False)
-ax.set_title("Agent-standards timeline: rapid consolidation under the Linux Foundation", loc="left", pad=30)
-ax.text(0, 1.06, "MCP (tools) and A2A (agent-to-agent) both moved to neutral LF governance within ~1 year of launch",
+ax.set_title("Agent-standards timeline: rapid consolidation under the Linux Foundation", loc="left", pad=24)
+ax.text(0, 1.015, "MCP (tools) and A2A (agent-to-agent) both reached neutral LF governance within ~1 year; since Aug 2026 both sit in the Agentic AI Foundation",
         transform=ax.transAxes, fontsize=9.4, color=MUTED)
-fig.text(0.01, 0.005, "Source: standards announcements 2024–2026 (official; dates approximate).", fontsize=8, color=MUTED)
+fig.text(0.01, -0.03, "Source: standards announcements Nov 2024 to Oct 2026 (official; dates to month; registry count from third-party/community indexes).", fontsize=8, color=MUTED)
 save(fig, os.path.join(OUT, "15_standards_timeline.png"))
 
 # --- Chart 2: standards comparison bubble ---
@@ -50,7 +51,7 @@ ax.set_xlabel("Adoption (1 = proposed → 10 = ubiquitous)")
 ax.set_ylabel("Governance maturity (neutral, community-governed)")
 ax.set_xlim(0, 10.5); ax.set_ylim(2, 10.5)
 ax.set_title("Agent standards: adoption vs. governance maturity", loc="left", pad=26)
-ax.text(0, 1.03, "Bubble size = likelihood of becoming/remaining the consolidated standard for its layer. MCP leads decisively.",
+ax.text(0, 1.03, "Bubble size = likelihood of becoming/remaining the consolidated standard for its layer. MCP leads; A2A closes the gap after joining AAIF.",
         transform=ax.transAxes, fontsize=9.6, color=MUTED)
-fig.text(0.01, 0.005, "Source: internal assessment, July 2026 (analyst judgment).", fontsize=8, color=MUTED)
+fig.text(0.01, 0.005, "Source: internal assessment, November 2026 (analyst judgment). IBM ACP merged into A2A (Aug 2025); AP2 now at FIDO Alliance, x402 at LF x402 Foundation.", fontsize=8, color=MUTED)
 save(fig, os.path.join(OUT, "15_standards_comparison.png"))

@@ -1,8 +1,9 @@
 standard,layer,adoption,governance_score,consolidation_likelihood
-MCP,tool/context connection,9,9,10
-A2A,agent-to-agent,6,8,8
-ACP (AGNTCY),agent messaging,4,7,4
+MCP,tool/context connection,10,9,10
+A2A,agent-to-agent,7,9,9
+AGNTCY,discovery+transport,2,7,4
 ANP,decentralized networks,2,4,3
-AP2,payments,3,6,5
-Agentic Commerce Protocol,commerce,4,5,5
-x402,micropayments,3,4,4
+AP2,payments,3,7,5
+Agentic Commerce Protocol,commerce,3,5,4
+x402,micropayments,4,7,5
+Agent Skills + AGENTS.md,agent instructions/packaging,6,8,6

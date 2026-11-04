@@ -28,26 +28,30 @@ ax.set_title("Agent-protocol capability coverage", loc="left", pad=26)
 ax.text(0, 1.05, "Which interop layer each protocol addresses — they are complementary, not competing head-to-head",
         transform=ax.transAxes, fontsize=9.6, color=MUTED)
 ax.grid(False)
-fig.text(0.01, 0.005, "Source: protocol specs, July 2026 (official for existence; coverage rating is analyst judgment).",
+fig.text(0.01, 0.005, "Source: protocol specs as of Nov 2026 (MCP 2026-07-28, A2A v1.0.1); official for existence, coverage rating is analyst judgment. IBM ACP merged into A2A (Aug 2025).",
          fontsize=8, color=MUTED)
 save(fig, os.path.join(OUT, "06_protocol_coverage.png"))
 
 # --- Chart 2: adoption over time ---
 a = pd.read_csv(os.path.join(DATA, "06_protocol_adoption.csv"))
 fig, ax = plt.subplots(figsize=(11, 6.3))
-for i, (c, lab) in enumerate([("MCP_orgs", "MCP (tools/context)"),
-                              ("A2A_orgs", "A2A (agent-to-agent)"),
-                              ("ACP_orgs", "ACP / AGNTCY")]):
+series = [("MCP_orgs", "MCP supporters (tools/context; est.)", "-"),
+          ("A2A_orgs", "A2A supporters (agent-to-agent; est.)", "-"),
+          ("ACP_orgs", "AGNTCY / ACP camp (est.; IBM ACP merged into A2A Aug 2025)", "-"),
+          ("AAIF_members", "Agentic AI Foundation members (official)", "--")]
+for i, (c, lab, ls) in enumerate(series):
     s = a[c].replace(0, np.nan)
-    ax.plot(a["quarter"], s, marker="o", markersize=5, lw=2.6, color=PALETTE[i], label=lab)
-    last = s.dropna().iloc[-1]
-    ax.text(len(a)-0.9, last, f" {last:.0f}", fontsize=9, color=PALETTE[i], va="center")
-ax.set_ylabel("Supporting organizations / partners (approx.)")
-ax.set_xlim(0, len(a)+0.8)
-ax.legend(loc="upper left")
+    ax.plot(a["quarter"], s, marker="o", markersize=5, lw=2.6, ls=ls, color=PALETTE[i], label=lab)
+    valid = s.dropna()
+    last_i, last = valid.index[-1], valid.iloc[-1]
+    ax.text(last_i + 0.12, last, f" {last:.0f}", fontsize=9, color=PALETTE[i], va="center")
+ax.set_ylabel("Supporting organizations / members (approx.)")
+ax.set_xlim(-0.3, len(a) - 0.2)
+ax.legend(loc="upper left", fontsize=9)
 ax.set_title("Agent-protocol adoption: supporting organizations over time", loc="left", pad=24)
-ax.text(0, 1.02, "MCP (tool layer) leads; A2A (agent layer) follows ~1 year behind; both now under the Linux Foundation",
+ax.text(0, 1.02, "MCP and A2A now share one home: A2A joined the Agentic AI Foundation in Aug 2026 (300+ members by Oct 2026)",
         transform=ax.transAxes, fontsize=9.4, color=MUTED)
-fig.text(0.01, 0.005, "Source: Linux Foundation / vendor announcements 2024–2026 (approximate; partner counts vary by source).",
-         fontsize=8, color=MUTED)
+fig.text(0.01, -0.045, "Source: Linux Foundation / AAIF / vendor announcements 2024 to Oct 2026. Protocol-supporter lines are analyst estimates through 2026-Q2 (no newer comparable counts);\n"
+         "AAIF membership from LF press releases (190 May, 247 Aug, 300+ Oct 2026).",
+         fontsize=7.6, color=MUTED)
 save(fig, os.path.join(OUT, "06_protocol_adoption.png"))

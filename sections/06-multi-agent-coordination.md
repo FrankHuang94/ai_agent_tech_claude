@@ -2,7 +2,7 @@
 
 *How agents work together. Agent-to-agent protocols (MCP, A2A, ACP), delegation and
 role specialization, and the coordination failure modes that make multi-agent systems
-brittle. Target: 7,000 words.*
+brittle. Target: 7,000 words. Current as of November 2026 (snapshot of July 22, 2026, updated).*
 
 ---
 
@@ -19,13 +19,78 @@ things are happening simultaneously and must be held apart:
    and should be used only when parallelism, context isolation, or permission scoping
    genuinely demand it.
 2. **The *protocols* for agent-to-agent communication are consolidating fast** — MCP won
-   the tool layer, A2A is winning the agent-to-agent layer, both moved under the Linux
-   Foundation, and the interop stack is taking a recognizable shape.
+   the tool layer, A2A is winning the agent-to-agent layer (it absorbed IBM's rival ACP in
+   2025), both now sit in the Linux Foundation's Agentic AI Foundation (A2A since August
+   2026), and the interop stack is taking a recognizable shape.
 
 These are different claims about different things. The *coordination* is hard and
 often brittle; the *plumbing* for coordination is standardizing rapidly. This section
 covers both — the engineering reality of getting agents to cooperate reliably, and the
 standards landscape that is settling how they talk.
+
+---
+
+## What changed since July 2026 (November 2026 update)
+
+Since the July 22 snapshot, the two halves of this layer have kept moving at different speeds,
+which is the section's core thesis. The *plumbing* consolidated further. A2A now shares a foundation
+with MCP, and MCP's July 2026 revision added long-running Tasks and set "agentic messaging" as its
+next priority, so the two protocols are converging on how agents delegate. The *coordination*
+evidence, meanwhile, keeps pointing to "multi-agent helps only for certain task structures." The
+update also corrects a snapshot error. The "A2A vs. ACP" contest described below was settled in
+August 2025, when IBM's Agent Communication Protocol merged into A2A. The snapshot had attributed ACP
+to the separate Cisco-led AGNTCY collective, which remains its own (complementary) project.
+
+**Dated log of material developments:**
+
+- **Aug 29, 2025 (missed by snapshot): IBM's ACP merges into A2A** under the Linux Foundation; the ACP
+  repo was archived with a migration guide to A2A *(official)*
+  ([LF AI & Data](https://lfaidata.foundation/?p=7689)).
+- **Dec 2025 (missed): "Towards a Science of Scaling Agent Systems"** reports, across 180
+  controlled configurations, that adding agents gives diminishing or negative returns once a
+  single-agent baseline exceeds roughly 45% on the task *(inferred; paper)*
+  ([arXiv 2512.08296](https://arxiv.org/abs/2512.08296)).
+- **Mar 12, 2026 (missed): A2A v1.0**, the first stable release. It is a breaking change from v0.3
+  and adds `tasks/list` with filtering and pagination, modernized OAuth flows, and gRPC
+  multi-tenancy; v1.0.1 shipped May 28 *(official)* ([A2A releases](https://github.com/a2aproject/A2A/releases)).
+- **Apr 2026 (missed): Microsoft Agent Framework 1.0** ships for .NET and Python as the successor to
+  AutoGen and Semantic Kernel orchestration, with A2A v1 support following for .NET *(official)*
+  ([Visual Studio Magazine](https://visualstudiomagazine.com/articles/2026/04/06/microsoft-ships-production-ready-agent-framework-1-0-for-net-and-python.aspx);
+  [Microsoft devblog](https://devblogs.microsoft.com/agent-framework/a2a-v1-is-here-cross-platform-agent-communication-in-microsoft-agent-framework-for-net/)).
+- **Apr 2026: A2A passes 150 supporting organizations**, including AWS, Cisco, Google, IBM,
+  Microsoft, Salesforce, SAP and ServiceNow *(official)*
+  ([LF press](https://www.linuxfoundation.org/press/a2a-protocol-surpasses-150-organizations-lands-in-major-cloud-platforms-and-sees-enterprise-production-use-in-first-year)).
+- **Jul 28, 2026: MCP `2026-07-28` specification.** It introduces a stateless core and Multi
+  Round-Trip Requests, moves **Tasks** (long-running work with `tasks/get` and `tasks/update`) into a
+  formal extension, and adds a `subscriptions/listen` stream. MCP can now carry the kind of
+  long-running delegated work that used to be A2A's distinguishing feature *(official)*
+  ([MCP blog](https://blog.modelcontextprotocol.io/posts/2026-07-28/)).
+- **Aug 17, 2026: A2A joins the Agentic AI Foundation (AAIF)** as a hosted project, alongside MCP,
+  goose and AGENTS.md *(official)* ([AAIF](https://aaif.io/blog/a2a-joins-aaif)).
+- **Aug 22, 2026: new MCP roadmap.** Its first priority is "agentic messaging primitives"
+  (server-initiated events, webhooks and channels so clients stop polling, and Tasks into the core
+  spec), worked on jointly by the Agents, Transports and Triggers & Events working groups. Agent
+  identity and delegation is a separate priority *(official)*
+  ([roadmap](https://github.com/modelcontextprotocol/modelcontextprotocol/blob/main/blog/content/posts/2026-08-22-mcp-roadmap.md)).
+- **Sep 2026: "Rethinking Multi-Agent Collaboration: When More Is Less"** finds multi-agent gains
+  concentrated in long-horizon tasks with sparse dependencies. Single agents do better on tightly
+  coupled sequential work *(inferred; paper)* ([arXiv 2609.19759](https://arxiv.org/abs/2609.19759)).
+- **Oct 2026: frameworks iterate on A2A-native multi-agent.** Google ADK (2.x, with a graph-based
+  execution engine), Microsoft Agent Framework (1.2x), LangGraph and CrewAI all shipped releases.
+  Third-party comparisons list A2A support as native in ADK and in Microsoft Agent Framework
+  *(inferred; secondary comparisons)*
+  ([Morph comparison](https://www.morphllm.com/ai-agent-framework)).
+- **Oct 22, 2026: at AGNTCon + MCPCon North America, the AAIF reaches 10 hosted projects and 300+
+  members.** Its new projects include OpenSandbox (managed agent execution environments) and
+  OpenEnv (agent training and evaluation environments). Anthropic announced MCP Tasks support in
+  Claude Code for much longer-running tool calls *(official / inferred)*
+  ([LF press](https://www.linuxfoundation.org/press/agentic-ai-foundation-announces-four-new-projects-agent-skills-open-responses-openenv-and-opensandbox);
+  [InfoQ](https://www.infoq.com/news/2026/10/agntcon-mcpcon-2026/)).
+
+**Net effect.** The connection problem is closer to solved and is now under a single foundation. The
+coordination problem is better characterized, with stronger empirical evidence for *when*
+multi-agent pays, but it is not easier. The live design question has shifted from "A2A or ACP?" to
+"when is a delegated job an MCP Task and when is it an A2A task?"
 
 ---
 
@@ -73,28 +138,38 @@ different layer, and they compose rather than compete head-to-head**:
 - **A2A (Agent2Agent)** owns the **agent-to-agent layer**: how independent agents
   discover each other (via "Agent Cards" advertising capabilities), delegate tasks, and
   exchange results across organizational and framework boundaries. Google-originated,
-  now Linux-Foundation-governed, 150+ supporting organizations. This is the leading
+  Linux-Foundation-governed (inside the Agentic AI Foundation since August 2026), v1.0
+  stable since March 2026, 150+ supporting organizations. This is the leading
   agent-to-agent standard.
-- **ACP (Agent Communication Protocol)**, from the AGNTCY collective (Cisco, LangChain,
-  LlamaIndex, Dell, Oracle, Red Hat, and others), maps agent interactions onto REST/HTTP
-  verbs (POST to create a task, GET status, etc.) — a runtime-neutral messaging approach.
-  It overlaps A2A's layer and is the main alternative there.
+- **ACP (Agent Communication Protocol)**, from IBM Research's BeeAI project, mapped agent
+  interactions onto REST/HTTP verbs (POST to create a task, GET status, etc.) — a
+  runtime-neutral messaging approach. It was the main same-layer alternative to A2A until it
+  **merged into A2A in August 2025** *(official)*. The separate Cisco-led **AGNTCY**
+  collective (with Dell, Google Cloud, Oracle, Red Hat and others) contributes the OASF agent
+  schema, the SLIM messaging transport and its own Agent Connect Protocol. It now positions
+  these as complements to A2A rather than a rival *(inferred)*.
 - **ANP (Agent Network Protocol)** targets **decentralized** agent networks — DID-based
   identity, peer-to-peer discovery, JSON-LD capability graphs — for an open,
   permissionless "internet of agents" vision rather than enterprise integration.
-- **AP2 (Agent Payments Protocol)**, Google-originated, owns the **agent-commerce**
-  layer: how agents transact money with authorization limits (covered in §13).
+- **AP2 (Agent Payments Protocol)**, Google-originated and donated to the FIDO Alliance
+  in April 2026, owns the **agent-commerce** layer: how agents transact money with
+  authorization limits (covered in §13). x402 (now under the Linux Foundation's x402
+  Foundation) covers HTTP-native micropayments between agents and services.
 - **Vendor SDK APIs** act as *de-facto* protocols within a single vendor's ecosystem —
   the path of least resistance when you're all-in on one vendor.
 
 The consensus architecture that emerged for a serious 2026 deployment: **MCP for tools
-and context, A2A (or ACP) for agent-to-agent delegation across boundaries, an
+and context, A2A for agent-to-agent delegation across boundaries, an
 identity/discovery layer (OASF/ANP) for finding and authenticating agents, AP2 for
 payments, and the vendor SDK for the inner inference loop.** These stack; you don't pick
 one, you assemble the layers you need. This is a major clarification over the 2025
 framing of "MCP vs. A2A" as rivals — they were never rivals; they address different
-layers, and the real contest is *within* layers (A2A vs. ACP for agent-to-agent), not
-across them.
+layers, and the real contest was *within* layers (A2A vs. ACP for agent-to-agent, resolved
+by merger in 2025), not across them. *Nov 2026 caveat:* with MCP's Tasks extension and its
+roadmap toward server-initiated events, MCP is growing primitives for long-running
+delegated work, so the boundary between the layers needs a design rule. A reasonable one is
+to use MCP when the remote side is a *capability you invoke* and A2A when it is an *autonomous
+agent you delegate to* *(inferred)*.
 
 ---
 
@@ -105,11 +180,14 @@ The adoption trajectory is one of the faster standards convergences in computing
 ![Agent-protocol adoption over time](../assets/charts/06_protocol_adoption.png)
 
 MCP went from an Anthropic experiment (late 2024) to hundreds of supporting
-organizations and 18,000+ community-indexed servers within ~18 months. A2A launched
-(April 2025), reached 50+ partners at donation to the Linux Foundation, and passed 150
-organizations within its first year. Both are now under the **Linux Foundation** (MCP
-under the Agentic AI Foundation, A2A under its own project), which is the decisive
-governance signal: **the major vendors chose vendor-neutral stewardship over
+organizations and 18,000+ community-indexed servers within ~18 months. By October 2026,
+third-party censuses counted roughly 43,000–47,500 servers in its registry *(inferred)*,
+and its Tier-1 SDKs reported close to half a billion downloads a month *(official)*. A2A
+launched (April 2025), reached 50+ partners at donation to the Linux Foundation, and passed
+150 organizations within its first year. Both are now in the Linux Foundation's
+**Agentic AI Foundation** (MCP since December 2025, A2A since August 17, 2026), whose
+membership passed 300 organizations in October 2026. That is the decisive governance
+signal: **the major vendors chose vendor-neutral stewardship over
 proprietary control**, dramatically de-risking adoption. When OpenAI, Google, Microsoft,
 AWS, and Anthropic all back Linux-Foundation-governed protocols, the "which standard
 wins" risk that normally paralyzes enterprise adoption largely evaporates for the tool
@@ -121,6 +199,10 @@ standardize *agent-to-agent collaboration*, because agents need tools before the
 each other, and the agent-to-agent problem is harder to specify (it involves task
 lifecycle, discovery, and trust, not just a call/response). Expect the agent-to-agent
 layer to keep maturing through 2026–2027, roughly tracing MCP's path one year behind.
+(The chart's per-protocol supporter lines are analyst estimates through mid-2026; no
+comparable newer counts have been published. The dashed line adds official AAIF membership,
+190 in May, 247 in August and 300+ in October 2026, as the best current proxy for the
+combined MCP/A2A governance base.)
 
 ---
 
@@ -285,31 +367,32 @@ in standards (not products), the table mixes protocols and implementers.
 
 | Entity | Type | Maturity | Layer addressed | Backers (confidence) | Differentiator | Competes with |
 |---|---|---|---|---|---|---|
-| **MCP** | Standard | shipped-reliable | Tool/context connection | LF Agentic AI Foundation; all majors (official) | Won the tool layer; 18k+ servers | (none in its layer) |
-| **A2A** | Standard | demoed→reliable | Agent-to-agent | Google→LF; 150+ orgs (official) | Leading agent-to-agent standard; Agent Cards | ACP |
-| **ACP (AGNTCY)** | Standard | demoed-brittle | Agent-to-agent messaging | Cisco, LangChain, LlamaIndex, Dell, Oracle, Red Hat→LF (official) | REST/HTTP-verb agent messaging | A2A |
+| **MCP** | Standard | shipped-reliable | Tool/context connection (+ Tasks extension) | LF Agentic AI Foundation; all majors (official) | Won the tool layer; stateless `2026-07-28` spec; tens of thousands of servers | (none in its layer); A2A at the Tasks boundary |
+| **A2A** | Standard | demoed→reliable | Agent-to-agent | Google→LF→AAIF (Aug 2026); 150+ orgs (official) | Leading agent-to-agent standard; Agent Cards; v1.0 (Mar 2026) | MCP Tasks (boundary), AGNTCY |
+| **ACP (IBM)** | Standard | merged (Aug 2025) | Agent-to-agent messaging | IBM→LF; folded into A2A (official) | REST/HTTP-verb agent messaging; repo archived, migration guide to A2A | (now part of A2A) |
 | **ANP** | Standard | research→demoed | Decentralized agent networks | Open community (inferred) | DID identity, P2P, JSON-LD graphs | A2A (different vision) |
-| **AP2** | Standard | demoed-brittle | Agent payments | Google + payment networks (official) | Authorized agent transactions (§13) | x402, card-network schemes |
-| **OASF (AGNTCY)** | Standard | demoed-brittle | Agent discovery/identity | AGNTCY collective (official) | Open agent schema for discovery | A2A Agent Cards |
-| **LangGraph (multi-agent)** | Framework | shipped-reliable | Implementation | LangChain (official) | Graph-based multi-agent w/ supervisor patterns | CrewAI, AutoGen |
-| **CrewAI** | Framework | shipped-reliable | Implementation | Insight (official) | Role/crew multi-agent ergonomics | AutoGen, LangGraph |
-| **AutoGen / MS Agent Framework** | Framework | shipped-reliable | Implementation | Microsoft (official) | Conversational multi-agent heritage | CrewAI, LangGraph |
-| **Google ADK + A2A** | Framework+std | shipped-reliable | Implementation | Google (official) | A2A-native multi-agent | MS Agent Framework |
+| **AP2** | Standard | demoed-brittle | Agent payments | Google→FIDO Alliance (Apr 2026); Mastercard (official) | Authorized agent transactions (§13); v0.2 | x402, card-network schemes |
+| **x402** | Standard | demoed-brittle | Agent micropayments | x402 Foundation (LF); Coinbase, Cloudflare, Stripe (official) | HTTP 402-native pay-per-call between agents/services | AP2, card-network schemes |
+| **AGNTCY (OASF / SLIM)** | Standard | demoed-brittle | Agent discovery/identity/transport | Cisco, Dell, Google Cloud, Oracle, Red Hat; LF (official) | Open agent schema (maps to Agent Cards); SLIM secure messaging (inferred) | A2A Agent Cards |
+| **LangGraph (multi-agent)** | Framework | shipped-reliable | Implementation | LangChain (official) | Graph-based multi-agent w/ supervisor patterns | CrewAI, MS Agent Framework |
+| **CrewAI** | Framework | shipped-reliable | Implementation | Insight (official) | Role/crew multi-agent ergonomics | MS Agent Framework, LangGraph |
+| **MS Agent Framework (ex-AutoGen)** | Framework | shipped-reliable | Implementation | Microsoft (official) | 1.0 GA Apr 2026; AutoGen + Semantic Kernel successor; A2A v1 support | CrewAI, LangGraph, Google ADK |
+| **Google ADK + A2A** | Framework+std | shipped-reliable | Implementation | Google (official) | A2A-native multi-agent; 2.x graph-based engine (inferred) | MS Agent Framework |
 | **OpenAI Agents SDK (handoffs)** | Framework | shipped-reliable | Implementation | OpenAI (official) | Agent "handoffs" primitive | Claude sub-agents |
-| **Claude Agent SDK (sub-agents)** | Framework | shipped-reliable | Implementation | Anthropic (official) | Sub-agent spawning w/ isolation | OpenAI handoffs |
-| **IBM BeeAI / watsonx Orchestrate** | Platform | shipped-reliable | Enterprise multi-agent | IBM (official) | ACP-native enterprise orchestration | MS, Google |
-| **Cisco / Outshift (AGNTCY)** | Consortium | demoed-brittle | Standards + infra | Cisco (official) | "Internet of Agents" infra push | Google A2A camp |
+| **Claude Agent SDK (sub-agents)** | Framework | shipped-reliable | Implementation | Anthropic (official) | Sub-agent spawning w/ isolation; MCP Tasks for long-running calls (inferred) | OpenAI handoffs |
+| **IBM BeeAI / watsonx Orchestrate** | Platform | shipped-reliable | Enterprise multi-agent | IBM (official) | Enterprise orchestration; ACP heritage now channelled into A2A (inferred) | MS, Google |
+| **Cisco / Outshift (AGNTCY)** | Consortium | demoed-brittle | Standards + infra | Cisco (official) | "Internet of Agents" infra push; now complementary to A2A (inferred) | — |
+| **Agentic AI Foundation (AAIF)** | Governance body | shipped-reliable | Neutral home for MCP, A2A + 8 projects | Linux Foundation; 300+ members (official) | Single foundation for tool and agent-to-agent layers | — |
 
-That is fourteen entries spanning standards, frameworks, and platforms — well past ten.
-The structural read: **the standards are consolidating under the Linux Foundation with
-broad backing, while the *implementation* is done by the same frameworks from §02** —
-which is why multi-agent competitive dynamics are really a mix of a standards story
-(A2A vs. ACP, both LF-governed) and the framework story already told. The genuinely open
-competitive question is **A2A vs. ACP for the agent-to-agent layer** — both credible,
-both Linux-Foundation-donated, with overlapping backers (LangChain and LlamaIndex back
-ACP but also implement A2A) — which §15 argues is the last major unsettled interop
-question, likely to resolve toward convergence or coexistence rather than a bloody
-winner-take-all.
+That is sixteen entries spanning standards, frameworks, platforms, and governance — well
+past ten. The structural read: **the standards have consolidated under one Linux
+Foundation umbrella (the AAIF) with broad backing, while the *implementation* is done by
+the same frameworks from §02.** Multi-agent competitive dynamics are therefore a mix of a
+standards story and the framework story already told. The snapshot named **A2A vs. ACP**
+as the genuinely open competitive question. It had in fact resolved in August 2025, when
+IBM folded ACP into A2A, which is exactly the convergence outcome §15 predicted. The
+remaining interop question is a boundary question rather than a rivalry: how MCP's
+growing long-running-task primitives and A2A's task model divide the work of delegation.
 
 ---
 
@@ -325,13 +408,17 @@ agent-to-agent layer is converging on.
   suitable agent by reading its Card, analogous to how a service advertises its API. The
   Card is what makes agents *findable and describable* across organizational boundaries
   without prior hard-coding, and it is the piece other standards (OASF) also target.
+  Since v0.3 the Card lives at `/.well-known/agent-card.json` and can carry signatures, and
+  v1.0 moved the authenticated "extended" Card into the declared capabilities *(official)*.
 - **Tasks.** The unit of work in A2A. A client agent creates a task on a remote agent;
   the task has a lifecycle (submitted → working → input-required → completed/failed/
   canceled). Crucially, tasks are designed to be **long-running** — a task can stay in
   "working" for a long time, with the client polling or receiving push updates — which
   reflects the reality that real delegated work (research, analysis, a multi-step job)
   isn't instantaneous. This long-running-task model is exactly why durable orchestration
-  (§02) matters: the delegating agent must survive waiting on a slow remote task.
+  (§02) matters: the delegating agent must survive waiting on a slow remote task. v1.0
+  added `tasks/list` (with filtering and pagination), so a client can enumerate its
+  outstanding delegations instead of tracking every task ID itself *(official)*.
 - **Messages and Parts.** Communication within a task is structured as messages composed
   of parts (text, files, structured data), supporting the multimodal reality of agent
   work — an agent might send a document and receive back a chart.
@@ -351,17 +438,21 @@ actually do it across organizations lags, per §13).
 
 ## The A2A vs. ACP contest, and historical analogies
 
-The one genuinely open standards contest in this layer is **A2A vs. ACP** for the
-agent-to-agent messaging layer, and it is worth examining because how it resolves
-tells us something about the whole field's trajectory.
+The snapshot treated **A2A vs. ACP** for the agent-to-agent messaging layer as the one
+genuinely open standards contest in this layer. *Correction (Nov 2026):* it had already
+resolved. **IBM's ACP merged into A2A on August 29, 2025**, under the Linux Foundation; the
+ACP team wound down independent development and published a migration guide *(official)*.
+How it resolved still tells us something about the whole field's trajectory.
 
-The two are more similar than different: both standardize how agents delegate tasks and
-exchange results; both were donated to the Linux Foundation; both have serious backers;
-and — tellingly — some backers (LangChain, LlamaIndex) are associated with *both*. A2A
-came from Google with a task/Agent-Card model; ACP came from the AGNTCY collective
-(Cisco-led) mapping agent interactions onto REST/HTTP verbs, emphasizing runtime-
-neutral messaging. The differences are real but not chasm-wide — they are the kind of
-differences that historically get reconciled rather than fought to the death.
+The two were more similar than different: both standardized how agents delegate tasks and
+exchange results; both were donated to the Linux Foundation; both had serious backers. A2A
+came from Google with a task/Agent-Card model; ACP came from IBM Research (BeeAI), mapping
+agent interactions onto REST/HTTP verbs and emphasizing runtime-neutral messaging. (The
+snapshot wrongly attributed ACP to the Cisco-led AGNTCY collective. AGNTCY is a separate
+Linux Foundation project, and its OASF schema and SLIM transport sit alongside A2A rather
+than competing with it.) The differences were real but not chasm-wide. They were the kind
+of differences that historically get reconciled rather than fought to the death, and that
+is what happened.
 
 The historical analogies (developed fully in §15) are instructive. This looks less like
 **VHS vs. Betamax** (incompatible formats, one must die) and more like the **SOAP vs.
@@ -376,7 +467,11 @@ standard with ACP concepts folded in or ACP serving a runtime-neutral niche; (2)
 formally converge under LF stewardship; (3) stable coexistence with bridges between
 them. A bloody winner-take-all is the *least* likely outcome precisely because the
 governance was designed to avoid it — which is itself the field learning from the
-standards wars of the past.
+standards wars of the past. — *Nov 2026: outcomes (1) and (2) are what happened. ACP folded
+into A2A under shared LF governance in August 2025, and A2A then
+joined MCP in the Agentic AI Foundation in August 2026.* The next reconciliation to watch is
+between **MCP's Tasks extension and A2A's task model**, two long-running-delegation
+designs now governed by the same foundation *(speculative)*.
 
 ## When multi-agent actually wins: three concrete cases
 
@@ -476,6 +571,16 @@ benefit (parallel speedup, isolation quality, security scoping). Often it can't,
 single agent wins on economics alone — which is a large part of why the field cooled on
 reflexive multi-agent.
 
+The empirical literature has started to put numbers on this. A December 2025 controlled
+study ("Towards a Science of Scaling Agent Systems", 180 configurations) found that
+coordination yields diminishing or *negative* returns once a single-agent baseline already
+solves more than about 45% of a task. A September 2026 paper ("Rethinking Multi-Agent
+Collaboration: When More Is Less") found multi-agent gains concentrated in long-horizon
+tasks with sparse inter-subtask dependencies, while tightly coupled sequential work favors a
+single agent *(inferred; papers, not yet independently replicated)*. Both match this
+section's rule: multi-agent pays for **parallelizable, loosely coupled** work, and costs you
+for **sequential, tightly coupled** work.
+
 ## Human-in-the-loop in multi-agent systems
 
 A final practical dimension: where does the human fit in a multi-agent system? The
@@ -549,7 +654,7 @@ the collaborating agents live *inside one trust boundary* or *span organizations
 **Intra-organization multi-agent** — multiple agents built and operated by the same team,
 within one system — is where essentially all production multi-agent lives in 2026. Here
 the agents trust each other by construction (same owner, same deployment), the
-coordination is under one team's control, and the standards (A2A/ACP) are useful but not
+coordination is under one team's control, and the standards (A2A, MCP) are useful but not
 strictly necessary because you control both ends. The three "when multi-agent wins"
 cases above are all intra-org. This is real, shipping, and the sensible place to deploy
 multi-agent today.
@@ -631,8 +736,10 @@ seemingly opposite truths: multi-agent *coordination* got a reality check, while
 multi-agent *plumbing* took off.
 
 **2026** is the current synthesis: multi-agent is understood as a *specific tool for
-specific jobs* (parallelism, isolation, scoping) rather than a default; the protocols are
-consolidating under the Linux Foundation; and the frontier has moved to the trust/
+specific jobs* (parallelism, isolation, scoping) rather than a default, now backed by
+controlled studies of when coordination pays. The protocols consolidated under one roof:
+A2A v1.0 in March, MCP's stateless `2026-07-28` spec with long-running Tasks in July, and A2A
+joining MCP in the Agentic AI Foundation in August. The frontier has moved to the trust/
 identity substrate needed for the more ambitious cross-org and open-network visions. The
 arc rhymes with the rest of the stack — hype, reckoning, sober synthesis — and lands in
 the same place: a real capability with a real, bounded set of appropriate uses, plus a
@@ -644,25 +751,41 @@ standards layer maturing faster than the reliability layer beneath it.
   trajectory; high confidence).* A2A leads, ACP is the main alternative, both LF-governed
   with overlapping backers; convergence or stable coexistence is more likely than a
   winner-take-all, and the "MCP vs. A2A" framing is already understood as a category
-  error (different layers).
+  error (different layers). — *Nov 2026: confirmed. ACP had merged into A2A (Aug 2025), and
+  A2A joined MCP in the Agentic AI Foundation (Aug 17, 2026).*
 - **Agent identity/trust becomes the gating problem** *(inferred; high confidence).*
   Cross-organization agent-to-agent delegation needs agent identity and authorization
   (§13), which is the least-mature adjacent layer; expect this to be the binding
-  constraint on inter-organizational multi-agent, and a major 2026–2027 focus.
+  constraint on inter-organizational multi-agent, and a major 2026–2027 focus. — *Nov
+  2026: confirmed as the focus. Agent identity and delegation is a named priority on MCP's
+  August roadmap, NIST's CAISI initiative and FIDO's new working groups target it, and it
+  dominated the October AAIF conference agenda. It is not yet solved.*
 - **Coordination reliability improves slowly** *(inferred; medium confidence).* The
   distributed-systems-plus-nondeterminism difficulty is fundamental; tooling
   (verification, tracing across agents, coordination primitives) improves gradually, but
   multi-agent stays harder to make reliable than single-agent for the foreseeable
-  future. Supervised patterns with verification remain the reliable default.
+  future. Supervised patterns with verification remain the reliable default. — *Nov 2026:
+  consistent with new evidence. Controlled studies (Dec 2025, Sep 2026) find gains bounded by
+  task structure; no step-change in coordination reliability has been reported.*
 - **The "internet of agents" vision stays largely aspirational** *(speculative; medium
   confidence).* Decentralized, open, permissionless agent networks (ANP's vision) are
   compelling but gated on identity, trust, security, and economic-incentive problems that
   are far from solved; near-term reality is enterprise multi-agent within trust
-  boundaries, not an open agent web.
+  boundaries, not an open agent web. — *Nov 2026: unchanged; still aspirational.*
 - **Multi-agent stays a "use when needed" tool, not a default** *(inferred; high
   confidence).* The field's understanding matured past the 2024 "everything should be a
   crew" hype toward "single agent with good tools first, multi-agent when parallelism/
-  isolation/scoping demand it" — and that sober framing is likely to persist.
+  isolation/scoping demand it" — and that sober framing is likely to persist. — *Nov 2026:
+  holding.*
+- **New (Nov 2026): MCP and A2A converge on a shared model of long-running delegation**
+  *(speculative; medium confidence).* With MCP Tasks heading into the core spec and
+  server-initiated events on MCP's roadmap, both AAIF protocols now model asynchronous
+  delegated work. Expect AAIF-level guidance, bridging or profile work in 2027 that clarifies
+  "invoke a capability" (MCP) versus "delegate to an agent" (A2A), rather than a turf war.
+- **New (Nov 2026): sandboxes and environments become standard multi-agent infrastructure**
+  *(inferred; medium confidence).* OpenSandbox and OpenEnv joining the AAIF suggests the
+  execution environment that sub-agents run in, and the environments used to evaluate
+  multi-agent behavior, are next in line for neutral standardization.
 
 ---
 
@@ -736,11 +859,13 @@ reliable than a single agent, which is why the "only when needed" guidance stand
   **coordination** (the reliability problem, fundamentally hard). Most multi-agent
   disappointment is coordination difficulty misread as immature technology.
 - The interop stack is **layered and complementary, not a single winner**: MCP (tools),
-  A2A/ACP (agent-to-agent), ANP/OASF (discovery/identity), AP2 (payments), vendor SDKs
-  (inner loop). "MCP vs. A2A" was always a category error.
+  A2A (agent-to-agent; absorbed IBM's ACP in 2025), ANP/OASF (discovery/identity), AP2/x402
+  (payments), vendor SDKs (inner loop). "MCP vs. A2A" was always a category error — though
+  MCP's Tasks extension now makes the *boundary* between them a real design decision.
 - **Standards are consolidating fast under the Linux Foundation** with broad vendor
-  backing — MCP won its layer; A2A leads the agent-to-agent layer ~1 year behind, with
-  ACP the main alternative.
+  backing — MCP won its layer; A2A leads the agent-to-agent layer ~1 year behind. As of
+  Nov 2026 both sit in the Agentic AI Foundation (300+ members), and the former ACP
+  alternative has merged into A2A.
 - **Coordination reintroduces every distributed-systems hard problem** (dropped/
   duplicated tasks, error cascade, deadlock, drift, fragmentation) plus non-determinism,
   with immature tooling — which is why the layer scores low on maturity.
@@ -753,4 +878,27 @@ reliable than a single agent, which is why the "only when needed" guidance stand
   concretely require it** — otherwise a single well-tooled agent avoids all the
   coordination difficulty.
 
-*Word count target: 7,000. This section: ~7,000 (verified via `wc`).*
+*Word count target: 7,000. This section: ~8,700 (verified via `wc`; includes the November 2026 update).*
+
+## Sources (November 2026 update)
+
+- LF AI & Data — ACP joins forces with A2A (Aug 29, 2025): https://lfaidata.foundation/?p=7689
+- A2A releases (v1.0.0 Mar 12, 2026; v1.0.1 May 28, 2026; v0.3.0 Agent Card changes): https://github.com/a2aproject/A2A/releases
+- Linux Foundation — A2A surpasses 150 organizations (Apr 2026): https://www.linuxfoundation.org/press/a2a-protocol-surpasses-150-organizations-lands-in-major-cloud-platforms-and-sees-enterprise-production-use-in-first-year
+- AAIF — A2A joins AAIF's open agentic stack (Aug 17, 2026): https://aaif.io/blog/a2a-joins-aaif
+- MCP blog — The 2026-07-28 Specification: https://blog.modelcontextprotocol.io/posts/2026-07-28/
+- MCP — The New MCP Roadmap (Aug 22, 2026): https://github.com/modelcontextprotocol/modelcontextprotocol/blob/main/blog/content/posts/2026-08-22-mcp-roadmap.md
+- Linux Foundation — AAIF announces four new projects (Oct 22, 2026): https://www.linuxfoundation.org/press/agentic-ai-foundation-announces-four-new-projects-agent-skills-open-responses-openenv-and-opensandbox
+- Linux Foundation — AAIF surpasses 300 members: https://www.linuxfoundation.org/press/agentic-ai-foundation-surpasses-300-members-in-less-than-one-year
+- Linux Foundation — AAIF welcomes 57 new members (Aug 2026): https://www.linuxfoundation.org/press/agentic-ai-foundation-welcomes-57-new-members-gaining-major-financial-services-players-and-apac-leaders
+- InfoQ — AGNTCon + MCPCon 2026 coverage: https://www.infoq.com/news/2026/10/agntcon-mcpcon-2026/
+- Visual Studio Magazine — Microsoft Agent Framework 1.0 (Apr 2026): https://visualstudiomagazine.com/articles/2026/04/06/microsoft-ships-production-ready-agent-framework-1-0-for-net-and-python.aspx
+- Microsoft devblog — A2A v1 in Microsoft Agent Framework for .NET: https://devblogs.microsoft.com/agent-framework/a2a-v1-is-here-cross-platform-agent-communication-in-microsoft-agent-framework-for-net/
+- Framework release comparison (Oct 2026, secondary): https://www.morphllm.com/ai-agent-framework
+- arXiv 2512.08296 — Towards a Science of Scaling Agent Systems: https://arxiv.org/abs/2512.08296
+- arXiv 2609.19759 — Rethinking Multi-Agent Collaboration: When More Is Less: https://arxiv.org/abs/2609.19759
+- AGNTCY project proposal / changelog (OASF, SLIM status): https://github.com/aaif/project-proposals/issues/57 ; https://agntcy.org/changelog
+- Google — AP2 donated to the FIDO Alliance (Apr 2026): https://blog.google/products-and-platforms/platforms/google-pay/agent-payments-protocol-fido-alliance/
+- Coinbase — x402 Foundation: https://docs.cdp.coinbase.com/x402/support/x402-foundation
+- LocalCan — State of MCP server development (Oct 2026 registry census): https://www.localcan.com/blog/state-of-mcp-server-development
+

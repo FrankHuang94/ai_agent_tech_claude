@@ -4,9 +4,16 @@ date,milestone,track
 2025-04,A2A launched (Google),A2A
 2025-05,Google adopts MCP,MCP
 2025-06,A2A donated to Linux Foundation,A2A
-2025-07,ACP donated to LF (AGNTCY),ACP
+2025-07,AGNTCY (Cisco-led) joins LF,ACP/AGNTCY
+2025-08,IBM ACP merges into A2A,ACP/AGNTCY
 2025-09,Agentic Commerce Protocol (OpenAI+Stripe),Payments
-2025-10,AP2 announced (Google),Payments
+2025-09,AP2 announced (Google),Payments
 2025-12,MCP donated to LF (Agentic AI Foundation),MCP
-2026-04,A2A passes 150 orgs; v1.0.1,A2A
+2026-03,A2A v1.0 (stable),A2A
+2026-04,x402 Foundation launched under LF,Payments
+2026-04,A2A passes 150 orgs,A2A
+2026-04,AP2 donated to FIDO Alliance,Payments
 2026-06,MCP registry ~18k servers,MCP
+2026-07,MCP spec 2026-07-28 (stateless core),MCP
+2026-08,A2A joins Agentic AI Foundation,A2A
+2026-10,AAIF: 10 projects / 300+ members,AAIF

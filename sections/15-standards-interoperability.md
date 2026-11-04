@@ -1,7 +1,8 @@
 # 15 — Standards and Interoperability Landscape
 
 *The connective tissue. MCP, A2A, and competing proposals; the consolidation path; and what
-historical standards fights tell us about where this goes. Target: 6,500 words.*
+historical standards fights tell us about where this goes. Target: 6,500 words. Current as of
+November 2026 (snapshot of July 22, 2026, updated).*
 
 ---
 
@@ -19,9 +20,10 @@ fight is consolidating far faster than standards fights historically do.** MCP g
 experiment (late 2024) to a Linux-Foundation-governed standard backed by OpenAI, Google, Microsoft,
 and AWS (by end of 2025) is one of the fastest standards convergences in computing history — closer to
 the organic speed of a de-facto winner like JSON than the grinding pace of a committee standard. A2A
-is following the same path a year behind. This section maps the landscape, explains *why* it's
-consolidating so fast, examines the genuinely open contests (A2A vs. ACP, the payments land-grab),
-and uses historical standards fights to predict where it lands.
+is following the same path a year behind — and since August 2026 sits beside MCP in the same
+foundation. This section maps the landscape, explains *why* it's consolidating so fast, examines the
+genuinely open contests (the residual agent-to-agent alternatives, the payments land-grab), and uses
+historical standards fights to predict where it lands.
 
 Why does a document about *technology* devote a full section to *standards*? Because in a multi-vendor
 ecosystem, the standards are not a footnote to the technology — they are what decides whether the
@@ -31,6 +33,81 @@ parts. The standards are the difference between fifteen brilliant layers that sn
 fifteen brilliant layers that don't. That is why this "non-technology" layer is one of the most
 strategically important in the document, and why its unusually fast, unusually cooperative
 consolidation is such a consequential piece of good news for the field.
+
+---
+
+## What changed since July 2026 (November 2026 update)
+
+The four months since the July 22 snapshot mostly *confirmed* this section's consolidation thesis,
+and in places moved faster than it predicted. MCP shipped its largest revision so far, a stateless
+core built for horizontally scaled remote servers. A2A moved into the Agentic AI Foundation (AAIF), so
+the tool layer and the agent-to-agent layer now share one neutral home. The AAIF grew from a single
+protocol's home into a broad umbrella: ten hosted projects and more than 300 members. Two corrections
+to the snapshot are also needed. First, the "A2A vs. ACP" contest the snapshot treated as open had
+already been settled in August 2025, when IBM's Agent Communication Protocol merged into A2A. The
+snapshot had mixed up IBM's ACP with the separate Cisco-led AGNTCY project. Second, the payments
+protocols had already begun moving to neutral homes in April 2026, a change the snapshot missed.
+
+**Dated log of material developments:**
+
+- **Aug 29, 2025 (missed by snapshot): IBM's ACP merges into A2A** under the Linux Foundation; the
+  ACP team wound down independent development and published a migration path *(official)*
+  ([LF AI & Data](https://lfaidata.foundation/?p=7689)).
+- **Feb 17, 2026 (missed): NIST's CAISI launches the AI Agent Standards Initiative**, with pillars on
+  industry-led standards, open protocols, and agent security/identity *(official)*
+  ([NIST](https://www.nist.gov/news-events/news/2026/02/announcing-ai-agent-standards-initiative-interoperable-and-secure)).
+- **Mar 12, 2026 (missed): A2A v1.0**, the first stable release (`tasks/list`, modernized OAuth flows,
+  gRPC multi-tenancy); v1.0.1 followed on May 28 *(official)* ([A2A releases](https://github.com/a2aproject/A2A/releases)).
+- **Apr 2026 (missed): payments protocols go neutral.** The **x402 Foundation** launched under the
+  Linux Foundation, with Coinbase contributing x402 and Cloudflare and Stripe as co-developers
+  *(official)* ([Coinbase docs](https://docs.cdp.coinbase.com/x402/support/x402-foundation)). Google
+  **donated AP2 to the FIDO Alliance** alongside Mastercard's Verifiable Intent, and FIDO formed
+  agentic-authentication and payments working groups *(official)*
+  ([Google](https://blog.google/products-and-platforms/platforms/google-pay/agent-payments-protocol-fido-alliance/)).
+- **Jul 23, 2026: IETF 126 (Vienna)** held a working-group-forming BoF on agent communication
+  protocols (`agentproto`) and a BoF on agent discovery (DAWN). Secondary reports conflict on whether
+  a working group has since been chartered *(inferred)*
+  ([IETF 126 slides](https://datatracker.ietf.org/meeting/126/materials/slides-126-agentproto-agentproto-03)).
+- **Jul 28, 2026: MCP specification `2026-07-28` final.** It has a stateless core (the initialize
+  handshake and `Mcp-Session-Id` are retired, and per-request `_meta` replaces them). Multi
+  Round-Trip Requests replace server-initiated elicitation and sampling. It also adds header-based
+  routing, cacheable list results, and authorization hardening (RFC 9207 issuer validation; Client ID
+  Metadata Documents preferred over Dynamic Client Registration), plus a formal extensions framework
+  (Tasks, MCP Apps, Enterprise-Managed Authorization). Roots, Sampling, Logging and the legacy HTTP+SSE
+  transport are deprecated with twelve-month windows. Tier-1 SDKs report "close to half-a-billion
+  downloads a month" *(official)* ([MCP blog](https://blog.modelcontextprotocol.io/posts/2026-07-28/)).
+- **Aug 2026: AAIF adds 57 members (247 total)**, including Alibaba, Visa and Wells Fargo *(official)*
+  ([LF press](https://www.linuxfoundation.org/press/agentic-ai-foundation-welcomes-57-new-members-gaining-major-financial-services-players-and-apac-leaders)).
+- **Aug 17, 2026: A2A joins the AAIF as a hosted project**, alongside MCP, goose and AGENTS.md. A few
+  secondary outlets give Aug 20 *(official)* ([AAIF](https://aaif.io/blog/a2a-joins-aaif)).
+- **Aug 22, 2026: new MCP roadmap.** It sets five undated priorities: agentic messaging primitives
+  (server-initiated events, Tasks into the core spec), HTTP-native transport unification, agent
+  identity and enterprise security (DPoP, workload identity federation, ID-JAG, in coordination with
+  the IETF OAuth and WIMSE working groups), improved primitives (progressive discovery for large tool
+  catalogs), and SDK experience. A Server Card working group is standardizing `.well-known` discovery
+  *(official)* ([roadmap post](https://github.com/modelcontextprotocol/modelcontextprotocol/blob/main/blog/content/posts/2026-08-22-mcp-roadmap.md)).
+- **Sep 9, 2026: Agent Router (formerly Envoy AI Gateway) becomes a standalone AAIF project**
+  *(official)* ([Tetrate](https://tetrate.io/blog/agent-router-joins-aaif)).
+- **Oct 2026: the x402 Foundation names an executive director (Oct 1).** A tracker also reports that
+  Block has joined the foundation and added Bitcoin Lightning support. Fireblocks separately reports that monthly x402 transactions fell about 92% from their
+  December 2025 peak *(inferred; tracker and analyst sources)*
+  ([tracker](https://agenticplug.ai/current-state-of-agentic-commerce)).
+- **Oct 2026: the MCP Registry is still labeled preview.** Third-party censuses count about
+  43,000–47,500 active servers, up from about 18,000 community-indexed in mid-2026 *(inferred)*
+  ([LocalCan census](https://www.localcan.com/blog/state-of-mcp-server-development)).
+- **Oct 22, 2026: at AGNTCon + MCPCon North America, the AAIF adds Agent Skills (Anthropic), Open
+  Responses (OpenAI), OpenEnv (Hugging Face) and OpenSandbox (Alibaba).** That brings it to 10 hosted
+  projects, and membership passes 300 *(official)*
+  ([LF press](https://www.linuxfoundation.org/press/agentic-ai-foundation-announces-four-new-projects-agent-skills-open-responses-openenv-and-opensandbox);
+  [LF press](https://www.linuxfoundation.org/press/agentic-ai-foundation-surpasses-300-members-in-less-than-one-year)).
+  Coverage describes the conference agenda as shifting from new protocol features to security and
+  identity *(inferred)* ([InfoQ](https://www.infoq.com/news/2026/10/agntcon-mcpcon-2026/)).
+
+**Net effect.** The tool layer is more settled than in July. The agent-to-agent layer has moved from
+"leading" to "consolidating," because its only same-layer rival folded into A2A and A2A now shares
+MCP's foundation. The payments layer is still commercially contested, but it now has neutral
+governance (FIDO for AP2, the Linux Foundation for x402). The frontier has moved to agent
+**identity**, which MCP's roadmap, the IETF BoFs and NIST's initiative all target.
 
 ---
 
@@ -47,11 +124,11 @@ flowchart TB
         AGENT[The agent]
     end
     subgraph AgentLayer["Agent-to-agent layer"]
-        A2A[A2A — leading]
-        ACP[ACP / AGNTCY — alternative]
+        A2A["A2A — consolidating (AAIF; absorbed IBM ACP)"]
+        AGNTCY["AGNTCY (SLIM / OASF) — complementary"]
     end
     subgraph ToolLayer["Tool / context layer"]
-        MCP[MCP — won]
+        MCP["MCP — won (AAIF)"]
     end
     subgraph DiscoveryLayer["Discovery / identity layer"]
         ANP[ANP — decentralized]
@@ -74,20 +151,21 @@ flowchart TB
     A2A --> PayLayer
     A2A --> Foundation
     MCP --> Foundation
-    ACP -.alternative to.-> A2A
+    AGNTCY -.complements.-> A2A
 
     classDef won fill:#dcfce7,stroke:#16a34a,color:#14532d;
     classDef leading fill:#dbeafe,stroke:#2563eb,color:#1e3a8a;
     classDef contested fill:#fef9c3,stroke:#d97706,color:#713f12;
     class MCP won;
     class A2A leading;
-    class ACP,AP2,ACOMM,X402,ANP contested;
+    class AGNTCY,AP2,ACOMM,X402,ANP contested;
 ```
 
 Read the colors: **MCP has *won* the tool/context layer** (green — settled de-facto standard); **A2A
-is *leading* the agent-to-agent layer** (blue — front-runner but a year younger, with ACP as the
-live alternative); and the **discovery, identity, and payments layers are *contested*** (yellow —
-multiple proposals, no winner). The whole stack rests on reused web foundations (OAuth 2.1, HTTP,
+is *leading* the agent-to-agent layer** (blue — front-runner but a year younger; IBM's ACP merged
+into it in August 2025, and the Cisco-led AGNTCY stack now positions its SLIM transport and OASF
+schema as complements rather than rivals); and the **discovery, identity, and payments layers are
+*contested*** (yellow — multiple proposals, no winner, though AP2 and x402 now have neutral homes). The whole stack rests on reused web foundations (OAuth 2.1, HTTP,
 JSON-RPC, Server-Sent Events) — the standards *extend* the web rather than replacing it, which is a
 large part of why they adopted so fast.
 
@@ -111,6 +189,10 @@ agents to tools, data resources, and prompts, it was adopted with startling spee
   Foundation), with OpenAI and Block as co-founders and AWS, Google, Microsoft, Cloudflare, GitHub,
   and Bloomberg as supporting members — cementing vendor-neutral governance.
 - **By mid-2026:** ~18,000+ community-indexed MCP servers, tens of millions of monthly SDK downloads.
+- **July–November 2026:** the `2026-07-28` specification made the core stateless. Tier-1 SDKs
+  (TypeScript, Python, Go, C#, with Ruby promoted to Tier 1 on Oct 30) report close to half a billion
+  downloads a month *(official)*. Third-party censuses count roughly 43,000–47,500 active servers in
+  the official registry, which is still in preview *(inferred)*.
 
 **Why MCP won so decisively:** it solved a real, universal pain (every agent needed to connect to
 tools, and everyone was building bespoke glue), it was *simple* and *open* from the start (a
@@ -133,8 +215,11 @@ adoption simply doesn't exist anymore.
 
 A2A (Agent2Agent) is repeating MCP's trajectory one layer up and one year behind. Launched by Google
 in April 2025 for agent-to-agent communication (capability discovery via Agent Cards, task
-delegation, result exchange), it was donated to the Linux Foundation in June 2025, and passed 150+
-supporting organizations (including Salesforce, ServiceNow, MongoDB) by its first anniversary.
+delegation, result exchange), it was donated to the Linux Foundation in June 2025, absorbed IBM's
+competing ACP in August 2025, shipped its first stable release (v1.0) in March 2026, and passed 150+
+supporting organizations (including AWS, Cisco, IBM, Microsoft, Salesforce, SAP, ServiceNow) by its
+first anniversary. On **August 17, 2026 it joined the Agentic AI Foundation** as a hosted project,
+completing MCP's governance template *(official)*.
 
 A2A is the *leading* agent-to-agent standard but not yet the *settled* one, for reasons that are
 instructive about why the agent-to-agent layer is harder than the tool layer:
@@ -143,10 +228,13 @@ instructive about why the agent-to-agent layer is harder than the tool layer:
 - **The problem is harder to specify.** Agent-to-agent involves task lifecycle, discovery, and
   *trust* (§13), not just call/response — a bigger, fuzzier surface than tool connection, so
   convergence is naturally slower.
-- **There's a credible alternative (ACP).** Unlike MCP, which faced no serious competing standard,
-  A2A has ACP (below) contesting its layer.
+- **Its same-layer rival is gone, but its boundary with MCP is blurring.** IBM's ACP merged into A2A
+  (Aug 2025), and AGNTCY now positions itself as complementary *(inferred)*. Meanwhile MCP's
+  roadmap moves toward "agentic messaging primitives" (long-running Tasks, server-initiated events).
+  The remaining open question is less "A2A vs. ACP" than where MCP-with-Tasks ends and A2A begins
+  *(inferred)*.
 
-Still, A2A has the strongest position: Google's backing, Linux Foundation governance, broad adoption,
+Still, A2A has the strongest position: Google's backing, AAIF governance alongside MCP, broad adoption,
 and the same "open, given away, rivals adopting" dynamic that made MCP win. The timeline chart shows
 both trajectories:
 
@@ -155,35 +243,42 @@ both trajectories:
 The pattern is unmistakable — **both MCP and A2A launched, gained rival adoption, and moved to neutral
 Linux Foundation governance within ~1 year**, with A2A trailing MCP by roughly that year. If A2A
 completes the template (which its trajectory suggests), the agent-to-agent layer settles on A2A over
-2026–2027, much as the tool layer settled on MCP.
+2026–2027, much as the tool layer settled on MCP. *Nov 2026: the governance half of the template is
+complete (both in AAIF); what remains is adoption depth, which is still far behind MCP.*
 
 ---
 
 ## The genuinely open contests
 
-Two contests in the standards stack are genuinely unsettled and worth examining closely.
+The July snapshot named two contests as genuinely unsettled. One of them, A2A vs. ACP, had in fact
+already resolved, and the record is corrected below. The other, payments, remains open.
 
-### A2A vs. ACP for the agent-to-agent layer
+### A2A vs. ACP for the agent-to-agent layer (resolved: merged)
 
-The main open contest, introduced in §06. ACP (Agent Communication Protocol, from the AGNTCY
-collective — Cisco, LangChain, LlamaIndex, Dell, Oracle, Red Hat) maps agent interactions onto
-REST/HTTP verbs, emphasizing runtime-neutral messaging. It contests A2A's layer. The comparison:
+Introduced in §06. The July snapshot mixed up two different projects under the "ACP" label.
+**ACP (Agent Communication Protocol)** was IBM Research's REST/HTTP-verb agent messaging protocol
+(from the BeeAI project). It was the genuine same-layer rival to A2A, and in **August 2025 it merged
+into A2A** under the Linux Foundation *(official)*. **AGNTCY** is the separate Cisco-led collective
+(formative members Cisco, Dell, Google Cloud, Oracle, Red Hat; LangChain and LlamaIndex were early
+supporters). It joined the Linux Foundation in July 2025 with its own Agent Connect Protocol, the OASF
+agent schema and the SLIM messaging transport. AGNTCY remains a separate LF project outside the AAIF.
+It increasingly presents OASF and SLIM as complements to A2A (OASF maps to and from Agent Cards; SLIM
+as a transport beneath A2A) rather than as a rival *(inferred)*. The corrected comparison:
 
-| Dimension | A2A | ACP (AGNTCY) |
-|---|---|---|
-| Origin | Google | AGNTCY collective (Cisco-led) |
-| Governance | Linux Foundation | Linux Foundation |
-| Approach | Task/Agent-Card model | REST/HTTP-verb messaging |
-| Backers | Google, Salesforce, ServiceNow, 150+ | Cisco, LangChain, LlamaIndex, Dell, Oracle, Red Hat |
-| Adoption | Leading | Smaller |
-| Overlap | High — same layer | High — same layer |
+| Dimension | A2A | ACP (IBM) | AGNTCY (Cisco-led) |
+|---|---|---|---|
+| Origin | Google | IBM Research (BeeAI) | AGNTCY collective |
+| Governance | LF → **AAIF** (Aug 2026) | LF; **merged into A2A** (Aug 2025) | Linux Foundation (separate project) |
+| Approach | Task/Agent-Card model; v1.0 (Mar 2026) | REST/HTTP-verb messaging | OASF schema, SLIM transport, Agent Connect Protocol |
+| Backers | Google, AWS, Cisco, IBM, Microsoft, Salesforce, SAP, ServiceNow; 150+ | IBM | Cisco, Dell, Google Cloud, Oracle, Red Hat |
+| Adoption | Leading | Archived; migration guide to A2A | Smaller; infrastructure niche |
+| Relationship to A2A | — | Absorbed | Complementary (discovery/transport) |
 
-The telling fact: **both are under the Linux Foundation, and some backers (LangChain, LlamaIndex)
-support both** — which strongly suggests convergence or coexistence rather than a war to the death.
-The most likely outcomes, in order: (1) A2A becomes dominant with ACP concepts folded in or ACP
-serving a runtime-neutral niche; (2) the two formally converge under LF stewardship; (3) stable
-coexistence with bridges. A bloody winner-take-all is the *least* likely, because the shared
-governance was designed to reconcile, not fight — the field learning from past standards wars.
+The snapshot's predicted outcome order was (1) A2A becomes dominant with ACP concepts folded in;
+(2) formal convergence under LF stewardship; (3) stable coexistence with bridges. What actually
+happened was a mix of **(1) and (2)**. ACP's team folded its work into A2A, and the shared Linux
+Foundation governance did reconcile rather than fight. That is the field learning from past
+standards wars, as predicted, only a year earlier than the snapshot realized.
 
 ### The payments land-grab
 
@@ -194,16 +289,30 @@ how agents pay. This is genuinely wide open — multiple credible proposals from
 *least* settled part of the stack and the most likely to take years to resolve, probably toward the
 card networks' rails plus one or two platform/crypto options coexisting.
 
+*Nov 2026 update:* the payments protocols have repeated the neutral-governance move, though the
+commercial contest continues. In April 2026 Google donated **AP2 to the FIDO Alliance**, together
+with Mastercard's Verifiable Intent framework, and FIDO formed agentic-authentication and payments
+working groups *(official)*. Also in April 2026, **x402 moved to a new x402 Foundation under the Linux
+Foundation**, co-developed by Coinbase, Cloudflare and Stripe with roughly 40 launch members including
+Google, Visa and Mastercard *(official)*. Usage signals are mixed. Analysts report x402 monthly
+transactions well below their late-2025 peak, and the counts do not show how many payments agents
+actually initiated *(inferred)*. The Agentic Commerce Protocol spec continues on GitHub, while OpenAI
+reportedly scaled back its Instant Checkout surface in 2026 *(inferred; secondary reports conflict on
+dates)*. The card networks now sit *inside* the neutral bodies (FIDO's payments group; x402
+Foundation membership). That supports the snapshot's call that card rails anchor the outcome.
+
 The standards-comparison chart positions all the standards on adoption vs. governance maturity, sized
 by consolidation likelihood:
 
 ![Agent standards: adoption vs. governance maturity](../assets/charts/15_standards_comparison.png)
 
 MCP sits alone in the upper-right (high adoption, mature governance, near-certain to remain the
-standard); A2A follows; and the contested standards (ACP, ANP, the payment protocols) cluster
-lower-left (emerging adoption, less-settled governance, uncertain consolidation). The visual tells the
-whole story: **one settled standard (MCP), one front-runner (A2A), and a contested frontier
-(agent-to-agent alternative, discovery, payments).**
+standard); A2A follows, now closer after joining the AAIF; the AAIF's Agent Skills + AGENTS.md pair
+appears as a new mid-adoption entrant for agent instructions/packaging; and the contested standards
+(AGNTCY, ANP, the payment protocols) cluster to the left (emerging adoption, uncertain consolidation;
+AP2 and x402 gained governance scores with their neutral homes). The visual tells the whole story:
+**one settled standard (MCP), one consolidating front-runner (A2A), and a contested frontier
+(discovery, identity, payments).**
 
 ---
 
@@ -248,9 +357,10 @@ the patterns rhyme. Several precedents illuminate different possible outcomes:
   simplicity and openness beat committee complexity; the agent standards that win will be the simple,
   open ones.*
 - **REST vs. SOAP (simplicity beats enterprise heft).** REST beat the heavier, enterprise-backed SOAP
-  for web APIs by being simpler and more developer-friendly. The A2A-vs-ACP contest has echoes — the
-  simpler, more-adopted approach tends to win. *Lesson: developer experience and simplicity win
-  agent-to-agent too.*
+  for web APIs by being simpler and more developer-friendly. The A2A-vs-ACP contest had echoes. It
+  ended in a merger into the more-adopted option (Aug 2025) rather than a protracted fight, which is a
+  faster resolution than REST vs. SOAP got. *Lesson: developer experience and adoption momentum win
+  agent-to-agent too, and shared governance can shortcut the fight.*
 - **TCP/IP and the web (open standards beat proprietary networks).** The open internet protocols beat
   proprietary networks (AOL, CompuServe) because open won. The agent standards' openness (vs. any
   vendor's proprietary agent protocol) is the same dynamic. *Lesson: the open agent-interop stack
@@ -279,23 +389,28 @@ heading.
 
 | Standard | Layer | Status | Governance | Backers (confidence) | Likely outcome | Historical analogue |
 |---|---|---|---|---|---|---|
-| **MCP** | Tool/context | **Won** | Linux Foundation | Anthropic, OpenAI, Google, MS, AWS (official) | Settled standard | JSON |
-| **A2A** | Agent-to-agent | Leading | Linux Foundation | Google, Salesforce, ServiceNow, 150+ (official) | Likely settles | REST |
-| **ACP (AGNTCY)** | Agent-to-agent | Alternative | Linux Foundation | Cisco, LangChain, LlamaIndex, Dell, Oracle, Red Hat (official) | Converge/coexist w/ A2A | SOAP-ish |
+| **MCP** | Tool/context | **Won** | LF Agentic AI Foundation | Anthropic, OpenAI, Google, MS, AWS; spec `2026-07-28` (official) | Settled standard | JSON |
+| **A2A** | Agent-to-agent | Leading → consolidating | LF Agentic AI Foundation (since Aug 2026) | Google, AWS, Cisco, IBM, MS, Salesforce, SAP, ServiceNow, 150+ (official) | Likely settles; v1.0 shipped | REST |
+| **ACP (IBM)** | Agent-to-agent | **Merged into A2A (Aug 2025)** | Linux Foundation | IBM (official) | Folded into A2A; repo archived | SOAP-ish |
 | **ANP** | Decentralized discovery | Emerging | Community | Open community (inferred) | Niche (decentralized vision) | — |
-| **OASF (AGNTCY)** | Discovery/identity | Emerging | Linux Foundation | AGNTCY (official) | Complements A2A Cards | — |
-| **AP2** | Payments | Proposed | Open + Google | Google, payment networks (official) | Contested; partial adoption | — |
-| **Agentic Commerce Protocol** | Commerce | Proposed | OpenAI+Stripe | OpenAI, Stripe (official) | Contested; checkout niche | — |
-| **x402** | Micropayments | Proposed | Coinbase | Coinbase (official) | Crypto/agent-to-agent niche | — |
+| **AGNTCY (OASF / SLIM / Agent Connect)** | Discovery/identity/transport | Emerging | Linux Foundation (outside AAIF) | Cisco, Dell, Google Cloud, Oracle, Red Hat (official) | Complements A2A Cards; transport niche (inferred) | — |
+| **AP2** | Payments | Proposed (v0.2) | FIDO Alliance (since Apr 2026) | Google, Mastercard, payment networks (official) | Contested; partial adoption | — |
+| **Agentic Commerce Protocol** | Commerce | Proposed | OpenAI+Stripe | OpenAI, Stripe (official) | Contested; checkout niche; ChatGPT checkout scaled back (inferred) | — |
+| **x402** | Micropayments | Proposed | x402 Foundation (LF, since Apr 2026) | Coinbase, Cloudflare, Stripe, Google, Visa, Mastercard (official) | Crypto/agent-to-agent niche | — |
 | **Visa/Mastercard schemes** | Payments | Proposed | Card networks | Visa, Mastercard (official) | Likely win card-rail payments | — |
 | **OAuth 2.1 / OIDC** | Auth foundation | Adopted | IETF | Universal (official) | Settled foundation | HTTP auth |
-| **AGUI / agent-UI protocols** | Agent-UI | Emerging | Community | Various (inferred) | Early | — |
+| **AGUI / agent-UI protocols** | Agent-UI | Emerging | Community | Various (inferred) | Early; MCP Apps extension overlaps | — |
+| **Agent Skills + AGENTS.md** | Agent instructions/packaging | Emerging → adopted | LF Agentic AI Foundation | Anthropic, OpenAI, coding-agent vendors (official) | Partial answer to agent-definition gap | — |
+| **Open Responses** | Model API | Emerging | LF Agentic AI Foundation (Oct 2026) | OpenAI (official) | Portable model-call interface | — |
+| **WebMCP** | Agent-to-web page | Draft (Chrome origin trial) | W3C Web ML Community Group | Google, Microsoft editors (inferred) | Early; browser-side tool exposure | — |
+| **IETF agentproto / DAWN** | Agent comms / discovery | BoF stage (Jul 2026) | IETF | Multi-vendor (inferred) | Uncertain; may formalize A2A/MCP-adjacent pieces | — |
 
-That is eleven distinct standards/proposals spanning the stack's layers — well past ten — at very
-different maturity stages. The through-line: **the foundational and tool layers are settled (OAuth,
-MCP), the agent-to-agent layer is consolidating (A2A leading, ACP alternative), and the discovery/
-payments layers are contested frontiers** — exactly the "settled below, contested above" pattern that
-characterizes a maturing but incomplete standards stack.
+That is fifteen distinct standards/proposals spanning the stack's layers — well past ten — at very
+different maturity stages (one, IBM's ACP, now merged away). The through-line: **the foundational and
+tool layers are settled (OAuth, MCP), the agent-to-agent layer is consolidating (A2A, now beside MCP
+in the AAIF, having absorbed ACP), and the discovery/identity/payments layers are contested
+frontiers** — exactly the "settled below, contested above" pattern that characterizes a maturing but
+incomplete standards stack.
 
 ---
 
@@ -303,7 +418,8 @@ characterizes a maturing but incomplete standards stack.
 
 Understanding *what MCP actually is* clarifies why it won and what a good agent standard looks like.
 MCP is a client-server protocol (built on JSON-RPC, with transports including stdio for local and
-HTTP/SSE for remote) where **servers expose capabilities and clients (agents) consume them.** It
+Streamable HTTP for remote; the legacy HTTP+SSE transport was deprecated in the `2026-07-28` spec)
+where **servers expose capabilities and clients (agents) consume them.** It
 defines three core primitives:
 
 - **Tools** — functions the agent can call (the function-calling of §04), exposed with JSON Schema
@@ -318,7 +434,8 @@ protocol on familiar foundations (JSON-RPC, HTTP) that solves a universal proble
 tools/data) without imposing opinions about the agent's internals.** A server author exposes their
 tool once, and *any* MCP client works with it; an agent builder speaks MCP once, and *any* MCP server
 works. That clean separation — servers don't know about clients, clients don't know about servers'
-internals — is what enables the ecosystem (18,000+ servers usable by any agent). It's the same
+internals — is what enables the ecosystem (18,000+ servers by mid-2026, and roughly 43,000–47,500
+registry entries by October 2026 per third-party counts, usable by any agent). It's the same
 architectural virtue (opacity across a clean interface) that makes A2A work for agents, and the same
 that made the web's protocols win.
 
@@ -329,6 +446,22 @@ The addition of required OAuth for remote servers is what ties MCP to the identi
 made it enterprise-deployable. This maturation — from a clever local protocol to governed,
 authenticated, remote-capable production infrastructure — is part of why it consolidated: it grew up
 fast enough to be trusted for real deployments.
+
+**The `2026-07-28` revision (July 28, 2026) is the biggest step in that maturation** *(official)*.
+The core became **stateless**. The `initialize` handshake and the `Mcp-Session-Id` header are gone,
+and each request carries its protocol version, client identity and capabilities in `_meta`, with an
+optional `server/discover` call. As a result, remote servers can sit behind ordinary load balancers
+without sticky sessions. Server-initiated requests (elicitation, sampling, roots) that needed
+held-open streams are replaced by **Multi Round-Trip Requests**: the server answers
+"input required" and the client retries with the inputs. Streamable HTTP requests carry `Mcp-Method`
+and `Mcp-Name` headers for gateway routing. List results are cacheable (`ttlMs`). Authorization was
+hardened: issuer validation per RFC 9207, credentials bound to their issuer, and Client ID Metadata
+Documents preferred, with Dynamic Client Registration deprecated. A **formal extensions framework**
+now houses Tasks (long-running work), MCP Apps (interactive UI) and Enterprise-Managed Authorization.
+Roots, Sampling and Logging are deprecated under a new twelve-month deprecation policy. Two points
+matter strategically. First, MCP is now designed for **cloud-scale, gateway-fronted deployment**.
+Second, it is growing **agentic primitives** (Tasks, and server-initiated events on the August 2026
+roadmap) that edge toward A2A's territory, so the MCP/A2A boundary is worth watching *(inferred)*.
 
 ## The embrace-extend risk and conformance
 
@@ -343,7 +476,10 @@ This is the "standard-in-name-only" failure, and it's a genuine risk as adoption
 - **The mitigations.** Neutral governance (Linux Foundation) that maintains a canonical spec,
   **conformance testing** (verifying implementations actually interoperate), and a strong reference
   implementation reduce this risk. The Linux Foundation's stewardship is partly *about* preventing
-  embrace-extend by keeping the spec canonical and multi-vendor.
+  embrace-extend by keeping the spec canonical and multi-vendor. *Nov 2026:* MCP now runs a formal
+  SDK tiering system scored against conformance tests. For example, the Ruby SDK reached Tier 1 on
+  Oct 30, 2026 with 100% conformance on both scored spec versions *(official)*. MCP also has a formal
+  extensions framework, which gives vendors a sanctioned place for additions instead of forks.
 - **The countervailing force.** The whole *point* of adopting the standard is interoperability, so
   vendors have an incentive *not* to fragment it (fragmenting defeats the purpose they adopted it
   for). The network effects that make the standard valuable also punish fragmenting it.
@@ -368,15 +504,29 @@ worth mapping, because "agent standards" is broader than MCP/A2A:
   definition — the graph, prompts, state schema — so agents aren't portable across frameworks. This is
   the real remaining lock-in gap, and whether a declarative agent-definition standard emerges (given
   the MCP/A2A precedent and enterprise demand) is an open 2027 question. A2A's Agent Cards standardize
-  the agent's *interface* but not its *implementation*.
+  the agent's *interface* but not its *implementation*. *Nov 2026:* the gap has narrowed at the edges.
+  The AAIF now hosts **AGENTS.md** (repo-level agent instructions) and, since October 22, 2026,
+  **Agent Skills** (Anthropic's packaging format for reusable instructions and resources) and **Open
+  Responses** (OpenAI's interoperable model-API spec) *(official)*. Together these make an agent's
+  *instructions, skills and model calls* portable. The orchestration graph and state schema are still
+  not portable.
 - **Memory: no standard** (§03). Memory has no portability standard — you can't export/import an
   agent's memory across systems — and the vendors have an incentive against it. An open gap, unlikely
-  to be filled soon.
+  to be filled soon. (*Nov 2026:* a W3C AI Agent Memory Interoperability Community Group formed in
+  June 2026. Community groups do not produce W3C Recommendations, so this is an early signal and not a
+  standard *(inferred)*.)
 - **Evaluation: emerging conventions** (§11). Eval is standardizing informally around common
   benchmarks and LLM-judge practices, and OpenTelemetry for the observability half, but there's no
   formal eval standard.
 - **Agent-UI: emerging** (AG-UI and similar). Protocols for how agents present interfaces to users are
-  early.
+  early. MCP's **MCP Apps** extension (interactive UI from MCP servers) brings part of this layer under
+  the MCP umbrella *(official)*.
+- **Agent-to-web: emerging (WebMCP).** WebMCP lets web pages expose tools to in-browser agents. As of
+  October 2026 it is a Draft Community Group Report in the W3C Web Machine Learning CG, with a Chrome
+  origin trial; other browsers have not committed *(inferred)*.
+- **Agent environments and sandboxes: newly under governance.** OpenEnv (Hugging Face; training and
+  evaluation environments) and OpenSandbox (Alibaba; managed execution environments) joined the AAIF
+  on Oct 22, 2026 *(official)*. It is too early to call either a standard.
 
 The pattern across layers: **the layers with clean interfaces and universal pain standardized (tools/
 MCP, observability/OTel, agent-to-agent/A2A), while the layers with fuzzy interfaces or vendor
@@ -405,7 +555,11 @@ standards story has a power dimension worth surfacing:
   infrastructure (like other critical tech) could see some regional fragmentation. The Linux
   Foundation's international-neutral positioning helps, but the geopolitics of AI broadly could
   eventually touch agent standards. This is more latent than active in 2026 but worth watching as
-  agents become critical infrastructure.
+  agents become critical infrastructure. *Nov 2026:* the signals so far point toward participation
+  rather than fragmentation. Alibaba joined the AAIF as a Gold member in August 2026 and contributed
+  OpenSandbox in October, and Ant Group joined at Gold in the October cohort *(official)*. Meanwhile
+  the US government's channel is NIST's AI Agent Standards Initiative, which works *with*
+  industry-led protocols rather than competing with them *(official)*.
 - **The open-source-vs-proprietary throughline.** The agent standards' openness is part of the
   broader open/closed dynamic in AI — open standards, like open models (§05), distribute power and
   resist single-vendor control, which is why they're favored by everyone except a would-be
@@ -428,7 +582,10 @@ For balance, the scenarios that could *derail* the optimistic consolidation stor
   dominant), but not impossible if the competitive balance shifts.
 - **A contested layer fragments permanently.** If A2A/ACP *don't* converge, or payments fragment
   durably, those layers stay fractured — real friction, though bounded to those layers (the tool layer
-  is safe).
+  is safe). (*Nov 2026:* A2A/ACP did converge; payments remain the live risk.)
+- **MCP and A2A overlap.** As MCP adds Tasks and server-initiated events, the boundary between "agent
+  calls a tool" and "agent delegates to an agent" could blur into duplicated functionality. Shared
+  AAIF governance makes reconciliation more likely than a fight *(speculative)*.
 - **Security failures discredit a standard.** If MCP tool poisoning or agent kill chains (§12) cause
   major incidents that the standard can't address, trust could erode — mitigated by security hardening,
   but a real risk given §12's unsolved problems.
@@ -449,7 +606,7 @@ overconfident. The most likely disruption is not the tool layer (MCP is safe) bu
 ## Standards and the other layers
 
 - **↔ Tool use (§04).** MCP *is* the tool-connection standard; §04's low contestedness is MCP's win.
-- **↔ Multi-agent (§06).** A2A/ACP are the agent-to-agent standards; §06's coordination happens over
+- **↔ Multi-agent (§06).** A2A (which absorbed IBM's ACP) is the agent-to-agent standard; §06's coordination happens over
   them.
 - **↔ Identity (§13).** OAuth foundations, agent identity, and the payments standards live at the
   §13/§15 boundary.
@@ -462,8 +619,9 @@ overconfident. The most likely disruption is not the tool layer (MCP is safe) bu
 
 ## Failure modes and risks specific to standards
 
-1. **Fragmentation of a contested layer.** Payments (or agent-to-agent, if A2A/ACP don't converge)
-   fragmenting hurts everyone. Mitigated by neutral governance pushing convergence.
+1. **Fragmentation of a contested layer.** Payments fragmenting hurts everyone (the agent-to-agent
+   version of this risk receded when ACP merged into A2A). Mitigated by neutral governance pushing
+   convergence: AP2 at FIDO and x402 at the Linux Foundation since April 2026.
 2. **Premature lock-in to a losing standard.** Betting on a standard that doesn't win. Mitigated by
    backing the neutrally-governed front-runners (MCP, A2A).
 3. **Standard-in-name-only.** A "standard" that vendors implement incompatibly (embrace-extend).
@@ -483,13 +641,16 @@ Cutting through the analysis, the practical question for a team building agents 
 adopt today*, and the answer is clear enough to state directly:
 
 - **Adopt MCP for tools/data connection — unambiguously.** MCP has won; standardizing your tools on
-  MCP makes them portable across frameworks and models (§02) and connects you to the 18,000+ server
-  ecosystem. There is no reason not to, and it's the single highest-value standards decision. This is
-  settled infrastructure — build on it.
+  MCP makes them portable across frameworks and models (§02) and connects you to an ecosystem of
+  tens of thousands of servers. There is no reason not to, and it's the single highest-value standards
+  decision. This is settled infrastructure — build on it. *Nov 2026:* target the `2026-07-28`
+  revision for new remote servers. Plan migrations off the deprecated HTTP+SSE transport, Dynamic
+  Client Registration, and Roots/Sampling/Logging within their twelve-month windows.
 - **Adopt A2A for agent-to-agent boundaries — with mild caution.** A2A is the front-runner for
-  agent-to-agent, and adopting it for cross-agent/cross-org boundaries is the right bet — while being
-  aware ACP exists and the layer isn't 100% settled. The risk of betting on A2A is low (it's leading,
-  LF-governed, broadly adopted) and the alternative (no standard) is worse.
+  agent-to-agent, and adopting it for cross-agent/cross-org boundaries is the right bet. The caution
+  now concerns the layer's edges (MCP Tasks overlap, identity), not a rival protocol, since ACP merged
+  into A2A. The risk of betting on A2A is low (v1.0 stable, AAIF-governed, broadly adopted). Note that
+  v1.0 broke compatibility with v0.3, so pin and test versions. The alternative (no standard) is worse.
 - **Adopt OpenTelemetry for observability — unambiguously.** Standardize tracing on OTel (§11) so
   your observability survives a backend switch — the same portability logic as MCP, applied to
   observability. Settled direction, adopt it.
@@ -498,9 +659,13 @@ adopt today*, and the answer is clear enough to state directly:
 - **Wait on payments standards.** The payments layer is unsettled; unless you specifically need
   agentic payments now, waiting for consolidation avoids betting on a loser. If you must, the card-
   network schemes (Visa/Mastercard) are the safest bet for card-rail payments given incumbent trust.
+  Track the FIDO Alliance payments working group (AP2 + Verifiable Intent), which now brings Google,
+  Mastercard and Visa into one venue.
 - **Accept lock-in on the agent definition — for now.** No standard exists for the internal agent
   definition (§02), so framework choice remains sticky; mitigate by keeping tools (MCP), agent-
-  boundaries (A2A), and tracing (OTel) portable so the *framework* is the only lock-in.
+  boundaries (A2A), and tracing (OTel) portable so the *framework* is the only lock-in. Where it
+  fits, also put instructions in AGENTS.md and reusable capabilities in Agent Skills (both AAIF-hosted
+  as of Nov 2026), so the portable share of the agent definition keeps growing.
 
 The one-line practical takeaway: **standardize on MCP (tools), A2A (agent-to-agent), OTel
 (observability), and OAuth 2.1 (auth) today — these are settled-enough to build on — and accept that
@@ -516,14 +681,20 @@ where agents anywhere discover, communicate, transact, and collaborate as freely
 any client. §06 flagged this as compelling-but-aspirational; here it's worth mapping which standards
 would need to mature to realize it, because it clarifies what's built and what's missing:
 
-- **Communication (mostly there).** A2A/ACP provide agent-to-agent communication — the plumbing for
+- **Communication (mostly there).** A2A (with AGNTCY's SLIM as an optional transport) provides agent-to-agent communication — the plumbing for
   agents to talk. This layer is maturing well.
 - **Discovery (emerging).** Agent Cards (A2A), OASF, and ANP provide capability discovery — how agents
   find each other. Emerging, especially for the enterprise/federated case; the open decentralized case
-  (ANP) is earlier.
+  (ANP) is earlier. *Nov 2026:* MCP's Server Card working group (`.well-known` server metadata) and
+  the IETF DAWN discovery BoF are pulling discovery toward web-native conventions *(official /
+  inferred)*.
 - **Identity and trust (the gap).** Verifiable agent identity and trust across organizations (§13) is
   the hard, largely-missing piece — the plumbing exists but the trust infrastructure (verifiable
-  credentials, reputation) doesn't. This is the gating gap, as §06 and §13 both emphasize.
+  credentials, reputation) doesn't. This is the gating gap, as §06 and §13 both emphasize. *Nov
+  2026:* it is now the explicit priority of every major venue. Examples are MCP's agent-identity
+  roadmap item (DPoP, workload identity federation, coordination with IETF WIMSE), NIST CAISI's
+  identity-and-authorization work, FIDO's agentic-authentication working group, and W3C community
+  groups on agent identity. There is plenty of activity but no finished standard yet.
 - **Payments (contested/early).** Agent-to-agent payments (x402, AP2) provide the economic substrate —
   contested and early, but developing.
 - **Governance and safety (missing).** Frameworks for governing, securing (§12), and holding
@@ -551,16 +722,20 @@ vendor's protocol), but the pain it solved was real and universal.
 **Early-to-mid 2025** was the tipping: OpenAI adopted MCP (March) — a rival adopting a competitor's
 protocol, the signal that tipped MCP from proposal to de-facto standard — and Google, Microsoft, and
 AWS followed. Simultaneously, Google launched A2A (April) for the agent-to-agent layer, and both MCP
-and A2A began moving toward neutral governance (A2A to the Linux Foundation in June, ACP donated by
-the AGNTCY collective in July). The industry, recognizing that fragmentation would hurt everyone,
-rushed toward open, neutrally-governed standards. **Late 2025** cemented it: MCP donated to the Linux
-Foundation (December) with OpenAI, Google, Microsoft, and AWS backing — a near-complete industry
-consensus on the tool layer — while the payments contest (AP2, Agentic Commerce Protocol, x402) opened
-as agentic commerce loomed.
+and A2A began moving toward neutral governance (A2A to the Linux Foundation in June; the Cisco-led
+AGNTCY stack to the LF in July; IBM's rival ACP merged into A2A in August). The industry,
+recognizing that fragmentation would hurt everyone, rushed toward open, neutrally-governed standards.
+**Late 2025** cemented it: MCP donated to the Linux Foundation's new Agentic AI Foundation (December)
+with OpenAI, Google, Microsoft, and AWS backing — a near-complete industry consensus on the tool
+layer — while the payments contest (AP2, Agentic Commerce Protocol, x402) opened as agentic commerce
+loomed.
 
-**2026** is the current state: MCP settled (18,000+ servers, universal backing), A2A leading and
-consolidating the agent-to-agent layer, ACP the alternative under shared governance, payments
-contested, and the overall open-neutrally-governed-layered-stack pattern firmly established. The arc
+**2026** is the current state. MCP is settled: tens of thousands of servers, universal backing, and a
+stateless `2026-07-28` core. A2A shipped v1.0 (March) and joined MCP in the Agentic AI Foundation
+(August). The AAIF grew to ten projects and 300+ members by October. Payments moved to neutral homes
+(FIDO for AP2, a Linux Foundation foundation for x402) but stayed commercially contested. Government
+and formal bodies entered, with NIST's initiative (February) and IETF BoFs (July). The overall
+open, neutrally governed, layered-stack pattern is firmly established. The arc
 is one of the fastest and most cooperative standards consolidations in computing history — driven by
 aligned universal demand and the industry's hard-won knowledge that standards wars hurt everyone. It's
 a rare case where the "most contested" dimension produced, in practice, unusually fast agreement on
@@ -572,22 +747,37 @@ connects.
 ## Roadmap and outlook (confidence-tagged)
 
 - **MCP remains the settled tool standard** *(official; very high confidence).* The tool-connection
-  question is answered; MCP is infrastructure.
+  question is answered; MCP is infrastructure. — *Nov 2026: confirmed; the `2026-07-28` stateless
+  revision and ~half-billion monthly Tier-1 SDK downloads deepen the lock-in.*
 - **A2A settles the agent-to-agent layer, likely absorbing/coexisting with ACP** *(inferred; high
   confidence).* A2A completes MCP's template over 2026–2027; convergence with ACP under LF governance
-  is more likely than a war.
+  is more likely than a war. — *Nov 2026: largely confirmed. IBM's ACP had already merged into A2A
+  (Aug 2025), and A2A joined MCP in the AAIF (Aug 2026). Adoption depth still lags MCP.*
 - **Payments fragment then consolidate slowly** *(speculative; medium confidence).* The
   AP2/ACP/x402/card-network contest resolves over multiple years toward card rails + a platform/crypto
-  option or two — a USB-style fragment-then-consolidate.
+  option or two — a USB-style fragment-then-consolidate. — *Nov 2026: partly. Governance has
+  consolidated (AP2 at FIDO, x402 Foundation at the LF), but the commercial contest has not resolved.*
 - **An agent-definition portability standard may emerge** *(speculative; low-medium confidence).* The
   §02 internal-agent-definition gap (real lock-in) may attract a standard by 2027, given the MCP/A2A
-  precedent and enterprise lock-in demand — but nothing has clearly won.
+  precedent and enterprise lock-in demand — but nothing has clearly won. — *Nov 2026: partly. AGENTS.md
+  and Agent Skills (AAIF) standardize instructions and skills; graph and state portability is not yet
+  addressed.*
 - **Security hardening of the standards becomes a priority** *(inferred; medium-high confidence).* As
   MCP tool poisoning and agent kill chains (§12) become concrete, hardening the standards against them
-  is a growing focus.
+  is a growing focus. — *Nov 2026: confirmed. MCP's authorization hardening shipped in `2026-07-28`, and
+  agent identity is a named roadmap priority; the October AAIF conference reportedly centered on
+  security and identity.*
 - **The open agent-interop stack solidifies** *(inferred; high confidence).* The overall direction —
   an open, neutrally-governed, layered standards stack extending the web — is set; it's the connective
-  tissue that lets the multi-vendor agent ecosystem cohere rather than fragment.
+  tissue that lets the multi-vendor agent ecosystem cohere rather than fragment. — *Nov 2026:
+  confirmed; the AAIF hosts 10 projects with 300+ members.*
+- **New (Nov 2026): the MCP/A2A boundary becomes the next interop design question** *(speculative;
+  medium confidence).* MCP Tasks and server-initiated events overlap A2A's long-running-task model.
+  Expect AAIF-level guidance or bridging work in 2027 rather than a fight.
+- **New (Nov 2026): formal-body standards for agent identity and discovery** *(inferred; medium
+  confidence).* IETF (`agentproto`/DAWN, WIMSE), NIST CAISI and FIDO are all working on agent
+  identity and discovery. The first normative outputs plausibly arrive in 2027 and are more likely to
+  *profile* MCP/A2A than to replace them.
 
 ---
 
@@ -631,7 +821,7 @@ structural consequences:
   the best model, connected via standards) over single-vendor stacks — good for buyers, and the reason
   enterprises (§14) champion the standards as a lock-in hedge.
 - **It enables the ecosystem to be larger than any vendor**, because open standards let a long tail of
-  participants (18,000+ MCP servers, thousands of agent builders) contribute — the network effects that
+  participants (tens of thousands of MCP servers, thousands of agent builders) contribute — the network effects that
   make the ecosystem valuable are only possible *because* it's open.
 - **It shifts competition to where value genuinely is** — model capability, product/workflow value,
   data, and trust — rather than to controlling proprietary plumbing. This is healthier for the
@@ -652,7 +842,7 @@ proprietary.
   fast** — MCP went from experiment to Linux-Foundation standard in ~14 months, closer to JSON's
   organic speed than a committee's grind.
 - The standards form a **layered, complementary stack**, not a single winner: **MCP *won* the tool
-  layer**, **A2A *leads* the agent-to-agent layer** (a year behind MCP, ACP the alternative), and
+  layer**, **A2A *leads* the agent-to-agent layer** (a year behind MCP; it absorbed IBM's ACP in 2025 and joined MCP in the AAIF in Aug 2026), and
   **discovery/payments are contested frontiers** — the "MCP vs. A2A" framing is a category error.
 - **Fast consolidation** is driven by aligned universal demand, historical lesson-learning (frag-
   mentation hurts everyone → neutral governance), open-given-away protocols beating proprietary ones,
@@ -661,10 +851,13 @@ proprietary.
   SOAP moment* (simpler/more-adopted wins under neutral governance); payments will have a *USB-style
   fragment-then-consolidate* (slowest). The throughline: **open, simple, neutrally-governed standards
   win.**
-- The genuinely open contests are **A2A vs. ACP** (likely convergence/coexistence — both under LF, some
-  shared backers) and the **payments land-grab** (AP2/ACP/x402/card-networks — years to resolve).
+- The snapshot's **A2A vs. ACP** contest had already resolved (IBM's ACP merged into A2A, Aug 2025;
+  AGNTCY is complementary), so the genuinely open contest is the **payments land-grab**
+  (AP2/ACP/x402/card-networks — now under neutral homes at FIDO and the LF, but years to resolve
+  commercially), with **agent identity** the new frontier every standards venue is targeting.
 - **Enterprises drive consolidation** (standards as a lock-in hedge, §14); the real remaining lock-in
-  gap is the **internal agent definition** (§02), where no standard yet exists.
+  gap is the **internal agent definition** (§02), where AGENTS.md and Agent Skills (AAIF) now cover
+  instructions and skills but nothing covers the orchestration graph or state.
 
 - **Practically, adopt now**: MCP (tools), A2A (agent-to-agent, mild caution), OpenTelemetry
   (observability), and OAuth 2.1 (auth) — these are settled-enough to build on; wait on payments, and
@@ -686,4 +879,35 @@ clearly, structurally positive, and where the field's collective behavior — ch
 layered standards over proprietary control — has already largely determined a good outcome for the
 layers that matter most.
 
-*Word count target: 6,500. This section: ~6,600 (verified via `wc`).*
+*Word count target: 6,500. This section: ~9,100 (verified via `wc`; includes the November 2026 update).*
+
+## Sources (November 2026 update)
+
+- MCP blog — The 2026-07-28 Specification: https://blog.modelcontextprotocol.io/posts/2026-07-28/
+- MCP blog index (Ruby SDK Tier 1, Oct 30, 2026; registry launch Sep 2025): https://blog.modelcontextprotocol.io/
+- MCP — The New MCP Roadmap (Aug 22, 2026): https://github.com/modelcontextprotocol/modelcontextprotocol/blob/main/blog/content/posts/2026-08-22-mcp-roadmap.md
+- MCP specification release 2026-07-28: https://github.com/modelcontextprotocol/specification/releases/tag/2026-07-28
+- A2A releases (v1.0.0 Mar 12, 2026; v1.0.1 May 28, 2026): https://github.com/a2aproject/A2A/releases
+- AAIF — A2A joins AAIF's open agentic stack (Aug 17, 2026): https://aaif.io/blog/a2a-joins-aaif
+- Linux Foundation — A2A surpasses 150 organizations (Apr 2026): https://www.linuxfoundation.org/press/a2a-protocol-surpasses-150-organizations-lands-in-major-cloud-platforms-and-sees-enterprise-production-use-in-first-year
+- Linux Foundation — AAIF welcomes 57 new members (Aug 2026): https://www.linuxfoundation.org/press/agentic-ai-foundation-welcomes-57-new-members-gaining-major-financial-services-players-and-apac-leaders
+- Linux Foundation — AAIF announces Agent Skills, Open Responses, OpenEnv, OpenSandbox (Oct 22, 2026): https://www.linuxfoundation.org/press/agentic-ai-foundation-announces-four-new-projects-agent-skills-open-responses-openenv-and-opensandbox
+- Linux Foundation — AAIF surpasses 300 members: https://www.linuxfoundation.org/press/agentic-ai-foundation-surpasses-300-members-in-less-than-one-year
+- Linux Foundation — AAIF 2026 events program (AGNTCon + MCPCon): https://www.linuxfoundation.org/press/agentic-ai-foundation-announces-global-2026-events-program-anchored-by-agntcon-mcpcon-north-america-and-europe
+- InfoQ — AGNTCon + MCPCon 2026 coverage: https://www.infoq.com/news/2026/10/agntcon-mcpcon-2026/
+- Tetrate — Agent Router joins AAIF (Sep 2026): https://tetrate.io/blog/agent-router-joins-aaif
+- LF AI & Data — ACP joins forces with A2A (Aug 29, 2025): https://lfaidata.foundation/?p=7689
+- AGNTCY project proposal / status: https://github.com/aaif/project-proposals/issues/57 ; https://agntcy.org/changelog
+- Google — AP2 donated to the FIDO Alliance (Apr 2026): https://blog.google/products-and-platforms/platforms/google-pay/agent-payments-protocol-fido-alliance/
+- FIDO Alliance — AP2 donation: https://fidoalliance.org/google-donates-agent-payments-protocol-to-fido-alliance/
+- Coinbase — x402 Foundation: https://docs.cdp.coinbase.com/x402/support/x402-foundation
+- Linux Foundation — x402 Foundation launch: https://www.linuxfoundation.org/press/linux-foundation-is-launching-the-x402-foundation-and-welcoming-the-contribution-of-the-x402-protocol
+- State of Agentic Commerce tracker (x402 governance/usage, Oct 2026): https://agenticplug.ai/current-state-of-agentic-commerce
+- NIST — AI Agent Standards Initiative (Feb 17, 2026): https://www.nist.gov/news-events/news/2026/02/announcing-ai-agent-standards-initiative-interoperable-and-secure
+- IETF 126 agentproto BoF materials: https://datatracker.ietf.org/meeting/126/materials/slides-126-agentproto-agentproto-03
+- IETF 126 BoFs overview: https://www.ietf.org/blog/ietf126-bofs/
+- W3C AI Agent Protocol Community Group list archive: https://lists.w3.org/Archives/Public/public-agentprotocol/
+- W3C proposed AI Agent Memory Interoperability CG: https://lists.w3.org/Archives/Public/public-dataspaces/2026May/0005.html
+- WebMCP status overview (secondary): https://dev.to/ai-agent-economy/webmcp-in-2026-which-browsers-support-navigatormodelcontext-complete-compatibility-status-1oe4
+- LocalCan — State of MCP server development (Oct 2026 registry census): https://www.localcan.com/blog/state-of-mcp-server-development
+
