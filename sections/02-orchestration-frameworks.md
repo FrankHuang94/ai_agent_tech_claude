@@ -1,6 +1,6 @@
 # 02 — Agent Orchestration Frameworks
 
-*The control plane. How the loop is structured, where state lives, and who won the framework war. Target: 7,000 words.*
+*The control plane. How the loop is structured, where state lives, and who won the framework war. Target: 7,000 words. Snapshot July 22, 2026; current as of November 2026.*
 
 ---
 
@@ -41,6 +41,100 @@ into?"
 
 ---
 
+## What changed since July 2026 (November 2026 update)
+
+The four months since the July snapshot did not change the shape of this layer; they
+hardened it. Three things stand out. First, **consolidation stopped being a
+prediction**: Microsoft archived the AutoGen repository and pointed every user at the
+Microsoft Agent Framework (MAF), the clearest "independent-to-platform" absorption yet.
+Second, **graph/workflow runtimes became universal**: Google's ADK 2.0 (shipped in May
+and missed by the snapshot) rebuilt ADK around a graph engine with checkpointed
+human-in-the-loop gates, Pydantic AI 2.0 and Haystack 3.0 shipped major versions, and
+Anthropic's managed runtime added server-run multi-agent workflows. Third, **the
+managed runtime keeps pulling ahead of the library**: Claude Managed Agents, LangSmith
+Deployment, Google's renamed Agent Runtime and Azure Foundry hosted agents are where
+new features land first. The release cadence is also worth noting. MAF shipped 24 minor
+versions in seven months and Google ADK roughly one minor version a fortnight, so any
+version number in this section will be stale within weeks.
+
+Dated log of material developments (confidence per Section 17):
+
+- **Apr 8, 2026 (missed in snapshot): Anthropic launches Claude Managed Agents** in
+  public beta. It is a hosted runtime (sandbox, sessions, checkpointing, credential
+  vaults, tracing) priced at model usage plus $0.08 per agent-runtime hour, separate
+  from the self-hosted Claude Agent SDK. *(official, via
+  [SiliconANGLE](https://siliconangle.com/2026/04/08/anthropic-launches-claude-managed-agents-speed-ai-agent-development/))*
+- **Apr 15, 2026 (missed): OpenAI's Agents SDK adds native sandbox execution and a
+  "model-native harness"** (MCP, skills, AGENTS.md, shell and apply-patch tools).
+  *(official, [OpenAI](https://openai.com/index/the-next-evolution-of-the-agents-sdk/))*
+- **Apr 22, 2026 (missed): Google rebrands Vertex AI as the Gemini Enterprise Agent
+  Platform.** Vertex AI Agent Engine becomes **Agent Runtime**. *(official,
+  [Google Cloud blog](https://cloud.google.com/blog/products/ai-machine-learning/introducing-gemini-enterprise-agent-platform))*
+- **May 19, 2026 (missed): Google ADK Python 2.0 GA** replaces the hierarchical
+  executor with a **graph-based Workflow engine**. Agents become nodes, and
+  human-in-the-loop gates can resume from a checkpoint. ADK Go 2.0 followed on June 30.
+  By Oct 23 Python was at 2.13. *(official, [adk.dev](https://adk.dev/2.0/index.md);
+  [PyPI](https://pypi.org/project/google-adk/))*
+- **Jun 23, 2026: Pydantic AI 2.0 stable.** Composable "capabilities" bundle tools,
+  instructions, hooks and settings. A separate `pydantic-ai-harness` package adds
+  memory and guardrails. *(official,
+  [changelog](https://pydantic.dev/docs/ai/changelog/))*
+- **Jun 25, 2026: Vercel AI SDK 7.0** ships. Mastra had already reached **1.0 on Jan 20,
+  2026** and is at 1.82 by November. *(official,
+  [npm `ai`](https://www.npmjs.com/package/ai); [npm `@mastra/core`](https://www.npmjs.com/package/@mastra/core))*
+- **Jul 15, 2026: MAF "Agent Harness" GA** in .NET and Python with stable interfaces
+  for tool calls, state and telemetry. *(inferred: Azure Updates entry as reported
+  by secondary trackers. We could not fetch the primary page.)* MAF Python went from
+  1.0.0 (Apr 2) to **1.24.0 (Oct 30)**. *(official,
+  [PyPI](https://pypi.org/project/agent-framework/))*
+- **Jul 20, 2026: Haystack 3.0** (deepset) ships, repositioned around explicit
+  pipeline-and-agent workflows. Current version is 3.4. *(official,
+  [PyPI](https://pypi.org/project/haystack-ai/))*
+- **Aug 24, 2026: Agno 3.0**, now billed as "the programming language for agentic
+  software." *(official, [PyPI](https://pypi.org/project/agno/))*
+- **Sep 3, 2026: LangChain 1.4** ships, and LangGraph 1.2.x continues weekly (1.2.19
+  on Oct 30). LangChain's **Deep Agents** harness (filesystem, sub-agents, skills,
+  long-term memory) is at 0.7.x. The managed runtime still sells under the
+  **LangSmith Deployment** name (renamed from LangGraph Platform in Oct 2025).
+  *(official, [PyPI langchain](https://pypi.org/project/langchain/),
+  [PyPI deepagents](https://pypi.org/project/deepagents/),
+  [LangSmith Deployment](https://www.langchain.com/langsmith/deployment))*
+- **Sep 2026: LangChain Series C at ~$3.0B reported, not announced.** A Forge Global
+  figure based on filings is the only source. LangChain has announced nothing beyond
+  its Oct 2025 Series B. *(speculative)*
+- **Oct 9, 2026: Claude Managed Agents adds "dynamic workflows"** (beta). The agent
+  writes a program that fans work out to many agents in phases, and the server runs
+  it in the background. Model-authored orchestration has become a hosted primitive.
+  *(official, [Claude release notes](https://platform.claude.com/docs/en/release-notes/overview))*
+- **Oct 15, 2026: OpenAI Agents SDK 0.24.0** (Python; TS 0.21 on Oct 20). It is still
+  pre-1.0, and its `RunState` schema changes break saved runs. *(official,
+  [PyPI](https://pypi.org/project/openai-agents/))*
+- **~Oct 20–28, 2026: Microsoft archives the AutoGen repository.** There are no
+  further bug or security fixes, and the README names MAF as the successor and links a
+  migration guide. The last AutoGen PyPI release was 0.7.5 on Sep 30, 2025. *(official
+  for the archive status, [GitHub](https://github.com/microsoft/autogen/) and
+  [migration guide](https://learn.microsoft.com/agent-framework/migration-guide/from-autogen).
+  The exact date is inferred from trackers.)*
+- **Nov 2, 2026: Anthropic "message threads"** (beta) keep conversation state on the
+  server, so agent loops send only new messages. This is the vendor-managed
+  thread-store philosophy (below) arriving at the raw API level. *(official,
+  [release notes](https://platform.claude.com/docs/en/release-notes/overview))*
+- **Nov 3, 2026: LangSmith BYOC** (bring your own cloud) enters beta on Azure and
+  Google Cloud after GA on AWS. *(inferred, [Unite.AI](https://www.unite.ai/langchain-brings-langsmith-byoc-beta-to-azure-and-google-cloud/))*
+- **Corrections to the snapshot's funding figures.** CrewAI's disclosed total is about
+  **$18M** (Oct 2024 round), not ~$45M. LlamaIndex's is **$27.5M** (Mar 2025 Series A,
+  Norwest-led), not ~$60M. We found no new 2026 round for either. *(official,
+  [SiliconANGLE](https://siliconangle.com/?p=675043),
+  [LlamaIndex](https://www.llamaindex.ai/blog/announcing-our-series-a-and-llamacloud-general-availability))*
+
+No agent-definition portability standard has emerged. Oracle's Open Agent Spec exists
+as a declarative proposal. The Agentic AI Foundation (AAIF) now hosts AGENTS.md, Agent
+Skills and A2A, which standardize the *edges* of an agent but not its internal graph.
+*(official, [AAIF](https://aaif.io/blog/a2a-joins-aaif);
+[Anthropic](https://www.anthropic.com/news/donating-agent-skills-to-the-agentic-ai-foundation))*
+
+---
+
 ## The two axes that define every framework
 
 Every orchestration framework can be located on two axes. Understanding these two
@@ -60,7 +154,8 @@ research-then-write tasks). Its limitation is that genuinely dynamic control flo
 **Graph-based.** The agent's control flow is an explicit directed graph of nodes
 (units of work) and edges (transitions, possibly conditional). The graph can
 contain cycles, so loops, retries, and revisiting are first-class. This is the
-LangGraph model, the model underlying much of Google's ADK, and the direction
+LangGraph model, the model Google's ADK adopted outright when ADK 2.0 (May 2026)
+rebuilt it around a graph-based Workflow engine, and the direction
 Microsoft's Agent Framework took with its graph/workflow layer. Graphs are more
 verbose to author but far more expressive; critically, because the control flow is
 *data*, the framework can checkpoint it, replay it, visualize it, and interrupt it
@@ -71,7 +166,8 @@ observability properties.
 **Conversational / emergent.** There is no explicit control flow at all. Multiple
 agents are placed in a shared conversation and a turn-taking policy (round-robin, a
 manager agent, or a speaker-selection function) decides who talks next; the
-"program" emerges from the dialogue. This is the original AutoGen model. It is the
+"program" emerges from the dialogue. This is the original AutoGen model (AutoGen's repository was archived in
+October 2026 in favor of the Microsoft Agent Framework). It is the
 most flexible and the least predictable — powerful for open-ended research and
 brainstorming, hazardous for anything requiring reliability, because emergent
 control flow is emergent failure modes.
@@ -112,10 +208,10 @@ quadrantChart
     quadrant-4 "Emergent / conversational"
     "LangGraph": [0.32, 0.85]
     "MS Agent Framework": [0.40, 0.72]
-    "Google ADK": [0.45, 0.70]
+    "Google ADK 2.0": [0.45, 0.80]
     "CrewAI (sequential)": [0.30, 0.25]
     "CrewAI (hierarchical)": [0.55, 0.55]
-    "AutoGen": [0.78, 0.45]
+    "AutoGen (archived)": [0.78, 0.45]
     "OpenAI Agents SDK": [0.70, 0.40]
     "Claude Agent SDK": [0.68, 0.48]
     "LlamaIndex Workflows": [0.42, 0.60]
@@ -155,7 +251,9 @@ human-in-the-loop pauses (the graph literally stops at an interrupt node and wai
 "time-travel" debugging (rewind to any prior checkpoint and branch), and durable
 long-running agents. Competitors have since converged toward the same idea —
 Microsoft's Agent Framework shipped durable/checkpointed execution as a headline
-1.0 feature in April 2026, and the vendor SDKs added session persistence — which
+1.0 feature in April 2026, Google's ADK 2.0 (May 2026) added checkpoint-resumable
+human-in-the-loop gates, and the vendor SDKs added session persistence (Anthropic
+went further in November 2026 with server-side "message threads") — which
 tells you the market decided checkpointed state is the correct answer.
 
 ---
@@ -268,7 +366,11 @@ punch above their star weight in *enterprise production* usage. Read stars as
 On funding, LangChain is the clear commercial leader among independents — a $125M
 Series B in October 2025 at a $1.25B valuation (led by IVP, with Sequoia, Benchmark,
 CapitalG, ServiceNow Ventures, Workday Ventures, and others), against ~$260M raised
-in total. CrewAI (~$45M, Insight-led) and LlamaIndex are a tier down. The vendor
+in total. (A ~$3.0B "Series C" valuation attributed to September 2026 circulates via
+secondary-market data but has not been announced — *speculative*.) CrewAI (~$18M
+disclosed, last round October 2024) and LlamaIndex ($27.5M, Norwest-led Series A,
+March 2025) are well behind — the November 2026 update corrects the snapshot's higher
+figures for both. The vendor
 frameworks don't appear because they are funded internally as strategic loss-leaders
 to drive model consumption — which is itself the most important competitive dynamic
 in this layer: **the frameworks that ship with the model are free and
@@ -281,25 +383,28 @@ Confidence tags per Section 17.
 
 | Framework | Owner / backing | Execution model | Maturity | State approach | Notable adopters (confidence) | Differentiator | Main competitors |
 |---|---|---|---|---|---|---|---|
-| **LangGraph** | LangChain, Inc. ($260M, Series B) | Graph / cyclic | shipped-reliable | Checkpointed graph state | Uber, LinkedIn, Klarna, Replit, Elastic (official/inferred) | Durable checkpointed graphs; deepest production tooling (LangSmith) | MS Agent Framework, vendor SDKs |
-| **LangChain (core)** | LangChain, Inc. | Linear chains | shipped-reliable | In-memory / pluggable | Ubiquitous in prototypes (inferred) | Largest ecosystem, 700+ integrations | LlamaIndex, vendor SDKs |
-| **CrewAI** | CrewAI, Inc. (~$45M, Series A, Insight) | Role-based sequential + hierarchical | shipped-reliable | Externalized crew/session state | ~Fortune 500 pilots claimed (inferred) | Role/crew metaphor; fastest to a working multi-agent demo | AutoGen, LangGraph |
-| **AutoGen** | Microsoft Research → merged into MS Agent Framework | Conversational / emergent | shipped-reliable | Message-log | Research + MS ecosystem (official) | Emergent multi-agent conversations; research heritage | CrewAI, MS Agent Framework |
-| **Microsoft Agent Framework** | Microsoft (GA April 2026) | Graph + workflow | shipped-reliable | Durable checkpointed | Azure enterprise base (official) | AutoGen + Semantic Kernel merged; C#/Python/Java; Azure-native, durable | LangGraph, Google ADK |
-| **LlamaIndex (+ Workflows)** | LlamaIndex, Inc. (~$60M) | Event-driven workflows | shipped-reliable | Event/context store | Document-heavy enterprises (inferred) | Data/RAG-first; agentic document workflows | LangChain, vector-DB stacks |
-| **OpenAI Agents SDK** | OpenAI | Autonomous loop + handoffs | shipped-reliable | Managed sessions | OpenAI platform users (official) | Ships with the model; tracing built-in; simplest path on GPT | Claude Agent SDK, LangGraph |
-| **Claude Agent SDK** | Anthropic | Autonomous loop + sub-agents | shipped-reliable | Managed sessions | Powers Claude Code (official) | Battle-tested via Claude Code; strong tool-use + MCP | OpenAI SDK, LangGraph |
-| **Google ADK (Agent Dev Kit)** | Google (~17k stars) | Graph / workflow | shipped-reliable | Session + state store | Google Cloud / Gemini users (official) | Code-first, model-agnostic, Vertex/A2A-native | MS Agent Framework, LangGraph |
-| **Pydantic AI** | Pydantic (~$17M) | Typed agent + graph | shipped-reliable | Typed state / graph | Python type-safe shops (inferred) | Type-safety, validation, self-correction; Pythonic | LangGraph, LlamaIndex |
+| **LangGraph** | LangChain, Inc. ($260M, Series B) | Graph / cyclic | shipped-reliable | Checkpointed graph state | Uber, LinkedIn, Klarna, Replit, Elastic (official/inferred) | Durable checkpointed graphs; deepest production tooling (LangSmith; LangSmith Deployment runtime, BYOC). v1.2.x as of Nov 2026 | MS Agent Framework, vendor SDKs |
+| **LangChain (core)** | LangChain, Inc. | Linear chains | shipped-reliable | In-memory / pluggable | Ubiquitous in prototypes (inferred) | Largest ecosystem, 700+ integrations; v1.4 (Sep 2026) | LlamaIndex, vendor SDKs |
+| **Deep Agents** *(new, Nov 2026)* | LangChain, Inc. | Autonomous harness on LangGraph | demoed-brittle | Filesystem + checkpointed graph | LangChain users (official) | Batteries-included harness: filesystem, sub-agents, skills, long-term memory (v0.7.x, pre-1.0) | Claude Agent SDK, OpenAI Agents SDK |
+| **CrewAI** | CrewAI, Inc. (~$18M disclosed, Series A, Insight; corrected Nov 2026) | Role-based sequential + hierarchical | shipped-reliable | Externalized crew/session state | ~Fortune 500 pilots claimed (inferred) | Role/crew metaphor; fastest to a working multi-agent demo; AMP enterprise platform | MS Agent Framework, LangGraph |
+| **AutoGen** *(archived Oct 2026)* | Microsoft Research → superseded by MS Agent Framework | Conversational / emergent | shipped-reliable (unmaintained) | Message-log | Research + MS ecosystem (official) | Repo archived; no bug/security fixes; migrate to MAF | CrewAI, MS Agent Framework |
+| **Microsoft Agent Framework** | Microsoft (GA April 2026; v1.24 Oct 2026) | Graph + workflow | shipped-reliable | Durable checkpointed | Azure enterprise base (official) | AutoGen + Semantic Kernel merged; C#/Python/Java; Azure-native, durable; Agent Harness GA (Jul 2026, inferred) | LangGraph, Google ADK |
+| **LlamaIndex (+ Workflows)** | LlamaIndex, Inc. ($27.5M, Series A; corrected Nov 2026) | Event-driven workflows | shipped-reliable | Event/context store | Document-heavy enterprises (inferred) | Data/RAG-first; agentic document workflows | LangChain, vector-DB stacks |
+| **OpenAI Agents SDK** | OpenAI (v0.24, Oct 2026) | Autonomous loop + handoffs | shipped-reliable | Managed sessions | OpenAI platform users (official) | Ships with the model; tracing built-in; native sandboxes + model-native harness (Apr 2026) | Claude Agent SDK, LangGraph |
+| **Claude Agent SDK** (+ Managed Agents) | Anthropic | Autonomous loop + sub-agents | shipped-reliable (SDK); demoed-brittle (Managed Agents beta) | Managed sessions | Powers Claude Code (official) | Battle-tested via Claude Code; strong tool-use + MCP; hosted Managed Agents with dynamic multi-agent workflows (Oct 2026) | OpenAI SDK, LangGraph |
+| **Google ADK (Agent Dev Kit)** | Google (~17k stars; v2.13 Oct 2026) | Graph / workflow (2.0 Workflow engine, May 2026) | shipped-reliable | Session + state store; checkpoint-resumable HITL | Google Cloud / Gemini users (official) | Code-first, model-agnostic; Gemini Enterprise Agent Platform (ex-Vertex) and A2A-native | MS Agent Framework, LangGraph |
+| **Pydantic AI** | Pydantic (~$17M) | Typed agent + graph | shipped-reliable | Typed state / graph | Python type-safe shops (inferred) | Type-safety, validation; V2 (Jun 2026) composable "capabilities" + harness package | LangGraph, LlamaIndex |
 | **Semantic Kernel** | Microsoft (folding into MAF) | Plugin/planner | shipped-reliable | Kernel context | .NET enterprise (official) | Enterprise .NET heritage; being unified into MAF | MS Agent Framework |
-| **Haystack (deepset)** | deepset | Pipeline/graph | shipped-reliable | Pipeline state | Search/RAG enterprises (inferred) | Mature NLP/RAG pipelines, agent additions | LlamaIndex, LangChain |
+| **Haystack (deepset)** | deepset | Pipeline/graph | shipped-reliable | Pipeline state | Search/RAG enterprises (inferred) | Mature NLP/RAG pipelines, agent workflows; Haystack 3.0 (Jul 2026) | LlamaIndex, LangChain |
 | **Swarms / OpenClaw & other OSS** | Community | Varied | demoed-brittle | Varied | Hobbyist / early (inferred) | Lightweight, minimal-abstraction swarms | CrewAI, AutoGen |
 | **DSPy** | Stanford / community | Compiled programs | demoed-brittle→reliable | Program state | Research + optimization-minded teams (inferred) | Optimizes prompts/programs rather than hand-tuning | LangChain, Pydantic AI |
-| **AWS Strands / Bedrock Agents** | Amazon | Managed graph | shipped-reliable | Managed | AWS enterprise base (official) | Deep AWS integration; managed runtime | Google ADK, MS Agent Framework |
+| **AWS Strands / Bedrock Agents** | Amazon | Managed graph | shipped-reliable | Managed | AWS enterprise base (official) | Deep AWS integration; managed runtime (Strands v1.63, Oct 2026) | Google ADK, MS Agent Framework |
+| **Agno** *(new, Nov 2026)* | Agno (ex-Phidata) | Lightweight agent + workflows | shipped-reliable | Pluggable DB-backed sessions | Python startups (inferred) | Minimal-abstraction, fast multi-modal agents; 3.0 (Aug 2026) | Pydantic AI, CrewAI |
+| **Mastra** *(new, Nov 2026)* | Mastra (seed) | TS workflows + agents | shipped-reliable | Workflow snapshots + memory | TypeScript product teams (inferred) | TS-native full orchestration; 1.0 Jan 2026 | Vercel AI SDK, LangGraph.js |
 
-That is fifteen distinct players — well past the 10-entry floor — and the category
-could support more (Griptape, SmolAgents, Mastra for TypeScript, Motia, Agno, and
-others each have real niches). This density is itself a maturity signal: dense,
+That is eighteen rows (seventeen live players plus the archived AutoGen), well past the
+10-entry floor. The category could support more: Griptape, SmolAgents, Motia and others
+each have real niches. This density is itself a maturity signal: dense,
 overlapping competition is what a commoditizing layer looks like.
 
 ---
@@ -322,7 +427,8 @@ resolution is nuanced rather than a clean victory:
 - **Emergent/conversational orchestration lost the production argument but kept the
   research one.** Pure emergent multi-agent (classic AutoGen) is now understood as
   wonderful for exploration and unreliable for production, and even Microsoft moved
-  AutoGen's future under the more structured Agent Framework umbrella.
+  AutoGen's future under the more structured Agent Framework umbrella — then, in
+  October 2026, archived the AutoGen repository outright.
 
 The synthesis: **structure the control flow you can predict as a graph; delegate the
 control flow you cannot predict to an autonomous node inside that graph.** That
@@ -436,20 +542,39 @@ distinct from model, tool, or memory failures:
   confidence).* OpenAI, Anthropic, and Google will keep shipping capable, free agent
   SDKs bundled with their models. The basic single-agent loop is a solved,
   giveaway feature. Independents survive by being multi-model, more durable, or
-  better-instrumented.
+  better-instrumented. — *Nov 2026: confirmed and accelerating. OpenAI added sandboxes
+  and a harness (April), Google shipped ADK 2.0 (May), and Anthropic moved up a level
+  with hosted Managed Agents and dynamic workflows (April–October).*
 - **Durability/checkpointing becomes universal** *(inferred; high confidence).* Every
   serious framework will have converged on checkpointed, resumable, human-in-the-loop
   state by end of 2026 — MAF's 1.0 already did, LangGraph pioneered it, the vendor
-  SDKs are adding it.
+  SDKs are adding it. — *Nov 2026: largely confirmed. ADK 2.0 added checkpoint-resumable
+  HITL gates and Anthropic shipped server-side threads. OpenAI's SDK persists RunState,
+  but the schema is still unstable before 1.0.*
 - **An agent-definition portability standard emerges** *(speculative; medium
   confidence).* Pressure from enterprises tired of lock-in, plus the precedent of MCP/
   A2A, makes some declarative agent-spec standard plausible in 2027. Nothing has
-  clearly won yet.
+  clearly won yet. — *Nov 2026: not yet. Oracle's Open Agent Spec is the only
+  framework-agnostic proposal of note. AAIF standardizes the edges (AGENTS.md, Agent
+  Skills, A2A) but not the agent's internals.*
 - **Consolidation of independents** *(speculative; medium confidence).* With vendor
   SDKs commoditizing the core, expect acquisitions and mergers among the independent
   frameworks; LangChain's commercial lead (LangSmith revenue) makes it the most
   durable independent. CrewAI and LlamaIndex differentiate on multi-agent ergonomics
-  and data/RAG respectively.
+  and data/RAG respectively. — *Nov 2026: partly. The consolidation so far happened
+  inside Microsoft, where AutoGen was archived into MAF. No independent framework has
+  been acquired, and we found no new funding rounds for CrewAI or LlamaIndex in 2026.*
+- **New (Nov 2026): model-authored orchestration becomes a hosted primitive**
+  *(inferred; medium confidence).* Anthropic's dynamic workflows (October 2026) let
+  the agent write its own multi-agent program and run it server-side. Expect OpenAI and
+  Google to ship equivalents within about two quarters. This blurs the "developer-driven
+  graph" consensus, because the graph is authored by the model at runtime and executed
+  durably.
+- **New (Nov 2026): framework release cadence becomes a liability for enterprises**
+  *(inferred; medium confidence).* Weekly minor releases (MAF 1.0→1.24 in seven months;
+  ADK 2.0→2.13 in five) and pre-1.0 vendor SDKs with breaking state-schema changes
+  will push enterprises toward managed runtimes, or toward LTS-style support
+  commitments from framework vendors, in 2027.
 
 ---
 
@@ -461,7 +586,8 @@ especially anything embedded in a web product — lives in TypeScript, and the
 TypeScript orchestration market has its own distinct set of winners that Python-first
 analyses routinely miss.
 
-- **Vercel AI SDK** is the de-facto default for agents embedded in web applications.
+- **Vercel AI SDK** is the de-facto default for agents embedded in web applications
+  (major version 7.0 shipped June 2026).
   Its `generateText`/`streamText` primitives with tool calling, and its `Agent`
   abstraction, are the path of least resistance for any Next.js/React product. It is
   not a heavyweight orchestration framework — it is a thin, excellent,
@@ -473,7 +599,8 @@ analyses routinely miss.
   opposed to client SDK): workflows, agents, memory, RAG, and evals in one
   TypeScript-first package, built by the team behind Gatsby. It is the closest thing
   the TS world has to LangGraph, and it has grown quickly on the strength of being
-  genuinely TS-idiomatic rather than a Python port.
+  genuinely TS-idiomatic rather than a Python port. It reached a stable 1.0 in January
+  2026 (1.82 by November), which moves it from "promising" to shipped.
 - **LangChain.js / LangGraph.js** port the Python abstractions to TypeScript. They
   are capable but carry the Python framework's abstraction weight into a language
   whose community tends to prefer lighter tools, so they are less dominant in TS than
@@ -532,17 +659,21 @@ interruptible, checkpointed agent is not a stateless request handler — it is c
 to a durable workflow (in the Temporal/Step-Functions sense), and running it well
 requires runtime support that the raw open-source library does not provide.
 
-- **LangGraph Platform** (the commercial deployment runtime from LangChain) exists
+- **LangSmith Deployment** (formerly LangGraph Platform, renamed October 2025; the
+  commercial deployment runtime from LangChain, now also offered bring-your-own-cloud) exists
   precisely because self-hosting durable, human-in-the-loop, horizontally-scaled
   graphs is non-trivial: you need a persistence backend, a task queue for resuming
   paused runs, streaming infrastructure, and a control API. This managed runtime — not
   the open-source library — is much of LangChain's commercial moat, alongside
   LangSmith.
-- **Microsoft** runs agents on **Azure AI Foundry Agent Service**, giving the MS Agent
+- **Microsoft** runs agents on **Azure AI Foundry Agent Service** (now including
+  Foundry hosted agents), giving the MS Agent
   Framework a managed, SLA-backed hosting story that is a genuine enterprise
   advantage: the same durable-execution guarantees, but operated by Azure.
 - **The model vendors** offer hosted agent runtimes (OpenAI's platform, Google's
-  Vertex Agent Engine, Anthropic's managed agent hosting) that run *their* SDK's
+  Agent Runtime — formerly Vertex Agent Engine, renamed in April 2026 under the Gemini
+  Enterprise Agent Platform — and Anthropic's Claude Managed Agents, public beta since
+  April 2026) that run *their* SDK's
   agents close to *their* models — low latency, unified billing, but maximal lock-in.
 - **Serverless-execution vendors** (E2B, Modal, Daytona, covered in §08/§09) provide
   the sandboxed compute that tool-executing and coding agents run *inside*, which is a
@@ -609,7 +740,7 @@ and agent boundaries on A2A.
 
 ## Choosing a framework: a decision procedure
 
-Given fifteen credible options, teams need a procedure, not a feature matrix. The
+Given eighteen-odd credible options, teams need a procedure, not a feature matrix. The
 following decision flow captures how experienced teams actually choose in 2026, and
 why. It optimizes for the two things that matter most — durability requirements and
 model/language commitment — because those, not feature breadth, are what you regret
@@ -676,7 +807,7 @@ raw excitement around "agent frameworks" suggests.
 
 ## Emerging alternatives worth watching
 
-Beyond the established fifteen, several newer entrants are shaping where the layer
+Beyond the established players, several newer entrants are shaping where the layer
 goes next, each attacking a specific pain point:
 
 - **DSPy** reframes the problem entirely: rather than hand-writing prompts and
@@ -685,7 +816,8 @@ goes next, each attacking a specific pain point:
   agent" paradigm becomes more attractive, and DSPy is the flag-bearer. Still more
   research-adjacent than production-default, but influential.
 - **Agno** (formerly Phidata) targets lightweight, fast, multi-modal agents with a
-  minimal-abstraction philosophy — a reaction against framework bloat.
+  minimal-abstraction philosophy — a reaction against framework bloat. It shipped 3.0
+  in August 2026 and now sits in the main competitive table.
 - **SmolAgents** (Hugging Face) pushes "code-writing agents": the agent expresses
   actions as Python code rather than JSON tool calls, which is more expressive for
   complex control flow and connects to the CodeAct line of research that Microsoft's
@@ -723,8 +855,8 @@ useful for getting started, criticized for abstraction bloat, exactly as Rails w
 The reaction produced both thinner libraries (the vendor SDKs, Vercel AI SDK,
 SmolAgents) and more structured successors (LangGraph, which is LangChain's own
 answer to "we over-abstracted; here is the lower-level, more explicit primitive").
-Meanwhile the clouds are absorbing the runtime (LangGraph Platform, Azure Foundry
-Agent Service, Vertex Agent Engine) exactly as they absorbed web hosting into managed
+Meanwhile the clouds are absorbing the runtime (LangSmith Deployment, Azure Foundry
+Agent Service, Google Agent Runtime, Claude Managed Agents) exactly as they absorbed web hosting into managed
 platforms. If the analogy holds, the endgame is: a handful of durable frameworks in
 the middle, thin vendor libraries at the bottom, managed runtimes owning the
 operational layer, and low-code platforms owning the non-developer segment — which is
@@ -787,4 +919,25 @@ commoditizes.
   narrow middle. Standardize tools on MCP, agent boundaries on A2A, and tracing on
   OpenTelemetry so the framework itself is the only sticky decision you make.
 
-*Word count target: 7,000. This section: ~7,000 (verified via `wc`).*
+*Word count target: 7,000. This section: ~8,500 after the November 2026 update (approximate, via `wc`).*
+
+## Sources (November 2026 update)
+
+- https://pypi.org/project/agent-framework/ (MAF release history)
+- https://pypi.org/project/google-adk/ and https://adk.dev/2.0/index.md (ADK 2.0)
+- https://pypi.org/project/langchain/ , https://pypi.org/project/langgraph/ , https://pypi.org/project/deepagents/
+- https://www.langchain.com/langsmith/deployment
+- https://www.unite.ai/langchain-brings-langsmith-byoc-beta-to-azure-and-google-cloud/
+- https://techcrunch.com/2025/10/21/open-source-agentic-startup-langchain-hits-1-25b-valuation
+- https://pypi.org/project/crewai/ ; https://siliconangle.com/?p=675043 (CrewAI $18M)
+- https://www.llamaindex.ai/blog/announcing-our-series-a-and-llamacloud-general-availability
+- https://pypi.org/project/openai-agents/ ; https://openai.com/index/the-next-evolution-of-the-agents-sdk/
+- https://siliconangle.com/2026/04/08/anthropic-launches-claude-managed-agents-speed-ai-agent-development/
+- https://platform.claude.com/docs/en/release-notes/overview (dynamic workflows, message threads)
+- https://pypi.org/project/claude-agent-sdk/
+- https://cloud.google.com/blog/products/ai-machine-learning/introducing-gemini-enterprise-agent-platform
+- https://pydantic.dev/docs/ai/changelog/ ; https://pypi.org/project/pydantic-ai/
+- https://pypi.org/project/haystack-ai/ ; https://pypi.org/project/agno/ ; https://pypi.org/project/strands-agents/
+- https://www.npmjs.com/package/ai ; https://www.npmjs.com/package/@mastra/core ; https://www.npmjs.com/package/@openai/agents
+- https://github.com/microsoft/autogen/ ; https://learn.microsoft.com/agent-framework/migration-guide/from-autogen ; https://pypi.org/project/autogen-agentchat/
+- https://aaif.io/blog/a2a-joins-aaif ; https://www.anthropic.com/news/donating-agent-skills-to-the-agentic-ai-foundation

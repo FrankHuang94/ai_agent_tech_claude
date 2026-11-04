@@ -40,13 +40,13 @@ f = f[f["total_funding_musd"] > 0].sort_values("total_funding_musd")
 fig, ax = plt.subplots(figsize=(10, 5.5))
 bars = ax.barh(f["company"], f["total_funding_musd"], color=PALETTE[0], edgecolor="white")
 for i, (v, s) in enumerate(zip(f["total_funding_musd"], f["latest_stage"])):
-    ax.text(v + 3, i, f"${v:.0f}M  ({s})", va="center", fontsize=9, color=INK)
+    ax.text(v + 3, i, f"${v:g}M  ({s})", va="center", fontsize=9, color=INK)
 ax.set_xlim(0, 320)
 ax.set_xlabel("Total disclosed funding (US$ millions)")
 ax.grid(axis="x"); ax.grid(axis="y", visible=False)
-ax.set_title("Independent orchestration-framework funding", loc="left", pad=24)
+ax.set_title("Independent orchestration-framework funding (Nov 2026)", loc="left", pad=24)
 ax.text(0, 1.03, "Vendor-owned frameworks (MS Agent Framework, OpenAI/Google SDKs) omitted — funded internally",
         transform=ax.transAxes, fontsize=9.5, color=MUTED)
-fig.text(0.01, 0.005, "Source: press reports 2025–2026 (inferred). LangChain: $125M Series B, Oct 2025, $1.25B valuation.",
+fig.text(0.01, 0.005, "Source: company announcements/press, as of Nov 2026. LangChain: \\$125M Series B, Oct 2025, \\$1.25B. CrewAI/LlamaIndex corrected Nov 2026; no new 2026 rounds found.",
          fontsize=8, color=MUTED)
 save(fig, os.path.join(OUT, "02_framework_funding.png"))

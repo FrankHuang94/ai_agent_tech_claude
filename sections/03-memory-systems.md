@@ -1,7 +1,8 @@
 # 03 — Memory Systems
 
 *The number-one cause of "the agent forgot." Short-term context, long-term/episodic
-memory, and the vector-vs-graph-vs-hybrid architecture debate. Target: 7,000 words.*
+memory, and the vector-vs-graph-vs-hybrid architecture debate. Target: 7,000 words.
+Snapshot July 22, 2026; current as of November 2026.*
 
 ---
 
@@ -35,6 +36,96 @@ one of those is a judgment call the field has no settled answer for:
 
 These are the "consolidation and forgetting" problems, and they are why memory is a
 research-adjacent bottleneck rather than a solved engineering layer.
+
+---
+
+## What changed since July 2026 (November 2026 update)
+
+The headline since the snapshot is that **offline consolidation, the "memory sleep"
+idea this section called research-only, shipped as a vendor feature**. It is labeled a
+research preview, but it is real. Anthropic's **Dreams** for Claude Managed Agents
+(introduced May 2026, missed by the snapshot, and extended to every new Claude model
+through October) reads a memory store plus past transcripts and writes a reorganized
+store with duplicates merged and stale entries replaced. OpenAI's June 2026 rebuild of
+ChatGPT memory is widely reported to use a similar background process. Two other
+shifts matter. **The managed platforms kept absorbing memory**: Google's Memory Bank
+gained GA memory profiles, TTL expiry and revisions, and AWS AgentCore added episodic
+memory and streaming notifications. **The benchmark regime saturated**: leading
+vendors now report low-to-mid 90s on both LoCoMo and LongMemEval, a public audit found
+errors in LoCoMo's answer key, and the field is moving to 1M–10M-token suites (BEAM)
+and *action-based* evaluations. On the money side, we found no new priced rounds for
+Mem0, Zep, Letta or Supermemory after the snapshot. The memory startups are competing
+on algorithms and integrations, not new capital.
+
+Dated log of material developments (confidence per Section 17):
+
+- **Apr 16, 2026 (missed in snapshot): Mem0 2.0 ships a new memory algorithm.** Mem0
+  reports **92.5 on LoCoMo** (up from 71.4 for its old algorithm), **94.4 on LongMemEval**
+  (from 67.8), and **64.1 / 48.6 on BEAM 1M / 10M**, at about 7K tokens per retrieval
+  call. These are vendor-reported numbers. Mem0 2.1/2.2 followed in September.
+  *(official, [PyPI/mem0ai README](https://pypi.org/project/mem0ai/))*
+- **Apr 22, 2026 (missed): Vertex AI Memory Bank becomes "Agent Platform Memory Bank"**
+  under the Gemini Enterprise Agent Platform. Its default generation model moved to
+  Gemini 3.5 Flash on Jun 29, and **memory profiles went GA on Jul 15, 2026**. The docs
+  now cover consolidation, TTL-based expiry, memory revisions, and warn about memory
+  poisoning. *(official,
+  [release notes](https://docs.cloud.google.com/gemini-enterprise-agent-platform/release-notes),
+  [Memory Bank docs](https://docs.cloud.google.com/gemini-enterprise-agent-platform/scale/memory-bank))*
+- **May 6, 2026 (missed): Anthropic Dreams** (research preview) brings offline memory
+  consolidation to Managed Agents. It added Fable 5 and Sonnet 5 (Jul 10), Opus 5
+  (Aug 1), and Opus 5.5, Fable 5.1 and Sonnet 5.5 (Oct 1). *(official,
+  [Claude release notes](https://platform.claude.com/docs/en/release-notes/overview))*
+- **Jun 4, 2026: OpenAI rebuilds ChatGPT memory.** The new memory keeps context
+  current, shows users the memories it used, doubles capacity for Plus/Pro, and starts
+  reaching free users. On **Aug 14**, projects gained a project-only memory option.
+  Secondary coverage calls the background process "Dreaming" and cites an internal
+  factual-recall rise from 41.5% to 82.8%. *(official for the rollout,
+  [ChatGPT release notes](https://help.openai.com/en/articles/6825453-chatgpt-release-notes).
+  The name and figures are inferred, [9to5Mac](https://9to5mac.com/2026/06/04/openai-says-chatgpts-memory-feature-is-getting-smarter-and-coming-to-free-users/).)*
+- **Mar–Jun 2026: AWS AgentCore Memory** adds streaming notifications for long-term
+  memory (March) and strictly consistent metadata (May/June). An **episodic** strategy
+  that stores task trajectories and reflections had arrived at re:Invent in December
+  2025. A per-GB ingestion price from Oct 6, 2026 is reported only by secondary sources.
+  *(official for the features,
+  [AWS What's New](https://aws.amazon.com/about-aws/whats-new/2026/03/agentcore-memory-streaming-ltm).
+  Pricing is speculative.)*
+- **Jul 22 – Aug 19, 2026: Anthropic memory stores mature.** A new
+  `agent-memory-2026-07-22` beta header was added, memory-store lifecycle webhooks
+  arrived (Jul 22), and memory stores can now attach to **self-hosted sandboxes**
+  (Aug 19), syncing file-based memory between the sandbox and the managed store.
+  *(official, [release notes](https://platform.claude.com/docs/en/release-notes/overview))*
+- **Jul 24 – Oct 7, 2026: 1M-token windows become the default.** Claude Opus 5, Opus
+  5.5, Sonnet 5.5 and Haiku 5.5 all ship with a 1M-token context and 128k output.
+  Long windows are now the baseline, yet memory demand has not fallen (see "context
+  rot" below). *(official, [release notes](https://platform.claude.com/docs/en/release-notes/overview))*
+- **Sep 14, 2026: Anthropic "compaction on demand"** (beta). The API returns a signed
+  compaction block that replaces earlier turns, and the developer chooses when to
+  compact and which recent turns to keep verbatim. **Nov 2: "message threads"** keep
+  working memory on the server between calls. *(official,
+  [release notes](https://platform.claude.com/docs/en/release-notes/overview))*
+- **Sep 2026: Mem0 adds a Vercel Marketplace integration and its own action-based
+  benchmark, DolphinBench.** *(inferred; secondary reports)*
+- **Jul–Sep 2026: the benchmark critique goes mainstream.** BEAM probes memory at up
+  to 10M tokens. A non-peer-reviewed audit (Penfield Labs) reports that about 6.4% of
+  LoCoMo answer-key items are score-corrupting errors. MemoryArena and MERIT
+  (arXiv 2609.05441) score memory by downstream *actions*, not Q&A. A July paper
+  (arXiv 2607.21962) reports that memory-architecture rankings *cross over* as the
+  memory's tenure grows. *(inferred,
+  [Mem0 benchmark overview](https://mem0.ai/library/agent-memory/ai-memory-benchmarks-in-2026),
+  [Hindsight AMB manifesto](https://hindsight.vectorize.io/blog/2026/03/23/agent-memory-benchmark),
+  [arXiv 2609.05441](https://arxiv.org/pdf/2609.05441),
+  [arXiv 2607.21962](https://arxiv.org/pdf/2607.21962))*
+- **Oct 14, 2026: Zep Cloud SDK 4.0.** Zep now positions itself as a "context
+  engineering platform", with Graphiti at 0.31.x. **Letta** shipped 0.32 through 0.34
+  in September and is pushing Letta Code, its memory-first coding agent. **Cognee**
+  reached 1.0 in April and 1.6 by late October. *(official,
+  [PyPI zep-cloud](https://pypi.org/project/zep-cloud/),
+  [PyPI letta](https://pypi.org/project/letta/),
+  [PyPI cognee](https://pypi.org/project/cognee/))*
+- **LangMem has shipped nothing since Oct 2025** (0.0.30). LangChain's memory effort
+  appears to have moved into the Deep Agents harness, which advertises built-in
+  long-term memory. *(official for the release data,
+  [PyPI](https://pypi.org/project/langmem/). The interpretation is inferred.)*
 
 ---
 
@@ -118,7 +209,10 @@ while keeping the rest verbatim. Anthropic shipped this as a first-class capabil
 otherwise exhaust the window, reportedly cutting token consumption by ~84% on a
 100-turn web-search evaluation *(official, Anthropic)*. The key insight is that
 *removing* the right things is often better than *summarizing* everything, because
-removal is lossless for what remains.
+removal is lossless for what remains. (By late 2026 both levers are API primitives:
+Anthropic added developer-triggered "compaction on demand" in September 2026, which
+returns a signed summary block and keeps chosen recent turns verbatim, and server-side
+"message threads" in November — *official*.)
 
 **Structured scratchpads / external working memory.** Keep the agent's plan, task
 list, and intermediate artifacts in a structured external store (a file, a to-do
@@ -251,9 +345,15 @@ tasks, and superseded preferences that pollute retrieval and cost money to store
 search. Yet almost no production system does principled forgetting; most either keep
 everything forever (and slowly degrade) or use crude TTL/recency heuristics. Research
 directions — importance-weighted decay, forgetting curves, memory "sleep" phases that
-consolidate and prune offline — exist but are **research-only** as of 2026. This is
-the clearest "unsolved" pocket in the memory layer, and a plausible source of the next
-breakthrough.
+consolidate and prune offline — were **research-only** at the July 2026 snapshot. By
+November 2026, offline "sleep" consolidation has reached vendor research previews.
+Anthropic's Dreams (May 2026) rewrites a memory store from past sessions, merging
+duplicates and replacing stale entries, and OpenAI's rebuilt ChatGPT memory reportedly
+runs a similar background process. Crude expiry is now a documented managed feature:
+Google Memory Bank has TTL, and AgentCore has lifecycle policies. *Principled,
+importance-weighted forgetting* is still research-only, and no vendor publishes an
+evaluation of what its consolidation drops. This is the clearest "unsolved" pocket in
+the memory layer, and still the most plausible source of the next breakthrough.
 
 The consolidation/retrieval/forgetting loop, made concrete:
 
@@ -290,23 +390,27 @@ specialized vendors. The players split into **dedicated memory startups**,
 
 | Product | Backing / stage | Architecture | Maturity | Best at | Notable adopters (confidence) | Differentiator | Main competitors |
 |---|---|---|---|---|---|---|---|
-| **Mem0** | ~$24.5M (Series A, Basis Set) | Vector fact-extraction | shipped-reliable | Drop-in semantic memory | AWS Agent SDK memory provider (official) | Simplest drop-in; huge OSS community (48k★) | Zep, LangMem, Letta |
-| **Zep (Graphiti)** | VC-backed startup | Temporal knowledge graph + vector | shipped-reliable | Temporal/relational recall | Enterprise assistants (inferred) | Time-aware graph; top DMR scores | Mem0, Cognee |
-| **Letta (ex-MemGPT)** | ~$10M seed (Felicis) | In-context core + archival tiers | shipped-reliable | Memory-first stateful agents | Research + startups (inferred) | Agent *is* the memory system; OS-like paging | Mem0, LangMem |
-| **LangMem** | LangChain, Inc. | Vector + summaries | shipped-reliable | LangGraph-native memory | LangGraph users (official) | Tight LangGraph integration | Mem0, Zep |
-| **Cognee** | Seed-stage | Graph + vector "memory OS" | demoed-brittle | Org-wide memory control plane | Early adopters (inferred) | Memory as governed data pipeline (ECL) | Zep, Mem0 |
-| **Anthropic memory tool** | Anthropic | File-based, agent-managed | shipped-reliable | Transparent, inspectable memory | Claude platform users (official) | Client-side files; context editing; auditable | OpenAI memory, vendor stores |
-| **OpenAI memory** | OpenAI | Profile + vector (managed) | shipped-reliable | ChatGPT personalization | ChatGPT users (official) | Invisible background user profiles | Anthropic, Google |
-| **Google (Vertex Memory Bank)** | Google | Managed memory for Agent Engine | shipped-reliable | Vertex-hosted agents | Google Cloud users (official) | Managed memory in Vertex Agent Engine | OpenAI, AWS |
-| **AWS AgentCore Memory** | Amazon | Managed (Mem0-backed) | shipped-reliable | Bedrock agents | AWS enterprise (official) | Managed memory in AgentCore; Mem0 partnership | Vertex, Azure |
+| **Mem0** | ~$24M (seed + Series A, Basis Set; Kindred, Peak XV, YC) | Vector fact-extraction (v2 algorithm, Apr 2026) | shipped-reliable | Drop-in semantic memory | AWS Agent SDK / Strands memory provider (official) | Simplest drop-in; huge OSS community (48k★); vendor-reported 92.5 LoCoMo / 94.4 LongMemEval at ~7K tokens | Zep, LangMem, Letta |
+| **Zep (Graphiti)** | VC-backed startup (YC) | Temporal knowledge graph + vector | shipped-reliable | Temporal/relational recall | Enterprise assistants (inferred) | Time-aware graph; top DMR scores; repositioned as "context engineering platform" (SDK 4.0, Oct 2026) | Mem0, Cognee |
+| **Letta (ex-MemGPT)** | ~$10M seed (Felicis) | In-context core + archival tiers | shipped-reliable | Memory-first stateful agents | Research + startups (inferred) | Agent *is* the memory system; OS-like paging; Letta Code memory-first coding agent | Mem0, LangMem |
+| **LangMem** | LangChain, Inc. | Vector + summaries | shipped-reliable (no release since Oct 2025) | LangGraph-native memory | LangGraph users (official) | Tight LangGraph integration; momentum shifting to Deep Agents' built-in memory (inferred) | Mem0, Zep |
+| **Cognee** | Seed-stage | Graph + vector "memory OS" | demoed-brittle | Org-wide memory control plane | Early adopters (inferred) | Memory as governed data pipeline (ECL); 1.0 in Apr 2026 | Zep, Mem0 |
+| **Anthropic memory tool** (+ Managed Agents memory stores) | Anthropic | File-based, agent-managed | shipped-reliable (tool); demoed-brittle (Dreams preview) | Transparent, inspectable memory | Claude platform users (official) | Client-side files; context editing; managed memory stores; Dreams offline consolidation | OpenAI memory, vendor stores |
+| **OpenAI memory** | OpenAI | Profile + vector (managed) | shipped-reliable | ChatGPT personalization | ChatGPT users (official) | Background user profiles; rebuilt Jun 2026 with reviewable memories, free-tier rollout, project-only memory | Anthropic, Google |
+| **Google (Agent Platform Memory Bank, ex-Vertex)** | Google | Managed memory for Agent Runtime | shipped-reliable | Gemini Enterprise Agent Platform agents | Google Cloud users (official) | Managed memory; memory profiles GA Jul 2026; TTL + revisions | OpenAI, AWS |
+| **AWS AgentCore Memory** | Amazon | Managed (Mem0-backed) | shipped-reliable | Bedrock agents | AWS enterprise (official) | Managed memory in AgentCore; Mem0 partnership; episodic (reflection) strategy; streaming LTM notifications | Vertex, Azure |
 | **Redis / Redis Agent Memory** | Redis (public-ish) | Vector + fast KV | shipped-reliable | Low-latency working memory | Latency-sensitive apps (inferred) | Sub-ms KV + vector in one store | vector DBs |
 | **Pinecone / Weaviate / Qdrant** | Various ($100M+ each) | Vector DB substrate | shipped-reliable | Storage substrate | Ubiquitous (official) | Underlying vector infra memory builds on | each other |
 | **Chroma** | ~$18M+ (seed/A) | Vector DB (dev-first) | shipped-reliable | Local/dev memory | OSS developers (official) | Developer-friendly embedded vector store | Qdrant, Weaviate |
 | **ReMe / file-based OSS** | Community | File/document memory | demoed-brittle | Transparent memory | Hobbyists (inferred) | Human-readable file memory | Anthropic memory tool |
 | **MemoryScale / Cognee-like** | Early startups | Various hybrid | research-only→demoed | Niche | Early (speculative) | Experimental consolidation | Cognee, Zep |
+| **Supermemory** *(new, Nov 2026)* | ~$2.6–3M seed (Susa, Browder, SF1.vc) | Knowledge graph over unstructured data | demoed-brittle | Universal memory API for apps | Developer apps (inferred) | Single memory API ingesting docs + chats into a graph | Mem0, Zep |
+| **Hindsight (Vectorize)** *(new, Nov 2026)* | Vectorize | Agent memory + open benchmark | demoed-brittle | Benchmark-transparent memory | Early (inferred) | Publishes the open Agent Memory Benchmark (AMB) critique/suite | Mem0, Zep, Letta |
 
 That is well past ten distinct players, and the category is still forming — new
-entrants appear monthly. The structure is instructive: **the model vendors and clouds
+entrants appear monthly (the November 2026 update adds Supermemory and Hindsight;
+we found no acquisition of, or new priced round for, an independent memory vendor
+since the snapshot). The structure is instructive: **the model vendors and clouds
 are building managed memory into their platforms (Anthropic, OpenAI, Google Vertex,
 AWS AgentCore), which will pressure the independents exactly as vendor SDKs pressured
 orchestration frameworks** — except the AWS/Mem0 partnership shows the alternative
@@ -491,6 +595,25 @@ the caveats of §11. The main ones:
   evaluations.
 - **LongMemEval** and various long-context recall suites — testing whether a system
   can find a "needle" in a very long conversational "haystack."
+- **BEAM** *(added Nov 2026)* — scales conversational memory probing to 1M and 10M
+  tokens. It is becoming the "production-scale" complement now that LoCoMo and
+  LongMemEval are near ceiling. Mem0 reports 64.1 (1M) and 48.6 (10M), so there is
+  headroom left. *(official vendor figures; inferred status)*
+
+**November 2026 note — saturation.** Leading vendors now report low-to-mid 90s on
+LoCoMo and LongMemEval: Mem0 v2 claims 92.5/94.4 and Hindsight's AMB proposal
+92.0/94.6. Hindsight argues that a naive "dump everything into context" baseline is
+competitive on most instances. An independent, non-peer-reviewed audit of LoCoMo
+reports that about 6.4% of answer-key items corrupt scores, and that an LLM judge
+accepted 62.81% of deliberately wrong answers. Once the gaps between systems are
+smaller than the noise in the answer key, the leaderboard stops ranking anything.
+The response is a shift toward **action-based** evaluation (MemoryArena, MERIT, Mem0's
+DolphinBench, AMA-Bench), where success means the right state change in a simulated
+world. There is also early work on **longitudinal** evaluation, which finds that
+architecture rankings change as memory tenure grows. Both directions address problem
+(3) below.
+
+![Memory benchmarks, Nov 2026: saturated LoCoMo/LongMemEval vs. BEAM headroom](../assets/charts/03_memory_benchmarks_2026.png)
 
 The problems with these benchmarks are the problems of the whole eval layer,
 concentrated: (1) **vendors report their own numbers on benchmarks they sometimes
@@ -571,24 +694,52 @@ A final clarifying distinction, because these three are routinely conflated:
 
 - **Managed memory becomes a standard platform feature** *(official trajectory; high
   confidence).* Every major model vendor and cloud now ships or is shipping managed
-  memory (Anthropic, OpenAI, Google Vertex Memory Bank, AWS AgentCore). Basic memory
+  memory (Anthropic, OpenAI, Google Memory Bank (ex-Vertex), AWS AgentCore). Basic memory
   will be a checkbox, pressuring standalone vendors toward higher-value differentiation
-  (temporal reasoning, governance, cross-org memory).
+  (temporal reasoning, governance, cross-org memory). — *Nov 2026: confirmed. Google
+  took memory profiles GA, AWS added episodic memory, Anthropic added memory stores in
+  self-hosted sandboxes, and OpenAI opened memory to free ChatGPT users. The
+  independents answered with new algorithms (Mem0 v2) and repositioning (Zep as a
+  "context engineering platform") rather than new funding.*
 - **Temporal/graph memory becomes the default for demanding use cases** *(inferred;
   medium-high confidence).* The recall advantages on temporal and relational queries
   are real enough that hybrid vector+graph is the emerging "serious" default, with pure
-  vector remaining the drop-in/simple choice.
+  vector remaining the drop-in/simple choice. — *Nov 2026: not yet resolved. The
+  managed platforms (Memory Bank, AgentCore, Anthropic memory stores) all shipped
+  extracted-fact or file-based memory, not graphs. Mem0's v2 numbers suggest a
+  well-tuned vector/fact pipeline can match graphs on saturated benchmarks. The graph
+  advantage on temporal and relational queries is now argued with longitudinal and
+  action-based evaluations rather than LoCoMo.*
 - **Forgetting gets its first real solutions** *(speculative; medium confidence).*
   Principled, importance-weighted forgetting and offline consolidation ("memory sleep")
   are the most likely research-to-production transitions in the next 12–18 months,
-  because unbounded-growth pain is becoming acute in long-running deployments.
+  because unbounded-growth pain is becoming acute in long-running deployments. —
+  *Nov 2026: partly confirmed, faster than forecast. Offline consolidation reached
+  vendor research preview (Anthropic Dreams, May 2026; OpenAI's rebuilt ChatGPT memory,
+  June 2026), and TTL expiry is a documented managed feature (Google Memory Bank).
+  Importance-weighted forgetting with a published evaluation has not shipped.*
 - **A memory interoperability standard emerges** *(speculative; low-medium
   confidence).* As agents move between frameworks and vendors, portable memory (export/
   import your agent's memory) becomes desirable; nothing has won yet, and the vendors
-  have an incentive *against* portability, so this may lag.
+  have an incentive *against* portability, so this may lag. — *Nov 2026: not yet. The
+  closest thing to de facto portability is that Anthropic's memory stores and
+  coding-agent conventions (AGENTS.md, now under AAIF) are plain files.*
 - **Memory security becomes a named discipline** *(inferred; medium confidence).*
   Memory poisoning and cross-tenant leakage will drive dedicated tooling and practices,
-  paralleling how prompt injection drove the guardrails category (§12).
+  paralleling how prompt injection drove the guardrails category (§12). — *Nov 2026:
+  early signs. Google's Memory Bank docs carry an explicit memory-poisoning warning,
+  and research on provenance watermarking for memory (e.g. MemMark, arXiv 2605.25002)
+  appeared. No dedicated commercial product category exists yet.*
+- **New (Nov 2026): memory evaluation moves from recall Q&A to action and tenure**
+  *(inferred; medium-high confidence).* With LoCoMo and LongMemEval saturated and
+  LoCoMo's answer key under audit, expect 2027 vendor claims to cite BEAM-scale and
+  action-based suites, and expect at least one longitudinal (months-of-use) benchmark
+  to gain traction.
+- **New (Nov 2026): "sleep-time" consolidation becomes a standard managed-memory
+  feature** *(speculative; medium confidence).* After Anthropic's and OpenAI's
+  previews, Google and AWS are likely to ship scheduled offline consolidation for
+  their managed memory services in 2027. The differentiator will be auditability of
+  what consolidation changed or dropped.
 
 ---
 
@@ -620,7 +771,10 @@ Third, **windows are per-session; memory is cross-session.** Even an infinite wi
 does nothing for information from *last week's* conversation unless that conversation
 is persisted and retrieved — which is exactly what a memory system does. The window is
 working memory; it is definitionally not long-term memory, and no amount of growing it
-changes that. So the correct framing is: bigger windows are a welcome improvement to
+changes that. (The point is now concrete. In the second half of 2026 a 1M-token window
+became the *default* across Anthropic's model line, including the small Haiku 5.5
+(October 2026). In the same months every major vendor shipped more long-term memory
+machinery, not less.) So the correct framing is: bigger windows are a welcome improvement to
 *working* memory that reduce how aggressively you must compact, but they leave the
 *long-term* memory problem — consolidation, cross-session recall, forgetting — entirely
 intact. This is why the memory vendor category kept growing straight through the era of
@@ -697,7 +851,10 @@ vendors shipped memory features (ChatGPT memory, then Anthropic's memory tool an
 context editing), and "context engineering" displaced "prompt engineering" as the
 craft term. By **2026**, memory is a crowded, funded, still-unsolved layer where the
 storage is commodity, the policy is the product, and forgetting remains the open
-frontier — which is exactly where this section finds it.
+frontier — which is exactly where this section finds it. The second half of 2026 added
+one milestone: offline "sleep" consolidation left the papers and entered vendor
+research previews (Anthropic Dreams, OpenAI's rebuilt ChatGPT memory), while the
+recall benchmarks that defined 2025 saturated.
 
 The trajectory rhymes with the rest of the stack: an ad-hoc feature (2023) became a
 differentiated component (2024–25) attracting specialized vendors, which the platform
@@ -767,8 +924,10 @@ hybrid/file) that fits that specific requirement.
   vector/drop-in, Zep leads temporal-graph, Letta leads memory-first agents.
 - **Bigger context windows relocated the problem, they didn't solve it** — context
   engineering (compaction, editing, scratchpads) remains essential.
-- **Forgetting is the unsolved frontier.** Nearly nobody does principled decay; it is
-  the most likely place for the next breakthrough.
+- **Forgetting is the unsolved frontier.** Nearly nobody does principled decay. Offline
+  consolidation ("dreaming") reached vendor previews in mid-2026, but importance-weighted
+  forgetting with measurable quality is still the most likely place for the next
+  breakthrough.
 - The **model vendors and clouds are building managed memory in**, which will pressure
   independents — though the AWS/Mem0 partnership shows adoption, not just displacement,
   is possible.
@@ -784,4 +943,25 @@ Memory, in the end, is where agents stop being stateless responders and start be
 accountable entities that accumulate a relationship with their users and their work — which is why,
 despite its immaturity, it is one of the most consequential layers to get right.
 
-*Word count target: 7,000. This section: ~7,020 (verified via `wc`).*
+*Word count target: 7,000. This section: ~8,800 after the November 2026 update (approximate, via `wc`).*
+
+## Sources (November 2026 update)
+
+- https://platform.claude.com/docs/en/release-notes/overview (Dreams, memory stores, compaction on demand, message threads, model context windows)
+- https://pypi.org/project/mem0ai/ (Mem0 v2 algorithm and benchmark table)
+- https://techcrunch.com/2025/10/28/mem0-raises-24m-from-yc-peak-xv-and-basis-set-to-build-the-memory-layer-for-ai-apps/
+- https://mem0.ai/library/agent-memory/ai-memory-benchmarks-in-2026
+- https://hindsight.vectorize.io/blog/2026/03/23/agent-memory-benchmark
+- https://arxiv.org/pdf/2609.05441 ; https://arxiv.org/pdf/2607.21962 ; https://arxiv.org/pdf/2605.25002
+- https://help.openai.com/en/articles/6825453-chatgpt-release-notes
+- https://9to5mac.com/2026/06/04/openai-says-chatgpts-memory-feature-is-getting-smarter-and-coming-to-free-users/
+- https://cloud.google.com/blog/products/ai-machine-learning/introducing-gemini-enterprise-agent-platform
+- https://docs.cloud.google.com/gemini-enterprise-agent-platform/release-notes
+- https://docs.cloud.google.com/gemini-enterprise-agent-platform/scale/memory-bank
+- https://aws.amazon.com/about-aws/whats-new/2026/03/agentcore-memory-streaming-ltm
+- https://aws.amazon.com/about-aws/whats-new/2026/05/agentcore-memory-scmetadata
+- https://aws.amazon.com/blogs/machine-learning/designing-lifecycle-policies-for-agentcore-memory/
+- https://pypi.org/project/zep-cloud/ ; https://pypi.org/project/graphiti-core/ ; https://github.com/getzep/graphiti
+- https://pypi.org/project/letta/ ; https://pypi.org/project/cognee/ ; https://pypi.org/project/langmem/ ; https://pypi.org/project/deepagents/
+- https://supermemory.ai/blog/supermemory-raises-3-million-and-building-the-best-memory-engine-for-llms
+- https://techcrunch.com/2025/10/06/a-19-year-old-nabs-backing-from-google-execs-for-his-ai-memory-startup-supermemory/

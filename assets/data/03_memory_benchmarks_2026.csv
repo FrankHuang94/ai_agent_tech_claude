@@ -1,0 +1,9 @@
+system,benchmark,score,source_confidence,notes
+Mem0 (old algorithm),LoCoMo,71.4,official-vendor,Mem0 PyPI README comparison
+Mem0 v2 (Apr 2026),LoCoMo,92.5,official-vendor,~7.0K tokens per retrieval
+Hindsight AMB v1,LoCoMo,92.0,inferred,Vectorize AMB manifesto (Mar 2026)
+Mem0 (old algorithm),LongMemEval,67.8,official-vendor,Mem0 PyPI README comparison
+Mem0 v2 (Apr 2026),LongMemEval,94.4,official-vendor,~6.8K tokens per retrieval
+Hindsight AMB v1,LongMemEval,94.6,inferred,Vectorize AMB manifesto (Mar 2026)
+Mem0 v2 (Apr 2026),BEAM 1M,64.1,official-vendor,1M-token conversational memory
+Mem0 v2 (Apr 2026),BEAM 10M,48.6,official-vendor,10M-token conversational memory
