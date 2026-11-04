@@ -1,7 +1,8 @@
 # 05 — Planning and Reasoning
 
 *How agents think before they act. ReAct, search-based planning, reflection, and the
-long-horizon decomposition problem. Target: 7,000 words.*
+long-horizon decomposition problem. Target: 7,000 words. Current as of November 2026
+(snapshot of July 22, 2026, updated November 4, 2026).*
 
 ---
 
@@ -16,6 +17,9 @@ much of that capability moved *inside* the model: reasoning models (OpenAI's o-s
 then reasoning modes across Anthropic, Google, DeepSeek, xAI, and others) are trained
 to produce long internal chains of thought before answering, so a great deal of
 planning now happens in the model's own "thinking" rather than in external scaffolding.
+By late 2026 the shift is complete enough that several flagships (Claude Opus 5.5 and
+Fable 5.1, for example) *cannot* have thinking switched off. You only choose how hard
+they think.
 
 This shift is why the layer's maturity is genuinely ambiguous — it scores **5.0/10
 maturity, 8.5/10 bottleneck severity** in the executive summary. Single-step and
@@ -25,6 +29,102 @@ with dozens or hundreds of interdependent steps — remains a hard bottleneck. T
 is simultaneously a triumph (reasoning benchmarks falling one after another) and a
 frustration (agents still lose the plot on genuinely long tasks). Understanding *which*
 part improved and which didn't is the key to this section.
+
+---
+
+## What changed since July 2026 (November 2026 update)
+
+Between July and November 2026 the frontier turned over by a full model generation at
+every major closed lab: Anthropic's Claude 5.x line, OpenAI's GPT-6 family and Google's
+Gemini 4. Three shifts matter for this layer.
+
+1. **Thinking became always-on and graded.** Several flagships no longer let you
+   switch reasoning off. Instead you set an effort level, and on some products an
+   "ultra" mode fans work out to sub-models.
+2. **A new benchmark climbed very fast.** The interactive ARC-AGI-3 launched in March
+   with frontier models below 1%. By the autumn it had verified scores in the tens of
+   percent (30% in July, about 63% on the standard harness by October), and vendors
+   claimed far higher numbers on custom harnesses.
+3. **HLE moved past 60% with tools.** This continues the "saturate on arrival" pattern
+   below.
+
+None of the launches claims to have *solved* long-horizon reliability. They do push
+the horizon out: vendors now describe multi-hour autonomous runs as normal. Two
+releases from June–July were also missed by the July snapshot, Claude Fable 5 and
+GPT-5.6.
+
+- **Jun 9, 2026 (missed in July snapshot): Claude Fable 5 and Claude Mythos 5.**
+  Fable 5 was the first public "Mythos-class" model. Classifiers route flagged cyber,
+  bio and chem requests to Claude Opus 4.8, which Anthropic says happens in under 5%
+  of sessions. Access was suspended from Jun 12 after a US government directive and
+  restored Jul 1. Pricing is $10/$50 per million input/output tokens. *(official)*
+  [Anthropic](https://www.anthropic.com/news/claude-fable-5-mythos-5)
+- **Jul 9, 2026: OpenAI GPT-5.6 (Sol / Terra / Luna) reaches GA** after a staggered
+  rollout requested by the US government. Sol's "ultra" mode works harder and
+  delegates to sub-models, which makes test-time compute look like multi-agent
+  fan-out. *(inferred)*
+  [Axios](https://axios.com/2026/07/09/ai-openai-gpt-release)
+- **Jul 24, 2026: Claude Opus 5.** Anthropic reports an ARC-AGI-3 score three times
+  the next-best model's *(official)*. ARC Prize reportedly verified 30.16% on the
+  semi-private set *(inferred)*.
+  [Anthropic](https://www.anthropic.com/news/claude-opus-5),
+  [OfficeChai on ARC-AGI-3 launch](https://officechai.com/ai/arc-agi-3/)
+- **Sep 1, 2026: Claude Fable 5.1 and Mythos 5.1.** These are Anthropic's top tier "for
+  demanding reasoning and long-horizon agentic work", with adaptive thinking that is
+  always on and defaults to `high` effort *(official)*. Reported scores are 55.8% on
+  Terminal-Bench 4.0 and 52.6% on Terminal-Bench-Science *(inferred)*.
+  [Claude models overview](https://platform.claude.com/docs/en/about-claude/models/overview),
+  [Claude Fable](https://www.anthropic.com/claude/fable)
+- **Sep 3, 2026: OpenAI GPT-6 Astra**, followed by GPT-6 Sol and Luna on Sep 22.
+  Reports also date GPT-6.1 Sol to Sep 29 and GPT-6.1 Terra to Oct 26.
+  OpenAI-reported scores for Astra: GPQA-Diamond 96.0% and FrontierMath Tier 4 97.6%.
+  On ARC-AGI-3, Astra is reported at about 99% on OpenAI's "provider adapter" harness
+  but about 62.7% on the standard semi-private harness. *(inferred: secondary
+  reporting; harness dependence is itself the story)*
+  [DataCamp](https://www.datacamp.com/blog/gpt-6-astra),
+  [BenchLM ARC-AGI-3](https://benchlm.ai/benchmarks/arcagi3)
+- **Sep 22, 2026: Claude Opus 5.5.**
+  - HLE with tools: 67.7% (Opus 5: 63.6%). Terminal-Bench 4.0: 66.4%. OSWorld 2.1
+    (partial): 81.8%.
+  - Thinking can no longer be switched off. Effort ranges from low to max, with
+    medium as the default.
+  - Priced about 40% below Opus 5 for typical workloads. *(official)*
+
+  [Anthropic](https://www.anthropic.com/news/claude-opus-5-5)
+- **Sep 28 / Oct 7, 2026: Claude Sonnet 5.5 and Haiku 5.5.** Sonnet 5.5 scores 64.5%
+  on HLE with tools, close to Opus 5.5, at half the price. That shows top-tier
+  reasoning moving down to the mid tier within weeks. *(official)*
+  [Anthropic](https://www.anthropic.com/news/claude-sonnet-5-5)
+- **Sep 30 → Oct 13, 2026: Gemini 4 Argon.** It was announced as "built to sustain
+  deep reasoning across complex, long-horizon workflows", with a 1M-token output limit.
+  Google first released it to cyber defenders and made it generally available on
+  Oct 13. ARC Prize-verified scores are reported as 91.3% on ARC-AGI-2 and 98.5% on
+  ARC-AGI-1. **Gemini 4 Carbon** (Oct 28) is restricted to cyber defenders for now.
+  *(inferred)*
+  [OfficeChai](https://officechai.com/ai/gemini-4-argon-scores-97-5-on-arc-agi-3-with-harness-only-second-behind-gpt-6-astra/),
+  [Google AI on X](https://x.com/GoogleAI/status/2105388478683119904)
+- **Oct 12, 2026: Meta Muse Wonder.** Meta Superintelligence Labs' first frontier
+  model has *closed* weights. Open weights continue through smaller Muse models.
+  *(inferred)*
+  [AI Weekly](https://aiweekly.co/alerts/meta-releases-muse-wonder-its-first-frontier-class-ai-model)
+- **Open-weight reasoning, mid-2026:**
+  - DeepSeek V4 folds the R-series into a single model with thinking and non-thinking
+    modes, and the legacy `deepseek-reasoner` alias was retired on Jul 24.
+  - Alibaba's Qwen3.7-Max (May) is closed-weight, so open self-hosting stays on
+    Qwen3.6.
+  - Moonshot's Kimi K3.1 Pro reached the API on Oct 23, with open weights promised.
+
+  xAI's Grok 5 had still not shipped as of the last reports found. *(inferred)*
+  [TestingCatalog](https://testingcatalog.com/deepseek-released-3-new-open-source-v4-models/),
+  [CnTechPost](https://cntechpost.com/2026/05/20/alibaba-releases-qwen3-7-max-agent-model-tackle-complex-ai-workflows/)
+
+**Net effect:** the July roadmap item "reasoning benchmarks keep saturating, and new
+harder ones keep appearing" resolved faster than expected, as ARC-AGI-3 shows. The
+item "long-horizon reliability improves gradually, not suddenly" still holds.
+Vendor launch posts now lead with multi-hour agentic suites, and none claims to have
+solved goal drift or compounding error. Scores that depend on the harness (ARC-AGI-3)
+and on tools (HLE) also make §11's warning about comparing benchmark numbers more
+pressing.
 
 ---
 
@@ -41,24 +141,39 @@ The pattern is unmistakable and worth stating plainly:
 
 - **MMLU** (broad knowledge, 2020-era) is fully saturated — top models score ~92–93%,
   and the benchmark no longer discriminates among them.
-- **GPQA-Diamond** (graduate-level science, built to be Google-proof) went from ~35% in
-  2023 to ~93% by 2026, now exceeding PhD experts *with* internet access on its
-  questions — approaching saturation.
+- **GPQA-Diamond** (graduate-level science, built to be Google-proof) went from about
+  35% in 2023 to about 93% by mid-2026, and OpenAI reports 96.0% for GPT-6 Astra
+  (Sep 2026, *inferred*). Models now exceed PhD experts *with* internet access on its
+  questions, and the benchmark is effectively saturated.
 - **AIME** (competition mathematics) went from near-random to effectively solved (top
   models solving all problems), a capability that would qualify for national olympiad
   teams.
 - **ARC-AGI-2** (abstract pattern reasoning, explicitly designed to resist the
-  memorization that inflates other benchmarks) is the most stubborn — it retained the
-  largest human-model gap longest — but even it climbed from single digits to ~85%,
-  surpassing average individual human performance.
+  memorization that inflates other benchmarks) was the most stubborn of the static
+  benchmarks; it kept the largest human-model gap longest. Even so it climbed from
+  single digits to about 85% by mid-2026, and Gemini 4 Argon is reported at 91.3%,
+  ARC Prize-verified (Oct 2026, *inferred*). That is well above average individual
+  human performance.
+- **ARC-AGI-3** (launched Mar 25, 2026) is *interactive*: agents have to explore
+  unfamiliar game-like environments, infer the rules and plan. At launch, frontier
+  models scored below 1% while humans solved every environment. By July, Claude Opus 5
+  was verified at about 30%. By October the standard-harness leader (GPT-6 Astra) was
+  around 63%, and vendors claim close to 100% on custom harnesses *(inferred)*. It
+  went from launch to majority-solved in roughly seven months, the fastest climb on
+  this list, and it is the closest of these benchmarks to *agentic planning*.
 - **Humanity's Last Exam (HLE)** (frontier-difficulty, cross-domain expert questions)
-  was expected to resist 50% for years; a model reached ~50% within roughly a year of
-  release.
+  was expected to resist 50% for years. A model reached about 50% within roughly a
+  year of release. By September 2026, Claude Opus 5.5 scored 67.7% *with tools*
+  (*official*), and independent no-tools runs put frontier models at about 55–61%
+  (*inferred*).
 
 The caveats (all from §11) are essential: **these numbers are partly a measure of
 benchmark exhaustion, not just capability.** Benchmarks get contaminated (test data
 leaks into training), gamed (models optimized for the benchmark's style), and
-saturated (ceiling effects). A model scoring 93% on GPQA is genuinely excellent at
+saturated (ceiling effects). In late 2026 they also became **harness-dependent**: the
+same model's ARC-AGI-3 score can range from about 60% to about 99% depending on the
+evaluation harness, and HLE is now quoted both with and without tools. A model scoring
+93% on GPQA is genuinely excellent at
 GPQA-style questions; whether that transfers to *your* reasoning task is exactly the
 question §11 says benchmarks can't answer. And critically, **none of these benchmarks
 measure long-horizon agentic planning** — they are (mostly) single-response reasoning
@@ -86,7 +201,11 @@ reframed the entire economics of reasoning:
   expensively-trained model. Test-time compute added a second axis: take a fixed model
   and spend more *inference* compute per hard problem. This is why "reasoning effort"
   became a user-facing parameter — you dial how hard the model thinks based on the
-  problem's difficulty and your latency/cost budget.
+  problem's difficulty and your latency/cost budget. By late 2026 the parameter is
+  graded and often mandatory. Anthropic exposes five effort levels from `low` to
+  `max` with adaptive (always-on) thinking on its flagships *(official)*. OpenAI's
+  GPT-5.6 Sol added an "ultra" mode that delegates to sub-models *(inferred)*, which
+  blurs the line between test-time compute and multi-agent fan-out (§06).
 - **Reasoning became a cost/latency knob.** Hard problem, high stakes, latency-
   tolerant? Turn thinking up. Simple problem, latency-sensitive? Turn it down. Agent
   designers now budget "thinking" as a resource, spending it where the reasoning is
@@ -322,22 +441,24 @@ external planning scaffolding, verification, and reasoning-specific tooling.
 
 | Player | Type | Maturity | Contribution to the layer | Notable (confidence) | Differentiator | Competitors |
 |---|---|---|---|---|---|---|
-| **OpenAI** | Frontier lab | shipped-reliable | Popularized test-time-compute reasoning (o-series) | Reasoning-model pioneer (official) | Deep RL-over-reasoning; strong math/science | Anthropic, Google, DeepSeek |
-| **Anthropic** | Frontier lab | shipped-reliable | Extended thinking; strong agentic reasoning | Claude reasoning + tool use (official) | Reasoning that transfers to long agentic tasks | OpenAI, Google |
-| **Google DeepMind** | Frontier lab | shipped-reliable | Gemini reasoning; AlphaProof/AlphaGeometry lineage | Strong math reasoning (official) | Search+LLM heritage (AlphaZero lineage) | OpenAI, Anthropic |
-| **DeepSeek** | Frontier lab | shipped-reliable | Open reasoning models (R-series) | Open-weight reasoning (official) | Open reasoning models at low cost | Qwen, frontier labs |
-| **xAI** | Frontier lab | shipped-reliable | Grok reasoning; HLE breakthrough claims | HLE ~50% (inferred) | Self-play + reasoning-chain verification | OpenAI, Google |
-| **Qwen (Alibaba)** | Frontier lab | shipped-reliable | Strong open reasoning models | Open reasoning (official) | Competitive open-weight reasoning | DeepSeek, Llama |
-| **Meta (Llama)** | Frontier lab | shipped-reliable | Open models w/ reasoning | Open weights (official) | Ecosystem scale, open | Qwen, DeepSeek |
+| **OpenAI** | Frontier lab | shipped-reliable | Popularized test-time-compute reasoning (o-series → GPT-6) | GPT-6 Astra (Sep 3, 2026): GPQA 96%, ARC-AGI-3 ~63% standard harness (inferred) | Deep RL-over-reasoning; strong math/science; "ultra" sub-model fan-out | Anthropic, Google, DeepSeek |
+| **Anthropic** | Frontier lab | shipped-reliable | Adaptive always-on thinking with effort levels; strong agentic reasoning | Fable 5.1 (Sep 1) / Opus 5.5 (Sep 22): HLE 67.7% w/ tools (official) | Reasoning that transfers to long agentic tasks | OpenAI, Google |
+| **Google DeepMind** | Frontier lab | shipped-reliable | Gemini 4 reasoning; AlphaProof/AlphaGeometry lineage | Gemini 4 Argon GA Oct 13; ARC-AGI-2 91.3% (inferred) | Search+LLM heritage; long-horizon workflow focus | OpenAI, Anthropic |
+| **DeepSeek** | Frontier lab | shipped-reliable | Open reasoning models (R-series folded into V4) | DeepSeek V4 Pro/Flash, thinking + non-thinking modes (inferred) | Open reasoning models at low cost | Qwen, frontier labs |
+| **xAI** | Frontier lab | shipped-reliable | Grok reasoning; HLE breakthrough claims | Early ~50% HLE claim now surpassed; Grok 5 unreleased as of last reports (inferred) | Self-play + reasoning-chain verification | OpenAI, Google |
+| **Qwen (Alibaba)** | Frontier lab | shipped-reliable | Strong open reasoning models; flagship now closed | Qwen3.7-Max closed-weight (May 2026); Qwen3.6 open (inferred) | Open-weight mid tier + closed agentic flagship | DeepSeek, Moonshot |
+| **Meta (Llama / Muse)** | Frontier lab | shipped-reliable | Open models w/ reasoning; first closed frontier model | Muse Wonder, closed weights (Oct 12, 2026) (inferred) | Ecosystem scale; now split open/closed | Qwen, DeepSeek, frontier labs |
+| **Moonshot AI (Kimi)** | Frontier lab | shipped-reliable | Open-weight agentic reasoning models | Kimi K3.1 Pro API Oct 23, 2026; open weights promised (inferred) | Long-horizon agentic open models | DeepSeek, Qwen |
 | **DSPy (Stanford)** | Research/framework | demoed→reliable | Compile/optimize reasoning programs | OSS optimization (official) | Optimizes reasoning pipelines vs. hand-tuning | LangChain, manual |
 | **Tree-of-Thought / ToT research** | Research | research-only | Search-based reasoning structures | Academic (official) | Explicit reasoning search | internalized in models |
 | **Reflexion / self-refine research** | Research | research→applied | Reflection/self-correction methods | Academic → productized (official) | Learning-from-failure patterns | critic-model approaches |
 | **Process reward models (PRMs)** | Research/labs | research→applied | Reward reasoning *steps* not just answers | Used in RL training (inferred) | Step-level verification for reasoning | outcome reward models |
 | **Formal-math systems (AlphaProof-like)** | Research labs | demoed-brittle | Verified reasoning w/ formal checkers | Olympiad-level math (official) | External verifier makes reasoning checkable | general reasoning |
 | **Cognition / coding-reasoning startups** | Startup | shipped-reliable | Applied long-horizon planning in coding | Devin planning (inferred) | Domain-specific long-horizon planning | Claude Code, Cursor |
-| **Reasoning-eval startups (e.g., Epoch, ARC Prize)** | Research/eval | shipped-reliable | Build the hard benchmarks | ARC-AGI, FrontierMath (official) | Define the frontier via benchmarks | internal evals |
+| **Reasoning-eval startups (e.g., Epoch, ARC Prize)** | Research/eval | shipped-reliable | Build the hard benchmarks | ARC-AGI-3 (Mar 2026), FrontierMath (official) | Define the frontier via benchmarks | internal evals |
 
-That is fourteen entries spanning labs, research programs, and applied startups. The
+That is fifteen entries spanning labs, research programs, and applied startups (Moonshot
+added in the November 2026 update). The
 structural reality: **this layer is dominated by the frontier labs because the capability
 lives in the model**, and the independent value sits in (a) *optimization* frameworks
 that squeeze more from a given model (DSPy), (b) *verification* research (process reward
@@ -569,7 +690,9 @@ reasons natively) to "structure long-horizon tasks the native reasoning still ca
 together."
 
 **2026** is the current settling: single-response reasoning is near-solved at the
-frontier and commoditizing at the middle (open reasoning models), while the unsolved
+frontier and commoditizing at the middle (open reasoning models). By late 2026 it is
+also the *default* behaviour of flagship models (always-on adaptive thinking), and the
+open question has moved to interactive, harness-dependent benchmarks such as ARC-AGI-3, while the unsolved
 residue — long-horizon planning, faithful reasoning, reasoning grounded in messy
 multimodal perception — is sharply visible precisely *because* the easier parts got
 solved. The bottleneck moved, exactly as the executive summary's arc predicts: each year
@@ -616,21 +739,44 @@ coherence* that is the bottleneck.
 - **Reasoning benchmarks keep saturating; new harder ones keep appearing** *(official
   trend; high confidence).* The GPQA→ARC-AGI-2→HLE progression continues; expect HLE to
   saturate and successors to be built. Single-response reasoning is nearly solved at the
-  frontier.
+  frontier. — *Nov 2026: confirmed and accelerating. HLE passed 60% with tools
+  (67.7%, Opus 5.5); ARC-AGI-3 launched (Mar) and was majority-solved on the standard
+  harness by October. The next problem is harness-dependence, not saturation alone.*
 - **Test-time compute remains a core axis** *(official; high confidence).* Reasoning
   effort as a tunable resource is permanent; research pushes on making it more
-  *efficient* (same accuracy, fewer thinking tokens).
+  *efficient* (same accuracy, fewer thinking tokens). — *Nov 2026: confirmed. Effort
+  levels (low to max) and always-on adaptive thinking are now standard on flagships,
+  and efficiency is a launch talking point (Opus 5.5 is about 40% cheaper than Opus 5
+  at default settings).*
 - **Long-horizon reliability improves gradually, not suddenly** *(inferred; medium
   confidence).* The reliably-completable task horizon keeps growing, driven by better
   models plus better scaffolding (hierarchical planning, verification, memory), but no
   single breakthrough "solves" long-horizon autonomy soon. This stays the field's
-  defining bottleneck through 2026–2027.
+  defining bottleneck through 2026–2027. — *Nov 2026: holding. Vendors now describe
+  multi-hour autonomous runs and lead launches with long-horizon agentic suites
+  (Terminal-Bench 4.0, OSWorld 2.x), but no release claims to have solved goal drift
+  or compounding error.*
 - **Verification-centric reasoning grows** *(inferred; medium-high confidence).* Process
   reward models, verifiers, and "reflect on real feedback" patterns spread, because the
   cheap-verifier thesis is increasingly understood as the key to reliable reasoning.
+  — *Nov 2026: partly confirmed. Vendors market models that write their own tests to
+  verify their work (Fable product page). Public detail on PRM use stays thin.*
 - **Planning stays model-dominated** *(inferred; high confidence).* No large independent
   planning-company market emerges; value stays in optimization frameworks, verification,
-  and applied vertical planning (coding).
+  and applied vertical planning (coding). — *Nov 2026: confirmed; no standalone
+  planning company emerged this quarter.*
+- **(New, Nov 2026) Interactive reasoning benchmarks replace static ones** *(inferred;
+  medium-high confidence).* ARC-AGI-3's rapid climb suggests the next round of hard
+  benchmarks will be interactive and agentic, with standardized harnesses. Expect
+  benchmark bodies to require harness disclosure.
+- **(New, Nov 2026) Capability gating becomes part of the reasoning stack**
+  *(official trend; medium confidence).* Several of the strongest reasoning models
+  launched with classifier-routed fallbacks or restricted tiers: Fable/Mythos 5, GPT-6
+  Astra's restricted cyber variant, and Gemini 4 Carbon's cyber-defender-only access.
+  Agent builders should expect that *which* model answers a given step can change at
+  runtime.
+- **(New, Nov 2026) Grok 5 and open-weight Kimi K3.1 are the open items to watch**
+  *(speculative).* Both were pending at the time of writing.
 
 ---
 
@@ -661,6 +807,14 @@ them (frontier for the hard reasoning, open for the routine) via the model-routi
 pattern. The strategic upshot for the whole stack is that **reasoning is
 commoditizing at the middle even as the frontier stays contested** — the same shape as
 every other maturing layer.
+
+**November 2026 nuance.** The open/closed line moved the *other* way at two former
+open-weight champions. Alibaba's agent flagship Qwen3.7-Max (May 2026) is closed-weight,
+with open self-hosting staying on Qwen3.6. Meta's first frontier model, Muse Wonder
+(Oct 2026), also ships with closed weights. DeepSeek V4 and Moonshot's Kimi line carry
+the open-weight reasoning frontier. The "useful band is open" claim still holds, but
+the set of labs providing it is narrower and more concentrated in China than a year
+earlier *(inferred)*.
 
 ## World models and planning with simulation
 
@@ -738,6 +892,11 @@ bottleneck.
   is a reasoning/verification gap — diagnosing which you have is a core skill, and
   conflating them wastes effort. Reasoning is also **commoditizing at the middle** (open
   reasoning models) even as the frontier and long-horizon reliability stay contested.
+- **Nov 2026:** the Claude 5.x / GPT-6 / Gemini 4 generation made thinking always-on
+  and graded by effort level. HLE passed 60% with tools, and interactive ARC-AGI-3 went
+  from below 1% to about 63% (standard harness) in seven months. Long-horizon
+  reliability is improved but still unsolved, and benchmark scores now depend on the
+  harness.
 
 ## A note on "reasoning" versus "knowing"
 
@@ -761,4 +920,28 @@ wasteful mistake. The cleanest agents keep the layers separate: retrieval and me
 supply *what is true*, the reasoning layer decides *what follows from it*, and evaluation
 (§11) checks both independently.
 
-*Word count target: 7,000. This section: ~7,050 (verified via `wc`).*
+*Word count target: 7,000. This section: ~8,700 (verified via `wc`, including the November 2026 update).*
+
+## Sources (November 2026 update)
+
+- https://www.anthropic.com/news
+- https://www.anthropic.com/news/claude-fable-5-mythos-5
+- https://www.anthropic.com/news/claude-opus-5
+- https://www.anthropic.com/news/claude-opus-5-5
+- https://www.anthropic.com/news/claude-sonnet-5-5
+- https://www.anthropic.com/claude/fable
+- https://platform.claude.com/docs/en/about-claude/models/overview
+- https://axios.com/2026/07/09/ai-openai-gpt-release
+- https://www.datacamp.com/blog/gpt-6-astra
+- https://x.com/OpenAI/status/2102460975790137662
+- https://benchlm.ai/benchmarks/arcagi3
+- https://officechai.com/ai/arc-agi-3/
+- https://officechai.com/ai/gemini-4-argon-scores-97-5-on-arc-agi-3-with-harness-only-second-behind-gpt-6-astra/
+- https://x.com/GoogleAI/status/2105388478683119904
+- https://x.com/GoogleDeepMind/status/2110039274922131792
+- https://techcrunch.com/2026/09/30/google-releases-gemini-4-argon-called-its-most-powerful-model-yet/
+- https://aiweekly.co/alerts/meta-releases-muse-wonder-its-first-frontier-class-ai-model
+- https://techcrunch.com/2026/10/12/meta-releases-its-first-frontier-model-muse-wonder/
+- https://testingcatalog.com/deepseek-released-3-new-open-source-v4-models/
+- https://cntechpost.com/2026/05/20/alibaba-releases-qwen3-7-max-agent-model-tackle-complex-ai-workflows/
+- https://benchlm.ai/frontier-ai-models

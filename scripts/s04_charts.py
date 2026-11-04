@@ -28,10 +28,11 @@ ax.set_xlim(0, 100)
 ax.set_xlabel("Multi-turn tool-use success (%)")
 ax.grid(axis="x"); ax.grid(axis="y", visible=False)
 ax.legend(loc="lower right")
-ax.set_title("Multi-turn tool use: τ-bench retail vs. airline", loc="left", pad=24)
+ax.set_title("Multi-turn tool use: τ-bench retail vs. airline (legacy 1.x)", loc="left", pad=24)
 ax.text(0, 1.02, "Airline (harder: stricter policy, more steps) trails retail across all models — reliability is task-dependent",
         transform=ax.transAxes, fontsize=9.3, color=MUTED)
-fig.text(0.01, 0.005, "Source: τ-bench figures, 2026 (approximate/illustrative; anchored to published Sonnet 4.5 results).",
+fig.text(0.01, 0.005, "Source: legacy τ-bench 1.x figures, 2025–early-2026 models (approximate/illustrative; anchored to published Sonnet 4.5 results). "
+         "τ-bench 2.0 (late 2026) scores are not comparable.",
          fontsize=8, color=MUTED)
 save(fig, os.path.join(OUT, "04_taubench.png"))
 

@@ -18,7 +18,8 @@ cols = [("MMLU", "MMLU (older, saturated)"),
         ("GPQA_Diamond", "GPQA-Diamond (PhD science)"),
         ("AIME", "AIME (competition math)"),
         ("ARC_AGI_2", "ARC-AGI-2 (abstract)"),
-        ("HLE", "Humanity's Last Exam")]
+        ("HLE", "Humanity's Last Exam (w/ tools from 2026-H2)"),
+        ("ARC_AGI_3", "ARC-AGI-3 (interactive, launched Mar 2026)")]
 for i, (c, lab) in enumerate(cols):
     series = df[c].replace(0, np.nan)
     ax.plot(df["period"], series, marker="o", markersize=4.5, lw=2.4, color=PALETTE[i], label=lab)
@@ -29,11 +30,12 @@ ax.text(0.1, 89.3, "≈ human-expert band", fontsize=8.5, color=MUTED)
 ax.set_ylabel("Benchmark score (%)")
 ax.set_ylim(0, 103)
 ax.set_xlim(0, len(df) + 0.6)
-ax.legend(loc="center left", fontsize=8.7)
+ax.legend(loc="upper left", bbox_to_anchor=(0.0, 0.83), fontsize=8.7, framealpha=0.95)
 ax.set_title("Reasoning benchmarks saturate on arrival", loc="left", pad=24)
-ax.text(0, 1.02, "Each harder benchmark is built to escape saturation, and each is climbed within ~2 years",
+ax.text(0, 1.02, "Each harder benchmark is built to escape saturation; each is climbed within ~2 years (ARC-AGI-3: <1% → ~63% in 7 months)",
         transform=ax.transAxes, fontsize=9.6, color=MUTED)
-fig.text(0.01, 0.005, "Source: aggregated public leaderboards 2023–2026 (inferred/approximate; illustrative of the arc).",
+fig.text(0.01, 0.005, "Source: aggregated public leaderboards 2023–Nov 2026 (inferred/approximate). 2026-H2 = best reported through Nov 4, 2026; "
+         "HLE 2026-H2 with tools (Opus 5.5, official); ARC-AGI-3 standard harness (GPT-6 Astra, secondary).",
          fontsize=8, color=MUTED)
 save(fig, os.path.join(OUT, "05_reasoning_trends.png"))
 

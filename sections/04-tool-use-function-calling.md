@@ -1,7 +1,8 @@
 # 04 — Tool Use and Function Calling
 
 *How agents act on the world. Schema standards, selection reliability, structured
-output, and error recovery. Target: 6,500 words.*
+output, and error recovery. Target: 6,500 words. Current as of November 2026
+(snapshot of July 22, 2026, updated November 4, 2026).*
 
 ---
 
@@ -32,6 +33,104 @@ single well-specified tool call is high; the reliability of an agent *selecting 
 right tool from hundreds*, *recovering when a tool fails*, and *enforcing structure on
 messy outputs* is where the real, still-open engineering problems live. This section
 separates the solved core from the unsolved edges.
+
+---
+
+## What changed since July 2026 (November 2026 update)
+
+The four months since the July snapshot did not change this section's thesis: the
+basic mechanic of tool use is still a commodity, and the hard problems are still the
+edges (choosing among many tools, recovering from errors, getting values right).
+What changed is *where* the mitigations live. Ideas this section described as developer
+discipline in July (tool retrieval, CodeAct-style composition, constrained decoding)
+are now **vendor-native, generally available API features** at both Anthropic and
+OpenAI. The connection standard (MCP) shipped a major stateless revision. Governance
+of the surrounding specs moved further into the Linux Foundation's Agentic AI
+Foundation (AAIF). The frontier model generation also turned over completely
+(Claude 5.x, GPT-6, Gemini 4), and the main multi-turn tool-use benchmark was
+re-based, so July-era benchmark figures are now legacy numbers.
+
+- **Jul 9, 2026: OpenAI GPT-5.6 family (Sol / Terra / Luna) reaches GA**, after a
+  staggered preview requested by the US government. It brought **programmatic tool
+  calling** to the Responses API: the model writes orchestration code that runs in an
+  isolated runtime, calls tools in loops or in parallel, and returns only a compact
+  result to the model. Tool search (`tool_search`) is supported on GPT-5.4 and later.
+  *(inferred: secondary coverage of OpenAI docs)*
+  [Axios](https://axios.com/2026/07/09/ai-openai-gpt-release),
+  [Apidog](https://apidog.com/blog/gpt-5-6-programmatic-tool-calling/)
+- **Jul 15, 2026: τ³-bench v1.0.1.** τ³-bench (v1.0) had added a retrieval-heavy
+  `banking_knowledge` domain, full-duplex voice evaluation, and 75+ task fixes, and
+  v1.0.1 fixed its grading. **τ-bench 2.0** followed, adding six languages (τ-i18n),
+  a voice mode in every language, and a new `intake` entity-capture domain. Its English
+  scores are explicitly *not comparable* with the 1.x leaderboard. *(official)*
+  [sierra-research/tau2-bench](https://github.com/sierra-research/tau2-bench)
+- **Jul 24, 2026: Claude Opus 5** added **mid-conversation tool changes**, which change
+  the available toolset without invalidating the prompt cache (beta). It also added
+  **automatic fallbacks**, which route classifier-flagged requests to another model
+  (beta). *(official)* [Anthropic](https://www.anthropic.com/news/claude-opus-5)
+- **Jul 28, 2026: MCP specification 2026-07-28 is final.** The core is now stateless:
+  the `initialize` handshake and `Mcp-Session-Id` are retired. `Mcp-Method` and
+  `Mcp-Name` headers let gateways route on the tool name without parsing the request
+  body. With MRTR, a tool can pause mid-call for user input (`input_required`).
+  `tools/list` responses can be cached (`ttlMs`). Long-running tasks moved to an
+  extension, and a formal extensions framework now exists. Dynamic Client Registration
+  is deprecated in favor of Client ID Metadata Documents, and Roots, Sampling and
+  Logging are deprecated. *(official)*
+  [MCP blog](https://blog.modelcontextprotocol.io/posts/2026-07-28/)
+- **Sep 1 – Oct 28, 2026: frontier generation turnover.** Releases in this window:
+  Claude Fable 5.1 (Sep 1), GPT-6 Astra (Sep 3), GPT-6 Sol/Luna and Claude Opus 5.5
+  (Sep 22), Claude Sonnet 5.5 (Sep 28), Gemini 4 Argon (announced Sep 30, GA Oct 13),
+  Claude Haiku 5.5 (Oct 7), Meta Muse Wonder (Oct 12) and Gemini 4 Carbon (Oct 28,
+  restricted access). Vendor launch tables now lead with *long-horizon agentic*
+  benchmarks such as Terminal-Bench 4.0, OSWorld 2.x and AutomationBench, not with
+  single-call function-calling scores. That is a sign the per-call mechanic is no
+  longer where vendors compete. *(official for Anthropic dates; inferred for others)*
+  [Anthropic news](https://www.anthropic.com/news),
+  [Claude models overview](https://platform.claude.com/docs/en/about-claude/models/overview)
+- **Sep 28, 2026: Claude Sonnet 5.5.** Early testers reported that it **batches more
+  tool calls per step** (fewer round-trips) and has fewer failed tool calls. A new
+  `between_tools` thinking setting replaces the option of turning thinking off.
+  *(official post; partner claims)*
+  [Anthropic](https://www.anthropic.com/news/claude-sonnet-5-5)
+- **As of Nov 2026: Anthropic's advanced tool-use features are all `stable`.**
+  - The **tool search tool** (regex and BM25 variants) handles up to 10,000 deferred
+    tools per request, and the docs say it typically cuts tool-definition tokens by
+    more than 85%.
+  - **Programmatic tool calling** is GA.
+  - **Structured outputs and strict tool use** are GA and enforced by constrained
+    decoding: the schema is compiled to a grammar, with a limit of 20 strict tools per
+    request.
+
+  The tool search docs state that selection accuracy "degrades once you exceed 30–50
+  available tools", which matches the many-tools chart below. *(official)*
+  [Tool search](https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-search-tool),
+  [Programmatic tool calling](https://platform.claude.com/docs/en/agents-and-tools/tool-use/programmatic-tool-calling),
+  [Structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)
+- **Oct 22, 2026: AAIF adds four projects at AGNTCon + MCPCon North America.** They
+  are **Agent Skills** (contributed by Anthropic), **Open Responses** (OpenAI),
+  **OpenEnv** (Hugging Face) and **OpenSandbox**.
+  - Open Responses is a vendor-neutral, Responses-style API spec. It models messages,
+    tool calls and reasoning as typed items and includes an acceptance suite for tool
+    calls. Vercel and Databricks implement it.
+  - Agent Skills (SKILL.md) packages instructions and scripts that an agent loads on
+    demand.
+
+  Reported adoption figures (around 280M skill installs) are unverified.
+  *(official listing; details inferred)*
+  [Anthropic news](https://www.anthropic.com/news),
+  [The New Stack](https://thenewstack.io/openai-donates-open-responses/),
+  [Simon Willison](https://simonwillison.net/2026/Oct/22/donating-agent-skills/)
+- **BFCL: no new official version was found.** Third-party aggregators still show the
+  top of BFCL v3 in the mid-to-high 70s (GLM 4.5 at about 76.7% as of Sep 29, 2026).
+  Their BFCL v4 tables conflict with one another. *(inferred)*
+  [PricePerToken](https://pricepertoken.com/leaderboards/benchmark/bfcl-v3),
+  [BenchLM](https://benchlm.ai/benchmarks/bfcl-v4)
+
+**Net effect:** the July roadmap items "constrained decoding becomes universal" and
+"the many-tools problem is addressed by retrieval + CodeAct" are now substantially
+confirmed at the frontier vendors. The open problems are still semantic correctness,
+error noticing and long-chain compounding, and none of this quarter's releases claims
+to have solved them.
 
 ---
 
@@ -159,7 +258,11 @@ scale. The mitigations, in order of sophistication:
   most relevant handful for the current query (using the same vector-search machinery as
   §07), and only expose those to the model. This is the single most effective mitigation
   and is now standard practice for large toolsets. It converts the many-tools problem
-  into a retrieval problem, which is better-understood.
+  into a retrieval problem, which is better-understood. *Nov 2026:* tool retrieval is
+  now a vendor-native API feature. Anthropic's tool search tool is `stable` and handles
+  up to 10,000 deferred tools per request, and OpenAI's Responses API offers
+  `tool_search` on GPT-5.4 and later. Teams no longer have to build their own tool
+  retrieval for the common case *(official / inferred)*.
 - **Namespacing and hierarchical selection.** Organize tools into groups/namespaces and
   have the model first pick a namespace, then a tool within it — a two-stage funnel that
   shrinks the discrimination problem at each stage. MCP's server structure naturally
@@ -197,11 +300,14 @@ of techniques of increasing strictness:
 - **Constrained decoding / grammar enforcement.** Constrain the model's token sampling
   so it is *structurally impossible* to emit invalid output — the decoder only allows
   tokens consistent with the schema/grammar. This is the strongest guarantee (the output
-  *cannot* be malformed) and is what OpenAI's "Structured Outputs" (strict JSON Schema
-  mode), and open-source libraries like Outlines, XGrammar, and llguidance, provide.
-  Available on many but not all model endpoints, and carries small quality/latency
-  trade-offs, but when available it eliminates the malformed-output failure class
-  entirely.
+  *cannot* be malformed). OpenAI's "Structured Outputs" (strict JSON Schema mode)
+  provides it, and so does Anthropic's structured outputs / strict tool use, which is
+  GA as of 2026: the schema is compiled to a grammar, with limits such as 20 strict
+  tools per request and no recursive schemas. Open-source libraries like Outlines,
+  XGrammar, and llguidance provide it too. It is available on most frontier and many
+  open-model endpoints, and it carries small quality/latency trade-offs (including
+  first-request grammar-compile time), but when available it eliminates the
+  malformed-output failure class entirely.
 
 The 2026 state of play: **structured output is essentially solved *when constrained
 decoding is available*, and well-mitigated (retry-loop) when it is not.** This is a
@@ -307,8 +413,11 @@ do (and don't) capture is essential to reading vendor claims:
   turn, multi-step** scenarios across realistic API suites (file system, travel, trading,
   vehicle control), judging success by the resulting *system state* rather than exact
   parameter match — a much more realistic bar. Top models cluster in the mid-to-high 70s
-  on BFCL v3 (GLM 4.5, Qwen3, and frontier models trade places), which tells you multi-
-  turn tool use is *good but not solved* even for the best models.
+  on BFCL v3 (GLM 4.5, Qwen3, and frontier models trade places). As of late September
+  2026, aggregators still showed GLM 4.5 at about 76.7% and Claude Opus 4.7 at about
+  76.6% at the top *(inferred)*. Multi-turn tool use is *good but not solved* even for
+  the best models. The newer BFCL v4 adds agentic categories, but third-party v4 tables
+  disagree with one another, so treat any single v4 "leader" claim with caution.
 - **τ-bench (tau-bench).** Tests **tool-agent-user interaction** in two domains, retail
   and airline, where the agent must use tools *and* follow domain policies while
   interacting with a simulated user. It is a harder, more agentic bar than pure function
@@ -316,9 +425,20 @@ do (and don't) capture is essential to reading vendor claims:
 - **τ²-bench (tau2-bench).** An evolution adding domains like telecom; headline numbers
   can be very high (90%+) on narrow domains, which *inflates* perceived capability —
   a caution about reading any single benchmark number as "tool use is solved."
+- **τ³-bench and τ-bench 2.0 (2026).** The same repository has since moved on twice.
+  τ³-bench (v1.0, patched to v1.0.1 on Jul 15, 2026) added a retrieval-heavy
+  `banking_knowledge` domain and full-duplex voice. τ-bench 2.0 adds six languages, a
+  voice mode in every language, and an `intake` entity-capture domain. Sierra states
+  that 2.0 scores are not comparable with the 1.x leaderboard *(official)*.
+  Third-party trackers report frontier models staying below about 56% on τ³ banking
+  knowledge, even as text τ²-domains pass 85% *(inferred)*. That gap is the
+  retrieval-plus-policy hard case this section predicts.
 
 The τ-bench results illustrate a crucial nuance — reliability is *task-dependent*, not a
-single number:
+single number. The chart below uses legacy τ-bench 1.x retail/airline figures for the
+2025–early-2026 model generation. The Claude 5.x / GPT-6 / Gemini 4 generation reports
+mainly on τ-bench 2.0 and other agentic suites, whose numbers cannot be dropped into
+the same axis, but the retail-versus-airline *pattern* is what matters here:
 
 ![τ-bench retail vs. airline by model](../assets/charts/04_taubench.png)
 
@@ -348,14 +468,16 @@ call.
 
 | Player | Category | Maturity | Role in the layer | Notable (confidence) | Differentiator | Competitors |
 |---|---|---|---|---|---|---|
-| **Anthropic (Claude)** | Model vendor | shipped-reliable | Native tool calling; strong τ-bench | Leads τ-bench multi-turn (official) | Reliable multi-turn tool use; MCP originator | OpenAI, Google |
-| **OpenAI** | Model vendor | shipped-reliable | Function calling + strict Structured Outputs | Structured Outputs strict mode (official) | Constrained-decoding JSON guarantee | Anthropic, Google |
-| **Google (Gemini)** | Model vendor | shipped-reliable | Function calling + Vertex tools | Strong tool use (official) | Deep Google/Vertex tool ecosystem | OpenAI, Anthropic |
-| **Open models (Qwen, GLM, Llama)** | Model vendor | shipped-reliable | Competitive BFCL scores | GLM 4.5 / Qwen3 lead BFCL v3 (inferred) | Open-weight tool use for self-hosting | Frontier vendors |
+| **Anthropic (Claude)** | Model vendor | shipped-reliable | Native tool calling; tool search, programmatic tool calling, strict tool use all GA | Fable 5.1 / Opus 5.5 / Sonnet 5.5 / Haiku 5.5 lineup, Nov 2026 (official) | Reliable multi-turn tool use; MCP and Agent Skills originator | OpenAI, Google |
+| **OpenAI** | Model vendor | shipped-reliable | Function calling + strict Structured Outputs; programmatic tool calling + tool_search (Responses API) | GPT-6 Astra / Sol / Luna (Sep 2026); Open Responses donated to AAIF (inferred) | Constrained-decoding JSON guarantee; Responses API as de facto agent API shape | Anthropic, Google |
+| **Google (Gemini)** | Model vendor | shipped-reliable | Function calling + Vertex tools | Gemini 4 Argon GA Oct 13, 2026; Carbon restricted (inferred) | Deep Google/Vertex tool ecosystem; long-horizon workflow focus | OpenAI, Anthropic |
+| **Open models (Qwen, GLM, DeepSeek, Kimi, Llama)** | Model vendor | shipped-reliable | Competitive BFCL scores | GLM 4.5 still tops BFCL v3 (~76.7%, Sep 2026); DeepSeek V4, Kimi K3.1 (inferred) | Open-weight tool use for self-hosting (note: Qwen3.7-Max flagship is closed-weight) | Frontier vendors |
 | **Instructor** | Structured-output lib | shipped-reliable | Validate + retry structured output | Widely used OSS (official) | Pythonic structured extraction | Pydantic AI, Outlines |
 | **Outlines** | Constrained decoding | shipped-reliable | Grammar-constrained generation | OSS constrained decoding (official) | Guarantees valid structure via decoding | XGrammar, llguidance |
 | **Pydantic AI** | Framework + validation | shipped-reliable | Type-safe tool calls + self-correction | Pydantic team (official) | Validation-first agent framework | Instructor, LangChain |
-| **MCP (Linux Foundation)** | Standard | shipped-reliable | Tool connection protocol | Backed by all majors (official) | The universal tool-connection wrapper | (none — de facto standard) |
+| **MCP (Linux Foundation / AAIF)** | Standard | shipped-reliable | Tool connection protocol | 2026-07-28 stateless spec final (official) | The universal tool-connection wrapper | (none — de facto standard) |
+| **Open Responses (AAIF)** | API spec | demoed-brittle | Vendor-neutral Responses-style request/tool-call format | Donated by OpenAI Oct 22, 2026; Vercel, Databricks implement (inferred) | Portable tool-call/reasoning item schema across providers | Vendor-native APIs |
+| **Agent Skills (AAIF)** | Packaging standard | shipped-reliable | SKILL.md bundles of instructions + scripts loaded on demand | Donated by Anthropic Oct 22, 2026 (official) | Progressive disclosure of procedures/tools without context bloat | MCP prompts, AGENTS.md |
 | **Composio** | Tool/integration platform | shipped-reliable | Managed tools + auth for 250+ apps | Agent tool provider (inferred) | Pre-built, authenticated tool integrations | Arcade, Pipedream |
 | **Arcade.dev** | Tool platform + auth | shipped-reliable | Tools with delegated auth (§13) | Auth-centric tool platform (inferred) | Tool calling with per-user OAuth | Composio, MCP servers |
 | **Pipedream / Zapier MCP** | Integration → MCP | shipped-reliable | Thousands of app connectors as tools | Huge connector catalog (official) | Breadth of pre-built integrations | Composio, native MCP |
@@ -363,8 +485,9 @@ call.
 | **XGrammar / llguidance** | Constrained decoding | shipped-reliable | Fast grammar-constrained inference | Inference-engine level (inferred) | High-performance structured decoding | Outlines |
 | **Jsonformer / others** | Structured output | demoed-brittle | Schema-constrained generation | OSS (inferred) | Lightweight JSON enforcement | Outlines |
 
-That is fourteen distinct players spanning models, libraries, standards, and tool
-platforms — comfortably past ten. The important structural observation: **the base
+That is sixteen distinct players spanning models, libraries, standards, and tool
+platforms — comfortably past ten. (The November 2026 update added Open Responses and
+Agent Skills, both now under AAIF governance.) The important structural observation: **the base
 capability (function calling) is a free model feature, so the independent value
 concentrates in three places** — constrained-decoding libraries (guaranteeing
 structure), MCP infrastructure (connecting tools), and tool/integration platforms
@@ -473,11 +596,19 @@ The advantages are real and address several of this section's hard problems at o
 The costs are equally real: **executing model-written code is a serious security and
 sandboxing problem** (§08/§09/§12) — you are running arbitrary generated code, which
 demands strong isolation — and debugging a failed code block is harder than debugging a
-single mis-argued tool call. Microsoft shipping CodeAct in the Agent Framework in 2026,
+single mis-argued tool call. Several developments show CodeAct moving from research
+into mainstream frameworks: Microsoft shipping CodeAct in the Agent Framework in 2026,
 Hugging Face's SmolAgents centering on it, and the pattern's spread through coding
-agents (which are natively code-writing anyway) signal that CodeAct is moving from
-research into mainstream frameworks — but it is gated on the sandboxing infrastructure
-maturing, which ties its adoption to the computer-use/coding execution layers.
+agents (which write code natively anyway). By November 2026 it had also become a
+*model-vendor API primitive*: Anthropic's **programmatic tool calling** (`stable`,
+running in its code-execution container) and OpenAI's **programmatic tool calling**
+in the Responses API (shipped with GPT-5.6 in July, running in an isolated runtime)
+both let the model write code that calls your tools and returns only a compact result.
+Anthropic's docs report an average 11% accuracy gain with 24% fewer input tokens on
+agentic search benchmarks *(official)*. Vendor-hosted sandboxes partly solve the
+sandboxing gate described here, at the cost of data residency (Anthropic's version is
+not ZDR-eligible). Adoption of self-hosted CodeAct is still tied to the
+computer-use/coding execution layers.
 
 The likely 2026–2027 equilibrium is **not** CodeAct replacing menu-style tool calling
 but the two coexisting: menu-style for simple, discrete, safety-sensitive actions
@@ -580,20 +711,37 @@ composed) round-trips as the task allows.
 
 - **Function calling remains a commoditized model feature** *(official; high
   confidence).* Every model ships it; it will keep improving on multi-turn and
-  multi-step benchmarks. No standards drama here.
+  multi-step benchmarks. No standards drama here. — *Nov 2026: confirmed; vendor
+  launch posts no longer headline function-calling scores at all.*
 - **Constrained decoding becomes universal** *(inferred; high confidence).* Structural
   output guarantees (strict schema modes) will be available on essentially every
-  endpoint, eliminating malformed-output failures as a class.
+  endpoint, eliminating malformed-output failures as a class. — *Nov 2026: largely
+  confirmed at the frontier; Anthropic structured outputs and strict tool use are GA,
+  joining OpenAI's strict mode. Schema-feature limits (recursion, numeric constraints)
+  remain.*
 - **The many-tools problem is addressed by retrieval + CodeAct** *(inferred; medium-high
   confidence).* Tool retrieval and code-writing agents together make large toolsets
-  tractable; "cram all tools in the prompt" fades.
+  tractable; "cram all tools in the prompt" fades. — *Nov 2026: confirmed and
+  productized; tool search and programmatic tool calling are vendor-native at
+  Anthropic and OpenAI.*
 - **Tool/integration platforms consolidate around MCP + auth** *(inferred; medium
   confidence).* Composio/Arcade/Pipedream-style platforms grow as the supply of
   ready, authenticated tools becomes the real bottleneck — and merge with the identity
-  layer (§13).
+  layer (§13). — *Nov 2026: not yet resolved; no major consolidation verified this
+  quarter.*
 - **Error recovery gets framework-level support** *(speculative; medium confidence).*
   Robust retry/repair/verify patterns move from hand-rolled into framework defaults, as
-  durability did in orchestration.
+  durability did in orchestration. — *Nov 2026: partly; MCP's MRTR (`input_required`)
+  and tasks extension standardize pause/resume, but semantic-failure detection is
+  still hand-rolled.*
+- **(New, Nov 2026) The API surface itself standardizes** *(inferred; medium
+  confidence).* With Open Responses under AAIF and MCP stateless, expect multi-provider
+  gateways to converge on a single tool-call item schema. Watch whether Anthropic and
+  Google implement Open Responses natively; reports conflict as of November.
+- **(New, Nov 2026) Tool-use evaluation moves to multilingual, voice and
+  knowledge-heavy settings** *(official trend; medium-high confidence).* τ-bench 2.0
+  and τ³ banking knowledge show the next reliability gap is retrieval plus policy plus
+  voice, not single-call accuracy.
 
 ---
 
@@ -614,7 +762,11 @@ The patterns that have emerged:
   notifies the agent (resumes it) when the job finishes — which requires the durable,
   interruptible orchestration of §02 (the graph pauses and resumes on the callback).
   This is where checkpointed state pays off directly: a long-running tool is just
-  another reason the run must survive being paused.
+  another reason the run must survive being paused. *Nov 2026:* the MCP 2026-07-28
+  spec moved long-running **tasks** into a formal extension (`tasks/get`,
+  `tasks/update`). It also added MRTR, which lets a tool pause mid-call and return
+  `input_required` when it needs a user confirmation or a missing parameter. Both
+  standardize patterns that were previously bespoke *(official)*.
 - **Fire-and-forget with later reconciliation.** For tools whose result the agent
   doesn't need immediately, dispatch and move on, reconciling the outcome later.
 
@@ -713,5 +865,30 @@ that cannot (memory, security) remain bottlenecks regardless of model progress.
   both need a durable, resumable runtime — and you cannot improve tool reliability you
   cannot see, so per-tool, per-argument, and failure-recovery observability (§11) is
   the highest-leverage investment for operating this otherwise-mature layer well.
+- **Nov 2026:** tool search, programmatic (code-based) tool calling and
+  constrained-decoding structured outputs are now GA, vendor-native features. MCP went
+  stateless (2026-07-28), and Open Responses and Agent Skills joined MCP under AAIF.
+  The edges (semantic failure, error noticing, chain compounding) are still the open
+  problems.
 
-*Word count target: 6,500. This section: ~6,550 (verified via `wc`).*
+*Word count target: 6,500. This section: ~8,300 (verified via `wc`, including the November 2026 update).*
+
+## Sources (November 2026 update)
+
+- https://www.anthropic.com/news
+- https://www.anthropic.com/news/claude-opus-5
+- https://www.anthropic.com/news/claude-opus-5-5
+- https://www.anthropic.com/news/claude-sonnet-5-5
+- https://platform.claude.com/docs/en/about-claude/models/overview
+- https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-search-tool
+- https://platform.claude.com/docs/en/agents-and-tools/tool-use/programmatic-tool-calling
+- https://platform.claude.com/docs/en/build-with-claude/structured-outputs
+- https://blog.modelcontextprotocol.io/posts/2026-07-28/
+- https://github.com/sierra-research/tau2-bench
+- https://axios.com/2026/07/09/ai-openai-gpt-release
+- https://apidog.com/blog/gpt-5-6-programmatic-tool-calling/
+- https://thenewstack.io/openai-donates-open-responses/
+- https://simonwillison.net/2026/Oct/22/donating-agent-skills/
+- https://pricepertoken.com/leaderboards/benchmark/bfcl-v3
+- https://benchlm.ai/benchmarks/bfcl-v4
+- https://techcrunch.com/2026/09/30/google-releases-gemini-4-argon-called-its-most-powerful-model-yet/
