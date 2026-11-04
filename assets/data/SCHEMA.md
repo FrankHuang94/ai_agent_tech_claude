@@ -10,7 +10,7 @@
 | `company` | Organization or product name. Product name preferred when it differs materially from the parent org (e.g. `LangGraph` under `LangChain`). | Free text |
 | `category` | Primary technical category, matching a section. | One of the 15 category slugs below |
 | `maturity` | Delivery maturity of the flagship agent capability. | `shipped-reliable`, `demoed-brittle`, `research-only` |
-| `funding_stage` | Most recent known financing stage of the company. | `bootstrapped`, `seed`, `series-a`, `series-b`, `series-c`, `series-d+`, `public`, `subsidiary`, `open-source-project`, `research-lab`, `unknown` |
+| `funding_stage` | Most recent known financing stage of the company. | `bootstrapped`, `seed`, `series-a`, `series-b`, `series-c`, `series-d+`, `public`, `subsidiary`, `open-source-project`, `research-lab`, `unknown` (some legacy rows also use `series-e`, `series-e+`, `series-f`) |
 | `key_backers` | Notable investors, parent company, or institutional home. | Semicolon-separated |
 | `differentiator` | One-line distinguishing angle. | Free text |
 | `main_competitors` | Closest 2–4 competitors. | Semicolon-separated |
