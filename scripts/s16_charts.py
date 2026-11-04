@@ -36,13 +36,13 @@ ax.grid(axis="x"); ax.grid(axis="y", visible=False)
 ax.set_title(f"Master database: {len(df)} entities across 15 categories", loc="left", pad=24)
 ax.text(0, 1.02, "Company count by primary category (deduplicated). Dense categories = active, contested markets.",
         transform=ax.transAxes, fontsize=9.6, color=MUTED)
-fig.text(0.01, 0.005, "Source: this document's master competitive database, July 2026.", fontsize=8, color=MUTED)
+fig.text(0.01, 0.005, "Source: this document's master competitive database, November 2026.", fontsize=8, color=MUTED)
 save(fig, os.path.join(OUT, "16_count_by_category.png"))
 
 # --- Chart 2: funding stage distribution ---
-stage_order = ["seed","series-a","series-b","series-c","series-d+","series-e+","series-f","public","subsidiary","open-source-project","research-lab","bootstrapped","unknown"]
+stage_order = ["seed","series-a","series-b","series-c","series-d+","series-e","series-e+","series-f","public","subsidiary","open-source-project","research-lab","bootstrapped","unknown"]
 stage_label = {"seed":"Seed","series-a":"Series A","series-b":"Series B","series-c":"Series C",
-    "series-d+":"Series D+","series-e+":"Series E+","series-f":"Series F","public":"Public",
+    "series-d+":"Series D+","series-e":"Series E","series-e+":"Series E+","series-f":"Series F","public":"Public",
     "subsidiary":"Big-tech subsidiary","open-source-project":"OSS / standard","research-lab":"Research lab",
     "bootstrapped":"Bootstrapped","unknown":"Unknown"}
 sc = df["funding_stage"].value_counts()
@@ -62,6 +62,6 @@ ax.set_xticklabels([stage_label[s] for s in sc.index], rotation=35, ha="right", 
 ax.set_title("Master database: funding-stage distribution", loc="left", pad=24)
 ax.text(0, 1.02, "Blue = independent startup stages · grey = big-tech (public/subsidiary) · green = OSS/standard/lab",
         transform=ax.transAxes, fontsize=9.3, color=MUTED)
-fig.text(0.01, 0.005, "Source: this document's master competitive database, July 2026 (stages inferred where unconfirmed).",
+fig.text(0.01, 0.005, "Source: this document's master competitive database, November 2026 (stages inferred where unconfirmed).",
          fontsize=8, color=MUTED)
 save(fig, os.path.join(OUT, "16_funding_distribution.png"))

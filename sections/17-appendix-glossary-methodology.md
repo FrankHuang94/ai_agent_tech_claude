@@ -1,7 +1,7 @@
 # 17 — Appendix: Glossary and Methodology
 
 *Terms of art used throughout, and the confidence/maturity methodology that governs every claim in
-this document. Target: 3,000 words.*
+this document. Target: 3,000 words. Updated November 2026.*
 
 ---
 
@@ -89,7 +89,15 @@ A few notes on how this document was built, for the reader's calibration:
 
 - **Sources.** The analysis draws on official vendor documentation and announcements, published
   research, industry press, and current web search (the field moves monthly, so July 2026 data was
-  gathered throughout rather than relying on any static snapshot). Where sources conflicted (common for
+  gathered throughout rather than relying on any static snapshot).
+- **November 2026 update.** The July 22, 2026 snapshot was refreshed in November 2026. Each of §02–§15
+  gained a dated "What changed since July 2026" log and a closing "Sources (November 2026 update)" list
+  of URLs; outdated claims were revised in place, roadmap items were annotated with how they resolved,
+  and the master database was rebuilt (149 → 178 entities). Many vendor and standards-body sites could
+  not be fetched directly during the update, so a larger share of new claims rest on search-result
+  summaries and secondary press; those are tagged `inferred` (or `speculative`) per the procedure above
+  rather than `official`. Treat November 2026 figures — especially funding, acquisition prices, and
+  vendor-reported benchmark scores — with that in mind. Where sources conflicted (common for
   benchmark numbers and funding figures), the document notes the uncertainty rather than picking a
   false precision.
 - **Quantitative figures are directional.** Benchmark scores, funding amounts, adoption counts, and
@@ -173,9 +181,12 @@ Terms of art used throughout, defined concisely. Organized roughly by the layer 
 
 | Term | Definition |
 |---|---|
-| **MCP (Model Context Protocol)** | The won standard for connecting agents to tools, data resources, and prompts (client-server, JSON-RPC-based). Governed by the Linux Foundation. |
-| **A2A (Agent2Agent)** | The leading standard for agent-to-agent communication — capability discovery (Agent Cards), task delegation, result exchange. Linux Foundation governed. |
-| **ACP (Agent Communication Protocol)** | The AGNTCY alternative to A2A, mapping agent interactions onto REST/HTTP verbs. (Distinct from OpenAI+Stripe's "Agentic Commerce Protocol" — a name collision.) |
+| **MCP (Model Context Protocol)** | The won standard for connecting agents to tools, data resources, and prompts (client-server, JSON-RPC-based). Governed by the Linux Foundation's Agentic AI Foundation; spec revision `2026-07-28` made the core stateless and moved long-running Tasks into an extension. |
+| **A2A (Agent2Agent)** | The leading standard for agent-to-agent communication — capability discovery (Agent Cards), task delegation, result exchange. v1.0 since March 2026; a hosted project of the Agentic AI Foundation since August 2026. |
+| **ACP (Agent Communication Protocol)** | IBM-originated REST-style agent messaging protocol that **merged into A2A in August 2025** (the July 2026 snapshot wrongly described it as a live AGNTCY alternative). Distinct from OpenAI+Stripe's "Agentic Commerce Protocol" — a name collision. |
+| **AGNTCY / OASF** | Cisco-initiated Linux Foundation project providing an agent schema (OASF) and secure messaging transport (SLIM) that complements, rather than competes with, A2A. |
+| **Agentic AI Foundation (AAIF)** | Linux Foundation directed fund (launched December 2025) that hosts MCP, A2A, AGENTS.md, goose, Agent Skills, Open Responses and other agent-interop projects; 300+ members by October 2026. |
+| **AGENTS.md / Agent Skills** | Repository-level instruction files for coding agents (AGENTS.md) and portable packages of instructions and scripts loaded on demand (Agent Skills, `SKILL.md`); both AAIF projects. |
 | **Agent Card** | A machine-readable document by which an A2A agent advertises its capabilities, endpoint, and auth requirements — the discovery primitive. |
 | **Coordination failure modes** | The distributed-systems failures reincarnated for agents — dropped/duplicated tasks, error cascade, deadlock, telephone-game drift, context fragmentation. |
 
@@ -190,12 +201,16 @@ Terms of art used throughout, defined concisely. Organized roughly by the layer 
 | **Least privilege / scoping** | Granting an agent exactly the permissions its task needs and no more — the load-bearing security defense, because it limits a hijacked agent's blast radius. |
 | **On-behalf-of (OBO)** | A delegation pattern where an agent acts with a specific human's (scoped) authority for a task — the default for copilots. Contrast: *autonomous* (standing agent identity). |
 | **Delegated / scoped credentials** | Short-lived, minimally-scoped, revocable authorization (via OAuth 2.1) that lets an agent act for a user without holding full credentials. |
+| **Agentic payments protocols** | AP2 (signed spend mandates; FIDO Alliance), ACP (Agentic Commerce Protocol; OpenAI+Stripe), UCP (Google's Universal Commerce Protocol) and x402 (HTTP-402 stablecoin micropayments; x402 Foundation) — layering rather than consolidating as of November 2026. |
 | **Sandboxing** | Running an agent (especially code-execution or computer-use) in an isolated, disposable environment so compromise or error is contained. |
 
 ### Vertical and application terms
 
 | Term | Definition |
 |---|---|
+| **Tool search / programmatic tool calling** | Two 2026-GA remedies for the many-tool problem: the model searches a large tool catalog and loads only relevant definitions, or writes code that calls tools in a sandbox instead of one JSON call per step. |
+| **Full-duplex speech-to-speech** | Voice models that listen and speak simultaneously (handling interruptions and back-channels natively) rather than turn-taking; reached public APIs in September 2026. |
+| **Benchmark saturation** | When top systems cluster near a benchmark's ceiling (e.g. SWE-bench Verified at ~95–97% in 2026) so it no longer separates them; the field then moves to harder suites (Terminal-Bench 4.0, OSWorld long-horizon). |
 | **Computer-use agent** | An agent that operates a computer via screen (screenshots) and mouse/keyboard, like a human — general but brittle, especially long-horizon. |
 | **Grounding (computer-use)** | Connecting a described intention ("click submit") to a precise screen target (coordinates/element) — a hard sub-problem addressed by set-of-marks, screen-parsing, or DOM targeting. |
 | **Coding agent** | An agent that autonomously writes, tests, and iterates on code — the most mature vertical, because tests are a cheap verifier. |
@@ -214,7 +229,7 @@ Terms of art used throughout, defined concisely. Organized roughly by the layer 
 | **System of record vs. system of action** | The incumbents own the databases of truth (systems of record — CRM, ERP); the strategic contest is who owns the new *system of action* (the agent layer that acts across them). |
 | **Build vs. buy** | The central enterprise decision — build custom agents on frameworks (control/portability) vs. buy a platform (speed/governance); the answer often changes at scale as consumption costs bite. |
 | **Agent washing** | Rebranding existing automation or simple chatbots as "AI agents" — rampant marketing noise that makes genuine agentic capability hard to identify. |
-| **Non-human identity (NHI)** | Machine/agent identities (as opposed to human ones); agents multiply these dramatically, creating a governance-at-scale challenge (provisioning, scoping, deprovisioning, ownership). |
+| **Non-human identity (NHI)** | Machine/agent identities (as opposed to human ones); agents multiply these dramatically, creating a governance-at-scale challenge (provisioning, scoping, deprovisioning, ownership). The 2026 acquisition wave (CyberArk→Palo Alto, SGNL→CrowdStrike, Entro→SailPoint, Oasis→Cyera, Permiso→Okta) folded NHI security into agent identity. |
 
 ### Evaluation terms
 
@@ -252,13 +267,15 @@ Five threads recur across the sections and are collected here for reference:
 
 ## Document metadata
 
-- **Generation date:** 2026-07-22
+- **Generation date:** 2026-07-22 (original snapshot)
+- **Last updated:** 2026-11-04 (November 2026 update across all sections)
 - **Scope:** 15 technical categories + executive summary + master database + this appendix (17 files)
-- **Total length:** 100,000+ words across all section files
-- **Master database:** 149 deduplicated entities across 15 categories (exported CSV)
+- **Total length:** ~130,000 words across all section files (English)
+- **Master database:** 178 deduplicated entities across 15 categories (exported CSV)
 - **Charts:** generated via matplotlib from data in `assets/data/`, regenerable via `scripts/`
 - **Diagrams:** Mermaid, rendered natively by GitHub
-- **Caveat:** a July 2026 snapshot of a monthly-moving field; competitive specifics (funding,
+- **Translation:** a Simplified Chinese reference translation lives in `zh-CN/` (reference only; the English text is authoritative)
+- **Caveat:** a November 2026 snapshot of a monthly-moving field; competitive specifics (funding,
   ownership, benchmark numbers) age fastest, the categorical structure ages slowest.
 
-*Word count target: 3,000. This section: ~3,000 (verified via `wc`).*
+*Word count target: 3,000. This section: ~3,500 (verified via `wc`).*

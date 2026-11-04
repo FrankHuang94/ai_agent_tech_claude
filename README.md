@@ -3,7 +3,7 @@
 A structured technical and competitive reference on the core technologies behind
 autonomous AI agents: the architecture layers, the engineering challenges at each
 layer, the roadmap direction, and the competitive/standards landscape as of
-**July 2026**.
+**November 2026** (updated from the original July 2026 snapshot).
 
 This is an **internal technical reference**, not a product roadmap or a single
 company's strategy document. It is organized as one Markdown file per technical
@@ -11,11 +11,31 @@ category, backed by generated charts (matplotlib) and native GitHub-rendered
 Mermaid diagrams. Every competitive claim is tagged with a confidence level and a
 delivery-maturity label (see [methodology](sections/17-appendix-glossary-methodology.md)).
 
-> **Generation date:** 2026-07-22
+> **Generation date:** 2026-07-22 (original snapshot) · **Last updated:** 2026-11-04
 > **Scope:** 15 technical categories + executive summary + master database + appendix (17 files)
-> **Total length:** ~104,000 words across all section files
-> **Master database:** 149 deduplicated companies/entities across 15 categories ([CSV](assets/data/master_competitive_database.csv))
-> **Visuals:** 33 generated charts + native Mermaid diagrams in every section
+> **Total length:** ~130,000 words across all section files
+> **Master database:** 178 deduplicated companies/entities across 15 categories ([CSV](assets/data/master_competitive_database.csv))
+> **Visuals:** 34 generated charts + native Mermaid diagrams in every section
+> **中文版 (Chinese):** a Simplified Chinese reference translation is in [`zh-CN/`](zh-CN/README.md) — 仅供参考，以英文原文为准
+
+---
+
+## November 2026 update
+
+Every section was refreshed with developments from late July to early November 2026. Each of
+§02–§15 now opens with a dated, source-linked **"What changed since July 2026"** log and closes with a
+**"Sources (November 2026 update)"** list; outdated claims were revised in place, competitive tables
+and roadmaps were updated, affected charts were regenerated, and the master database grew from 149 to
+178 entities. Headlines (details and confidence tags in §01):
+
+- A new frontier-model generation (Claude 5.x, GPT-6, Gemini 4) made reasoning always-on; SWE-bench
+  Verified saturated (~95–97%) and is giving way to harder suites such as Terminal-Bench 4.0.
+- MCP's `2026-07-28` spec made the protocol stateless, and A2A joined MCP in the Linux Foundation's
+  Agentic AI Foundation (August 2026). Correction: IBM's ACP had already merged into A2A in 2025.
+- Consolidation hit the scaffolding layers: SpaceX bought Cursor ($60B), Microsoft archived AutoGen,
+  and eval/observability, agent-security and non-human-identity startups were acquired by data,
+  security and identity incumbents and by model labs.
+- Prompt injection, evaluation and long-horizon planning remain the top three places agents break.
 
 ---
 
@@ -52,7 +72,7 @@ Roadmap and capability claims additionally carry a **confidence level**:
 | 13 | [Agent Identity and Authentication](sections/13-agent-identity-authentication.md) | OAuth-for-agents, delegated credentials, agentic payments |
 | 14 | [Enterprise Agent Platforms](sections/14-enterprise-agent-platforms.md) | Agentforce, Copilot Studio, ServiceNow, vertical platforms |
 | 15 | [Standards and Interoperability](sections/15-standards-interoperability.md) | MCP/A2A status, consolidation path, historical analogues |
-| 16 | [Master Competitive Database](sections/16-master-competitive-database.md) | Consolidated 100+ company table; CSV export; summary charts |
+| 16 | [Master Competitive Database](sections/16-master-competitive-database.md) | Consolidated 178-entity table; CSV export; summary charts |
 | 17 | [Appendix: Glossary and Methodology](sections/17-appendix-glossary-methodology.md) | Terms; confidence-level methodology |
 
 ---
@@ -63,6 +83,7 @@ Roadmap and capability claims additionally carry a **confidence level**:
 .
 ├── README.md                     # this file
 ├── sections/                     # one markdown file per section (01–17)
+├── zh-CN/                        # Simplified Chinese reference translation (README + sections/)
 ├── assets/
 │   ├── charts/                   # generated chart images (PNG) referenced by sections
 │   └── data/                     # CSV/JSON backing each chart + master database
@@ -84,7 +105,12 @@ python3 scripts/<section>_charts.py
 
 ## Caveats
 
-This is a fast-moving field; competitive data is a **July 2026 snapshot** and will
-age. Funding stages, adopter lists, and standards status change monthly. Where a
+This is a fast-moving field; competitive data is a **November 2026 snapshot** (refreshing the
+original July 2026 snapshot) and will age. Funding stages, adopter lists, and standards status change monthly. Where a
 claim could not be verified to an official source, it is tagged `inferred` or
-`speculative` and should be treated accordingly.
+`speculative` and should be treated accordingly. During the November 2026 update many primary sites
+could not be fetched directly, so a larger share of new claims rest on secondary reporting and carry
+the `inferred` tag.
+
+The Simplified Chinese translation in `zh-CN/` is provided for reference only; where it differs from
+the English text, the English text is authoritative. Charts are not translated.

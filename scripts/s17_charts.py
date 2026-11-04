@@ -31,5 +31,5 @@ ax.legend(title="Source confidence", loc="upper right")
 ax.set_title("How the master database's claims are labeled", loc="left", pad=24)
 ax.text(0, 1.02, "Maturity of the product (x) split by source confidence of the claim (color). Most claims are official & shipped.",
         transform=ax.transAxes, fontsize=9.4, color=MUTED)
-fig.text(0.01, 0.005, "Source: this document's master competitive database, July 2026.", fontsize=8, color=MUTED)
+fig.text(0.01, 0.005, "Source: this document's master competitive database, November 2026.", fontsize=8, color=MUTED)
 save(fig, os.path.join(OUT, "17_confidence_maturity.png"))

@@ -313,7 +313,7 @@ defending its turf by adding agents.
 | **AWS Bedrock AgentCore** | Amazon | shipped-reliable | Model-agnostic runtime | Harness GA, runtime instances, Jun 2026 (official) | Build-your-own on AWS, any model | Google, Azure |
 | **OpenAI Frontier** *(new)* | OpenAI | demoed-brittle | Model-vendor agent platform | Launched Feb 2026, limited availability (official) | Frontier-model vendor owning the agent layer | Google, AWS, Microsoft |
 | **Workday Illuminate / Sana** | Workday | shipped-reliable | HR / finance | Sana as front door; ships into Copilot, Gemini, Claude, Oct 2026 (official) | HR/finance-data-native | SAP, Microsoft |
-| **IBM watsonx Orchestrate** | IBM | shipped-reliable | Enterprise multi-agent | ACP-native (official) | Enterprise orchestration + governance | ServiceNow, Microsoft |
+| **IBM watsonx Orchestrate** | IBM | shipped-reliable | Enterprise multi-agent | IBM ACP merged into A2A (Aug 2025); A2A-compatible (official) | Enterprise orchestration + governance | ServiceNow, Microsoft |
 | **UiPath Agentic Automation** | UiPath | shipped-reliable | Back-office / RPA+agents | RPA install base (official) | Agent + deterministic RPA execution | Automation Anywhere, MS |
 | **Kore.ai** | Kore.ai | shipped-reliable | CX / conversational | Enterprise CX agents (inferred) | Vendor-neutral CX agent platform | Agentforce, Sierra |
 | **Atlassian Rovo** | Atlassian | shipped-reliable | Dev/collaboration | Rovo agents (official) | Agents across Atlassian tools | Microsoft, Glean |
