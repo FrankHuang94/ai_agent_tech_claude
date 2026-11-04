@@ -27,7 +27,7 @@ ax.set_title("Agent eval/observability platform capabilities", loc="left", pad=2
 ax.text(0, 1.05, "The category is converging on unified trace + eval + monitoring; differentiation is self-host and guardrails",
         transform=ax.transAxes, fontsize=9.3, color=MUTED)
 ax.grid(False)
-fig.text(0.01, 0.005, "Source: vendor docs, July 2026 (existence official; ratings analyst judgment).", fontsize=8, color=MUTED)
+fig.text(0.01, 0.005, "Source: vendor docs, July 2026; ownership updated Nov 2026 (Langfuse→ClickHouse, Galileo→Cisco/Splunk). Existence official; ratings analyst judgment.", fontsize=8, color=MUTED)
 save(fig, os.path.join(OUT, "11_platform_capabilities.png"))
 
 # --- Chart 2: eval methods cost vs signal ---

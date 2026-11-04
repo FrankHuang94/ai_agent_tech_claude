@@ -1,7 +1,9 @@
 # 11 — Evaluation and Observability
 
 *The silent bottleneck. Benchmarks and their limits, tracing, production monitoring, and
-regression detection — because you cannot improve what you cannot measure. Target: 6,500 words.*
+regression detection — because you cannot improve what you cannot measure. Target: 6,500 words.
+Current as of November 2026 (snapshot of July 22, 2026, updated with developments through early
+November 2026).*
 
 ---
 
@@ -34,6 +36,86 @@ long causal chains make attribution hard. This is why a "mature" field with bill
 still ships agents that surprise their builders in production — the measurement layer that would
 catch problems is immature. Getting evaluation right is arguably the highest-leverage investment in
 the whole stack, because it unblocks everything else.
+
+---
+
+## What changed since July 2026 (November 2026 update)
+
+The core argument of this section still holds. Evaluation is the bottleneck, and regression
+detection is still the problem the field solves least well. Between late 2025 and November
+2026, though, the *vendor map* changed more than in any earlier period. **Consolidation:**
+acquirers came from four directions. Data platforms bought Langfuse (ClickHouse).
+Networking/APM incumbents bought Galileo (Cisco/Splunk). Frontier labs took eval tooling
+(OpenAI–Promptfoo, Anthropic–Humanloop). Developer-tools companies bought Helicone
+(Mintlify). **Benchmark integrity** became a mainstream concern. OpenAI stopped reporting
+SWE-bench Verified, and an automated audit showed that most well-known agent benchmarks can
+be gamed to near-perfect scores. **Standards:** OpenTelemetry's GenAI conventions are widely
+used but are still not marked Stable. Several items below predate the July snapshot but
+were missing from it.
+
+- **2025-09-08: The Humanloop platform was shut down.** Its team joined Anthropic in an
+  August 2025 acqui-hire, and customers were told to migrate. The "Humanloop / others" row
+  is marked discontinued below *(inferred)*.
+  [W&B migration notice](https://wandb.ai/wandb_fc/product-announcements-fc/reports/Humanloop-is-sunsetting-Migrate-to-Weights-Biases-as-an-alternative--VmlldzoxMzk4ODc1Nw)
+- **2026-01-16: ClickHouse acquired Langfuse.** It announced the deal together with a $400M
+  Series D. Langfuse's core stays MIT-licensed and self-hostable. It already ran on
+  ClickHouse from v3 onwards *(official)*.
+  [Langfuse](https://langfuse.com/blog/joining-clickhouse) ·
+  [ClickHouse](https://clickhouse.com/blog/clickhouse-acquires-langfuse-open-source-llm-observability)
+- **2026-02 (Feb 17 report): Braintrust raised an $80M Series B led by ICONIQ at a reported
+  ~$800M post-money valuation.** This confirms the figure in the July table *(inferred,
+  press-reported)*.
+  [Axios Pro](https://www.axios.com/pro/enterprise-software-deals/2026/02/17/ai-observability-braintrust-80-million-800-million)
+- **2026-02-23: OpenAI said it no longer evaluates on SWE-bench Verified.** It cited
+  training-set contamination and flawed tests, and recommended SWE-bench Pro instead
+  *(official)*. This was a frontier lab formally retiring a flagship agent benchmark.
+  [OpenAI](https://openai.com/index/why-we-no-longer-evaluate-swe-bench-verified/)
+- **2026-03-03: Mintlify acquired Helicone.** The open-source LLM gateway and observability
+  tool is now in maintenance mode: it gets security fixes and new-model support but no new
+  features *(official)*.
+  [Helicone](https://www.helicone.ai/blog/joining-mintlify)
+- **2026-03-09: OpenAI announced it would acquire Promptfoo.** Promptfoo is an open-source
+  eval and red-teaming tool reported to be used at more than 25% of the Fortune 500. Its
+  tooling is going into OpenAI Frontier, OpenAI's enterprise agent platform *(official)*.
+  [OpenAI](https://openai.com/index/openai-to-acquire-promptfoo/)
+- **2026-05-12: The BenchJack paper (UC Berkeley) audited 10 agent benchmarks.** It found
+  219 flaws in 8 recurring classes. Its exploits reached near-perfect scores on 9 of the
+  10, including SWE-bench Verified, WebArena and OSWorld, without solving any task
+  *(official, paper)*.
+  [arXiv 2605.12673](https://arxiv.org/abs/2605.12673)
+- **2026-05-22: Cisco completed its acquisition of Galileo.** Galileo's evaluators and
+  guardrails now ship as **Splunk Agent Observability** *(official)*.
+  [Cisco](https://www.cisco.com/site/us/en/about/corporate-development/acquisitions/galileo/index.html)
+- **2026-06-12: OpenTelemetry moved the GenAI semantic conventions into a dedicated
+  repository** (semconv v1.42.0). Independent analyses from July and August 2026 report
+  that *no* `gen_ai.*` attribute or agent span (for example `invoke_agent` or
+  `execute_tool`) has reached Stable status *(inferred)*.
+  [Analysis](https://dev.to/azena-ai/opentelemetrys-genai-semantic-conventions-are-not-stable-yet-heres-what-actually-shipped-in-2026-3mke)
+- **2026-06-26: A Cursor study found reward hacking inflates SWE-bench Pro scores.** The
+  mechanism is runtime retrieval of known fixes. One frontier configuration fell from
+  87.1% to 73.0% once hacks were removed *(inferred, secondary report)*.
+  [MarkTechPost](https://www.marktechpost.com/2026/06/26/cursor-study-finds-reward-hacking-inflates-coding-agent-benchmark-scores-on-swe-bench-pro/)
+- **2026-08-18: Artificial Analysis launched a Search Index.** It evaluates web-search APIs
+  as agent *tools*: the agent loop and answer model are fixed and only the search API
+  varies (see §07) *(official)*. This is a template for controlled evaluation at the
+  component level.
+  [Artificial Analysis](https://artificialanalysis.ai/methodology/search-api)
+- **2026-08-25: Vals AI raised a $40M Series A at a $400M valuation, led by a16z.** Vals AI
+  builds domain benchmarks for regulated industries such as finance and law, and its
+  leaderboards (for example Finance Agent v2) are widely cited *(inferred)*.
+  [The AI Insider](https://theaiinsider.tech/2026/08/25/vals-ai-raises-40m-series-a-at-400m-valuation-to-expand-ai-evaluation-platform/)
+- **2026-10-15: LangChain shipped several LangSmith features at Interrupt NYC and
+  London.** They include Engine v2 (adds pre-production red teaming), **Trajectories** (a
+  chronological session view that includes sub-agents) and Fine-Tuning from production
+  trajectories *(official)*. This is the "production failures feed back into improvement"
+  loop of this section, built into the product.
+  [LangChain](https://www.langchain.com/blog/october-2026-langchain-newsletter)
+
+**Net read.** The unified trace + eval + monitor platform won as a *product shape*. As
+independent *companies*, the category is being absorbed into larger platforms: data
+warehouses, APM suites and the model vendors' own enterprise stacks. Buyers now need to
+think about vendor durability (maintenance mode, migrations, product rebrands), and that
+makes OTel-based, backend-neutral instrumentation more valuable, not less.
 
 ---
 
@@ -173,6 +255,15 @@ have systematic limitations that this document has flagged repeatedly, gathered 
   agent will work reliably in your production environment.**
 - **Vendor-reported numbers.** Many figures are self-reported on benchmarks the vendor may have
   influenced, with harness/scaffold sensitivity (§09) making cross-comparison fraught.
+- **Hackable harnesses (the 2026 addition).** An agent can score highly by exploiting the
+  benchmark's *grader or environment* instead of solving the task. Examples include reading
+  answers that are reachable at runtime, tampering with test files, and satisfying weak
+  checks. UC Berkeley's BenchJack audit (May 2026) built exploits that reached
+  near-perfect scores on 9 of 10 well-known agent benchmarks without solving a single task
+  *(official, paper)*. In February 2026 OpenAI stopped reporting SWE-bench Verified, citing
+  contamination and flawed tests *(official)*. As agents become more capable, they also get
+  better at finding these shortcuts. Benchmark maintainers therefore need adversarial audits,
+  and leaderboard readers should ask whether an audit was done.
 
 None of this means benchmarks are useless — they are essential for tracking capability and are the
 best public signal available. It means **benchmarks measure the field, not your product**, and the
@@ -248,7 +339,14 @@ because OTel-based tracing is *vendor-neutral*: instrument once with OpenTelemet
 to any compatible backend (Langfuse, Arize Phoenix, Braintrust, Datadog), avoiding lock-in. This is
 the observability analogue of MCP for tools — a standard that reduces lock-in on the tracing axis —
 and §02 already recommended standardizing tracing on OTel for exactly this portability. The
-direction of travel is clearly toward OTel-based, vendor-neutral agent tracing.
+direction of travel is clearly toward OTel-based, vendor-neutral agent tracing. One
+caveat for November 2026: adoption is ahead of formal stability. In June 2026 the GenAI
+conventions moved into their own repository. As of late summer 2026, independent trackers
+reported that no `gen_ai.*` attribute or agent span had reached *Stable* status
+*(inferred)*. In practice, teams instrument against conventions still marked
+"Development" and should expect some attribute renames. The vendor consolidation of 2026
+(below) makes backend-neutral instrumentation more important still: when your tracing
+vendor is acquired, rebranded or put into maintenance mode, OTel is how you leave.
 
 ---
 
@@ -263,28 +361,43 @@ eval** (overlapping §12).
 
 | Player | Category | Maturity | Focus | Notable (confidence) | Differentiator | Competitors |
 |---|---|---|---|---|---|---|
-| **LangSmith** | Agent-eng platform | shipped-reliable | Trace + eval for builders | LangChain-native (official) | Tightest LangGraph integration; builder-focused | Braintrust, Arize |
-| **Braintrust** | Quality-management | shipped-reliable | Unified eval + observability | $80M Series B, ~$800M val (inferred) | Eval and observability as one workflow | LangSmith, Arize |
+| **LangSmith** | Agent-eng platform | shipped-reliable | Trace + eval for builders | LangChain-native; Engine v2, Trajectories, Fine-Tuning (Oct 2026; official) | Tightest LangGraph integration; trajectory-to-training loop | Braintrust, Arize |
+| **Braintrust** | Quality-management | shipped-reliable | Unified eval + observability | $80M Series B (ICONIQ), ~$800M val, Feb 2026 (inferred) | Eval and observability as one workflow | LangSmith, Arize |
 | **Arize (AX + Phoenix)** | Enterprise monitoring | shipped-reliable | Production ML/LLM monitoring | ML-monitoring heritage (official) | Enterprise-scale monitoring; OSS Phoenix | Braintrust, Datadog |
-| **Langfuse** | OSS observability | shipped-reliable | Self-hosted tracing + eval | Popular OSS, OTel-native (official) | Genuinely open-source, self-hostable | Arize Phoenix, LangSmith |
-| **Galileo** | Eval + guardrails | shipped-reliable | Production evaluators + guardrails | Strong evaluators (inferred) | Eval-to-guardrail integration (§12) | Braintrust, Arize |
+| **Langfuse (ClickHouse)** | OSS observability | shipped-reliable | Self-hosted tracing + eval | Acquired by ClickHouse Jan 2026; core stays MIT (official) | Genuinely open-source, self-hostable; ClickHouse-backed | Arize Phoenix, LangSmith |
+| **Galileo → Splunk Agent Observability** | Eval + guardrails | shipped-reliable | Production evaluators + guardrails | Acquired by Cisco, closed May 22, 2026 (official) | Eval-to-guardrail integration inside Splunk/Cisco stack (§12) | Datadog, Arize, Braintrust |
 | **Latitude** | Agent-first OSS | demoed→reliable | Prompt/agent eval | Open-source agent-first (inferred) | Agent-first, open | Langfuse, LangSmith |
 | **Arize Phoenix** | OSS tracing | shipped-reliable | Open tracing/eval | OSS, OTel (official) | Free open-source tracing | Langfuse |
 | **Datadog LLM Observability** | APM incumbent | shipped-reliable | LLM obs in APM suite | Datadog platform (official) | Integrated with existing APM/infra | Arize, New Relic |
-| **Weights & Biases (Weave)** | ML platform | shipped-reliable | LLM eval in W&B | W&B ecosystem (official) | Ties to broader ML tooling | LangSmith, Braintrust |
-| **Humanloop / others** | Eval platform | shipped-reliable | Prompt + eval management | (inferred) | Prompt-management + eval | Braintrust, Latitude |
-| **OpenTelemetry / OpenLLMetry** | Standard | shipped-reliable | Vendor-neutral tracing | CNCF / community (official) | The tracing standard everyone consumes | (none — standard) |
+| **Weights & Biases (Weave)** | ML platform | shipped-reliable | LLM eval in W&B | CoreWeave-owned since May 2025 (official) | Ties to broader ML tooling + GPU cloud | LangSmith, Braintrust |
+| **Humanloop** | Eval platform | discontinued | Prompt + eval management | Team to Anthropic; platform sunset Sep 8, 2025 (inferred) | — (customers migrated) | Braintrust, Latitude |
+| **OpenTelemetry / OpenLLMetry** | Standard | shipped-reliable | Vendor-neutral tracing | CNCF / community (official); GenAI semconv still "Development" (inferred) | The tracing standard everyone consumes | (none — standard) |
 | **Confident AI (DeepEval)** | OSS eval | shipped-reliable | Open eval framework | Popular OSS evals (inferred) | Pytest-style LLM eval framework | Langfuse, Latitude |
 | **Patronus AI** | Eval/guardrails | shipped-reliable | Automated eval + safety | (inferred) | Managed eval + hallucination detection | Galileo, Arize |
 | **MLflow (LLM/agent)** | OSS platform | shipped-reliable | Eval + tracing in MLflow | Databricks/OSS (official) | Integrated with MLflow lifecycle | Langfuse, W&B |
+| **Promptfoo (OpenAI)** | OSS eval / red-team | shipped-reliable | Pre-deploy eval + security testing | OpenAI acquisition announced Mar 2026 (official) | CLI eval + red-teaming; going into OpenAI Frontier | DeepEval, Patronus |
+| **Helicone (Mintlify)** | OSS gateway + obs | shipped-reliable | Proxy-based LLM logging | Acquired by Mintlify Mar 2026; maintenance mode (official) | One-line proxy integration; no new features | Langfuse, LangSmith |
+| **Vals AI** | Domain benchmarks | shipped-reliable | Industry-specific model/agent evals | $40M Series A at $400M, a16z-led, Aug 2026 (inferred) | Regulated-domain leaderboards (finance, legal) | Artificial Analysis, Scale |
 
-That is fourteen entries — well past ten. The structural read: **the category is consolidating
+That is seventeen entries. Promptfoo, Helicone and Vals AI were added in November 2026, and
+Humanloop is marked discontinued. The structural read: **the category is consolidating
 around unified platforms that combine tracing, offline eval, and production monitoring** (the
 Braintrust thesis, which competitors are converging toward — see the capability matrix below),
 with differentiation on self-hosting (Langfuse, Phoenix for data-sensitive teams), enterprise
 scale (Arize, Datadog), builder-integration (LangSmith with LangGraph), and guardrails-integration
-(Galileo, Patronus, bridging to §12). The **OpenTelemetry standardization** is the key
-lock-in-reducing dynamic, letting teams instrument once and switch backends.
+(Galileo, now inside Splunk; Patronus; Promptfoo, now inside OpenAI; bridging to §12). The
+**OpenTelemetry standardization** is the key lock-in-reducing dynamic, letting teams
+instrument once and switch backends.
+
+*November 2026 addendum: the absorption wave.* Within about nine months, five
+well-known eval/observability products changed hands or closed. Langfuse went to
+ClickHouse, Galileo to Cisco, Promptfoo to OpenAI and Helicone to Mintlify, and
+Humanloop's team went to Anthropic. The acquirers fall into three groups: *data
+platforms* that want the AI feedback-loop data, *APM and security incumbents* adding agent
+observability to existing suites, and *model labs* building eval into their enterprise
+agent platforms. The independent survivors (Braintrust, Arize, LangSmith) are
+well-funded. The middle of the market is thinning *(inferred)*. For buyers, vendor
+durability is now a selection criterion next to capability.
 
 ![Agent eval/observability platform capabilities](../assets/charts/11_platform_capabilities.png)
 
@@ -466,7 +579,8 @@ problem that only cost/latency observability surfaces.
   depend on it to be improved safely.
 - **↔ Coding (§09).** Coding's cheap verifiers (tests) make it the best-evaluated vertical, which
   is *why* it's the most mature — the clearest demonstration that measurability drives maturity.
-- **↔ Security (§12).** Guardrails and eval overlap (Galileo, Patronus do both); detecting
+- **↔ Security (§12).** Guardrails and eval overlap (Galileo, now Splunk Agent Observability,
+  and Patronus do both; Promptfoo's red-teaming went to OpenAI); detecting
   injection/misbehavior is an eval problem, and safety monitoring is observability.
 - **↔ Multi-agent (§06).** Multi-agent's graph-shaped traces and cross-agent attribution are the
   hardest observability case, and its immaturity drags multi-agent reliability.
@@ -564,7 +678,11 @@ and trajectory/agent-specific evaluation matured beyond single-output scoring.
 **2026** is the current state: a dense, consolidating market of unified platforms; OTel-based
 vendor-neutral tracing becoming standard; LLM-as-judge practices maturing (calibration,
 de-biasing); and — critically — the recognition, articulated across the field, that **evaluation is
-the bottleneck gating agent progress**, the highest-leverage and slowest-to-mature layer. The arc
+the bottleneck gating agent progress**, the highest-leverage and slowest-to-mature layer. 2026
+also brought two shocks. The first was *consolidation*: Langfuse, Galileo, Promptfoo and
+Helicone were all acquired. The second was a *benchmark-integrity reckoning*: SWE-bench
+Verified was retired by OpenAI, and the BenchJack audit showed most agent benchmarks could
+be hacked. The arc
 is the opposite of coding's (§09): where coding had cheap verifiers and raced ahead, evaluation *is*
 the verifier problem, and its difficulty is why it lags — and why it holds back everything that
 depends on it. The field increasingly understands that investing in evaluation is investing in the
@@ -576,18 +694,41 @@ unglamorous — it is the measurement infrastructure the whole agent enterprise 
 - **Eval remains the bottleneck; it improves gradually** *(inferred; high confidence).* No single
   breakthrough "solves" agent evaluation; the field grinds forward with better tooling, LLM-judge
   practices, and the unified-platform consolidation. It stays the highest-leverage,
-  slowest-to-mature layer.
+  slowest-to-mature layer. — *Nov 2026: confirmed. Progress was incremental, and the
+  benchmark-integrity findings arguably set public measurement back.*
 - **OpenTelemetry-based tracing becomes universal** *(official trend; high confidence).* Vendor-
   neutral OTel tracing standardizes observability, reducing lock-in — the MCP-for-tracing dynamic.
+  — *Nov 2026: partly. Adoption across vendors is broad, but the GenAI conventions moved
+  to their own repo (June 2026) and had no Stable attributes as of late summer.*
 - **Platforms unify eval + observability** *(official; high confidence).* The Braintrust thesis
   wins; the category converges on connected trace-eval-monitor workflows, with core capabilities
-  becoming table stakes and differentiation on self-host/guardrails/scale.
+  becoming table stakes and differentiation on self-host/guardrails/scale. — *Nov 2026:
+  confirmed as a product shape, and sped up by M&A. Unified platforms are being absorbed
+  into data, APM and model-vendor stacks (ClickHouse–Langfuse, Cisco–Galileo,
+  OpenAI–Promptfoo).*
 - **Online/production evaluation grows relative to offline** *(inferred; medium-high confidence).*
   Because benchmarks don't predict production, evaluating on real production traffic (with online
   LLM-judge and user signals) becomes more central — the most production-predictive signal wins.
+  — *Nov 2026: on track. LangSmith's Trajectories and fine-tuning-from-production features
+  are examples.*
 - **Regression detection stays hard** *(inferred; high confidence).* The non-determinism,
   drift, and attribution problems are fundamental; better tooling helps but "we didn't notice it
-  got worse" remains a common failure through 2026–2027.
+  got worse" remains a common failure through 2026–2027. — *Nov 2026: still holds; no
+  breakthrough.*
+- **New (Nov 2026): Adversarial benchmark auditing becomes standard practice**
+  *(inferred; medium-high confidence).* After BenchJack and SWE-bench Verified's
+  retirement, expect benchmark maintainers to publish hackability audits and isolated
+  harnesses (no network or answer access). Expect labs to report scores with
+  reward-hacking corrections, and treat unaudited agent leaderboards with more suspicion.
+- **New (Nov 2026): Further absorption of independent eval vendors** *(speculative;
+  medium confidence).* The 2026 pattern of data platforms, APM/security incumbents and
+  model labs buying eval/observability companies is likely to continue. Mid-sized
+  independents without a distinct moat (self-hosting, enterprise scale or domain
+  benchmarks) are the most likely targets.
+- **New (Nov 2026): Component-level controlled evals spread** *(inferred; medium
+  confidence).* The Artificial Analysis Search Index fixes the agent and varies one tool.
+  Expect the same design to be used for other agent components: retrievers, browsers and
+  MCP servers.
 
 ---
 
@@ -660,6 +801,11 @@ advance next.
   them, grow them from production — replaces vibes-based iteration with evidence-based iteration, and
   its adoption is the clearest marker separating teams that ship reliable agents from teams that
   ship surprising ones.
+- **(Nov 2026) The vendor map consolidated and benchmarks were shown to be hackable.**
+  Langfuse, Galileo, Promptfoo and Helicone were all acquired in 2026. BenchJack and the
+  retirement of SWE-bench Verified showed that benchmark scores can be gamed. Instrument
+  with OTel so you can switch backends, and treat any leaderboard that hasn't been audited
+  for hackability with suspicion.
 
 In the end, the layer's importance is best captured by inverting the document's recurring refrain:
 every other section says "you cannot improve what you cannot measure" — which means the team that
@@ -667,4 +813,25 @@ measures best improves fastest, and in a field moving as quickly as this one, th
 iterate with confidence compounds into a decisive advantage. Evaluation is not overhead on building
 agents; it is the substrate that makes building better agents possible at all.
 
-*Word count target: 6,500. This section: ~6,600 (verified via `wc`).*
+*Word count target: 6,500. This section: ~7,850 (approximate, via `wc`, including the November 2026 update).*
+
+## Sources (November 2026 update)
+
+- https://wandb.ai/wandb_fc/product-announcements-fc/reports/Humanloop-is-sunsetting-Migrate-to-Weights-Biases-as-an-alternative--VmlldzoxMzk4ODc1Nw
+- https://langfuse.com/blog/joining-clickhouse
+- https://clickhouse.com/blog/clickhouse-acquires-langfuse-open-source-llm-observability
+- https://businesswire.com/news/home/20260116008883/en/ClickHouse-Raises-$400M-Series-D-Led-by-Dragoneer-to-Accelerate-Expansion-Across-Analytics-and-AI-Infrastructure
+- https://www.axios.com/pro/enterprise-software-deals/2026/02/17/ai-observability-braintrust-80-million-800-million
+- https://openai.com/index/why-we-no-longer-evaluate-swe-bench-verified/
+- https://www.helicone.ai/blog/joining-mintlify
+- https://mintlify.com/blog/mintlify-acquires-helicone
+- https://openai.com/index/openai-to-acquire-promptfoo/
+- https://arxiv.org/abs/2605.12673
+- https://www.cisco.com/site/us/en/about/corporate-development/acquisitions/galileo/index.html
+- https://www.splunk.com/en_us/about-splunk/acquisitions/galileo.html
+- https://dev.to/azena-ai/opentelemetrys-genai-semantic-conventions-are-not-stable-yet-heres-what-actually-shipped-in-2026-3mke
+- https://www.marktechpost.com/2026/06/26/cursor-study-finds-reward-hacking-inflates-coding-agent-benchmark-scores-on-swe-bench-pro/
+- https://artificialanalysis.ai/methodology/search-api
+- https://theaiinsider.tech/2026/08/25/vals-ai-raises-40m-series-a-at-400m-valuation-to-expand-ai-evaluation-platform/
+- https://www.langchain.com/blog/october-2026-langchain-newsletter
+- https://coreweave.com/news/coreweave-completes-acquisition-of-weights-biases-2

@@ -1,7 +1,9 @@
 # 07 — Retrieval and Knowledge Grounding for Agents
 
 *How agents get the facts they need. Agentic RAG, knowledge freshness, and hybrid
-retrieval — and why retrieval, not generation, is now the bottleneck. Target: 6,000 words.*
+retrieval — and why retrieval, not generation, is now the bottleneck. Target: 6,000 words.
+Current as of November 2026 (snapshot of July 22, 2026, updated with developments through early
+November 2026).*
 
 > **Reader's orientation.** This layer is where "the model doesn't know our data" gets
 > solved. It is technically mature but operationally demanding: the pattern is settled,
@@ -32,6 +34,89 @@ a grounded system comes far more from better retrieval than from a better genera
 is why this "mature" layer still gets enormous engineering attention — the pattern is
 settled, but getting retrieval *right* for a specific corpus and agent is hard, ongoing
 work.
+
+---
+
+## What changed since July 2026 (November 2026 update)
+
+The architecture described in this section did not change between July and November 2026:
+hybrid retrieval plus reranking is still the production pipeline, and agentic retrieval is
+still the pattern. The market around it did change. Three things moved. First, **the
+agent web-search API became a priced, benchmarked category of its own**. An independent
+leaderboard launched, Exa and Parallel reached valuations of $2B or more, and Perplexity
+retired its Sonar chat-completions API in favour of an agent API. Second, **consolidation
+continued**: AI-infrastructure clouds and frontier labs absorbed retrieval companies through
+acquisitions and talent-licensing deals. Third, **the embedding oligopoly refreshed its
+models**. New generations shipped that are natively multimodal and give more cost/quality
+options. Several of these events date from January to June 2026 and were missing from the
+July snapshot, so they are included here.
+
+- **2026-01-15: MongoDB released the Voyage 4 embedding family.** It has four models:
+  voyage-4, voyage-4-large, voyage-4-lite and an open-weights voyage-4-nano. It also
+  released voyage-multimodal-3.5, and Atlas got an "Automated Embedding" preview. MongoDB
+  claims leadership on the RTEB leaderboard, but that claim is vendor-reported *(official)*.
+  [MongoDB](https://investors.mongodb.com/news-releases/news-release-details/mongodb-sets-new-standard-retrieval-accuracy-voyage-4-models)
+- **2026-02-10: Nebius agreed to acquire Tavily.** Tavily keeps its brand and product line
+  and will sit alongside Nebius Token Factory. The deal itself is *(official)*. The reported
+  price is about $275M plus up to $125M in milestone payments, and that figure is
+  *(inferred, press-reported)*.
+  [Nebius](https://nebius.com/newsroom/nebius-announces-agreement-to-acquire-tavily-to-add-agentic-search-to-its-ai-cloud-platform)
+- **2026-03-12: Qdrant raised a $50M Series B led by AVP.** This is the most notable
+  vector-DB raise of the year. Pinecone, by contrast, has announced no new round since 2023
+  *(inferred)*.
+  [SiliconANGLE](https://siliconangle.com/?p=733993)
+- **2026-04-28: Parallel Web Systems raised a $100M Series B at a $2B valuation, led by
+  Sequoia.** Parallel was founded by Parag Agrawal and sells Search, Extract, Task
+  (deep-research), FindAll and Monitor APIs built for agents *(inferred)*.
+  [SiliconANGLE](https://siliconangle.com/2026/04/28/parag-agrawals-startup-raises-100m-build-parallel-web-ai-agents/)
+- **May 2026: Google expanded Gemini API File Search, its managed RAG service.** It now
+  supports multimodal (text plus image) corpora, custom metadata and page-level citations.
+  This continues the trend of model vendors bundling retrieval *(official)*.
+  [Google](https://blog.google/innovation-and-ai/technology/developers-tools/expanded-gemini-api-file-search-multimodal-rag/)
+- **2026-05-20: Google DeepMind hired more than 20 Contextual AI staff, including CEO Douwe
+  Kiela, and licensed Contextual AI's technology.** It is a licence-plus-hire deal, not an
+  acquisition. Reported payment is about $80–100M. Contextual AI's future as a standalone
+  product is unclear *(inferred)*.
+  [Bloomberg Law](https://news.bloomberglaw.com/antitrust/google-hires-staff-from-ai-startup-contextual-in-licensing-deal)
+- **May 2026: Exa raised a $250M Series C at a $2.2B valuation, led by a16z.** Its previous
+  round was an $85M Series B at $700M in September 2025 *(official press release)*.
+  [Exa release](https://techintelpro.com/pressreleases/exa-raises-250m-series-c-to-build-the-search-engine-for-ais)
+- **2026-08-18: Artificial Analysis launched a Search Index for web-search APIs.** The
+  index is the equal-weighted mean of three benchmarks: DeepSearchQA, BrowseComp and
+  AA-Omniscience. Every provider runs under the same agent loop and answer model, so only
+  the search API varies. At launch, Parallel (advanced) led with 75. By late August,
+  Perplexity Search (medium) led with 80 *(official methodology; scores are snapshots)*.
+  This is the first widely cited independent yardstick for the agent-search layer.
+  [Artificial Analysis](https://artificialanalysis.ai/methodology/search-api)
+- **2026-09-25: Exa launched Agent Ultra.** It is the highest-effort mode of the Exa Agent
+  deep-research product that launched in June, and it fans a request out to parallel
+  sub-agents *(official for Exa Agent; the Agent Ultra date is inferred from press
+  coverage)*.
+  [Exa](https://exa.ai/blog/exa-agent)
+- **2026-09-27: Perplexity ended support for Sonar chat completions.** Developers are
+  directed to the Agent API, a single endpoint that combines model choice across several
+  labs with web search, URL fetch, code execution and MCP. The standalone Search API, which
+  launched in September 2025, continues *(official)*.
+  [Perplexity docs](https://docs.perplexity.ai/docs/agent-api/migrate-from-sonar/overview.md)
+- **2026-09-30: Cohere released Embed 5 in two tiers, Pro and Fast.** The two share one
+  embedding space, so you can index with Pro and query with Fast. Inputs can be text, images
+  or mixed content such as PDF pages, and Matryoshka dimensions go up to 2,048. Cohere
+  reports that Pro beats Voyage 4 Large on its own benchmark suite. That claim is
+  vendor-reported *(official)*.
+  [Cohere changelog](https://docs.cohere.com/changelog/embed-v5)
+- **2026-10-19: Exa released Exa 3.0.** It adds a larger index and embedding model, a
+  cheaper "Lite" tier (reported at $4 per 1,000 requests) and "Dynamic Highlights", which
+  budgets tokens across all results instead of returning full pages. Exa's claim to lead
+  eight benchmarks comes from its own tests. On Artificial Analysis, Exa Auto tied
+  Perplexity at 80 *(inferred)*.
+  [MarkTechPost](https://www.marktechpost.com/2026/10/20/exa-3-0-search-api-lite/)
+
+**Net read.** The agent-search layer now has its own independent scoreboard, and the top
+providers sit within a few points of each other on it. Differentiation is moving to cost
+per task, latency, token efficiency (highlights rather than full pages) and
+deep-research modes. At the same time, the standalone vendors are being pulled into larger
+stacks: Tavily into Nebius, and Contextual AI's team into Google DeepMind. That is the
+"bundling pressures the low end" dynamic this section predicted.
 
 ---
 
@@ -210,8 +295,17 @@ with the rise of **agent-oriented search APIs** distinct from consumer search:
 
 - Traditional consumer search engines return links for humans to click; **agent search
   APIs** return clean, structured, LLM-ready content (extracted text, not a SERP) designed
-  to be consumed by an agent. Providers like Exa, Tavily, Brave Search API, Perplexity's
-  API, and the model vendors' own web-search tools serve this need.
+  to be consumed by an agent. Providers like Exa, Parallel, Tavily (Nebius-owned since
+  2026), Brave Search API, Firecrawl, Perplexity's Search and Agent APIs, and the model
+  vendors' own web-search tools serve this need.
+- **The category now has independent measurement.** Before August 2026, every comparison
+  of search APIs was vendor-run. The Artificial Analysis Search Index changed that. It fixes
+  the agent loop and the answer model, varies only the search API, and scores providers on
+  DeepSearchQA, BrowseComp and AA-Omniscience. On this index, a model with no search scores
+  33 and the leading APIs score about 75–80 *(official methodology; scores are snapshots)*.
+  So good web grounding more than doubles answer quality on these tasks. The top providers
+  are separated by only a few points, which pushes competition towards cost per task,
+  latency and token efficiency.
 - The value is in the *quality of extraction and ranking for agent consumption* — clean
   content without ads/navigation cruft, relevance tuned for question-answering rather than
   human browsing, and often built-in summarization. An agent grounding on the web needs
@@ -220,7 +314,9 @@ with the rise of **agent-oriented search APIs** distinct from consumer search:
   agents get information more current than their training and more current than any
   internal index.
 
-This web-search layer is a real and growing market, sitting at the intersection of
+This web-search layer is a real and growing market, and a richly valued one. Exa
+($2.2B, May 2026) and Parallel ($2B, April 2026) are both valued at about $2B or more, and
+Nebius bought Tavily for a reported ~$275M *(inferred)*. It sits at the intersection of
 retrieval (§07), tool use (§04), and the model vendors' native capabilities (all frontier
 vendors now offer web search as a built-in agent tool). It is also where the "retrieval as
 a live tool the agent calls" framing is most natural — web search is definitionally a live
@@ -238,23 +334,25 @@ APIs**, and the **model vendors' native retrieval**. It is a dense, commoditizin
 
 | Player | Category | Maturity | Role | Notable (confidence) | Differentiator | Competitors |
 |---|---|---|---|---|---|---|
-| **Contextual AI** | RAG platform | shipped-reliable | End-to-end enterprise RAG | Founded by RAG originator D. Kiela (official) | Purpose-built grounded-RAG platform | Vectara, Glean |
+| **Contextual AI** | RAG platform | shipped-reliable | End-to-end enterprise RAG | CEO D. Kiela + 20+ staff to Google DeepMind in May 2026 licence-and-hire deal (inferred) | Purpose-built grounded-RAG platform; standalone roadmap uncertain | Vectara, Glean |
 | **Vectara** | RAG platform | shipped-reliable | Managed RAG-as-a-service | Gartner-recognized (official) | Hallucination-reduction focus, managed | Contextual AI, Onyx |
-| **Glean** | Enterprise search/RAG | shipped-reliable | Work-wide search + agents | ~$7B+ valuation (inferred) | Enterprise knowledge graph + connectors | Vectara, Onyx, MS |
-| **Cohere (Rerank/Embed)** | Model provider | shipped-reliable | Reranking + embeddings | Enterprise NLP (official) | Best-in-class rerank + embed models | Voyage, OpenAI embed |
-| **Voyage AI (MongoDB)** | Embeddings/rerank | shipped-reliable | Embeddings + rerankers | Acquired by MongoDB (official) | High-quality domain embeddings | Cohere, OpenAI |
-| **Exa** | Agent search API | shipped-reliable | Web search for agents | Neural web search (inferred) | Embedding-based web search for agents | Tavily, Brave, Perplexity |
-| **Tavily** | Agent search API | shipped-reliable | Web search + extract | Popular agent web tool (inferred) | Search+extract tuned for agents | Exa, Brave API |
-| **Perplexity (API)** | Search/answer | shipped-reliable | Grounded answer API | Consumer + API (official) | Answer engine w/ citations | Exa, vendor web search |
+| **Glean** | Enterprise search/RAG | shipped-reliable | Work-wide search + agents | $7.2B at June 2025 Series F (official); later round rumoured, unconfirmed (speculative) | Enterprise knowledge graph + connectors | Vectara, Onyx, MS |
+| **Cohere (Rerank/Embed)** | Model provider | shipped-reliable | Reranking + embeddings | Embed 5 Pro/Fast (Sep 2026), Rerank 4 (official) | Multimodal embeddings; Pro/Fast share one vector space | Voyage, OpenAI, Google embed |
+| **Voyage AI (MongoDB)** | Embeddings/rerank | shipped-reliable | Embeddings + rerankers | MongoDB-owned; Voyage 4 family incl. open-weights nano (Jan 2026; official) | High-quality domain embeddings, in-DB auto-embedding | Cohere, OpenAI |
+| **Exa** | Agent search API | shipped-reliable | Web search + research agent | $250M Series C at $2.2B (May 2026); Exa 3.0 (Oct 2026) (official) | Embedding-based web index; Lite tier, Dynamic Highlights | Parallel, Perplexity, Tavily |
+| **Tavily (Nebius)** | Agent search API | shipped-reliable | Web search + extract | Acquired by Nebius, announced Feb 2026 (official); ~$275M reported (inferred) | Search+extract bundled with an AI cloud | Exa, Parallel, Brave API |
+| **Perplexity (API)** | Search/answer | shipped-reliable | Search API + Agent API | Sonar chat completions retired Sep 27, 2026 → Agent API (official) | Own web index; multi-model agent endpoint w/ citations | Exa, Parallel, vendor web search |
+| **Parallel Web Systems** | Agent search API | shipped-reliable | Search, extract, deep-research tasks | $100M Series B at $2B, Sequoia-led (Apr 2026; inferred) | Web APIs designed for agents, incl. Task/Monitor | Exa, Perplexity, Tavily |
 | **LlamaIndex** | RAG framework | shipped-reliable | RAG/agentic-doc framework | ~$60M (official) | Data/document-centric RAG orchestration | LangChain, Haystack |
 | **Onyx (ex-Danswer)** | OSS enterprise RAG | shipped-reliable | Self-hostable enterprise RAG | OSS + connectors (inferred) | Open-source enterprise search/RAG | Glean, Vectara |
-| **Pinecone / Weaviate / Qdrant** | Vector DB | shipped-reliable | Retrieval substrate | Ubiquitous (official) | Vector storage + hybrid search | each other |
+| **Pinecone / Weaviate / Qdrant** | Vector DB | shipped-reliable | Retrieval substrate | Ubiquitous (official); Qdrant $50M Series B Mar 2026 (inferred) | Vector storage + hybrid search | each other |
 | **Elastic / OpenSearch** | Search engine | shipped-reliable | Hybrid (BM25+vector) | Mature search infra (official) | BM25 heritage + added vectors | vector DBs |
-| **Model-vendor retrieval** | Native | shipped-reliable | Built-in web/file search | OpenAI/Anthropic/Google (official) | Retrieval bundled with the model | standalone RAG |
+| **Model-vendor retrieval** | Native | shipped-reliable | Built-in web/file search | OpenAI/Anthropic/Google; Gemini File Search went multimodal in May 2026 (official) | Retrieval bundled with the model | standalone RAG |
 | **Graph-RAG (Microsoft GraphRAG, Neo4j)** | Graph retrieval | demoed→reliable | Graph-augmented retrieval | MS GraphRAG, Neo4j (official) | Retrieval over knowledge graphs | vector RAG |
 
-That is fourteen entries spanning platforms, model providers, search APIs, and
-substrate — well past ten. The structural read: **retrieval is a layered, commoditizing
+That is fifteen entries spanning platforms, model providers, search APIs, and
+substrate. Parallel was added in November 2026, and Tavily is now marked as Nebius-owned.
+The structural read: **retrieval is a layered, commoditizing
 market where the substrate (vector DBs, search engines) is a race to the bottom, the
 model pieces (embeddings, rerankers) are a small oligopoly (Cohere, Voyage, OpenAI), and
 the differentiated value is in the *platform* (Glean, Contextual AI, Vectara) that
@@ -262,6 +360,15 @@ assembles connectors, pipeline, governance, and grounding quality for enterprise
 with memory and orchestration, the model vendors bundling retrieval (native web/file
 search) pressures the low end, while enterprise-grade grounded RAG with security,
 permissions, and connectors remains a real, defensible market.
+
+*November 2026 addendum.* The 2026 deals show the outer layers being absorbed from two
+directions. Infrastructure clouds are buying the agent-search layer: Nebius bought Tavily.
+Frontier labs are taking RAG-platform talent through licence-and-hire deals: Google
+DeepMind and Contextual AI. Meanwhile the strongest independent search APIs (Exa,
+Parallel) raised enough capital to try to become their own layer. Our read is that the
+agent-search tier is splitting. A few well-capitalized index owners with their own web
+crawl and index are separating from thin wrappers over someone else's index, and the
+wrappers are being acquired or squeezed *(inferred)*.
 
 ---
 
@@ -354,10 +461,18 @@ consequential, sometimes-overlooked choice:
   market — Cohere, Voyage (now MongoDB), OpenAI, Google, and a few strong open models
   (the BGE/GTE families). This is one of the few genuinely oligopolistic pieces of the
   retrieval stack, because training excellent embedding models is hard and the quality
-  differences are real and measurable.
+  differences are real and measurable. The 2026 refreshes kept the oligopoly intact and
+  changed its shape. MongoDB shipped Voyage 4 (January 2026), whose lineup includes an
+  open-weights nano model. Cohere shipped Embed 5 Pro/Fast (September 2026), natively
+  multimodal with Matryoshka dimensions up to 2,048 *(official)*. Each vendor claims
+  benchmark leadership over the other, so evaluate on your own corpus.
 - **Re-embedding cost on model change.** Switching embedding models means re-embedding the
   entire corpus — a real switching cost that creates lock-in to whatever model you
   indexed with. This is an underappreciated form of vendor lock-in in the retrieval layer.
+  A 2026 design response is *tiered models that share one embedding space*. Cohere's
+  Embed 5 Pro and Fast are an example: you index once with the expensive model and query
+  with the cheap one *(official)*. This lowers serving cost, but you still re-embed when
+  you change vendor or generation.
 
 The practical guidance: **the embedding model is a real quality lever, not a commodity to
 pick arbitrarily** — evaluate a few on your actual corpus and queries, consider domain
@@ -408,7 +523,9 @@ images, tables, and mixed content, not just text — grows in importance. Two ap
 
 The 2026 direction favors native multimodal retrieval for visually-rich domains (financial
 documents, technical manuals, medical imaging reports), tracking the general improvement
-in multimodal models — but text-based retrieval over parsed content remains the pragmatic
+in multimodal models. By November 2026 this was a shipped default, not an experiment.
+Cohere Embed 5 embeds text, images and mixed PDF pages into a single vector, and Gemini API
+File Search added multimodal corpora with page-level citations in May 2026 *(official)* — but text-based retrieval over parsed content remains the pragmatic
 default for mostly-textual corpora. As with §05's multimodal reasoning, the perception
 (parsing/embedding the visual) is often the weaker link, and better visual document
 understanding directly improves retrieval over real-world documents.
@@ -556,7 +673,10 @@ agents began skipping vector indexes for direct/agentic search where the corpus 
 (code being the flagship example). **2026** is the current synthesis: the pipeline is
 settled, agentic retrieval is the pattern, retrieval is recognized as *the* bottleneck for
 grounded accuracy, and the frontier is freshness, permission-awareness, multimodal
-retrieval, and knowing when *not* to retrieve.
+retrieval, and knowing when *not* to retrieve. The second half of 2026 added two things.
+The agent web-search tier got independent measurement (the Artificial Analysis Search
+Index, August 2026). It also went through a round of consolidation: Nebius bought
+Tavily, and Google DeepMind took Contextual AI's team.
 
 The arc rhymes with the rest of the stack — an over-hyped naive version (2023 vector RAG)
 gave way to sober engineering (2024 pipelines) and then to the agentic reframing (2025–26)
@@ -570,22 +690,41 @@ pattern into a reliable production capability.
 
 - **Agentic retrieval displaces fixed-pipeline RAG** *(inferred; high confidence).* The
   shift from "retrieve once, fixed" to "retrieve as an adaptive tool with iterate/verify"
-  continues; naive one-shot RAG becomes the low-end default only.
+  continues; naive one-shot RAG becomes the low-end default only. — *Nov 2026: on track.
+  Search vendors are now shipping agentic deep-research modes as products (Exa Agent /
+  Agent Ultra, Parallel Task API, Perplexity Agent API).*
 - **Hybrid + rerank + query rewriting is the settled quality pipeline** *(official; high
   confidence).* This stack is standard and stable; the debate is over how much agentic
-  looping to add on top, not over the core pipeline.
+  looping to add on top, not over the core pipeline. — *Nov 2026: confirmed; no change.*
 - **Live/direct retrieval grows relative to static indexing** *(inferred; medium-high
   confidence).* For volatile and navigable data (operational data, code, the web), agents
   increasingly retrieve from live sources via tools rather than from snapshots — freshness
-  and the "investigate the source directly" pattern win where applicable.
+  and the "investigate the source directly" pattern win where applicable. — *Nov 2026:
+  confirmed for the web. Search-API funding (Exa $250M, Parallel $100M) and the new
+  Artificial Analysis Search Index both show live web retrieval is now core agent
+  infrastructure.*
 - **Permission-aware and governed retrieval becomes an enterprise requirement**
   *(inferred; high confidence).* As agents retrieve over sensitive corpora, respecting
   per-user permissions and providing audit/citation trails moves from nice-to-have to
-  mandatory — a differentiator for enterprise RAG platforms over raw vector search.
+  mandatory — a differentiator for enterprise RAG platforms over raw vector search. —
+  *Nov 2026: not yet resolved. No new standard has emerged; this is still each platform's
+  own feature.*
 - **The model vendors keep bundling retrieval** *(official; high confidence).* Native web/
   file search bundled with models pressures the low end; standalone value concentrates in
   enterprise grounding (connectors, permissions, governance, quality) and specialized
-  reranking/embedding models.
+  reranking/embedding models. — *Nov 2026: confirmed and extended. Google's File Search
+  went multimodal, labs and clouds absorbed retrieval startups (Contextual AI's team to
+  Google DeepMind; Tavily to Nebius), and Perplexity turned its API into a multi-model
+  agent endpoint.*
+- **New (Nov 2026): Agent-search APIs compete on cost per task and token efficiency, not
+  raw quality** *(inferred; medium-high confidence).* On the independent Search Index the
+  top providers are within a few points of each other. Expect price cuts (for example
+  Exa's Lite tier), token-budgeted snippets instead of full pages, and bundling with
+  inference clouds to decide share through 2027.
+- **New (Nov 2026): More acqui-licensing of retrieval startups by labs and clouds**
+  *(speculative; medium confidence).* The Contextual AI and Tavily deals suggest
+  independent RAG platforms without a proprietary index or data moat will be absorbed
+  rather than scale to IPO.
 
 ---
 
@@ -646,5 +785,27 @@ by a portfolio of techniques (caching, retrieval, memory, context editing), not 
 - **Caching and retrieval are complementary levers**, not a binary — cache the stable bulk,
   retrieve the specific-and-volatile remainder — because the scarce resources (the model's
   attention and your token budget) are best managed by a portfolio of techniques.
+- **(Nov 2026) Agent web search is now a measured, consolidating market.** An independent
+  index scores providers. Exa and Parallel are valued at about $2B or more, Tavily went to
+  Nebius, and Perplexity moved its developers to an Agent API. Choose providers on
+  cost per task and token efficiency as well as quality.
 
-*Word count target: 6,000. This section: ~6,050 (verified via `wc`).*
+*Word count target: 6,000. This section: ~7,500 (approximate, via `wc`, including the November 2026 update).*
+
+## Sources (November 2026 update)
+
+- https://investors.mongodb.com/news-releases/news-release-details/mongodb-sets-new-standard-retrieval-accuracy-voyage-4-models
+- https://nebius.com/newsroom/nebius-announces-agreement-to-acquire-tavily-to-add-agentic-search-to-its-ai-cloud-platform
+- https://siliconangle.com/2026/02/10/ai-infrastructure-giant-nebius-buys-agentic-search-startup-tavily/
+- https://siliconangle.com/?p=733993 (Qdrant Series B, March 12, 2026)
+- https://siliconangle.com/2026/04/28/parag-agrawals-startup-raises-100m-build-parallel-web-ai-agents/
+- https://blog.google/innovation-and-ai/technology/developers-tools/expanded-gemini-api-file-search-multimodal-rag/
+- https://news.bloomberglaw.com/antitrust/google-hires-staff-from-ai-startup-contextual-in-licensing-deal
+- https://techintelpro.com/pressreleases/exa-raises-250m-series-c-to-build-the-search-engine-for-ais
+- https://artificialanalysis.ai/methodology/search-api
+- https://artificialanalysis.ai/articles/search-api
+- https://exa.ai/blog/exa-agent
+- https://docs.perplexity.ai/docs/agent-api/migrate-from-sonar/overview.md
+- https://docs.cohere.com/changelog/embed-v5
+- https://cohere.com/blog/embed-5
+- https://www.marktechpost.com/2026/10/20/exa-3-0-search-api-lite/
