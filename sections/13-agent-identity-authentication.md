@@ -194,7 +194,7 @@ sequenceDiagram
     A->>IdP: Request authorization (scopes: email.read, email.draft)
     IdP->>U: Consent screen: "Agent requests email.read, email.draft?"
     U->>IdP: Approve (with PKCE)
-    IdP-->>A: Scoped access token (email.read, email.draft only; short-lived)
+    IdP-->>A: Scoped access token (email.read, email.draft only, short-lived)
     Note over A,R: Agent acts within granted scopes only
     A->>R: Read inbox (token: email.read) ✓
     A->>R: Draft reply (token: email.draft) ✓
