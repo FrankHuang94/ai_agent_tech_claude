@@ -1,7 +1,8 @@
 # 10 — Voice and Multimodal Agents
 
 *Agents you talk to. Real-time voice architecture, multimodal I/O, and the brutal latency
-constraint that governs everything. Target: 6,000 words.*
+constraint that governs everything. Target: 6,000 words. Current as of November 2026 (snapshot
+of July 22, 2026, updated).*
 
 ---
 
@@ -33,6 +34,81 @@ inside that budget, and the layer's whole engineering story is the fight against
 
 ---
 
+## What changed since July 2026 (November 2026 update)
+
+The four months after the July snapshot did not change this layer's physics. The latency budget
+is the same, and so is the cascade-vs-S2S trade. What changed is **where the speech-to-speech
+frontier sits**. Three things happened at once. **Full-duplex** models moved from research into a
+paid API (OpenAI's GPT-Live-1), and Block showed a text-free one (Dessa). **Reasoning-capable S2S**
+became normal: GPT-Realtime-2.x has reasoning-effort controls, and Gemini 3.8 Live ships an
+"Extended Thinking" variant. Finally, **voice-layer prices fell** below the old full-stack range.
+These changes weaken two of the cascade's traditional advantages: tool and reasoning control,
+and cost. They also sharpen the strategic question for orchestration platforms. On funding,
+voice infrastructure went from "well-funded" to multiple unicorns, and ElevenLabs reached a
+$22B valuation. The log below also picks up material January–July 2026 items that the July
+snapshot missed. Confidence tags follow §17: *official* is a vendor announcement, linked to the
+primary source where reachable and otherwise to coverage of it; *inferred* is single-source or
+analyst-derived.
+
+- **Jan 13, 2026 — Deepgram raises a $130M Series C at a $1.3B valuation** (led by AVP) and buys
+  restaurant-voice startup OfOne *(official)* —
+  [Deepgram](https://deepgram.com/learn/press-release-deepgram-raises-series-c).
+- **Jan 22, 2026 — LiveKit raises a $100M Series C at a $1B valuation** (led by Index Ventures). It
+  is positioned as the transport engine behind ChatGPT voice *(official)* —
+  [press release](https://fortune.com/press-releases/livekit-raises-100m-1b-valuation-voice-first-computing-2026-01-22).
+- **Feb 2026 — ElevenLabs raises a $500M Series D at an $11B valuation** *(inferred; multi-outlet)* —
+  [Creati.ai](https://creati.ai/ai-news/2026-02-04/elevenlabs-raises-500m-at-11b-valuation-tripling-value).
+- **Mar 2026 — Google ships Gemini 3.1 Flash Live (preview).** It is Google's highest-quality
+  audio model to date and powers the consumer Gemini Live and Search Live *(official)* —
+  [Google blog](https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-1-flash-live/).
+- **May 7, 2026 — OpenAI launches GPT-Realtime-2, GPT-Realtime-Translate and
+  GPT-Realtime-Whisper.** OpenAI describes GPT-Realtime-2 as the first API voice model with
+  GPT-5-class reasoning, with reasoning effort set from minimal to xhigh *(official; via
+  coverage)* — [eWeek](https://www.eweek.com/fr/news/openai-gpt-realtime-2-voice-agents/).
+- **May 12, 2026 — Vapi raises a $50M Series B and reports 1 billion calls** *(official)* —
+  [GlobeNewswire](https://www.globenewswire.com/news-release/2026/05/12/3292882/0/en/vapi-raises-50m-series-b-as-it-reaches-1-billion-calls-powering-the-next-generation-of-enterprise-voice-ai.html).
+- **May 2026 — Amazon Nova 2 Sonic refresh**, which improves speech-generation quality. Nova 2
+  Sonic itself shipped in Dec 2025 *(official)* —
+  [AWS release notes](https://docs.aws.amazon.com/nova/latest/nova2-userguide/release-notes.html).
+- **Jul 6, 2026 — gpt-realtime-2.1 and gpt-realtime-2.1-mini**, with ≥25% lower p95 latency
+  *(official)* —
+  [OpenAI community](https://community.openai.com/t/new-realtime-models-on-the-api-gpt-realtime-2-1-and-gpt-realtime-2-1-mini/1385896).
+- **Sep 10, 2026 — GPT-Live-1 reaches the API.** It is a **full-duplex** voice model on a new
+  `/v1/live/sessions` route. The voice layer costs **$0.05/min**, billed per second, and backend
+  model and tool use are billed separately. It accepts no image or video input *(official)* —
+  [OpenAI docs](https://developers.openai.com/api/docs/models/gpt-live-1.md),
+  [Unite.AI](https://www.unite.ai/openais-gpt-live-1-arrives-in-the-api-at-0-05-per-minute/).
+  Retell and Pipecat added integrations quickly *(official)* —
+  [Retell docs](https://docs.retellai.com/build/gpt-live).
+- **Sep 15, 2026 — Gemini 3.8 Live and 3.8 Live Extended Thinking.** Both are audio-to-audio
+  models that support **asynchronous function calling while the model keeps speaking**. Listed
+  pricing is ~$0.005/min audio in and ~$0.018/min audio out *(official)* —
+  [Google blog](https://blog.google/innovation-and-ai/technology/developers-tools/build-real-time-voice-applications-gemini-audio/).
+  One third-party guide reports a Nov 17 retirement for older Live previews *(inferred)* —
+  [Developers Digest](https://www.developersdigest.tech/blog/gemini-3-8-live-extended-thinking-release-guide-2026).
+- **Sep 15–17, 2026 — Dreamforce: Agentforce Voice adds six languages** (Spanish, Italian, German,
+  Portuguese, Japanese, Canadian French) *(inferred; recaps)* —
+  [Cyntexa](https://cyntexa.com/blog/dreamforce-2026-highlights/).
+- **Sep 30, 2026 — ElevenLabs closes a $300M employee tender at a $22B valuation**, about 2× the
+  February price, led by Wellington and T. Rowe Price *(official; company statement)* —
+  [Billboard](https://www.billboard.com/pro/elevenlabs-ai-startup-valued-22-billion-tender-offer/).
+  On Nov 3 the CEO pointed to IPO preparation from 2028 *(inferred)* —
+  [PYMNTS](https://pymnts.com/news/investment-tracker/ipo/2026/elevenlabs-ceo-eyes-2028-ipo-prep-voice-ai-firm).
+- **Oct 14, 2026 — xAI releases Grok Voice 3.0**, a hosted S2S model at ~$0.08/min. xAI claims
+  first place on Artificial Analysis's S2S index *(inferred; vendor claim via aggregators)* —
+  [DevX](https://www.devx.com/artificial-intelligence-ai/what-is-grok-voice-3-0-xai-speech-to-speech-model/).
+- **Oct 24, 2026 — Block unveils Dessa**, a full-duplex S2S model trained only on conversational
+  audio, with no text pretraining. Block says it runs locally. Only safety researchers have
+  access, and Block has published no benchmarks *(official; vendor demo)* —
+  [TechCrunch](https://techcrunch.com/2026/10/24/blocks-new-voice-model-sounds-eerily-human/).
+
+**Net read:** S2S gained more in four months than in the prior year, and **full-duplex** is now
+the bar for frontier conversational quality. The cascade's remaining advantages are inspectable
+text, best-of-breed component choice, and telephony maturity. Those advantages are real but
+narrower than in July.
+
+---
+
 ## The two architectures: cascade vs. speech-to-speech
 
 The foundational architectural split — and the most important thing to understand about this
@@ -50,12 +126,16 @@ throws away tone, emotion, emphasis — the LLM sees "I'm fine" without hearing 
 angrily).
 
 **Speech-to-speech** uses a single model that takes audio in and produces audio out directly,
-with no intermediate text. OpenAI's Realtime API popularized this. Its strengths are *lower
+with no intermediate text. OpenAI's Realtime API popularized this. The current generation is
+GPT-Realtime-2.x plus the full-duplex GPT-Live-1 (Sep 2026), alongside Google's Gemini 3.8 Live,
+Amazon Nova 2 Sonic and xAI Grok Voice 3.0. Its strengths are *lower
 latency* (no STT-finalize wait, no TTS startup delay — one model instead of three sequential
 ones) and *richer prosody* (the model *hears* emotion and *produces* emotion, because it never
 discards the audio's paralinguistic information). Its weaknesses are *less control and
 inspectability* (there's no text stage to log, moderate, or hook tool calls into as cleanly) and
-*less maturity* (a newer approach with fewer knobs).
+*less maturity* (a newer approach with fewer knobs). The 2026 model generation narrowed that
+second gap. Reasoning-effort settings (GPT-Realtime-2) and asynchronous tool calls that run while
+the model keeps speaking (Gemini 3.8 Live) are exactly the knobs S2S lacked in 2025.
 
 ```mermaid
 flowchart LR
@@ -98,8 +178,10 @@ systems — so many production voice agents remain cascade-based, aggressively o
 latency budget through streaming and overlap (below). The honest state: **speech-to-speech leads
 on latency and naturalness; cascade leads on control and production-integration; both are viable,
 and the choice depends on whether raw conversational latency/quality or production control
-matters more for the use case.** Hybrid approaches (speech-to-speech with text side-channels for
-logging/tools) are emerging to get both.
+matters more for the use case.** Hybrid approaches give S2S text side-channels for logging and
+tools. They were "emerging" in mid-2026 and are now the default shape of the vendor APIs.
+GPT-Live-1, for example, bills its voice layer separately from a backend model and tools that
+the developer chooses *(official)*. The architectural line is blurring from the S2S side.
 
 ---
 
@@ -136,7 +218,10 @@ Speech-to-speech (OpenAI Realtime) leads on latency; orchestrated cascades (Rete
 Cartesia+Deepgram stacks) trade some latency for modularity and control; framework-based
 self-composed stacks (LiveKit Agents, Pipecat) trade more latency for maximum flexibility. All
 cluster around the 700–850ms band that is "good enough" for most use cases, with speech-to-speech
-pushing toward the sub-500ms "excellent" frontier.
+pushing toward the sub-500ms "excellent" frontier. (*Nov 2026 note:* the chart reflects mid-2026
+configurations. OpenAI reports ≥25% lower p95 latency for gpt-realtime-2.1, and full-duplex models
+such as GPT-Live-1 change what "round-trip" means, since they listen while speaking. We have not
+re-benchmarked, so the S2S bar is probably conservative *(inferred)*.)
 
 ---
 
@@ -149,7 +234,10 @@ the user, or ignores an interruption) feels broken. Handling barge-in requires: 
 the user started speaking while the agent is talking, *stopping the agent's speech immediately*,
 discarding the interrupted response, and processing the user's interruption — all in real time.
 This is hard (it requires full-duplex audio and fast detection) and it is a major differentiator
-between platforms.
+between platforms. Late 2026 brought **natively full-duplex models**, which listen and speak at
+the same time instead of emulating barge-in on top of turn-based models. GPT-Live-1 is
+API-available, and Block's Dessa is research-access only. Natively full-duplex models are the
+most direct attack yet on this problem *(official; quality claims vendor-reported)*.
 
 Related conversational-dynamics challenges:
 
@@ -218,23 +306,25 @@ industries). It is dense and well-funded.
 
 | Player | Category | Maturity | Role | Notable (confidence) | Differentiator | Competitors |
 |---|---|---|---|---|---|---|
-| **OpenAI Realtime API** | Model (S2S) | shipped-reliable | Speech-to-speech model | Popularized S2S (official) | Lowest-latency native S2S; prosody | Google, cascade stacks |
-| **ElevenLabs** | TTS + platform | shipped-reliable | Voice quality + agent stack | Voice-quality leader (official) | Best-in-class voices; multilingual; bundled agents | Cartesia, PlayHT |
-| **Deepgram** | STT (+ TTS) | shipped-reliable | Streaming STT | Nova/Flux STT (official) | Fast, accurate streaming STT | AssemblyAI, Whisper |
+| **OpenAI Realtime API / GPT-Live** | Model (S2S) | shipped-reliable | Speech-to-speech model | GPT-Realtime-2.1; full-duplex GPT-Live-1 at $0.05/min voice layer, Sep 2026 (official) | Reasoning-capable native S2S; full-duplex | Google, xAI, cascade stacks |
+| **ElevenLabs** | TTS + platform | shipped-reliable | Voice quality + agent stack | $22B tender valuation, Sep 2026 (official) | Best-in-class voices; multilingual; bundled agents | Cartesia, PlayHT |
+| **Deepgram** | STT (+ TTS) | shipped-reliable | Streaming STT | Nova/Flux STT; $130M Series C at $1.3B, Jan 2026 (official) | Fast, accurate streaming STT | AssemblyAI, Whisper |
 | **Cartesia** | TTS | shipped-reliable | Low-latency TTS | Sonic Turbo TTS (inferred) | Ultra-low first-audio latency | ElevenLabs, PlayHT |
-| **Vapi** | Orchestration | shipped-reliable | Voice-agent platform | Multi-provider, 99.99% SLA (inferred) | Modular, swap any component | Retell, Bland |
-| **Retell AI** | Orchestration | shipped-reliable | Voice-agent platform | HIPAA, sub-second (inferred) | Compliance + low latency out of box | Vapi, Bland |
+| **Vapi** | Orchestration | shipped-reliable | Voice-agent platform | $50M Series B; 1B calls, May 2026 (official) | Modular, swap any component | Retell, Bland |
+| **Retell AI** | Orchestration | shipped-reliable | Voice-agent platform | HIPAA, sub-second (inferred); GPT-Live integration (official) | Compliance + low latency out of box | Vapi, Bland |
 | **Bland AI** | Orchestration | shipped-reliable | Outbound voice at scale | Dialer scale (inferred) | Outbound calling infrastructure | Vapi, Retell |
-| **LiveKit** | Infra/framework | shipped-reliable | Real-time transport + agents | WebRTC infra (official) | Real-time media infra + Agents framework | Daily/Pipecat |
+| **LiveKit** | Infra/framework | shipped-reliable | Real-time transport + agents | $100M Series C at $1B, Jan 2026 (official) | Real-time media infra + Agents framework | Daily/Pipecat |
 | **Pipecat (Daily)** | OSS framework | shipped-reliable | Compose voice pipelines | Open-source (official) | Open, flexible voice-agent framework | LiveKit Agents |
-| **Google (Gemini Live)** | Model | shipped-reliable | Native multimodal + voice | Gemini Live (official) | Native multimodal incl. video | OpenAI, Amazon |
+| **Google (Gemini Live)** | Model | shipped-reliable | Native multimodal + voice | Gemini 3.1 Flash Live → 3.8 Live / Extended Thinking, Sep 2026 (official) | Native multimodal incl. video; async tool calls while speaking | OpenAI, Amazon |
 | **AssemblyAI** | STT | shipped-reliable | Speech understanding | STT + audio intelligence (inferred) | STT with rich audio analysis | Deepgram, Whisper |
 | **PlayHT / Rime / others** | TTS | shipped-reliable | Voice synthesis | Voice variety (inferred) | Niche/vertical voices | Cartesia, ElevenLabs |
 | **Synthflow / Bland-like no-code** | No-code platform | shipped-reliable | Visual voice-agent builder | No-code (inferred) | Non-developer voice agents | Retell, Vapi |
-| **Amazon Nova Sonic** | Model (S2S) | shipped-reliable | Speech-to-speech | AWS S2S model (official) | AWS-integrated voice | OpenAI Realtime, Google |
-| **Sierra** | Vertical platform | shipped-reliable | CX voice/chat agents | Bret Taylor's co. (inferred) | Enterprise customer-experience agents | Decagon, vendor CX |
+| **Amazon Nova 2 Sonic** | Model (S2S) | shipped-reliable | Speech-to-speech | Nova 2 Sonic, Dec 2025; May 2026 refresh (official) | AWS-integrated voice | OpenAI Realtime, Google |
+| **Sierra** | Vertical platform | shipped-reliable | CX voice/chat agents | $950M Series E at $15.8B, May 2026 (official) | Enterprise customer-experience agents | Decagon, vendor CX |
+| **xAI Grok Voice** *(new)* | Model (S2S) | shipped-reliable | Speech-to-speech API | Grok Voice 3.0, Oct 2026, ~$0.08/min (inferred) | Vendor-claimed top S2S benchmark score | OpenAI, Google |
+| **Block Dessa** *(new)* | Model (full-duplex S2S) | research-only | Text-free conversational model | Unveiled Oct 2026; research access only (official) | Trained purely on audio; runs locally | GPT-Live, Sesame |
 
-That is fifteen entries — well past ten — spanning models, components, orchestration, and vertical
+That is seventeen entries — well past ten — spanning models, components, orchestration, and vertical
 applications. The structural read: **the market is a stack** — foundation models (S2S and
 multimodal) at the base, best-of-breed STT/TTS components in the middle, orchestration platforms
 (Vapi, Retell, Bland, LiveKit, Pipecat) that compose them into runnable agents, and vertical
@@ -242,7 +332,10 @@ applications (Sierra, Decagon for CX) at the top. The recommended production pat
 often a *composed stack* (e.g., Deepgram STT + Cartesia TTS + a fast LLM + Retell orchestration)
 rather than a single vendor — because best-of-breed components beat any one vendor's full stack on
 the latency/quality/cost frontier, though the single-vendor S2S option (OpenAI Realtime, Gemini
-Live) trades some of that for simplicity and lower latency.
+Live) trades some of that for simplicity and lower latency. By November 2026 the orchestration
+platforms are treating the new S2S models as *components* too. Retell and Pipecat both shipped
+GPT-Live integrations within weeks of its launch *(official)*. "Composed stack vs. single-vendor
+S2S" is therefore turning into "orchestration around whichever model is best this quarter."
 
 ---
 
@@ -286,7 +379,10 @@ Voice agents have a distinctive cost structure that shapes where they're deploye
   full stack (ElevenLabs' bundled offering around $0.08–$0.12/min is representative). This is a
   fundamentally different economic model than text agents' per-token pricing, and it makes voice
   agents' cost *predictable per call* but *significant at scale* (a call center doing millions of
-  minutes).
+  minutes). *Nov 2026:* the model layer alone is getting much cheaper. GPT-Live-1's voice layer
+  lists at $0.05/min, plus the backend model, and Gemini 3.8 Live lists at roughly $0.023/min of
+  combined audio in and out *(official list prices)*. Model cost is shrinking as a share of the
+  bundle, so margin and differentiation shift toward telephony, orchestration and reliability.
 - **The cost/quality/latency trilemma.** Cheaper components (smaller LLMs, cheaper TTS) reduce
   cost but risk quality and latency; the best components cost more. The recommended production
   stacks (fast small LLM like GPT-5 mini or Gemini Flash + efficient STT/TTS) are chosen to hit
@@ -297,7 +393,10 @@ Voice agents have a distinctive cost structure that shapes where they're deploye
   critical path (pre-computed, or a slower background process) — the "fast front, slow back" split
   from §05. This constrains how "smart" a real-time voice agent can be in the moment, which is a
   genuine limitation: voice agents are conversationally fast but often less deeply reasoned than a
-  text agent that can afford to think.
+  text agent that can afford to think. *Nov 2026:* the constraint is relaxing but has not gone
+  away. GPT-Realtime-2 exposes adjustable reasoning effort inside the S2S model. Gemini 3.8 Live
+  Extended Thinking and its async tool calls let the model keep talking while slower work runs.
+  Both effectively move the "slow back" *inside* the voice model's turn *(official)*.
 - **ROI concentrates in high-volume, labor-replacing use cases.** Voice agents make the most
   economic sense replacing or augmenting high-volume human phone work (support triage, appointment
   scheduling, outbound qualification) where the per-minute cost is far below the human
@@ -314,7 +413,9 @@ enterprise platforms (§14):
   companies, building voice-and-chat agents that handle customer interactions end-to-end for
   brands, with the enterprise governance, integration, and reliability that regulated CX requires.
   They raised large rounds on the thesis that AI agents will handle a large fraction of customer
-  interactions.
+  interactions. Decagon raised $250M at a $4.5B valuation in January 2026. Sierra raised $950M at a
+  $15.8B valuation in May 2026 *(official)*. Incumbents are
+  pushing in as well: Agentforce Voice added six languages at Dreamforce 2026 *(inferred)*.
 - **Vertical specialization** matters because CX has domain requirements: healthcare voice agents
   need HIPAA compliance (Retell's out-of-the-box HIPAA is a selling point), financial services
   need their compliance regime, and each vertical has its own scripts, integrations, and
@@ -406,7 +507,10 @@ naturalness, native multimodality advancing, and voice established as a mainstre
 for high-volume customer-facing use cases — with the safety/ethics issues (disclosure, cloning,
 manipulation) becoming pressing exactly as the technology becomes convincing. The arc — from
 hated IVR to genuine conversation — is one of the more visible agent-driven transformations in
-everyday life, and it is still early in its commercial expansion.
+everyday life, and it is still early in its commercial expansion. The second half of 2026 added
+a new chapter. Full-duplex S2S arrived in a public API (GPT-Live-1, September). Reasoning-capable
+voice models became standard (GPT-Realtime-2.x, Gemini 3.8 Live). Valuations re-rated sharply,
+with ElevenLabs at $22B and Deepgram and LiveKit each at $1B+.
 
 ## Voice/multimodal and the other layers
 
@@ -468,7 +572,10 @@ escalate to the cloud for hard ones. As on-device models improve and hardware (N
 laptops, and dedicated devices) advances, more of the voice pipeline moves local, which will push
 the latency frontier further and address the privacy concerns that cloud voice raises. This is
 earlier than cloud voice but a meaningful direction, especially for consumer hardware and
-privacy-sensitive verticals.
+privacy-sensitive verticals. One straw in the wind: Block says its full-duplex Dessa model (Oct
+2026) runs locally and faster than real time. That would put a frontier-style conversational
+model on the edge, but it is unverified, since there is no public access and no benchmarks yet
+*(official claim; unverified)*.
 
 ## Real-time video and embodied agents
 
@@ -480,7 +587,10 @@ real time. This is the earliest and most research-adjacent part of the layer, bu
   (Gemini Live's video mode is an early production example) — enables use cases like visual
   assistance ("what am I looking at?"), live monitoring, and richer computer-use (watching the
   screen as video rather than discrete screenshots). It is latency- and compute-intensive, and
-  currently more demoed than deployed at scale.
+  currently more demoed than deployed at scale. As of November 2026 the frontier voice models
+  disagree on whether vision belongs in the voice model. Gemini 3.1 Flash Live and its successors
+  are billed as voice-*and-vision* models. GPT-Live-1 accepts only audio and text, with no image
+  or video input *(official)*.
 - **Embodied/robotics agents** — agents controlling physical robots, perceiving via cameras and
   sensors and acting via actuators — are a distinct and much harder domain (real-world physics,
   safety, real-time control) mostly outside this document's software-agent scope, but converging
@@ -527,20 +637,35 @@ the forcing function for latency and real-time responsiveness.
 
 - **Speech-to-speech gains share for latency-critical conversation** *(official trend; high
   confidence).* Native S2S models keep improving on latency and prosody; cascade persists where
-  control/inspectability/component-choice matter, with hybrids bridging the two.
+  control/inspectability/component-choice matter, with hybrids bridging the two. — *Nov 2026:
+  confirmed and accelerating. Five new S2S releases landed in Jul–Oct: gpt-realtime-2.1,
+  GPT-Live-1, Gemini 3.8 Live, Grok Voice 3.0 and Dessa (preview).*
 - **The frontier moves from latency to conversational dynamics** *(inferred; high confidence).*
   Latency is largely solved for good implementations; interruption handling, turn-taking, emotion,
-  and naturalness are where competition now concentrates.
+  and naturalness are where competition now concentrates. — *Nov 2026: confirmed. Full-duplex
+  (GPT-Live-1, Dessa) is the explicit selling point of the newest models.*
 - **Native multimodality becomes the default** *(inferred; medium-high confidence).* Single
   models handling text/image/audio/video replace stitched pipelines where control isn't
-  paramount, tracking model improvement.
+  paramount, tracking model improvement. — *Nov 2026: partly. Google's Live models are
+  voice+vision, but OpenAI's GPT-Live-1 is audio/text only.*
 - **Composed best-of-breed stacks remain competitive with single-vendor** *(inferred; medium
   confidence).* Orchestration platforms (Vapi, Retell, LiveKit, Pipecat) composing best components
-  hold their ground against single-vendor S2S, especially where control and cost matter.
+  hold their ground against single-vendor S2S, especially where control and cost matter. — *Nov
+  2026: holding so far. Vapi reported 1B calls and a $50M Series B, LiveKit reached a $1B
+  valuation, and orchestrators absorb new S2S models as components. Falling model-layer prices are
+  the test to watch.*
 - **Voice agents scale in customer-facing verticals** *(inferred; high confidence).* CX, support,
   scheduling, and outbound applications (Sierra, Decagon, Bland) grow as latency and naturalness
   cross the "acceptable" threshold — voice becomes a mainstream agent interface for these use
-  cases.
+  cases. — *Nov 2026: confirmed by capital flows. Sierra is at $15.8B, Decagon at $4.5B and
+  ElevenLabs at $22B; disclosed revenue figures are still sparse.*
+- **New (Nov 2026): full-duplex becomes table stakes for premium voice agents by late 2027**
+  *(speculative; medium confidence).* Expect orchestration platforms to expose duplex sessions and
+  evaluation suites to add overlap/backchannel metrics. The open questions are moderation and
+  logging on duplex streams.
+- **New (Nov 2026): model-layer price compression shifts voice margins to orchestration,
+  telephony and reliability** *(inferred; medium-high confidence).* List prices of
+  ~$0.02–0.08/min for S2S voice layers sit well below the $0.05–0.15/min full-stack range.
 
 ---
 
@@ -605,7 +730,9 @@ better models.
 - **Streaming and overlapping the pipeline** keep cascades competitive (sub-700ms despite three
   models); good **turn detection** is a deceptively critical differentiator.
 - **Latency is largely solved for good implementations; conversational dynamics** (interruption/
-  barge-in, turn-taking timing, emotion/prosody) are the new frontier of naturalness.
+  barge-in, turn-taking timing, emotion/prosody) are the new frontier of naturalness. In late 2026
+  that frontier became **full-duplex, reasoning-capable S2S** (GPT-Live-1, Gemini 3.8 Live), with
+  model-layer prices falling toward a few cents per minute.
 - Multimodal beyond voice: **vision input is mature and powers key verticals** (computer-use,
   documents), video is earlier; the trend is toward **native multimodal models** over stitched
   pipelines, and **perception is often the weaker link than reasoning**.
@@ -623,4 +750,33 @@ better models.
   **accessibility/inclusion** responsibilities where capability is currently ahead of the
   safeguards and equitable coverage.
 
-*Word count target: 6,000. This section: ~6,050 (verified via `wc`).*
+*Word count target: 6,000. This section: ~7,700 after the November 2026 update, including the update log and sources list (verified via `wc`).*
+
+## Sources (November 2026 update)
+
+- Deepgram Series C press release — https://deepgram.com/learn/press-release-deepgram-raises-series-c
+- TechCrunch, Deepgram $130M at $1.3B — https://techcrunch.com/2026/01/13/deepgram-raises-130m-at-1-3b-valuation-and-buys-a-yc-ai-startup
+- LiveKit $100M / $1B press release — https://fortune.com/press-releases/livekit-raises-100m-1b-valuation-voice-first-computing-2026-01-22
+- SiliconANGLE, LiveKit Series C — https://siliconangle.com/2026/01/22/livekit-raises-100m-1b-valuation-scale-real-time-ai-media-platform/
+- Creati.ai, ElevenLabs Series D — https://creati.ai/ai-news/2026-02-04/elevenlabs-raises-500m-at-11b-valuation-tripling-value
+- Billboard, ElevenLabs $22B tender — https://www.billboard.com/pro/elevenlabs-ai-startup-valued-22-billion-tender-offer/
+- Unite.AI, ElevenLabs tender — https://www.unite.ai/elevenlabs-closes-300m-employee-tender-offer-at-22b-valuation/
+- PYMNTS, ElevenLabs IPO timing — https://pymnts.com/news/investment-tracker/ipo/2026/elevenlabs-ceo-eyes-2028-ipo-prep-voice-ai-firm
+- Google, Gemini 3.1 Flash Live — https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-1-flash-live/
+- Google, new Gemini audio models (3.8 Live) — https://blog.google/innovation-and-ai/technology/developers-tools/build-real-time-voice-applications-gemini-audio/
+- Developers Digest, Gemini 3.8 Live guide — https://www.developersdigest.tech/blog/gemini-3-8-live-extended-thinking-release-guide-2026
+- Google Cloud docs, Gemini 2.5 Flash Live API (GA/retirement dates) — https://docs.cloud.google.com/vertex-ai/generative-ai/docs/models/gemini/2-5-flash-live-api
+- eWeek, GPT-Realtime-2 launch — https://www.eweek.com/fr/news/openai-gpt-realtime-2-voice-agents/
+- OpenAI community, gpt-realtime-2.1 / 2.1-mini — https://community.openai.com/t/new-realtime-models-on-the-api-gpt-realtime-2-1-and-gpt-realtime-2-1-mini/1385896
+- OpenAI docs, GPT-Live-1 — https://developers.openai.com/api/docs/models/gpt-live-1.md
+- Unite.AI, GPT-Live-1 at $0.05/min — https://www.unite.ai/openais-gpt-live-1-arrives-in-the-api-at-0-05-per-minute/
+- Retell docs, GPT-Live — https://docs.retellai.com/build/gpt-live
+- Pipecat docs, OpenAI Live service — https://docs.pipecat.ai/api-reference/server/services/s2s/openai-live
+- Vapi Series B (GlobeNewswire) — https://www.globenewswire.com/news-release/2026/05/12/3292882/0/en/vapi-raises-50m-series-b-as-it-reaches-1-billion-calls-powering-the-next-generation-of-enterprise-voice-ai.html
+- AWS Nova 2 Sonic announcement — https://aws.amazon.com/about-aws/whats-new/2025/12/amazon-nova-2-sonic-real-time-conversational-ai
+- AWS Nova 2 release notes — https://docs.aws.amazon.com/nova/latest/nova2-userguide/release-notes.html
+- DevX, Grok Voice 3.0 — https://www.devx.com/artificial-intelligence-ai/what-is-grok-voice-3-0-xai-speech-to-speech-model/
+- TechCrunch, Block Dessa — https://techcrunch.com/2026/10/24/blocks-new-voice-model-sounds-eerily-human/
+- Cyntexa, Dreamforce 2026 highlights (Agentforce Voice languages) — https://cyntexa.com/blog/dreamforce-2026-highlights/
+- Bloomberg, Decagon $4.5B — https://www.bloomberg.com/news/articles/2026-01-28/ai-customer-support-startup-decagon-valued-at-4-5-billion
+- SiliconANGLE, Sierra Series E — https://siliconangle.com/?p=746652

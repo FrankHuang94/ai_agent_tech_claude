@@ -20,10 +20,10 @@ for i, v in enumerate(df["market_size_busd"]):
     ax.text(i, v + 0.7, f"${v:.1f}B", ha="center", fontsize=9.5, color=INK)
 ax.set_ylabel("AI agents market size (US$ billions)")
 ax.set_ylim(0, 58)
-ax.set_title("Enterprise AI agent market: $7.8B (2025) → $52.6B (2030)", loc="left", pad=24)
+ax.set_title(r"Enterprise AI agent market: \$7.8B (2025) → \$52.6B (2030)", loc="left", pad=24)
 ax.text(0, 1.02, "~46% CAGR — from pilot budgets to production commitments; the enterprise-platform land-grab",
         transform=ax.transAxes, fontsize=9.6, color=MUTED)
-fig.text(0.01, 0.005, "Source: market projection cited mid-2026 (inferred; single-source estimate, treat as directional).",
+fig.text(0.01, 0.005, "Source: market projection cited mid-2026, retained in Nov 2026 update (inferred; single-source, directional). Gartner's broader agentic-software envelope (~$200B, 2026) is not comparable.",
          fontsize=8, color=MUTED)
 save(fig, os.path.join(OUT, "14_market_growth.png"))
 
@@ -45,5 +45,5 @@ ax.text(6.6, 3.4, "Open / cross-platform", fontsize=8.8, color=MUTED, ha="right"
 ax.set_title("Enterprise agent platforms: openness vs. breadth", loc="left", pad=26)
 ax.text(0, 1.03, "Bubble size = relative enterprise adoption. Incumbents anchor on their data/app moat; openness is the counter-bet.",
         transform=ax.transAxes, fontsize=9.6, color=MUTED)
-fig.text(0.01, 0.005, "Source: internal assessment, July 2026 (analyst judgment; adoption approximate).", fontsize=8, color=MUTED)
+fig.text(0.01, 0.005, "Source: internal assessment, Nov 2026 update (analyst judgment; adoption approximate). Convergence on cross-vendor control planes nudged incumbents rightward.", fontsize=8, color=MUTED)
 save(fig, os.path.join(OUT, "14_platform_positioning.png"))

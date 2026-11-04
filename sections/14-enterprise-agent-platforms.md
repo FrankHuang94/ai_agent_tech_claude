@@ -2,7 +2,7 @@
 
 *Where agents meet the enterprise. Agentforce, Copilot Studio, ServiceNow, and vertical
 platforms — the packaging layer that turns agent technology into deployable business software.
-Target: 6,500 words.*
+Target: 6,500 words. Current as of November 2026 (snapshot of July 22, 2026, updated).*
 
 ---
 
@@ -29,12 +29,21 @@ rather than over raw capability. This is a go-to-market layer as much as a techn
 and trusted relationships have historically beaten superior technology more often than not, which is
 the incumbents' deepest structural advantage here.
 
-The scale is real. Salesforce reports Agentforce closing ~29,000 deals since launch reaching ~$800M
-ARR; Microsoft reports Copilot Studio with ~160,000 organizations running 400,000+ custom agents;
-the enterprise AI-agent market is projected to grow from ~$7.8B (2025) toward ~$52.6B (2030) at a
-~46% CAGR. This is one of the fastest-growing enterprise-software categories, and the incumbents
-(Salesforce, Microsoft, ServiceNow, Google, SAP, Amazon, ServiceNow, Workday) are all racing to
-convert their existing enterprise relationships into agent-platform revenue.
+The scale is real, and it grew through 2026. Salesforce reported Agentforce ARR of **>$1.5B** in
+Q2 FY27 (quarter ended Jul 31, 2026), up >240% YoY, and **~$3.9B** in combined Agentforce + Data 360
+ARR. The Agentforce metric now also counts Slackbot and Headless 360, so it is not like-for-like
+with the ~$800M fiscal-2026 figure or Q1 FY27's $1.2B. Agentforce also processed 3.2B "Agentic
+Work Units" in that quarter *(official)*. Microsoft reported Copilot Studio at ~160,000
+organizations and 400,000+ custom agents (early 2026). By October 2026 its **Agent 365** registry
+held **50M+ agents**, up >30% QoQ *(official, earnings call)*. ServiceNow twice raised its 2026
+AI-ACV target, from $1B to **$1.7B** *(official)*. On market size, one projection has the
+enterprise AI-agent market growing from ~$7.8B (2025) toward ~$52.6B (2030) at a ~46% CAGR.
+Gartner's much broader "software with agentic capabilities" envelope is reported at roughly
+$200B for 2026 *(inferred; secondary reports of Gartner; not comparable)*. This is one of the
+fastest-growing enterprise-software categories. The incumbents (Salesforce, Microsoft,
+ServiceNow, Google, SAP, Amazon, Workday) are all racing to convert their existing enterprise
+relationships into agent-platform revenue, and OpenAI's Frontier (Feb 2026) has joined them
+from the model side.
 
 ![Enterprise AI agent market growth](../assets/charts/14_market_growth.png)
 
@@ -42,6 +51,87 @@ The market-size trajectory (treat the exact figures as directional single-source
 captures the shift from experimentation to committed spend — and it is why every enterprise-software
 vendor repositioned around "agents" over 2025–2026. The strategic question this section answers is
 *how these platforms differ, who wins where, and the fundamental build-vs-buy and lock-in dynamics*.
+
+---
+
+## What changed since July 2026 (November 2026 update)
+
+The July snapshot described a land-grab. Four months later, the land-grab is turning into a
+**fight over the control plane**. Every major vendor now sells an agent *registry, governance
+and observability* layer and tries to make it the place where *other vendors'* agents are
+managed. Microsoft has Agent 365. ServiceNow has AI Control Tower, plus an "AI Passport" for
+third-party agents. Salesforce now orchestrates third-party agents from AWS, Azure and Google.
+Google has the Gemini Enterprise Agent Platform. At the same time, the incumbents opened up at
+the *model* layer. Agentforce now offers Claude and the Bedrock model catalog, and Workday ships
+Sana into Copilot, Gemini Enterprise, Slack and Claude. Revenue disclosures grew materially,
+though metric definitions keep changing, which makes period-over-period comparison unreliable.
+The log also picks up material February–July items the July snapshot missed. Tags follow §17:
+*official* is a vendor announcement or filing, linked to the primary source where reachable and
+otherwise to coverage of it; *inferred* is single-source or analyst-derived.
+
+- **Jan 28, 2026 — Decagon raises a $250M Series D at a $4.5B valuation** (Coatue, Index)
+  *(official; via Bloomberg)* —
+  [Bloomberg](https://www.bloomberg.com/news/articles/2026-01-28/ai-customer-support-startup-decagon-valued-at-4-5-billion).
+- **Feb 5, 2026 — OpenAI launches Frontier**, a platform for enterprises to build, deploy and
+  manage agents. It launched in limited availability, with no public pricing *(official; via
+  coverage)* —
+  [Constellation Research](https://www.constellationr.com/insights/news/openai-launches-openai-frontier-aims-be-ai-agent-orchestrator).
+- **Feb 2026 — Google reports 8M+ paid Gemini Enterprise seats across 2,800+ companies** (Q4 2025
+  call) *(official; via coverage)* —
+  [PYMNTS](https://www.pymnts.com/google/2026/alphabet-bets-185b-on-gemini-agentic-commerce-and-enterprise-ai/).
+- **Apr 22, 2026 — Vertex AI becomes the Gemini Enterprise Agent Platform** (Google Cloud Next
+  '26). Agent Engine becomes Agent Runtime, and Vertex AI Studio becomes Agent Studio *(official)* —
+  [Google Cloud release notes](https://docs.cloud.google.com/gemini-enterprise-agent-platform/release-notes?hl=de).
+- **May 1, 2026 — Microsoft Agent 365 reaches GA** at ~$15/user/month. **Microsoft 365 E7** ($99,
+  bundling E5, Copilot and Agent 365) also launches *(official; via coverage)* —
+  [The Register](https://www.theregister.com/2026/03/09/microsoft_adds_a_premium_tier/).
+- **May 4, 2026 — Sierra raises a $950M Series E at $15.8B** (Tiger Global, GV) *(official)* —
+  [SiliconANGLE](https://siliconangle.com/?p=746652).
+- **May 2026 — ServiceNow Knowledge 2026 expands AI Control Tower** into a governance layer
+  (discover, govern, secure, observe, measure) for AI across *any* system *(official)* —
+  [ServiceNow](https://s205.q4cdn.com/916135447/files/doc_news/ServiceNow-expands-AI-Control-Tower-to-discover-observe-govern-secure-and-measure-AI-deployed-across-any-system-in-the-enterprise-2026.pdf).
+- **Jun 17, 2026 — AWS Summit New York.** AgentCore adds runtime instances (persistent compute)
+  and a managed web-search tool. AWS also launches AWS Context, a knowledge graph for agents
+  *(official)* —
+  [AWS News Blog](https://aws.amazon.com/blogs/aws/top-announcements-of-the-aws-summit-in-new-york-2026/).
+  Legacy Bedrock Agents was reportedly renamed "Agents Classic" and closed to new customers from
+  Jul 30 *(inferred)* —
+  [AWS Builder Center](https://builder.aws.com/content/3ItUUFljIPOutbUGruzDO3RX7Gw/amazon-bedrock-agentcore).
+- **Aug 26, 2026 — Salesforce Q2 FY27.** Agentforce ARR >$1.5B on the broadened definition, and
+  Agentforce + Data 360 ARR ~$3.9B. Agentforce processed 3.2B Agentic Work Units, up 97% QoQ
+  *(official)* —
+  [TechMarketView](https://www.techmarketview.com/ukhotviews/archive/2026/08/27/salesforce-q2-keeps-agentforce-growth-story-moving),
+  [Pulse 2.0](https://pulse2.com/salesforce-net-income-jumps-87-as-agentforce-and-data-360-arr-surges-more-than-210-to-nearly-3-9-billion/).
+- **Sep 15–17, 2026 — Dreamforce** brought 21 announcements. They include long-horizon agents
+  (e.g. "Hunter" for outbound sales), **Koa**, a CRM reasoning model on NVIDIA Nemotron (pilot),
+  and Agentforce Coworker. Claude becomes selectable in the Atlas Reasoning Engine, the full
+  Bedrock model catalog is opened, and Agentforce can orchestrate third-party agents *(official
+  list; details inferred from recaps)* —
+  [Salesforce](https://www.salesforce.com/blog/dreamforce-2026-announcements/),
+  [Cyntexa](https://cyntexa.com/blog/dreamforce-2026-highlights/).
+- **Sep 2026 — AgentCore Evaluations adds TypeScript frameworks** and skill evaluators
+  *(official)* —
+  [AgentCore release notes](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/release-notes.md).
+- **Q3 2026 — SAP moves Joule agents to AI-Unit consumption billing** (reported at 0.02 AI Units
+  per agent action). A DSAG user-group survey found only ~3% of SAP customers using SAP Business
+  AI productively *(inferred)* —
+  [Börse Express](https://www.boerse-express.com/news/articles/sap-aktie-nur-3-prozent-nutzen-joule-produktiv-903874).
+- **Oct 13, 2026 — Workday Rising.** Sana becomes Workday's front door and is GA inside Gemini
+  Enterprise, Microsoft Copilot, Teams and Slack, with Claude in early access. Workday also adds
+  new autopilot agents and an Agent Harness *(official)* —
+  [Workday](https://investor.workday.com/news-and-events/press-releases/news-details/2026/Workday-to-Bring-Sana-Everywhere-Employees-Work-Including-Claude-Gemini-Enterprise-Microsoft-Copilot-Slack-and-Teams/default.aspx).
+- **Oct 28, 2026 — ServiceNow Q3.** The 2026 AI-ACV target rises to $1.7B, and agentic-AI
+  consumption in production is up >13× YTD. ServiceNow also launches a Control Tower Alliance and
+  an **AI Passport** for verifying first- and third-party agent scopes *(official)* —
+  [SEC 8-K](https://www.sec.gov/Archives/edgar/data/0001373715/000137371526000092/erq3fy26.htm).
+- **Oct 28, 2026 — Microsoft Q1 FY27.** The Agent 365 registry passes 50M agents (+30% QoQ), and
+  E7 has "millions" of paid seats. Microsoft gave no new Copilot seat count; the July figure was
+  >30M *(official, call)* —
+  [Motley Fool transcript](https://www.fool.com/earnings/call-transcripts/2026/10/29/microsoft-msft-q1-2027-earnings-call-transcript/),
+  [UC Today](https://uctoday.com/microsoft-q1-copilot-usage-jumps-seat-count-goes-missing).
+- **Upcoming — Microsoft Ignite, Nov 17–20, 2026** (San Francisco). No Ignite 2026 announcements
+  existed at the time of writing *(official dates)* —
+  [Moscone](https://moscone.com/events/microsoft-ignite-2026).
 
 ---
 
@@ -89,8 +179,9 @@ flowchart TB
     end
     subgraph Open["Open / cross-platform"]
         direction TB
-        O1[Google Agentspace] --> OD[(Cross-source<br/>enterprise search)]
+        O1["Google Gemini Enterprise<br/>+ Agent Platform"] --> OD[(Cross-source<br/>enterprise search)]
         O2[AWS Bedrock AgentCore] --> OD2[(Model-agnostic<br/>agent runtime)]
+        O3[OpenAI Frontier] --> OD3[(Model-vendor<br/>agent platform)]
     end
     subgraph Common["Shared underlying capabilities (§02–§13)"]
         ORCH[Orchestration] --- MEM[Memory]
@@ -103,7 +194,7 @@ flowchart TB
     classDef anchor fill:#dbeafe,stroke:#2563eb,color:#1e3a8a;
     classDef open fill:#dcfce7,stroke:#16a34a,color:#14532d;
     class A1,A2,A3,A4 anchor;
-    class O1,O2 open;
+    class O1,O2,O3 open;
 ```
 
 The fundamental split is **ecosystem-anchored vs. open/cross-platform**:
@@ -113,10 +204,19 @@ The fundamental split is **ecosystem-anchored vs. open/cross-platform**:
   enterprise already has in that vendor's system; their limit is that they're most valuable within
   that ecosystem. This is the dominant, highest-adoption approach because it leverages the
   incumbent's existing enterprise position.
-- **Open/cross-platform** (Google Agentspace, AWS Bedrock AgentCore) bet on being the agent layer
-  *across* an enterprise's heterogeneous systems, not tied to one application vendor's data. Their
-  power is neutrality (work with any data/model); their challenge is lacking the built-in data moat
+- **Open/cross-platform** (Google Gemini Enterprise, formerly Agentspace, plus the Gemini
+  Enterprise Agent Platform that replaced the Vertex AI brand in April 2026; AWS Bedrock
+  AgentCore; and since February 2026 OpenAI Frontier) bet on being the agent layer *across* an
+  enterprise's heterogeneous systems, not tied to one application vendor's data. Their power is
+  neutrality: they work with any data or model. Their challenge is lacking the built-in data moat
   the anchored platforms have.
+
+*Nov 2026 note:* the line between the two camps blurred in H2 2026. The anchored vendors now
+present themselves as cross-platform *control planes*. Agentforce orchestrates third-party
+agents from AWS, Azure and Google. ServiceNow's AI Control Tower governs AI "deployed across any
+system," and Agent 365 registers agents built anywhere. They have also opened up their models:
+Claude and Bedrock models run inside Agentforce, and Workday's Sana runs inside Copilot, Gemini
+Enterprise and Claude *(official)*.
 
 The positioning chart maps the platforms on openness vs. breadth, sized by adoption:
 
@@ -125,7 +225,9 @@ The positioning chart maps the platforms on openness vs. breadth, sized by adopt
 The high-adoption platforms cluster in the ecosystem-anchored (lower-openness) region, because
 riding an incumbent's data/app moat is the winning near-term strategy — enterprises deploy agents
 where their data and workflows already live. The open/cross-platform bet (Google, AWS) is the
-counter-strategy for enterprises that want a neutral agent layer across systems, but it fights the
+counter-strategy for enterprises that want a neutral agent layer across systems. OpenAI Frontier,
+added in the November 2026 update, sits here too as a model-vendor entrant. The counter-strategy
+still fights the
 incumbents' integration advantage. This mirrors the §02 orchestration dynamic one level up: the
 platform is squeezed between the incumbent's data moat and the open-portability alternative.
 
@@ -137,33 +239,57 @@ A closer look at the leading enterprise platforms and their distinct positions:
 
 - **Salesforce Agentforce.** The customer-facing/CRM agent leader, deeply integrated with Salesforce
   data, Flow, and the Data Cloud. Strongest for customer service, sales, and marketing agents where
-  the CRM data is the fuel. ~29,000 deals, ~$800M ARR. Consumption-based pricing (Flex Credits)
-  reflects the "agents do work, pay per work" model. Its bet: the CRM is where customer-facing agents
-  belong, and Salesforce owns the CRM.
+  the CRM data is the fuel. Agentforce ARR was >$1.5B as of Q2 FY27 (Aug 2026), on a definition
+  that now includes Slackbot and Headless 360; it was ~$800M at FY26 year-end. Agentforce + Data
+  360 ARR is ~$3.9B. Consumption-based pricing (Flex Credits) reflects the "agents do work, pay per
+  work" model. Dreamforce 2026 (Sep) added long-horizon agents, the Koa CRM reasoning model
+  (pilot), and Claude and Bedrock models as reasoning options, along with third-party agent
+  orchestration *(official/inferred)*. Its bet: the CRM is where customer-facing agents belong,
+  and Salesforce owns the CRM.
 - **Microsoft Copilot Studio.** The broadest-reach platform by adoption (~160,000 orgs, 400,000+
   agents), riding Microsoft 365's ubiquity and the Power Platform's low-code base. Strongest for
   employee-facing productivity and internal-process agents integrated with the Microsoft Graph
-  (email, docs, Teams). Bundled affordably ($30/user/mo with M365 Copilot). Its bet: agents live
-  where employees already work (Microsoft 365), and Microsoft owns that.
+  (email, docs, Teams). Bundled affordably ($30/user/mo with M365 Copilot). Since May 2026,
+  **Agent 365** (GA; ~$15/user/mo standalone, or inside the $99 **M365 E7** suite) provides the
+  registry, governance and observability control plane for agents built in Copilot Studio,
+  Foundry or third-party frameworks. Its registry passed 50M agents by October 2026 *(official)*.
+  Its bet: agents live where employees already work (Microsoft 365), and Microsoft owns that.
 - **ServiceNow AI Agents.** The workflow/IT-and-employee-service leader, embedding agents into
   ServiceNow's workflow data fabric and ITSM/HR/customer workflows, with an AI Control Tower for
-  governance (April 2026 restructuring embedded AI across tiers by default). Strongest for
-  IT/HR/employee-service automation where ServiceNow owns the workflow. Its bet: agents belong in the
-  workflow layer, and ServiceNow owns enterprise workflow.
+  governance (April 2026 restructuring embedded AI across tiers by default). Control Tower was
+  expanded at Knowledge 2026 (May) to govern AI on *any* system, and gained an AI Passport and a
+  Control Tower Alliance in October. The 2026 AI-ACV target was raised to $1.7B *(official)*.
+  Strongest for IT/HR/employee-service automation where ServiceNow owns the workflow. Its bet:
+  agents belong in the workflow layer, and ServiceNow owns enterprise workflow.
 - **SAP Joule.** The SAP-native agent layer (Joule Assistants orchestrating agents across finance,
-  supply chain, HR, CX), strongest for enterprises running SAP's business processes. Its bet: agents
-  belong against the ERP/business-process data SAP owns.
-- **Google Agentspace / Gemini Enterprise.** The open/cross-platform bet — enterprise agents and
-  search across an enterprise's heterogeneous data sources, model-flexible, A2A-native. Its bet:
-  enterprises want a neutral agent layer across all their systems, not one tied to a single app
-  vendor.
-- **AWS Bedrock AgentCore.** The model-agnostic agent runtime/infrastructure bet — provide the
-  managed runtime, memory, identity, and tools for enterprises to build/run agents on AWS with any
-  model. More infrastructure than packaged application; competes for the "build on our cloud" agent
-  workloads.
-- **Workday Illuminate, Adobe, Atlassian Rovo, and other app-vendors** each build agents against
-  their specific data (HR/finance for Workday, creative for Adobe, dev-collaboration for Atlassian)
-  — the "every enterprise app vendor adds agents against its own data" pattern.
+  supply chain, HR, CX), strongest for enterprises running SAP's business processes. Joule agents
+  moved to AI-Unit consumption billing in Q3 2026. A 2026 DSAG survey found only ~3% of SAP
+  customers using SAP Business AI productively, and 77% of AI users relying on non-SAP tools such
+  as Copilot. That is a pointed reminder that owning the data does not guarantee owning the agent
+  *(inferred)*. Its bet: agents belong against the ERP/business-process data SAP owns.
+- **Google Gemini Enterprise (formerly Agentspace) + Gemini Enterprise Agent Platform.** The
+  open/cross-platform bet: enterprise agents and search across an enterprise's heterogeneous data
+  sources, model-flexible and A2A-native. In April 2026 Google folded Vertex AI's agent tooling
+  into the Gemini Enterprise Agent Platform. Google reported 8M+ paid Gemini Enterprise seats in
+  February 2026 *(official)*. Its bet: enterprises want a neutral agent layer across all their
+  systems, not one tied to a single app vendor.
+- **AWS Bedrock AgentCore.** The model-agnostic agent runtime/infrastructure bet: provide the
+  managed runtime, memory, identity, and tools for enterprises to build and run agents on AWS with
+  any model. 2026 additions include a GA harness, persistent runtime instances, managed web search
+  and TypeScript evaluations. The older Bedrock Agents product is being wound down to "Classic"
+  *(official/inferred)*. More infrastructure than packaged application; competes for the "build
+  on our cloud" agent workloads.
+- **OpenAI Frontier** *(new in this update)*. OpenAI launched Frontier in February 2026, a
+  model-vendor platform for enterprises to build, deploy and manage agents. It was in limited
+  availability with undisclosed pricing; named early users in coverage include State Farm, Uber
+  and Oracle *(official launch; customer list inferred)*. Its bet: the frontier-model vendor can
+  own the agent layer directly, bypassing both app incumbents and clouds.
+- **Workday (Illuminate → Sana), Adobe, Atlassian Rovo, and other app-vendors** each build agents
+  against their specific data (HR/finance for Workday, creative for Adobe, dev-collaboration for
+  Atlassian). This is the "every enterprise app vendor adds agents against its own data" pattern.
+  Workday has since rebuilt its front end around the acquired Sana and, as of October 2026,
+  distributes Sana *into* rival surfaces: Copilot, Gemini Enterprise, Slack, Teams and Claude
+  *(official)*.
 
 The recurring logic: **every enterprise-software incumbent is turning its existing data/workflow moat
 into an agent platform**, betting that agents will live where the relevant data already lives. This
@@ -179,25 +305,27 @@ defending its turf by adding agents.
 
 | Platform | Vendor | Maturity | Anchor / focus | Notable (confidence) | Differentiator | Competitors |
 |---|---|---|---|---|---|---|
-| **Agentforce** | Salesforce | shipped-reliable | CRM / customer-facing | ~29k deals, ~$800M ARR (inferred) | CRM data + customer-service agents | Copilot Studio, ServiceNow |
-| **Copilot Studio** | Microsoft | shipped-reliable | M365 / employee-facing | ~160k orgs, 400k+ agents (inferred) | M365 ubiquity + low-code reach | Agentforce, Google |
-| **ServiceNow AI Agents** | ServiceNow | shipped-reliable | Workflow / IT-HR service | AI Control Tower (official) | Workflow data fabric + governance | Copilot Studio, Agentforce |
-| **SAP Joule** | SAP | shipped-reliable | ERP / business process | 50+ Joule Assistants (inferred) | SAP business-data-native agents | Microsoft, Workday |
-| **Google Agentspace / Gemini Enterprise** | Google | shipped-reliable | Cross-source / open | A2A-native, model-flexible (official) | Neutral cross-system agent layer | Copilot Studio, AWS |
-| **AWS Bedrock AgentCore** | Amazon | shipped-reliable | Model-agnostic runtime | Managed agent runtime (official) | Build-your-own on AWS, any model | Google, Azure |
-| **Workday Illuminate** | Workday | shipped-reliable | HR / finance | Illuminate agents (official) | HR/finance-data-native | SAP, Microsoft |
+| **Agentforce** | Salesforce | shipped-reliable | CRM / customer-facing | >$1.5B Agentforce ARR (broadened definition), Q2 FY27 (official) | CRM data + customer-service agents; now multi-model (Claude, Bedrock) | Copilot Studio, ServiceNow |
+| **Copilot Studio + Agent 365** | Microsoft | shipped-reliable | M365 / employee-facing | ~160k orgs (early 2026); Agent 365 GA May 2026, 50M+ registered agents (official) | M365 ubiquity + low-code reach + agent control plane | Agentforce, Google |
+| **ServiceNow AI Agents** | ServiceNow | shipped-reliable | Workflow / IT-HR service | AI Control Tower + AI Passport; $1.7B 2026 AI-ACV target (official) | Workflow data fabric + cross-system governance | Copilot Studio, Agentforce |
+| **SAP Joule** | SAP | shipped-reliable | ERP / business process | 30+ agents, 2,500+ Joule skills; AI-Unit billing (inferred) | SAP business-data-native agents | Microsoft, Workday |
+| **Google Gemini Enterprise (ex-Agentspace) / Agent Platform** | Google | shipped-reliable | Cross-source / open | 8M+ paid seats (Feb 2026); Vertex AI → Agent Platform, Apr 2026 (official) | Neutral cross-system agent layer | Copilot Studio, AWS |
+| **AWS Bedrock AgentCore** | Amazon | shipped-reliable | Model-agnostic runtime | Harness GA, runtime instances, Jun 2026 (official) | Build-your-own on AWS, any model | Google, Azure |
+| **OpenAI Frontier** *(new)* | OpenAI | demoed-brittle | Model-vendor agent platform | Launched Feb 2026, limited availability (official) | Frontier-model vendor owning the agent layer | Google, AWS, Microsoft |
+| **Workday Illuminate / Sana** | Workday | shipped-reliable | HR / finance | Sana as front door; ships into Copilot, Gemini, Claude, Oct 2026 (official) | HR/finance-data-native | SAP, Microsoft |
 | **IBM watsonx Orchestrate** | IBM | shipped-reliable | Enterprise multi-agent | ACP-native (official) | Enterprise orchestration + governance | ServiceNow, Microsoft |
 | **UiPath Agentic Automation** | UiPath | shipped-reliable | Back-office / RPA+agents | RPA install base (official) | Agent + deterministic RPA execution | Automation Anywhere, MS |
 | **Kore.ai** | Kore.ai | shipped-reliable | CX / conversational | Enterprise CX agents (inferred) | Vendor-neutral CX agent platform | Agentforce, Sierra |
 | **Atlassian Rovo** | Atlassian | shipped-reliable | Dev/collaboration | Rovo agents (official) | Agents across Atlassian tools | Microsoft, Glean |
 | **Adobe (AEP Agent Orchestrator)** | Adobe | shipped-reliable | Marketing/creative | Adobe agents (official) | Marketing-data-native agents | Salesforce, Microsoft |
-| **Sierra / Decagon** | Startups | shipped-reliable | CX (best-of-breed) | (inferred) | Vendor-neutral premium CX agents | Agentforce, Kore.ai |
-| **Dust / Sana / Glean-agents** | Startups | shipped-reliable | Cross-app employee agents | (inferred) | Neutral employee agent platforms | Copilot Studio, Agentspace |
+| **Sierra / Decagon** | Startups | shipped-reliable | CX (best-of-breed) | Sierra $15.8B (May 2026); Decagon $4.5B (Jan 2026) (official) | Vendor-neutral premium CX agents | Agentforce, Kore.ai |
+| **Dust / Glean-agents** (Sana acquired by Workday) | Startups | shipped-reliable | Cross-app employee agents | Glean ~$300M ARR, May 2026 (inferred) | Neutral employee agent platforms | Copilot Studio, Gemini Enterprise |
 | **Cohere North / vertical platforms** | Various | demoed→reliable | Vertical/regulated | (inferred) | Domain/regulated agent platforms | incumbents |
 
-That is fifteen entries — well past ten. The structural read: **the layer is dominated by the
+That is sixteen entries — well past ten. The structural read: **the layer is dominated by the
 enterprise-software incumbents extending their moats, with a band of best-of-breed startups (Sierra,
-Decagon for CX; Dust, Glean, Sana for cross-app employee agents) betting that neutrality and quality
+Decagon for CX; Dust and Glean for cross-app employee agents, with Sana now absorbed by Workday)
+betting that neutrality and quality
 beat incumbent integration.** The incumbents' advantage is the data/workflow moat and existing
 relationships; the startups' advantage is being cross-platform, best-of-breed, and not locked to one
 vendor's ecosystem. Both bets are live, and the market is big enough for both — the incumbents win
@@ -282,7 +410,10 @@ incumbent-vs-best-of-breed dynamic sharply:
 - **The best-of-breed play (Sierra, Decagon).** Startups like Sierra (Bret Taylor) and Decagon bet
   that CX agents are hard enough — and important enough — to warrant a *specialized, best-in-class*
   platform, vendor-neutral and integrating with whatever CRM/systems the enterprise runs. Their pitch
-  is superior agent quality and CX-specific depth, not incumbent convenience.
+  is superior agent quality and CX-specific depth, not incumbent convenience. Investors backed the
+  pitch heavily in 2026. Decagon raised $250M at $4.5B in January, and Sierra raised $950M at
+  $15.8B in May. Sierra reportedly reached $150M ARR by early 2026 *(inferred)*, still an order of
+  magnitude below Agentforce's ARR.
 - **The conversational-AI incumbents (Kore.ai, and the contact-center vendors — Genesys, NICE,
   Five9, and others adding agents).** The existing contact-center and conversational-AI vendors
   extend their platforms with agents, betting their contact-center integration and CX heritage win.
@@ -452,7 +583,7 @@ incumbents:
   CRM agent belongs in the CRM, your ERP agent in the ERP — so the incumbents extend their systems of
   record into systems of action, defending their position. This is why every incumbent is racing to
   add agents: to prevent a new agent layer from disintermediating them.
-- **The disruptor bet** (Google Agentspace, best-of-breed startups, cross-app platforms) is that the
+- **The disruptor bet** (Google Gemini Enterprise, OpenAI Frontier, best-of-breed startups, cross-app platforms) is that the
   system of action should be a *neutral layer above* the systems of record — an agent layer that
   orchestrates across all of them, owned by whoever provides the best cross-system agent experience.
   If this bet wins, the incumbents' systems of record become commoditized data sources *below* a new
@@ -523,7 +654,11 @@ ROI-focused, agent-washing-skeptical buyer emerged. The arc is the classic enter
 grab compressed into ~two years: a new category, incumbents defending and disruptors attacking, hype
 then sobering, converging toward measured production deployment. What's distinctive is the *speed* and
 the *breadth* — it's not one category being disrupted but *every* enterprise-software category
-simultaneously adding agents, which is why the layer is so crowded and contested.
+simultaneously adding agents, which is why the layer is so crowded and contested. **Late 2026**
+added three new features. The vendors moved from pure revenue to *usage* disclosures (Agentic Work
+Units, registered agents, consumption multiples), and they keep redefining those metrics. A
+control-plane race opened (Agent 365, AI Control Tower, Gemini Enterprise Agent Platform).
+Frontier-model vendors entered directly, with OpenAI Frontier.
 
 ## Agent marketplaces and the ecosystem play
 
@@ -554,23 +689,53 @@ deliver enough value to sustain the flywheel, which is still being determined. B
 own the marketplace, own the ecosystem, deepen the moat — is a clear part of the platform land-grab,
 and it is another front on which incumbents leverage their existing partner relationships.
 
+*Nov 2026 update:* the ecosystem play is shifting from *marketplaces of agents* to **registries
+and control planes for agents**. These are places where agents from *any* vendor get
+discovered, permissioned, observed and, where needed, killed. Examples are Microsoft Agent 365's
+registry (50M+ agents), ServiceNow's AI Passport for third-party agent scopes, and Agentforce's
+third-party agent orchestration *(official)*. App vendors are also distributing their agents
+*through* rivals' surfaces: Workday ships Sana into Copilot, Gemini Enterprise, Slack and Claude.
+That suggests the durable lock-in point may be the governance registry more than the storefront
+*(inferred)*.
+
 ## Roadmap and outlook (confidence-tagged)
 
 - **Incumbents dominate via data/workflow moats** *(official trend; high confidence).* Salesforce,
   Microsoft, ServiceNow, SAP, and the app vendors ride their existing enterprise positions; agents
-  live where the data lives, favoring incumbents.
+  live where the data lives, favoring incumbents. — *Nov 2026: confirmed on revenue. Agentforce
+  ARR is >$1.5B, ServiceNow's AI-ACV target is $1.7B, and the Agent 365 registry holds 50M+
+  agents. One caveat: SAP's DSAG survey shows owning the data does not guarantee agent adoption.*
 - **Consumption/outcome pricing matures** *(inferred; medium-high confidence).* "Pay for work done"
   pricing (Flex Credits and successors) spreads, shifting agent economics toward outcome-based models
-  — and driving the build-at-scale calculus.
+  — and driving the build-at-scale calculus. — *Nov 2026: confirmed. SAP moved Joule to AI-Unit
+  billing and Salesforce now reports Agentic Work Units. Microsoft, however, layered a per-user
+  control-plane fee (Agent 365, E7) on top, so hybrid seat-plus-consumption is the actual pattern.*
 - **Standards support becomes an enterprise requirement** *(inferred; high confidence).* Enterprises
   demand MCP/A2A support to hedge lock-in, so even proprietary platforms add interoperability — the
-  standards are the enterprise's portability insurance.
+  standards are the enterprise's portability insurance. — *Nov 2026: confirmed and extended to
+  models. Agentforce added Claude and Bedrock models plus third-party agent orchestration, and
+  Workday ships Sana into rival surfaces.*
 - **Best-of-breed startups hold the neutral/cross-system and premium niches** *(inferred; medium
   confidence).* Sierra/Decagon (CX), Glean/Dust (cross-app employee agents) sustain on neutrality and
-  quality against incumbent integration, especially for cross-system and best-in-class needs.
+  quality against incumbent integration, especially for cross-system and best-in-class needs. —
+  *Nov 2026: holding, and richly valued (Sierra $15.8B, Decagon $4.5B). Sana's absorption into
+  Workday shows the consolidation path for those that don't scale independently.*
 - **Semi-autonomous is the enterprise reality through 2026–2027** *(inferred; high confidence).*
   Reliability and security limits (§05, §08, §12) keep enterprise agents human-overseen for
   consequential work; platforms compete on making semi-autonomous operation productive and governed.
+  — *Nov 2026: still true. Even so, "long-horizon" agents that pursue goals over days or weeks
+  (Agentforce, Dreamforce 2026) are entering pilot. Watch whether they reach GA with meaningful
+  autonomy.*
+- **New (Nov 2026): the agent control plane becomes the main battleground for 2027**
+  *(inferred; medium-high confidence).* Registry, identity, observability and kill-switch layers
+  that govern *any* vendor's agents are now core SKUs (Agent 365, AI Control Tower/AI Passport,
+  Gemini Enterprise Agent Platform). Expect Ignite (Nov 17–20) and re:Invent (early Dec) to
+  extend them. Expect consolidation pressure on standalone agent-governance startups.
+- **New (Nov 2026): model vendors compete directly for the enterprise agent layer**
+  *(speculative; medium confidence).* OpenAI Frontier's move from limited availability to broad
+  availability, and its pricing, are the signals to watch in H1 2027. The question is whether
+  incumbents respond by deepening multi-model neutrality, as Agentforce did with Claude and
+  Bedrock.
 
 ---
 
@@ -642,14 +807,16 @@ connector advantage that anchors the incumbents becomes a standard everyone has.
 
 - Enterprise agent platforms are the **packaging/distribution layer** (maturity 6.0, contestedness
   7.0) that turns agent tech (§02–§13) into deployable, governed business software — and enterprise
-  agentic AI moved from **pilots to production commitments** (Agentforce ~$800M ARR; Copilot Studio
-  ~160k orgs/400k agents; ~$8B→$53B market at ~46% CAGR).
+  agentic AI moved from **pilots to production commitments**: Agentforce >$1.5B ARR (Aug 2026,
+  broadened definition), Copilot Studio ~160k orgs/400k agents, an Agent 365 registry of 50M+
+  agents, and a ~$8B→$53B market at ~46% CAGR.
 - The value is **pre-integrated data/workflows + low-code building + built-in governance + fast
   time-to-production**; the catch is **ecosystem lock-in** — the integration that creates value
   creates dependence.
 - The architectural split is **ecosystem-anchored** (Agentforce/CRM, Copilot Studio/M365,
   ServiceNow/workflow, SAP Joule/ERP — ride the incumbent's data moat, highest adoption) vs.
-  **open/cross-platform** (Google Agentspace, AWS AgentCore — neutral layer across systems).
+  **open/cross-platform** (Google Gemini Enterprise, AWS AgentCore, OpenAI Frontier — neutral layer
+  across systems). By late 2026 both camps are converging on cross-vendor **agent control planes**.
 - **Every enterprise-software incumbent is turning its data/workflow moat into an agent platform** —
   the layer is the agentic re-fight of every enterprise-software category at once.
 - **Build vs. buy** is the central decision: buy for speed/fit/governance, build for control/
@@ -673,4 +840,37 @@ connector advantage that anchors the incumbents becomes a standard everyone has.
   security/reliability/identity bottlenecks. **Agent marketplaces** are the ecosystem play deepening
   the moat.
 
-*Word count target: 6,500. This section: ~6,550 (verified via `wc`).*
+*Word count target: 6,500. This section: ~8,600 after the November 2026 update, including the update log and sources list (verified via `wc`).*
+
+## Sources (November 2026 update)
+
+- TechMarketView, Salesforce Q2 FY27 — https://www.techmarketview.com/ukhotviews/archive/2026/08/27/salesforce-q2-keeps-agentforce-growth-story-moving
+- Pulse 2.0, Salesforce Q2 FY27 Agentforce + Data 360 ARR — https://pulse2.com/salesforce-net-income-jumps-87-as-agentforce-and-data-360-arr-surges-more-than-210-to-nearly-3-9-billion/
+- Salesforce Q2 FY27 release (Seeking Alpha PR mirror) — https://seekingalpha.com/pr/20631301
+- Nasdaq, Salesforce Q2 call highlights — https://www.nasdaq.com/articles/salesforce-q2-earnings-call-highlights
+- Salesforce, 21 things announced at Dreamforce 2026 — https://www.salesforce.com/blog/dreamforce-2026-announcements/
+- Cyntexa, Dreamforce 2026 highlights — https://cyntexa.com/blog/dreamforce-2026-highlights/
+- Microsoft FY27 Q1 earnings call (investor page) — https://www.microsoft.com/en-us/investor/events/fy-2027/earnings-fy-2027-q1
+- Motley Fool, Microsoft Q1 FY27 transcript — https://www.fool.com/earnings/call-transcripts/2026/10/29/microsoft-msft-q1-2027-earnings-call-transcript/
+- UC Today, Copilot seats unreported in Q1 FY27 — https://uctoday.com/microsoft-q1-copilot-usage-jumps-seat-count-goes-missing
+- The Register, Microsoft 365 E7 — https://www.theregister.com/2026/03/09/microsoft_adds_a_premium_tier/
+- Let's Data Science, M365 E7 / Agent 365 — https://letsdatascience.com/news/microsoft-launches-e7-enterprise-ai-subscription-396f64d4
+- Moscone Center, Microsoft Ignite 2026 dates — https://moscone.com/events/microsoft-ignite-2026
+- ServiceNow Q3 2026 8-K — https://www.sec.gov/Archives/edgar/data/0001373715/000137371526000092/erq3fy26.htm
+- ServiceNow, AI Control Tower expansion (Knowledge 2026) — https://s205.q4cdn.com/916135447/files/doc_news/ServiceNow-expands-AI-Control-Tower-to-discover-observe-govern-secure-and-measure-AI-deployed-across-any-system-in-the-enterprise-2026.pdf
+- Google Cloud, Gemini Enterprise Agent Platform release notes — https://docs.cloud.google.com/gemini-enterprise-agent-platform/release-notes?hl=de
+- HPCwire, Gemini Enterprise Agent Platform launch — https://www.hpcwire.com/aiwire/2026/04/23/google-unveils-gemini-enterprise-agent-platform/
+- PYMNTS, Alphabet / Gemini Enterprise seats — https://www.pymnts.com/google/2026/alphabet-bets-185b-on-gemini-agentic-commerce-and-enterprise-ai/
+- AWS, top announcements of AWS Summit New York 2026 — https://aws.amazon.com/blogs/aws/top-announcements-of-the-aws-summit-in-new-york-2026/
+- AWS, AgentCore release notes — https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/release-notes.md
+- AWS Builder Center, AgentCore overview (Agents Classic) — https://builder.aws.com/content/3ItUUFljIPOutbUGruzDO3RX7Gw/amazon-bedrock-agentcore
+- Constellation Research, OpenAI Frontier launch — https://www.constellationr.com/insights/news/openai-launches-openai-frontier-aims-be-ai-agent-orchestrator
+- PYMNTS, OpenAI Frontier — https://www.pymnts.com/news/artificial-intelligence/2026/openai-targets-enterprise-market-with-new-ai-agent-platform/
+- Workday, Sana everywhere employees work (Oct 13, 2026) — https://investor.workday.com/news-and-events/press-releases/news-details/2026/Workday-to-Bring-Sana-Everywhere-Employees-Work-Including-Claude-Gemini-Enterprise-Microsoft-Copilot-Slack-and-Teams/default.aspx
+- Constellation Research, Workday Rising 2026 — https://constellationr.com/insights/news/workday-makes-sana-its-interface-launches-agent-harness-decision-and-work
+- Börse Express, DSAG survey on Joule usage — https://www.boerse-express.com/news/articles/sap-aktie-nur-3-prozent-nutzen-joule-produktiv-903874
+- SiliconANGLE, Sierra $950M Series E — https://siliconangle.com/?p=746652
+- Sierra, $100M ARR post — https://sierra.ai/uk/blog/100m-arr
+- Bloomberg, Decagon $4.5B — https://www.bloomberg.com/news/articles/2026-01-28/ai-customer-support-startup-decagon-valued-at-4-5-billion
+- Crypto Briefing, Glean $300M ARR — https://cryptobriefing.com/glean-300m-arr-enterprise-ai-growth/
+- Hostinger, agentic AI statistics (Gartner spending figures, secondary) — https://www.hostinger.com/tutorials/?p=151992
