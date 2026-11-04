@@ -1,5 +1,7 @@
 agent,swebench_verified,category
-Fable 5 (frontier config),95.0,frontier
+Claude Opus 5 (Vals mini-SWE-agent run),97.0,frontier
+DeepSeek V4 Pro (Vals run),96.4,frontier
+Claude Fable 5 (vendor-reported),95.0,frontier
 Claude Code (Opus 4.8),87.6,shipped
 Codex CLI (GPT-5.5),85.0,shipped
 Gemini CLI (Gemini 3.1 Pro),80.6,shipped

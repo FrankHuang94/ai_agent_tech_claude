@@ -5,4 +5,5 @@ date,swebench_verified,milestone
 2024-12,55,Claude 3.5 agents
 2025-05,72,Frontier coding agents
 2025-12,83,Opus/GPT-5 class
-2026-06,90,Best frontier configs
+2026-06,95,Fable 5 (vendor)
+2026-09,97,Opus 5 (Vals run); archived

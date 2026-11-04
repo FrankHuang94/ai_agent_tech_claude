@@ -1,7 +1,8 @@
 # 08 — Computer-Use and Browser Agents
 
 *Agents that operate a screen. Screen understanding, action reliability, and the
-sandboxing/safety problem — the "hardest easy problem" in AI. Target: 6,500 words.*
+sandboxing/safety problem — the "hardest easy problem" in AI. Target: 6,500 words.
+Snapshot July 22, 2026; updated and current as of November 2026.*
 
 ---
 
@@ -17,14 +18,79 @@ the reliable product has been widest.
 
 But 2025–2026 changed the story in a specific, important way, and getting the nuance right
 is the whole point of this section. The headline benchmark (OSWorld) went from **12%
-success in early 2024 to ~84% by mid-2026** — a stunning trajectory that crossed the human
+success in early 2024 to ~84–85% by mid-2026** — a stunning trajectory that crossed the human
 baseline and prompted claims that "desktop computer use is largely solved." *Short-horizon*
-computer use — tasks a human would finish in a minute or two — genuinely approached solved.
+computer use — tasks a human would finish in a minute or two — genuinely approached solved,
+and by autumn 2026 the vendors had largely stopped reporting the short benchmark at all.
 But a new *long-horizon* benchmark (OSWorld 2.0, where the median task takes a human ~1.6
-hours) sits at **~20% for the best frontier system.** The same compounding-error cliff from
+hours) launched with **~20% full-task completion for the best frontier system.** Its
+partial-credit score (fraction of checkpoints met) has since climbed fast — to ~78–82% for the
+best models on OSWorld 2.x by September 2026 — but no comparable jump in *whole-task*
+completion has been published. The same compounding-error cliff from
 §04 and §05, now vividly visible in a single capability: **computer-use is nearly solved
 for short tasks and barely started for long ones.** Both facts are true, and conflating
 them (either "it's solved" or "it doesn't work") misreads the layer.
+
+---
+
+## What changed since July 2026 (November 2026 update)
+
+The three and a half months after the July snapshot did not overturn this section's thesis.
+They sharpened it in three ways. First, **the measurement moved.** The short-horizon
+OSWorld-Verified number topped out at ~85%, and frontier vendors now headline long-horizon
+OSWorld 2.x *partial-credit* scores instead. Those reached ~80% within three months, which
+makes the "partial vs. full completion" distinction the most important caveat in the layer.
+Second, **the agentic-browser wave consolidated into existing browsers.** OpenAI shut its
+standalone Atlas browser, Google had already folded Mariner into Gemini and Chrome, and
+Anthropic took Claude in Chrome out of beta. Third, **the security exposure became concrete.**
+Researchers demonstrated one attack class across every major agentic browser. The dated log:
+
+- **Jun 9, 2026 — Claude Fable 5 posts 85.0% on OSWorld-Verified** (provider-reported, vs.
+  83.4–83.5% for Opus 4.8). The snapshot missed it, and it is the high-water mark for the
+  short-horizon benchmark. *(inferred — [Fable 5 benchmark coverage](https://llm-stats.com/blog/research/claude-fable-5-review))*
+- **Late Jun 2026 — OSWorld 2.0 paper formalizes the two metrics.** It has 108 long-horizon
+  tasks averaging ~27 checkpoints each. Opus 4.8 scores **20.6% binary (full completion) and
+  54.8% partial** at a 500-step budget; GPT-5.5 plateaus near 13% binary. *(inferred —
+  [arXiv 2606.29537](https://arxiv.org/abs/2606.29537))*
+- **Jul 24, 2026 — Claude Opus 5.** Anthropic says it leads OSWorld 2.0 at every cost point
+  and beats Fable 5's best result at about a third of the cost. Leaderboards list it at
+  **70.6% partial**. *(official — [Anthropic](https://www.anthropic.com/news/claude-opus-5);
+  score inferred — [Yutori OSWorld 2.0 board](https://yutori.com/leaderboards/osworld-2))*
+- **Aug 3, 2026 — Zenity Labs extends its "PleaseFix" indirect-injection research** from Comet
+  to five agents: Claude in Chrome, Gemini in Chrome, Comet, Atlas and Copilot in Edge.
+  *(inferred — [agentic-browser landscape summary](https://nohacks.co/blog/agentic-browser-landscape-2026))*
+- **Aug 9, 2026 — OpenAI shuts down ChatGPT Atlas**, less than a year after its October 2025
+  launch. Agentic browsing moves into the ChatGPT desktop app's built-in browser, a cloud
+  browser and a Chrome extension. *(official per OpenAI statements — [9to5Mac](https://9to5mac.com/2026/08/04/openai-explains-what-will-happen-when-chatgpt-atlas-shuts-down-this-weekend/),
+  [TechRadar](https://www.techradar.com/pro/openai-shuts-down-its-atlas-browser-after-not-even-a-year))*
+- **Aug 26, 2026 — Claude in Chrome reaches general availability** on paid plans, out of
+  beta. It ships with per-action safety classifiers and probes that scan page content. *(inferred —
+  [Gigazine](https://gigazine.net/gsc_news/en/20260827-claude-chrome-available/))*
+- **Aug 28, 2026 — Simular's Sai claims the top OSWorld 2.0 score:** **73% partial**, against
+  70.6% for Opus 5 and 62.6% for GPT-5.6 Sol, at a lower cost per task. *(official, vendor claim —
+  [Simular](https://www.simular.ai/articles/sai-tops-osworld-2-0))*
+- **Aug–Sep 2026 — open-weight GUI models close in.** Self-reported scores on
+  OSWorld-Verified: UI-Venus-2-27B 80.5% and UI-Mate-27B 77.0%. Qwen-CUA-Max reports 21.2%
+  binary / 53.3% partial on OSWorld 2.0. *(inferred — [UI-Venus-2](https://arxiv.org/pdf/2609.00028),
+  [UI-Mate](https://arxiv.org/pdf/2608.15930), [Qwen-CUA](https://arxiv.org/pdf/2608.02352))*
+- **Sep 2026 — OSWorld 2.1 bug-fix release.** Its scores are not directly comparable with 2.0.
+  Leaderboards list Claude Fable 5.1 at 77.9% partial and GPT-6 Astra at 72.6% on 2.0.
+  *(inferred — [Yutori](https://yutori.com/leaderboards/osworld-2), [Steel](https://leaderboard.steel.dev/leaderboards/osworld-2/))*
+- **Sep 22 / Sep 28, 2026 — Claude Opus 5.5 and Sonnet 5.5** score **81.8% and 80.1% on
+  OSWorld 2.1 (partial)**, vs. 80.7% for Fable 5.1 and 74.0% for Opus 5. Neither launch page
+  reports a binary completion rate. *(official — [Opus 5.5](https://www.anthropic.com/claude-opus-5-5),
+  [Sonnet 5.5](https://www.anthropic.com/claude-sonnet-5-5))*
+- **Oct 15, 2026 — Meta's Muse Spark Open** model card reports **80.4% on OSWorld-Verified**.
+  The aggregator lists it as the best *independently measured* score, as opposed to a
+  provider-reported one. *(inferred — via [OSWorld-Verified aggregator](https://www.datalearner.com/en/benchmarks/osworld-verified))*
+- **Missed by the snapshot:** **Meta acquired Manus** (announced Dec 2025, reported at more than
+  $2B). Google retired **standalone Project Mariner (May 2026)** and moved its navigation stack
+  into Gemini Agent and Chrome's "auto browse". *(official — [AP via Local10](https://www.local10.com/business/2025/12/30/meta-buys-startup-manus-in-latest-move-to-advance-its-artificial-intelligence-efforts);
+  Mariner inferred — [tech-insider](https://tech-insider.org/ca/chatgpt-atlas-vs-perplexity-comet-vs-gemini-chrome-2026/))*
+
+**Net read:** short-horizon computer use is a closed chapter, and long-horizon *progress* is
+real but measured mostly in partial credit. The open question for 2027 is whether full-task
+completion on multi-hour work follows partial credit upward. Report both numbers, or neither.
 
 ---
 
@@ -145,19 +211,29 @@ The capability trajectory is the clearest quantitative story in the field:
 
 ![Computer-use on OSWorld over time](../assets/charts/08_osworld_timeline.png)
 
-From 12% (early 2024) to ~84% (mid-2026), crossing the ~72% human baseline in late 2025 —
+From 12% (early 2024) to ~85% (mid-2026), crossing the ~72% human baseline in late 2025 —
 this is genuinely one of the fastest capability climbs in AI, and it is why the "desktop
 computer use is largely solved" claim has real basis *for short-horizon tasks*. Simular's
-Agent S2 clearing the human baseline in December 2025 was a symbolic milestone; Claude Opus
-4.8 at ~83.5% on OSWorld-Verified in mid-2026 pushed further.
+Agent S2 clearing the human baseline in December 2025 was a symbolic milestone. Claude Opus
+4.8 (~83.5%) and Claude Fable 5 (85.0%, provider-reported, June 2026) on OSWorld-Verified
+pushed further. After that the curve effectively stops. Frontier launches from July 2026
+onward (Opus 5, Opus/Sonnet 5.5, GPT-6) report long-horizon OSWorld 2.x instead, and the
+short benchmark's remaining action is open-weight models (~77–80%) catching up.
 
 But the second number tells the other half:
 
-![The horizon cliff: short vs. long tasks](../assets/charts/08_horizon_gap.png)
+![The horizon cliff: partial credit vs. full completion on long tasks](../assets/charts/08_horizon_gap.png)
 
-Every system collapses from ~70–84% on short tasks to ~13–21% on long-horizon (multi-hour)
-tasks. This is the **horizon cliff**, and it is the honest state of the layer: an agent that
-can reliably do a two-minute task fails four out of five multi-hour tasks. The reason is
+Every system with a published full-completion score falls from ~83–85% on short tasks to
+~13–21% *binary* completion on long-horizon (multi-hour) OSWorld 2.0 tasks. This is the
+**horizon cliff**, and it is the honest state of the layer: an agent that can reliably do a
+two-minute task fails four out of five multi-hour tasks. The November 2026 nuance is
+*partial credit*. OSWorld 2.0 also scores the fraction of a task's ~27 checkpoints met.
+On that metric the best systems went from ~55% (Opus 4.8, June) to ~70–78% (Opus 5, Sai,
+GPT-6 Astra, Fable 5.1) and ~80–82% on the OSWorld 2.1 fix release (Sonnet/Opus 5.5) by late
+September. Agents now get most of a multi-hour task *mostly right*. Whether they finish the
+whole thing more often is unreported for the newest models. Given the compounding math, the
+binary number should be expected to lag far behind. The reason is
 exactly §04/§05's compounding error — a multi-hour task is *hundreds* of screen actions, and
 even 95%-reliable actions compound to near-certain failure over that many steps, worsened by
 the fact that recovering from a deep error in a GUI (undoing a wrong path) is especially
@@ -257,23 +333,30 @@ fast-moving market.
 
 | Player | Type | Maturity | Approach | Notable (confidence) | Differentiator | Competitors |
 |---|---|---|---|---|---|---|
-| **Anthropic Computer Use** | Model vendor | demoed→reliable (short) | Vision (pixel) | Opus 4.8 ~83.5% OSWorld-V (official) | Leading OSWorld scores; general desktop | OpenAI CUA, Google Mariner |
-| **OpenAI Operator / CUA** | Model vendor | demoed-brittle | Vision + browser | Operator 38% at launch, improved (official) | Consumer browser agent + CUA API | Anthropic, Google |
-| **Google Project Mariner** | Model vendor | demoed-brittle | Browser (DOM+vision) | Gemini-powered browser agent (official) | Deep Chrome/Google integration | OpenAI Operator |
-| **Simular (Agent S2/S3)** | Startup | demoed→reliable (short) | Vision, open framework | First to clear human OSWorld baseline (inferred) | Strong OSWorld performance; open | Anthropic, HCompany |
+| **Anthropic Computer Use** | Model vendor | demoed→reliable (short) | Vision (pixel) | Fable 5 85.0% OSWorld-V; Opus 5.5 81.8% OSWorld 2.1 partial (official) | Leading OSWorld scores; general desktop | OpenAI CUA, Google Gemini Agent |
+| **Claude in Chrome** *(new)* | Model vendor (extension) | demoed-brittle | In-browser agent (DOM+vision) | GA on paid plans Aug 26, 2026 (inferred) | Acts in the user's logged-in Chrome; per-action safety classifier | Gemini in Chrome, Comet |
+| **OpenAI Operator / CUA** | Model vendor | demoed-brittle | Vision + browser | Folded into ChatGPT agent; **Atlas browser discontinued Aug 9, 2026** (official) | Agent browsing via ChatGPT app, cloud browser, Chrome extension | Anthropic, Google |
+| **Google Project Mariner → Gemini Agent / Chrome auto browse** | Model vendor | demoed-brittle | Browser (DOM+vision) | Standalone Mariner retired May 2026; tech powers Gemini Agent and Chrome auto browse (inferred) | Deep Chrome/Google integration | Claude in Chrome, Comet |
+| **Perplexity Comet** *(new)* | Agentic browser | demoed-brittle | In-browser agent | Main surviving standalone agentic browser (inferred) | Agent operating in the user's authenticated context | Gemini in Chrome, Claude in Chrome |
+| **Simular (Agent S2/S3, Sai)** | Startup | demoed→reliable (short) | Vision, open framework | First to clear human OSWorld baseline; Sai 73% OSWorld 2.0 partial, Aug 2026 (official, vendor) | Strong OSWorld performance at lower cost per task | Anthropic, HCompany |
 | **Browserbase** | Infra | shipped-reliable | Sandbox/browser infra | Headless browser infra for agents (inferred) | Managed browser sandboxes at scale | Anchor, Scrapybara |
 | **Browser Use** | OSS framework | shipped-reliable | DOM+vision browser | Popular OSS browser-agent lib (inferred) | Open-source browser automation for agents | Stagehand, Skyvern |
 | **Stagehand (Browserbase)** | OSS framework | shipped-reliable | DOM+vision | AI browser automation framework (inferred) | Composable, code-first browser control | Browser Use, Playwright |
 | **Skyvern** | Startup/OSS | demoed-brittle | Vision+DOM workflows | Form/workflow automation (inferred) | Automating web workflows/forms | Browser Use, Reworkd |
 | **H Company (Runner H)** | Startup | demoed-brittle | Vision browser agent | European web-agent startup (inferred) | Efficient smaller web-action models | Simular, OpenAI |
 | **Anchor Browser / Scrapybara** | Infra | shipped-reliable | Agent browser sandboxes | Managed agent browsers (inferred) | Isolated browser sessions for agents | Browserbase |
-| **Manus** | Startup | demoed-brittle | General computer-use agent | Viral general agent (inferred) | Autonomous general task agent | OpenAI, Anthropic |
+| **Manus (Meta)** | Acquired (Meta) | demoed-brittle | General computer-use agent | Acquired by Meta, Dec 2025, reported >$2B (official) | Autonomous general task agent; integrating into Meta AI | OpenAI, Anthropic |
 | **Reworkd / Kura** | Startup | demoed-brittle | Web extraction/agents | Web data + agents (inferred) | Structured web automation | Skyvern, Browser Use |
 | **Microsoft (Copilot / OmniParser)** | Vendor | demoed-brittle | Screen parsing + action | OmniParser screen understanding (official) | Windows-native computer use | Anthropic, Google |
 | **Amazon (Nova Act)** | Model vendor | demoed-brittle | Browser action model | Nova Act browser agent SDK (official) | AWS-integrated web actions | OpenAI CUA, Google |
+| **Open-weight GUI models (Qwen-CUA, UI-Venus-2, UI-Mate)** *(new)* | Research / open weights | research-only | Native GUI-action models | 77–80.5% OSWorld-V, self-reported, Aug–Sep 2026 (inferred) | Self-hostable computer-use near frontier short-horizon scores | Anthropic, Simular |
 
-That is fourteen entries spanning model vendors, browser startups, general-agent startups,
-and sandbox infrastructure — well past ten. The structural read: **the frontier vendors
+That is seventeen entries (three added in the November 2026 update) spanning model vendors,
+agentic browsers, browser startups, general-agent startups, open-weight models and sandbox
+infrastructure — well past ten. The November 2026 change in the table's shape is
+consolidation. The standalone consumer surfaces (Atlas, standalone Mariner, independent
+Manus) were shut, absorbed, or acquired. Agentic browsing now lives mainly in extensions and
+built-in agents of incumbent browsers and chat apps. The structural read: **the frontier vendors
 provide the base vision-action capability, a wave of startups builds browser-specific agents
 and frameworks on top (leaning on the DOM for reliability), general-desktop startups chase
 the harder full-computer-use problem, and a sandbox-infrastructure layer (Browserbase,
@@ -299,7 +382,8 @@ The browser-agent market has real production use cases:
 - **Web research and data gathering.** Agents that browse, read, and extract across many
   sites — grounding (§07) via live browsing.
 - **Consumer task agents.** Booking, shopping, form-filling on the user's behalf (Operator,
-  Mariner) — the consumer-facing vision, still brittle but improving.
+  Mariner; as of late 2026, ChatGPT agent, Gemini in Chrome and Claude in Chrome) — the
+  consumer-facing vision, still brittle but improving.
 
 Browser agents' relative maturity, and the DOM-based reliability advantage, make them the
 place computer-use delivers production value *today*, while general desktop computer-use
@@ -411,7 +495,8 @@ the main ongoing engineering challenge and the axis of competition.
 The layer splits into two quite different markets with different requirements and different
 maturity:
 
-- **Consumer computer-use** (OpenAI Operator, Google Mariner, general agents like Manus)
+- **Consumer computer-use** (ChatGPT agent, Gemini Agent / Chrome auto browse, in-browser
+  agents like Claude in Chrome and Comet, general agents like Manus, now Meta-owned)
   targets everyday tasks — booking, shopping, form-filling, research — on the open, messy,
   anti-bot-defended consumer web. This is the harder environment (hostile sites, CAPTCHAs,
   infinite UI variety) and the more brittle experience, which is why consumer computer-use
@@ -498,7 +583,12 @@ and act on them:
   Google folding agentic capabilities into Chrome represent a bet that the browser itself is
   the right home for a web agent — because it already has the user's sessions, cookies, and
   authenticated state, sidestepping much of the login/auth friction that trips up sandboxed
-  agents.
+  agents. *November 2026:* the bet is surviving, but mostly through **agents inside the
+  browsers people already use** rather than new browsers. OpenAI shut Atlas on August 9, 2026,
+  and moved agentic browsing into the ChatGPT desktop app, a cloud browser and a Chrome
+  extension. Google's standalone Mariner gave way to Gemini in Chrome's "auto browse". Anthropic's
+  Claude in Chrome extension reached general availability on August 26, 2026. Comet remains
+  the main standalone agentic browser.
 - The **advantage** is context and authentication: the agent operates as *you*, in *your*
   logged-in browser, so it can act across the authenticated web (your email, your accounts)
   without a separate credential-delegation step. It also has the full page context the user
@@ -519,7 +609,10 @@ isolating agent actions from the user's session where possible) are the same bla
 limiting controls as elsewhere, and they are the reason these products launched cautiously and
 with prominent warnings. Agentic browsers are the consumer face of computer-use, and they make
 the §12 security bottleneck personal — it is now *your* logged-in accounts at stake, which is
-why this product wave and the security layer are so tightly coupled.
+why this product wave and the security layer are so tightly coupled. In August 2026 Zenity Labs
+showed one indirect-injection attack class ("PleaseFix") working against five agentic
+browsers at once: Claude in Chrome, Gemini in Chrome, Comet, Atlas and Copilot in Edge. It is
+a concrete reminder that the exposure is architectural, not vendor-specific.
 
 ## Computer-use and the other layers
 
@@ -575,12 +668,14 @@ ahead of general desktop by leaning on structure. **Late 2025** saw the human-ba
 crossing (Simular's Agent S2 at ~72.6%), a genuine milestone, alongside the sobering
 realization — formalized by long-horizon benchmarks — that crossing the *short-task* human
 baseline was very different from doing *real multi-hour work*. **2026** is the current split
-state: short-horizon approaching solved (~84%), long-horizon barely started (~20%), grounding
-improved via set-of-marks and screen-parsing models, sandboxing established as mandatory, and
-the frontier explicitly named as long-horizon reliability — "where the next two years of
-agent capability will be measured."
+state. Short-horizon is effectively solved (~85%, after which vendors stopped reporting it).
+Long-horizon full completion launched at ~20%, while partial credit climbed from ~55% to ~80%
+between June and September. Grounding improved via set-of-marks and screen-parsing models,
+sandboxing became mandatory, and the agentic-browser wave consolidated into extensions and
+built-in browser agents. The frontier is explicitly named as long-horizon reliability —
+"where the next two years of agent capability will be measured."
 
-The arc is the fastest capability climb in the document (12%→84% in two years) *and* a vivid
+The arc is the fastest capability climb in the document (12%→85% in two years) *and* a vivid
 demonstration of the horizon cliff — both the triumph and the frustration of the agent field,
 in one capability.
 
@@ -643,29 +738,49 @@ controlled) envelope is the difference between computer-use delivering value and
 
 - **Short-horizon computer use continues to improve toward reliability** *(official trend;
   high confidence).* OSWorld-style short tasks keep climbing; short, well-defined screen tasks
-  become dependably automatable (with supervision) over 2026.
+  become dependably automatable (with supervision) over 2026. — *Nov 2026: confirmed. Scores
+  peaked at ~85% OSWorld-Verified (Fable 5, June), and open-weight models reached 77–80%.
+  Vendors then stopped reporting the short benchmark, effectively treating it as solved.*
 - **Long-horizon remains the frontier** *(inferred; high confidence).* The horizon cliff is
   the compounding-error problem; closing it needs the long-horizon planning advances of §05,
   which are gradual. Multi-hour unattended computer-use stays research-to-brittle through
-  2026–2027 — "where the next two years of agent capability will be measured."
+  2026–2027 — "where the next two years of agent capability will be measured." — *Nov 2026:
+  partly. Partial-credit scores rose quickly (~55% → ~80% on OSWorld 2.x in three months),
+  but no newer model has published a full-completion rate clearly above the ~21% launch
+  frontier. Unattended multi-hour use remains brittle.*
 - **Browser agents lead; hybrid DOM+vision is the reliable approach** *(inferred; high
   confidence).* The structured, sandboxable browser is where production value concentrates;
-  DOM+vision fusion is the reliability pattern.
+  DOM+vision fusion is the reliability pattern. — *Nov 2026: confirmed, with a twist.
+  Browser agents shipped GA (Claude in Chrome) and into Chrome itself (auto browse), but via
+  extensions and built-in agents, not new browsers. Atlas was shut after ~10 months.*
 - **Sandbox infrastructure is a durable business** *(inferred; medium-high confidence).*
   Every computer-use (and coding) agent needs isolated environments; the picks-and-shovels
   sandbox layer (Browserbase, E2B, Anchor, Scrapybara) grows regardless of which agents win.
+  — *Nov 2026: not re-verified in this update. No primary-source funding or exit data for
+  the sandbox vendors was confirmed for Jul–Nov 2026.*
 - **Security remains the gating constraint for unattended use** *(inferred; high confidence).*
   Until prompt-injection defense (§12) improves, high-stakes unattended computer-use stays
   gated by the need for sandboxing and human confirmation — risk-limitation, not
-  risk-elimination.
+  risk-elimination. — *Nov 2026: confirmed. Zenity's August "PleaseFix" research hit five
+  agentic browsers at once, and GA launches leaned on per-action classifiers and content
+  probes rather than claiming the problem was solved.*
+- **New: long-horizon benchmarks drift to partial credit; demand both numbers** *(inferred;
+  high confidence).* Vendor launch pages now cite OSWorld 2.x partial scores only. Expect
+  "~90% partial" headlines in 2027 that coexist with low full-completion rates. Treat any
+  long-horizon claim without a binary rate as incomplete.
+- **New: agentic browsing consolidates into incumbent browsers and chat super-apps**
+  *(speculative; medium confidence).* After Atlas's shutdown and Mariner's absorption, the
+  likely 2027 shape is agents embedded in Chrome, Edge, Safari-class browsers and the vendors'
+  desktop apps. Comet is the main test of whether a standalone agentic browser can last.
 
 ---
 
 ## Section takeaways
 
 - Computer-use is **nearly solved for short tasks and barely started for long ones** — the
-  horizon cliff (OSWorld ~84% short vs. OSWorld 2.0 ~20% long) is the honest state, and
-  conflating the two misreads the layer.
+  horizon cliff (OSWorld-Verified ~85% short vs. OSWorld 2.0 ~20% full completion long) is the
+  honest state, and conflating the two misreads the layer. As of November 2026, long-horizon
+  *partial credit* reaches ~80%. Always ask whether a long-horizon number is partial or binary.
 - It is **"the hardest easy problem"**: effortless for humans, brutally hard for agents,
   because perception (lossy pixels), action (imprecise coordinates), and long-horizon
   planning all must work at once.
@@ -695,4 +810,26 @@ controlled) envelope is the difference between computer-use delivering value and
   anti-bot defenses. **Agentic browsers** make the security tension personal by operating in
   your authenticated context, which is powerful and dangerous for the same reason.
 
-*Word count target: 6,500. This section: ~6,550 (verified via `wc`).*
+*Word count target: 6,500. This section: ~8,100 (verified via `wc`; November 2026 update included).*
+
+## Sources (November 2026 update)
+
+- Anthropic — Introducing Claude Opus 5 (Jul 24, 2026): https://www.anthropic.com/news/claude-opus-5
+- Anthropic — Introducing Claude Opus 5.5 (Sep 22, 2026): https://www.anthropic.com/claude-opus-5-5
+- Anthropic — Introducing Claude Sonnet 5.5 (Sep 28, 2026): https://www.anthropic.com/claude-sonnet-5-5
+- OSWorld 2.0 paper (arXiv 2606.29537): https://arxiv.org/abs/2606.29537
+- Yutori OSWorld 2.0 leaderboard: https://yutori.com/leaderboards/osworld-2
+- Steel OSWorld 2.0 leaderboard: https://leaderboard.steel.dev/leaderboards/osworld-2/
+- Simular — Sai tops OSWorld 2.0 (Aug 28, 2026): https://www.simular.ai/articles/sai-tops-osworld-2-0
+- OSWorld-Verified aggregator (Oct 2026): https://www.datalearner.com/en/benchmarks/osworld-verified
+- Claude Fable 5 benchmark review: https://llm-stats.com/blog/research/claude-fable-5-review
+- UI-Venus-2 technical report: https://arxiv.org/pdf/2609.00028
+- UI-Mate: https://arxiv.org/pdf/2608.15930
+- Qwen-CUA: https://arxiv.org/pdf/2608.02352
+- 9to5Mac — ChatGPT Atlas shutdown (Aug 4, 2026): https://9to5mac.com/2026/08/04/openai-explains-what-will-happen-when-chatgpt-atlas-shuts-down-this-weekend/
+- TechRadar — OpenAI shuts down Atlas: https://www.techradar.com/pro/openai-shuts-down-its-atlas-browser-after-not-even-a-year
+- Gigazine — Claude in Chrome generally available (Aug 27, 2026): https://gigazine.net/gsc_news/en/20260827-claude-chrome-available/
+- Agentic browser landscape 2026 (Zenity PleaseFix summary): https://nohacks.co/blog/agentic-browser-landscape-2026
+- Comet vs Gemini in Chrome (Mariner retirement): https://tech-insider.org/ca/chatgpt-atlas-vs-perplexity-comet-vs-gemini-chrome-2026/
+- AP via Local10 — Meta buys Manus (Dec 30, 2025): https://www.local10.com/business/2025/12/30/meta-buys-startup-manus-in-latest-move-to-advance-its-artificial-intelligence-efforts
+

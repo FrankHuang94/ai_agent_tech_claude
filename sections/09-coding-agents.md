@@ -1,7 +1,8 @@
 # 09 — Coding Agents
 
 *The most mature agent vertical. Autonomous coding, execution safety, and human-in-the-loop
-review — and why code is where agents work best. Target: 6,500 words.*
+review — and why code is where agents work best. Target: 6,500 words.
+Snapshot July 22, 2026; updated and current as of November 2026.*
 
 ---
 
@@ -13,7 +14,8 @@ layer scores **7.5/10 maturity, 3.5/10 bottleneck severity** — the most mature
 vertical, ahead of every other application domain. Autonomous coding went from a party trick
 in 2023 to a multi-tens-of-billions-of-dollars market with genuinely useful, widely-deployed
 products by 2026, and SWE-bench Verified — the benchmark of fixing real GitHub issues — climbed
-from **~4% to ~90%** in under three years.
+from **~4% to ~95–97%** in under three years. The benchmark was archived as saturated on a
+major leaderboard in September 2026.
 
 The reason coding agents are so far ahead is the single most important pattern in this
 document, stated in the executive summary's fifth thesis and proven here: **code has cheap,
@@ -27,6 +29,75 @@ without such verifiers (general computer-use, open-ended research) lag precisely
 feedback is expensive and subjective. **Coding agents are the proof of the verifier thesis: the
 presence of a cheap verifier is the best single predictor of agent-vertical maturity, and code
 has the best verifiers in software.**
+
+---
+
+## What changed since July 2026 (November 2026 update)
+
+The July snapshot's thesis holds: coding remains the most mature vertical, and the verifier
+advantage is structural. Three things moved materially. First, **SWE-bench Verified ran out of
+headroom.** Third-party runs hit ~96–97%, one major leaderboard archived it as saturated, and
+the vendors' headline coding numbers moved to Terminal-Bench 4.0, SWE-bench Pro, CursorBench
+and FrontierCode. Second, **the form-factor land-grab produced its first mega-exit and a
+valuation doubling.** SpaceX completed its $60B all-stock purchase of Cursor, and Cognition
+roughly doubled to ~$48B in four months. Third, **the vendors consolidated their own surfaces.**
+Google retired the consumer Gemini CLI in favor of the closed Antigravity CLI, and GitHub
+turned Copilot into a multi-model, multi-client agent platform. The dated log:
+
+- **May 19 → Jun 18, 2026 — Gemini CLI retired for individual users.** Google moved its terminal
+  agent to the Go-based **Antigravity CLI**, which shares an architecture with the Antigravity 2.0
+  desktop app. Gemini CLI stopped serving AI Pro, Ultra and free-tier requests on June 18.
+  Enterprise Code Assist and API-key users are unaffected, and the Apache-2.0 repo stays
+  public. The snapshot missed this. *(official — [Gemini CLI discussion #27274](https://github.com/google-gemini/gemini-cli/discussions/27274))*
+- **Jun 9, 2026 — Claude Fable 5:** 95.0% SWE-bench Verified (already charted in the snapshot)
+  and ~80% on SWE-bench Pro. *(inferred — [Fable 5 review](https://llm-stats.com/blog/research/claude-fable-5-review))*
+- **Early Jul 2026 — OpenAI GPT-5.6 (Sol / Terra / Luna)**, which the snapshot also missed.
+  OpenAI lists Sol at 64.6% SWE-bench Pro and 88.8% Terminal-Bench 2.1; both figures are
+  self-reported and unaudited. *(official, vendor-reported — [OpenAI](https://openai.com/index/gpt-5-6/);
+  caveats: [TechTimes](https://www.techtimes.com/articles/319808/20260707/gpt-56-sol-review-faster-coding-half-fable-5-cost-benchmark-problem.htm))*
+- **Jul 24, 2026 — Claude Opus 5.** Anthropic says it comes within 0.5% of Fable 5's peak
+  CursorBench 3.2 score at half the cost per task. *(official — [Anthropic](https://www.anthropic.com/news/claude-opus-5))*
+- **Aug 14, 2026 — SpaceX closes its $60B all-stock acquisition of Anysphere (Cursor).** The
+  merger was signed June 16, after an April training partnership that carried a purchase
+  option. Cursor now sits in a SpaceXAI unit. Reported ARR was ~$3–4B. *(official — [SpaceX 8-K summary](https://www.stocktitan.net/sec-filings/SPCX/8-k-space-exploration-technologies-corp-reports-material-event-c660405680ba.html);
+  ARR inferred — [Techzine](https://www.techzine.eu/news/devops/143619/spacex-completes-acquisition-of-cursor/),
+  [AI Magazine](https://aimagazine.com/news/cursor-the-ai-coding-agent-spacex-bought-in-a-us-60bn-deal))*
+- **~Sep 1, 2026 — SWE-bench Verified declared saturated.** Vals AI archived its Verified
+  board with Claude Opus 5 at **97.0%** (mini-SWE-agent harness) and DeepSeek V4 Pro at 96.4%.
+  A "SWE-Bench Pro Verified" cleanup of the harder successor followed. *(inferred — [Vals AI](https://www.vals.ai/benchmarks/swebench),
+  [arXiv 2609.08149](https://arxiv.org/abs/2609.08149))*
+- **Sep 3, 2026 — OpenAI GPT-6 Astra**, its new flagship coding model. It scores ~58% on
+  Terminal-Bench 4.0 and OpenAI did not publish SWE-bench Pro for it. **GPT-6.1 Sol** became
+  the Codex CLI default on October 7. *(inferred — [Vellum](https://www.vellum.ai/blog/gpt-6-astra-benchmarks-explained),
+  [Morph comparison](https://www.morphllm.com/comparisons/codex-vs-claude-code))*
+- **Sep 8, 2026 — Cognition Series E: ~$2B at ~$48B**, co-led by a16z and Accel, on roughly
+  $900M run-rate revenue. That is up from $26B in May. *(inferred — [PYMNTS](https://www.pymnts.com/news/artificial-intelligence/2026/cognition-secures-48-billion-valuation-as-demand-for-ai-coding-surges/),
+  [TheStreet](https://www.thestreet.com/technology/cognition-ai-devin-series-e-48-billion-revenue-multiple))*
+- **Sep 22 / Sep 28, 2026 — Claude Opus 5.5 and Sonnet 5.5.** On Terminal-Bench 4.0 they score
+  **66.4% and 70.6%**, vs. 57.9% for GPT-6 Astra and 55.8% for Fable 5.1. Opus 5.5 scores
+  57.8% on CursorBench 4.0. Claude Code gains an Opus 5.5 fast mode, and Medium becomes the
+  default effort. *(official — [Opus 5.5](https://www.anthropic.com/claude-opus-5-5),
+  [Sonnet 5.5](https://www.anthropic.com/claude-sonnet-5-5))*
+- **Oct 22 / Oct 26, 2026 — Anthropic donates Agent Skills to the Agentic AI Foundation**, the
+  packaging format Claude Code popularized and Antigravity CLI also supports. Anthropic then
+  files an **S-1** for its IPO. *(official — [Anthropic news](https://www.anthropic.com/news))*
+- **~Oct 28, 2026 — GitHub Universe 2026.** Announcements:
+  - **Copilot Fusion** (model routing) reaches GA. GitHub says Fusion Max lands within two
+    points of Claude Code with Opus 5.5 on the Artificial Analysis Coding Agent Index, at about
+    half the cost.
+  - **Copilot Projects** runs parallel multi-repo cloud agent sessions.
+  - A cross-client **Agent Host** keeps sessions running across clients.
+  - **Copilot code review Max** targets high-severity issues.
+  - **Copilot Standalone** costs $10/user/month.
+
+  *(inferred — [GitHub Universe coverage](https://dev.to/paullovelace/github-universe-2026-copilot-is-no-longer-an-autocomplete-it-now-runs-software-delivery-14ln),
+  [GitHub blog](https://github.blog/news-insights/company-news/github-universe-2026-evolving-every-layer-of-the-stack/))*
+
+**Net read:** the vertical's capability lead widened. The best agents now clear most of
+Terminal-Bench 4.0 and saturate the benchmark that defined the field for two years. Meanwhile
+the business structure is resolving toward a few vertically integrated stacks: model vendor
+plus agent (Anthropic, OpenAI, Google), compute owner plus IDE (SpaceX/Cursor), and the
+highest-valued independent (Cognition).
 
 ---
 
@@ -80,17 +151,21 @@ The benchmark climb is the clearest quantitative story in the document:
 
 ![Coding agents on SWE-bench Verified over time](../assets/charts/09_swebench_timeline.png)
 
-From ~4% (GPT-4 baseline, 2023) to ~90% (frontier configurations, 2026), SWE-bench Verified —
+From ~4% (GPT-4 baseline, 2023) to ~95% (Claude Fable 5, vendor-reported, June 2026) and ~97%
+(Claude Opus 5 under Vals AI's mini-SWE-agent harness, before Vals archived the board as
+saturated in September 2026), SWE-bench Verified —
 fixing *real* GitHub issues in *real* codebases such that the project's *existing* tests pass —
 is a genuinely hard, realistic benchmark, and the climb is astonishing. It reflects both model
 improvement (reasoning, §05) and scaffold improvement (better agent harnesses, context-
 building, and verification loops). The current landscape of widely-available agents:
 
-![Coding agents by benchmark score, mid-2026](../assets/charts/09_agent_scores.png)
+![Coding agents on SWE-bench Verified at saturation, 2026](../assets/charts/09_agent_scores.png)
 
-Widely-available coding agents cluster in the **80–88%** range (Claude Code with Opus 4.8,
-Codex CLI with GPT-5.5, Gemini CLI with Gemini 3.1 Pro), frontier configurations reach **~95%**,
-and fully-autonomous end-to-end agents (Devin) trail on the strict benchmark because
+As of the mid-2026 snapshot, widely-available coding agents clustered in the **80–88%** range
+(Claude Code with Opus 4.8, Codex CLI with GPT-5.5, Gemini CLI with Gemini 3.1 Pro). Frontier
+configurations reached **~95–97%** by September 2026. That is effectively the benchmark's
+ceiling given residual flawed tasks, so vendors no longer headline it. Fully-autonomous
+end-to-end agents (Devin) trail on the strict benchmark because
 end-to-end autonomy over a full task is harder than assisted fixing. The benchmark caveats of
 §11 apply strongly here — SWE-bench scores are highly sensitive to the *harness and scaffold*
 around the model, not just the model, so "agent X scores Y%" always means "agent X with scaffold
@@ -110,10 +185,12 @@ factor wins* — a genuine open question with billions of dollars riding on it.
   editor, tightly integrated with the developer's existing workflow — autocomplete, inline edits,
   and an agent mode, all in the IDE. This is the largest market by users; the bet is that
   developers want AI *in their editor*, augmenting their flow. Cursor (Anysphere) is the
-  standard-bearer, having reached ~$500M+ ARR and a ~$9B valuation before a reported $60B
-  acquisition option — a staggering valuation reflecting the bet that the AI-native IDE is the
-  winning surface.
-- **Terminal/CLI (Claude Code, Codex CLI, Gemini CLI, Aider).** The agent lives in the
+  standard-bearer. Its revenue grew from ~$500M ARR in 2025 to a reported ~$3–4B by mid-2026.
+  SpaceX then exercised its option and **completed a $60B all-stock acquisition on August 14,
+  2026**, folding Cursor into a SpaceXAI unit with access to SpaceX's GPU capacity. The price
+  reflects the bet that the AI-native IDE is the winning surface, and it is now a bet by a
+  compute owner rather than by venture investors.
+- **Terminal/CLI (Claude Code, Codex CLI, Antigravity CLI (ex-Gemini CLI), Aider).** The agent lives in the
   terminal, a thin surface over a strong model, operating on the codebase via shell and file
   tools. The bet is that the *model capability* matters more than the IDE integration, and a
   thin, flexible CLI surface lets the best model shine without editor overhead. Claude Code
@@ -122,7 +199,8 @@ factor wins* — a genuine open question with billions of dollars riding on it.
 - **Autonomous/asynchronous (Devin, GitHub Copilot coding agent, OpenHands, background agents).**
   The agent works *independently* — you assign it a task (a ticket, an issue) and it goes off,
   explores, codes, tests, and returns a PR, with less moment-to-moment human involvement. The
-  bet (Cognition's, backing Devin at a ~$26B valuation) is that *agent-first* autonomous
+  bet (Cognition's, backing Devin at ~$26B in May 2026 and **~$48B after a September 2026
+  Series E**) is that *agent-first* autonomous
   software engineering — not IDE assistance — is the endgame, with developers reviewing PRs from
   a fleet of agents rather than pairing with an in-editor assistant.
 
@@ -134,7 +212,7 @@ on different form factors simultaneously.
 
 | Form factor | Exemplars | Bet | Strength | Best for |
 |---|---|---|---|---|
-| IDE-integrated | Cursor, Windsurf, Copilot | AI-in-the-editor augments flow | Tight workflow integration | Interactive, in-flow development |
+| IDE-integrated | Cursor, Devin Desktop (ex-Windsurf), Copilot | AI-in-the-editor augments flow | Tight workflow integration | Interactive, in-flow development |
 | Terminal/CLI | Claude Code, Codex CLI, Aider | Model capability > IDE polish | Flexibility, raw capability | Power users, complex multi-file work |
 | Autonomous/async | Devin, Copilot agent, OpenHands | Agent-first is the endgame | Parallel, unattended task completion | Delegated tickets, background work |
 
@@ -217,13 +295,13 @@ infrastructure**.
 
 | Player | Form factor | Maturity | Backing / valuation (confidence) | Differentiator | Main competitors |
 |---|---|---|---|---|---|
-| **Cursor (Anysphere)** | IDE | shipped-reliable | ~$9B→$60B option; $500M+ ARR (inferred) | AI-native IDE; best-in-class editor UX | Windsurf, Copilot |
-| **GitHub Copilot** | IDE + agent | shipped-reliable | Microsoft (official) | Largest install base; default in the toolchain | Cursor, JetBrains |
-| **Claude Code** | CLI | shipped-reliable | Anthropic; ~80× YoY usage (official) | Raw Opus capability via thin CLI; strong agentic search | Codex CLI, Cursor |
-| **Codex CLI (OpenAI)** | CLI | shipped-reliable | OpenAI (official) | GPT-5.x coding via CLI; top Terminal-Bench | Claude Code, Gemini CLI |
-| **Devin (Cognition)** | Autonomous | demoed→reliable | ~$26B valuation (inferred) | Agent-first autonomous SWE; absorbed Windsurf | Copilot agent, OpenHands |
-| **Windsurf (→ Devin Desktop)** | IDE | shipped-reliable | Cognition (official) | IDE folded into Devin; agentic flows | Cursor, Copilot |
-| **Gemini CLI / Code Assist** | CLI + IDE | shipped-reliable | Google (official) | Gemini 3.x coding; Google Cloud integration | Codex CLI, Claude Code |
+| **Cursor (Anysphere)** | IDE | shipped-reliable | **Acquired by SpaceX, $60B all-stock, closed Aug 14, 2026** (official); ~$3–4B ARR (inferred) | AI-native IDE; best-in-class editor UX; SpaceX compute | Devin Desktop, Copilot |
+| **GitHub Copilot** | IDE + agent | shipped-reliable | Microsoft (official) | Largest install base; Copilot Fusion multi-model routing, multi-repo Projects, cross-client agent sessions (Oct 2026, inferred) | Cursor, JetBrains |
+| **Claude Code** | CLI | shipped-reliable | Anthropic; ~80× YoY usage (official) | Opus/Sonnet 5.5; leads Terminal-Bench 4.0 per Anthropic (official) | Codex CLI, Cursor |
+| **Codex CLI (OpenAI)** | CLI | shipped-reliable | OpenAI (official) | GPT-6 Astra / GPT-6.1 Sol coding models (inferred) | Claude Code, Antigravity CLI |
+| **Devin (Cognition)** | Autonomous | demoed→reliable | ~$48B valuation, ~$2B Series E, Sep 2026 (inferred) | Agent-first autonomous SWE; absorbed Windsurf | Copilot agent, OpenHands |
+| **Windsurf (→ Devin Desktop)** | IDE | shipped-reliable | Cognition (official) | IDE rebranded Devin Desktop (Jun 2026) | Cursor, Copilot |
+| **Gemini CLI → Antigravity CLI / Code Assist** | CLI + IDE | shipped-reliable | Google (official) | Gemini CLI retired for consumer tiers Jun 18, 2026; closed Antigravity CLI + Antigravity 2.0 desktop; Code Assist for enterprise | Codex CLI, Claude Code |
 | **OpenHands (All Hands AI)** | Autonomous/OSS | shipped-reliable | OSS + startup (inferred) | Open-source autonomous SWE agent + SDK | Devin, Aider |
 | **Aider** | CLI/OSS | shipped-reliable | OSS (inferred) | Popular open terminal pair-programmer | Claude Code, Cline |
 | **Cline / Roo Code** | IDE (VS Code) | shipped-reliable | OSS (inferred) | Open-source agentic VS Code extension | Cursor, Copilot |
@@ -231,7 +309,7 @@ infrastructure**.
 | **Replit Agent** | Cloud IDE | shipped-reliable | Replit (inferred) | Build-and-deploy full apps in the browser | Cursor, Lovable |
 | **Lovable / v0 / Bolt** | App builders | shipped-reliable | Vercel (v0), Lovable, StackBlitz (inferred) | Prompt-to-app for web front-ends | Replit, Cursor |
 | **E2B / Modal / Daytona** | Execution infra | shipped-reliable | VC-backed (inferred) | Sandboxed code execution for agents | each other |
-| **Amazon Q Developer / Kiro** | IDE + agent | shipped-reliable | Amazon (official) | AWS-integrated coding agent | Copilot, Gemini |
+| **Amazon Q Developer / Kiro** | IDE + agent | shipped-reliable | Amazon (official) | AWS-integrated coding agent; adding Opus 5.5 (official) | Copilot, Gemini |
 
 That is fifteen entries — well past ten, and the category could support more (Sourcegraph
 Cody/Amp, Augment, Tabnine, Continue, Zed's agent, Warp, and many app-builders). The
@@ -239,7 +317,7 @@ structural read: **coding is a land-grab with tens of billions in valuations, sp
 form factors, sitting atop the frontier models (whose coding capability is the base) and a
 shared execution-infrastructure layer.** The most important dynamic is the **model-vs-scaffold
 tension**: the coding capability comes largely from the frontier model, and the model vendors
-ship their own agents (Claude Code, Codex, Gemini CLI) *and* power the third-party tools
+ship their own agents (Claude Code, Codex, Gemini CLI — now Antigravity CLI) *and* power the third-party tools
 (Cursor runs on frontier models) — so the independents (Cursor, Cognition) are building durable
 product/workflow value on top of models they don't own, a strategically precarious-but-
 lucrative position, much like the orchestration independents (§02) building on models the
@@ -413,12 +491,20 @@ it illustrates the §11 evaluation problems in a domain that handles them relati
   harness around the model), so "X scores Y%" conflates model and scaffold.
 - **Terminal-Bench.** Tests agents on realistic *terminal* tasks (not just code fixes but
   environment setup, tooling, multi-step CLI work), better capturing the breadth of real
-  development. Codex CLI with GPT-5.5 led it in 2026, ahead of Claude Code and Gemini CLI —
+  development. Codex CLI with GPT-5.5 led it in early 2026, ahead of Claude Code and Gemini CLI —
   a different ranking than SWE-bench, illustrating that *which* benchmark you cite changes who's
-  "best."
+  "best." By autumn 2026 the harder **Terminal-Bench 4.0** had become the vendors' headline
+  coding number, and the ranking flipped. Per Anthropic's launch tables (vendor-reported):
+  Sonnet 5.5 70.6%, Opus 5.5 66.4%, GPT-6 Astra 57.9%, Fable 5.1 55.8%, Opus 5 52.3%,
+  GPT-5.6 Sol 37.3%. These are "model + vendor harness" numbers, not product-vs-product.
 - **SWE-bench Multimodal / Pro / and successors.** Harder, broader variants (multi-language,
   larger tasks, visual elements) built to escape saturation and contamination as the original
-  saturates — the same benchmark-treadmill dynamic as §05's reasoning benchmarks.
+  saturates — the same benchmark-treadmill dynamic as §05's reasoning benchmarks. *November
+  2026:* the treadmill turned over on schedule. Vals AI archived its SWE-bench Verified board
+  as saturated (~97% top score) around September 1. SWE-bench Pro (top vendor-reported scores
+  ~65–80%) and a "SWE-Bench Pro Verified" cleanup took its place. Vendor-built suites
+  (CursorBench 4.0, FrontierCode) now appear on launch pages, which raises fresh
+  independence questions.
 - **Live/uncontaminated benchmarks.** Because contamination is a real concern (issues in
   training data inflate scores), *live* benchmarks drawn from issues created *after* a model's
   training cutoff are increasingly valued as a cleaner signal.
@@ -577,8 +663,9 @@ Claude Code and Codex brought capable CLI agents, scores crossed 70%, Cursor rea
 revenue and valuation, Cognition raised at a huge valuation and absorbed Windsurf, and the
 form-factor competition (IDE vs. CLI vs. autonomous) crystallized.
 
-**2026** is the current state: scores at ~85–95%, tens-of-billions valuations across form factors
-(and a reported $60B acquisition option for Cursor), the workflow shifting toward PR-boundary
+**2026** is the current state. SWE-bench Verified is saturated at ~95–97%, and Terminal-Bench 4.0
+leaders sit at ~66–71%. The first mega-exit landed (SpaceX's $60B Cursor acquisition, closed
+August), Cognition reached ~$48B, and the workflow is shifting toward PR-boundary
 review and background agents, and coding firmly established as the most mature, most valuable
 agent vertical — the R&D lab where agent techniques (verifier loops, CodeAct, agentic search) are
 proven before propagating elsewhere. The arc — autocomplete to assistant to autonomous — traces
@@ -589,22 +676,42 @@ verifiers made every step measurable and therefore improvable.
 
 - **Coding stays the most mature vertical and keeps improving** *(official trend; high
   confidence).* Benchmarks keep climbing; the verifier advantage is structural and durable.
+  — *Nov 2026: confirmed. SWE-bench Verified saturated (~97%) and was archived. Terminal-Bench
+  4.0 leaders went from ~52% (Opus 5, July) to ~66–71% (Opus/Sonnet 5.5, September).*
 - **Form-factor competition continues; convergence toward hybrid** *(inferred; medium
   confidence).* IDE, CLI, and autonomous form factors keep converging; the market hasn't
   decided, and the tens-of-billions valuations reflect genuine uncertainty about which surface
-  wins. Expect consolidation.
+  wins. Expect consolidation. — *Nov 2026: confirmed. SpaceX bought Cursor ($60B, closed
+  August). Google folded Gemini CLI into Antigravity. GitHub made cloud agent sessions
+  portable across app, IDE, CLI and web, which blurs the form factors further.*
 - **The auto-merge line advances cautiously** *(speculative; medium confidence).* Trusting
   agents to merge without human review expands for low-risk changes with strong CI, but
   consequential-code auto-merge stays gated by "tests aren't sufficient" and the cost of bad
-  merges. Human-reviews-the-PR remains the mature default.
+  merges. Human-reviews-the-PR remains the mature default. — *Nov 2026: not yet. No major
+  vendor shipped default auto-merge for consequential code. Investment went into AI code review
+  instead (e.g., Copilot code review Max, Claude Code's code-review skill).*
 - **Model-vs-scaffold tension pressures independents** *(inferred; medium-high confidence).*
   Vendors shipping their own coding agents *and* powering third-party tools squeezes the
   independents; product/workflow/enterprise-integration value is their moat, but it's built on
-  others' models.
+  others' models. — *Nov 2026: partly. Cursor resolved the tension by selling to a compute
+  owner (SpaceX) rather than staying independent. Cognition went the other way and doubled to
+  ~$48B. Independents command record prices, but the exit path ran through vertical
+  integration.*
 - **Coding agents shape the whole field** *(inferred; high confidence).* Techniques proven in
   coding (verifier-driven loops, CodeAct, agentic search, PR-boundary review) propagate to
   other verticals wherever a verifier can be manufactured — coding is the R&D lab for agent
-  patterns.
+  patterns. — *Nov 2026: confirmed. Agent Skills, the packaging format popularized by Claude
+  Code, was donated to the Agentic AI Foundation in October and is supported by Antigravity
+  CLI.*
+- **New: benchmark governance becomes the contested ground** *(inferred; high confidence).*
+  With Verified retired, headline numbers now come from Terminal-Bench 4.0, SWE-bench Pro and
+  vendor-built suites (CursorBench, FrontierCode). Expect pressure for independent, audited
+  runs. Vals AI and the SWE-Bench Pro Verified effort are early signs, and vendor-vs-auditor
+  discrepancies like the GPT-5.6 Terminal-Bench 2.1 dispute will recur.
+- **New: compute owners buy the application layer** *(speculative; medium confidence).*
+  SpaceX–Cursor is the template: a company with GPUs and a model ambition acquiring an
+  application with developer distribution. Further acquisitions of coding-agent
+  independents by compute-rich buyers are plausible in 2027.
 
 ---
 
@@ -648,9 +755,10 @@ to ask it.
   verifier-poor domains lag.
 - The core architecture is the **plan-code-test-iterate loop**, driven by running verifiers
   every cycle; context-building (agentic codebase search) comes first and matters enormously.
-- SWE-bench Verified climbed **~4% → ~90%** in under three years; widely-available agents cluster
-  **80–88%**, frontier configs reach **~95%** — but scores are heavily harness-dependent and
-  cross-comparison is fraught.
+- SWE-bench Verified climbed **~4% → ~95–97%** in under three years and was retired as saturated
+  (September 2026). Widely-available agents clustered **80–88%** at mid-year; the action has
+  moved to Terminal-Bench 4.0 (~66–71% for the leaders) and SWE-bench Pro. Scores are heavily
+  harness-dependent and cross-comparison is fraught.
 - Three **form factors** compete (IDE / CLI / autonomous) with tens-of-billions valuations on
   different bets; the market hasn't decided and they're converging.
 - **Execution safety = sandboxing + scoping** (shared with §08); it limits blast radius, doesn't
@@ -663,4 +771,27 @@ to ask it.
   makes the independents lucrative but strategically precarious, building on models they don't
   own.
 
-*Word count target: 6,500. This section: ~6,500 (verified via `wc`).*
+*Word count target: 6,500. This section: ~7,900 (verified via `wc`; November 2026 update included).*
+
+## Sources (November 2026 update)
+
+- Anthropic — Introducing Claude Opus 5 (Jul 24, 2026): https://www.anthropic.com/news/claude-opus-5
+- Anthropic — Introducing Claude Opus 5.5 (Sep 22, 2026): https://www.anthropic.com/claude-opus-5-5
+- Anthropic — Introducing Claude Sonnet 5.5 (Sep 28, 2026): https://www.anthropic.com/claude-sonnet-5-5
+- Anthropic — Newsroom (Agent Skills donation, S-1 filing, Oct 2026): https://www.anthropic.com/news
+- Google — Transitioning Gemini CLI to Antigravity CLI (May 19, 2026): https://github.com/google-gemini/gemini-cli/discussions/27274
+- OpenAI — GPT-5.6: https://openai.com/index/gpt-5-6/
+- TechTimes — GPT-5.6 Sol review (benchmark caveats): https://www.techtimes.com/articles/319808/20260707/gpt-56-sol-review-faster-coding-half-fable-5-cost-benchmark-problem.htm
+- Vellum — GPT-6 Astra benchmarks: https://www.vellum.ai/blog/gpt-6-astra-benchmarks-explained
+- Morph — Codex vs Claude Code (Nov 2026): https://www.morphllm.com/comparisons/codex-vs-claude-code
+- Vals AI — SWE-bench Verified (archived): https://www.vals.ai/benchmarks/swebench
+- SWE-Bench Pro Verified (arXiv 2609.08149): https://arxiv.org/abs/2609.08149
+- Claude Fable 5 review: https://llm-stats.com/blog/research/claude-fable-5-review
+- SpaceX 8-K summary — Cursor acquisition completed: https://www.stocktitan.net/sec-filings/SPCX/8-k-space-exploration-technologies-corp-reports-material-event-c660405680ba.html
+- Techzine — SpaceX completes acquisition of Cursor: https://www.techzine.eu/news/devops/143619/spacex-completes-acquisition-of-cursor/
+- AI Magazine — Cursor, the AI coding agent SpaceX bought: https://aimagazine.com/news/cursor-the-ai-coding-agent-spacex-bought-in-a-us-60bn-deal
+- PYMNTS — Cognition $48B valuation: https://www.pymnts.com/news/artificial-intelligence/2026/cognition-secures-48-billion-valuation-as-demand-for-ai-coding-surges/
+- TheStreet — Cognition Series E: https://www.thestreet.com/technology/cognition-ai-devin-series-e-48-billion-revenue-multiple
+- GitHub Blog — GitHub Universe 2026: https://github.blog/news-insights/company-news/github-universe-2026-evolving-every-layer-of-the-stack/
+- DEV Community — GitHub Universe 2026 recap: https://dev.to/paullovelace/github-universe-2026-copilot-is-no-longer-an-autocomplete-it-now-runs-software-delivery-14ln
+

@@ -20,15 +20,17 @@ for _, r in df.iterrows():
     ax.annotate(f"{r['swebench_verified']:.0f}%", (r["date"], r["swebench_verified"]),
                 fontsize=9.5, color=INK, ha="center", xytext=(0, 9), textcoords="offset points")
 for i, r in df.iterrows():
+    last = i == len(df) - 1
     ax.annotate(r["milestone"], (r["date"], r["swebench_verified"]),
-                fontsize=7.6, color=MUTED, ha="left", xytext=(8, -13), textcoords="offset points")
+                fontsize=7.6, color=MUTED, ha="right" if last else "left",
+                xytext=(0, -45) if last else (8, -13), textcoords="offset points")
 ax.set_ylabel("SWE-bench Verified (%)")
 ax.set_ylim(0, 100)
 ax.set_xlim(-0.3, len(df)-0.1)
-ax.set_title("Coding agents on SWE-bench Verified: 4% → 90% in under three years", loc="left", pad=24)
-ax.text(0, 1.02, "Autonomous fixing of real GitHub issues — the clearest 'shipped and reliable' agent vertical",
+ax.set_title("Coding agents on SWE-bench Verified: 4% → 97% in under three years", loc="left", pad=24)
+ax.text(0, 1.02, "Autonomous fixing of real GitHub issues — saturated and archived on Vals AI's board in Sept 2026",
         transform=ax.transAxes, fontsize=9.6, color=MUTED)
-fig.text(0.01, 0.005, "Source: SWE-bench Verified leaderboard 2023–2026 (inferred; approximate, harness-dependent).",
+fig.text(0.01, 0.005, "Source: SWE-bench Verified leaderboard 2023–2026; Vals AI (Sep 2026) (inferred; approximate, harness-dependent).",
          fontsize=8, color=MUTED)
 save(fig, os.path.join(OUT, "09_swebench_timeline.png"))
 
@@ -45,9 +47,9 @@ ax.set_xlabel("SWE-bench Verified (%)")
 ax.grid(axis="x"); ax.grid(axis="y", visible=False)
 handles = [plt.Rectangle((0,0),1,1,color=cmap[k]) for k in cmap]
 ax.legend(handles, [k for k in cmap], loc="lower right", title=None, ncol=2, fontsize=9)
-ax.set_title("Coding agents by benchmark score, mid-2026", loc="left", pad=24)
-ax.text(0, 1.02, "Widely-available agents cluster 80–88%; frontier configs reach ~95%; autonomous end-to-end agents trail",
+ax.set_title("Coding agents on SWE-bench Verified at saturation, 2026", loc="left", pad=24)
+ax.text(0, 1.02, "Shipped agents 80–88% (mid-2026); frontier runs 95–97% by Sept 2026; autonomous agents trail",
         transform=ax.transAxes, fontsize=9.3, color=MUTED)
-fig.text(0.01, 0.005, "Source: SWE-bench Verified reports, 2026 (inferred; scores are harness- and scaffold-dependent).",
+fig.text(0.01, 0.005, "Source: SWE-bench Verified reports and Vals AI, Jun–Sep 2026 (inferred; harness- and scaffold-dependent; shipped-agent rows as of Jul 2026).",
          fontsize=8, color=MUTED)
 save(fig, os.path.join(OUT, "09_agent_scores.png"))

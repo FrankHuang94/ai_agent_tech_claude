@@ -1,6 +1,8 @@
-system,short_horizon,long_horizon
-Claude Opus 4.8,83.5,21
-Claude Sonnet 4.6,72.5,17
-Simular Agent S2,72.6,15
-OpenAI CUA (updated),68,14
-Google Project Mariner,66,13
+system,long_partial,long_binary,date,note
+Claude Opus 4.8,54.8,20.6,2026-06,OSWorld 2.0 paper
+GPT-5.5 (xhigh),49.5,13.0,2026-06,OSWorld 2.0 paper
+Qwen-CUA-Max,53.3,21.2,2026-08,self-reported
+Claude Opus 5,70.6,,2026-07,leaderboard
+GPT-6 Astra,72.6,,2026-09,leaderboard
+Simular Sai,73.0,,2026-08,self-reported
+Claude Fable 5.1,77.9,,2026-09,leaderboard
