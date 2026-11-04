@@ -1,7 +1,8 @@
 # 13 — Agent Identity and Authentication
 
 *How agents act on your behalf without holding your password. OAuth-for-agents, delegated
-credentials, agentic payments, and permission-scoping standards. Target: 5,500 words.*
+credentials, agentic payments, and permission-scoping standards. Target: 5,500 words. Snapshot
+July 22, 2026; updated for developments through early November 2026.*
 
 ---
 
@@ -34,6 +35,78 @@ don't exist yet.
 
 ---
 
+## What changed since July 2026 (November 2026 update)
+
+Since the July snapshot the identity half of this layer has moved faster than the payments half.
+Cross-app delegation got a real standards path (the IETF ID-JAG grant, applied to MCP as
+"Enterprise-Managed Authorization"). The MCP authorization spec was hardened. NIST published
+design tenets for agent identity systems, the first from a standards body. Identity and
+data-security vendors announced about $1.2B of deals for agent and non-human identity startups
+within a few days of each other in late July. Agentic payments, by contrast, show a gap between protocols and
+traction. OpenAI had already retreated from in-chat checkout (March), AP2 moved to a standards
+body, Google layered a commerce protocol (UCP) on top, and x402's real commercial volume remains
+tiny despite large headline transaction counts. Items the July snapshot missed are included and
+marked.
+
+- **Jan 2026 (missed in July)** — Google launched the **Universal Commerce Protocol (UCP)**, an
+  open checkout/commerce protocol with built-in AP2, A2A and MCP support. It sits *above* AP2's
+  payment mandates *(official; [Google Developers Blog](https://developers.googleblog.com/under-the-hood-universal-commerce-protocol-ucp/))*.
+  CrowdStrike agreed to buy authorization vendor **SGNL** (~$740M) for context-aware authorization of
+  human, machine and agent identities *(official; [Business Wire](https://www.businesswire.com/news/home/20260107999523/en/CrowdStrike-to-Acquire-SGNL-to-Transform-Identity-Security-for-the-AI-Era/))*.
+- **Feb 2026 (missed)** — Palo Alto Networks closed its ~$25B **CyberArk** acquisition, pitching
+  privileged-access controls for agent identities *(inferred; [TechInformed](https://techinformed.com/palo-alto-closes-cyberark-deal-adds-identity-pillar/))*.
+  NIST's NCCoE published the concept paper *Accelerating the Adoption of Software and AI Agent
+  Identity and Authorization* *(official; [NIST CSRC](https://csrc.nist.gov/pubs/other/2026/02/05/accelerating-the-adoption-of-software-and-ai-agent/ipd))*.
+- **Mar 2026 (missed)** — OpenAI **wound down ChatGPT Instant Checkout** after weak uptake. ACP was
+  refocused on merchant feeds and discovery, with merchants keeping their own checkout. The Apr
+  2026 ACP spec snapshot added cart/feed/order/auth resources and MCP compatibility *(inferred;
+  [Digiday](https://digiday.com/marketing/shopify-says-purchases-are-coming-inside-chatgpt-through-agentic-storefronts-as-openai-retreats-on-instant-checkout/))*.
+- **Apr 28, 2026 (missed)** — Google **donated AP2 to the FIDO Alliance** and released v0.2, which adds
+  "human-not-present" payments within pre-set mandates *(inferred; [TokenPost](https://www.tokenpost.com/news/technology/45562))*.
+- **Apr–Aug 2026** — **Microsoft Entra Agent ID reached GA** (spring 2026, bundled with Agent 365).
+  Conditional Access and ID Protection for agents rolled out worldwide in Jul–Aug 2026 *(official;
+  [Microsoft Learn](https://learn.microsoft.com/en-za/entra/agent-id/whats-new-agent-id),
+  [MC1395007](https://mc.merill.net/message/MC1395007))*.
+- **Jun 2026** — The MCP **Enterprise-Managed Authorization** extension (based on the IETF ID-JAG
+  draft, marketed by Okta as Cross App Access) reached stable status. Auth0 and Descope shipped
+  support in late Aug–early Sep *(inferred; [WorkOS](https://workos.com/blog/mcp-enterprise-managed-authorization-id-jag),
+  [Descope](https://www.descope.com/press-release/cross-app-access-xaa-support))*.
+- **Jul 28, 2026** — MCP spec **2026-07-28** went final. Clients must validate the `iss` parameter
+  on authorization responses (RFC 9207 mix-up defense) and bind credentials to the issuing
+  authorization server. Refresh-token and step-up scope rules were clarified, and Client ID
+  Metadata Documents are preferred over Dynamic Client Registration *(official;
+  [MCP blog](https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/); DCR
+  deprecation per [WorkOS](https://workos.com/blog/mcp-2026-spec-agent-authentication), inferred)*.
+- **Late Jul 2026** — **Okta agreed to buy Permiso** (~$200M, reported) for identity threat detection.
+  **Cyera agreed to buy Oasis Security** (~$1B) for non-human identity and agent access management *(inferred;
+  [TechCrunch](https://techcrunch.com/2026/07/30/okta-buys-ai-security-startup-permiso-source-says-for-about-200m/),
+  [The Next Web](https://thenextweb.com/news/cyera-oasis-security-1bn-ai-agent-identity-acquisition))*.
+- **Sep 2026** — At **Oktane 2026**, Okta announced **Agent SSO**, a first-class identity for agents
+  that support Cross App Access, included in core SSO plans. It also expanded **Okta for AI Agents**
+  (shadow-agent discovery, an Agent Gateway). SPIFFE support and an agent kill switch are Q4 targets *(official
+  for launches, roadmap inferred; [Okta](https://www.okta.com/newsroom/press-releases/okta-brings-first-class-identity-to-ai-agents-with-agent-sso/),
+  [Forrester](https://www.forrester.com/blogs/oktane-2026-recap-okta-announces-a-unified-iam-control-plane-with-agent-governance-and-identity-details-remaining-unclear/))*.
+  NIST posted its comment summary for the NCCoE project and widened it to agents in the software
+  development lifecycle *(official; [NIST](https://www.nist.gov/news-events/news/2026/09/comments-software-and-agentic-ai-identity-concept-paper))*.
+- **Oct 2026** — NIST's **"Design Tenets for Agent Identity Management Systems"** set out ten tenets,
+  including a distinct identity lifecycle for agents and architectural separation of "what the
+  agent tries" from "what it is allowed". NIST notes that current standards don't yet meet all ten *(official;
+  [NIST](https://www.nist.gov/blogs/cybersecurity-insights/design-tenets-agent-identity-management-systems))*.
+  Infisical raised a $40M Series B partly for an **Agent Vault** credential broker *(inferred;
+  [Pomegra](https://pomegra.io/startups/infisical-raises-40m-at-600m-for-ai-agent-security-2026-2026-11-03))*.
+  Visa signed an exploratory agentic-commerce partnership with Tencent *(inferred;
+  [PYMNTS](https://www.pymnts.com/partnerships/2026/visa-launches-agentic-commerce-partnership-with-tencent/))*.
+- **Through Nov 4, 2026** — **x402** now sits under a Linux Foundation-hosted foundation, with
+  Cloudflare and AWS CloudFront edge support. Block joined and contributed Lightning support. But
+  analysts estimate that >95% of x402 activity is protocol signaling, and tracked monthly volume
+  fell from a ~$29M peak (Nov 2025) to ~$0.4M (Oct 2026) *(inferred; [Yahoo Finance/CoinDesk](https://finance.yahoo.com/markets/crypto/articles/x402-foundation-activated-27-old-152440828.html),
+  [InfoQ](https://www.infoq.com/news/2026/07/cloudflare-aws-x402-micropayment/))*.
+- **Still unchanged** — No agent-specific OAuth draft has been adopted by an IETF working group. The
+  OBO-for-agents draft expired in Feb 2026, and draft-klrc-aiagent-auth (built on WIMSE + OAuth) is
+  still an individual submission *(inferred; [IETF](https://www.ietf.org/archive/id/draft-klrc-aiagent-auth-00.html))*.
+
+---
+
 ## Why agents break the existing identity model
 
 Traditional identity and access management (IAM) assumes two kinds of actors: **humans** (who log
@@ -62,6 +135,9 @@ authorizing apps, stretching them to fit agents, and inventing new pieces (agent
 delegation, agentic payments) where the stretch doesn't reach. The chart shows the split.
 
 ![Agent identity & payment standards: adoption status](../assets/charts/13_standards_adoption.png)
+
+*Nov 2026 update: MCP OAuth (hardened in the 2026-07-28 spec), Entra Agent ID (GA) and XAA/ID-JAG
+(stable MCP extension, three IdPs shipping) moved up; UCP added. Scores are analyst judgment (inferred).*
 
 The pattern is clear: **the reused web-auth foundations (OAuth 2.1, OIDC) are adopted and solid; the
 agent-native pieces (cross-app agent access, agent identity, agentic payments) are emerging or merely
@@ -95,7 +171,10 @@ permissions, revocable with the user's grant), while autonomous agents need thei
 "autonomous agent" as a first-class identity type — Microsoft Entra Agent ID, Okta's and Auth0's
 agent-identity features — is one of the significant 2026 developments: **agents are becoming
 first-class identities in enterprise IAM**, governed, audited, and lifecycle-managed like human and
-service identities.
+service identities. By November 2026 this was GA, not preview. Entra Agent ID reached general
+availability in spring 2026, with Conditional Access and ID Protection for agents rolling out in
+Jul–Aug. Okta's Agent SSO (Sep 2026) gives XAA-capable agents a first-class identity within core
+SSO plans.
 
 ---
 
@@ -143,7 +222,10 @@ The load-bearing features, and how they map to the security principles of §12:
   — essential for control and incident response.
 
 This flow is the mature core of agent identity: **scoped, consented, short-lived, revocable
-delegation via OAuth 2.1**, now required by the MCP spec for remote server authentication. It works
+delegation via OAuth 2.1**, now required by the MCP spec for remote server authentication. The
+2026-07-28 MCP release hardened it further: mandatory `iss` validation (RFC 9207 mix-up defense),
+credentials bound to the issuing authorization server, RFC 9728 protected-resource discovery, and
+Client ID Metadata Documents preferred over dynamic registration. It works
 well for the single-user OBO case. Where it strains is exactly the agent-native hard parts:
 multi-hop across organizations, autonomous-agent identity, and — the frontier — payments.
 
@@ -167,8 +249,12 @@ tokens for each hop, and — the notable 2026 development — **Okta's Cross App
 (built with Auth0), which standardizes how one application's agent can securely call another
 application's data *without a separate interactive credential exchange for every hop*, while
 preserving scoped authority and audit. This is the kind of agent-native standard the layer needs,
-and its emergence is significant — but it is *emerging*, not adopted, and the multi-hop problem
-remains one of the layer's genuinely hard, not-yet-settled challenges. Cross-organization multi-hop
+and its emergence is significant. As of November 2026 it has a concrete standards path: the IETF
+**Identity Assertion JWT Authorization Grant (ID-JAG)** draft underlies both Okta's XAA and the MCP
+**Enterprise-Managed Authorization** extension (stable since June 2026), and Auth0 and Descope
+shipped support by September. It is still a draft rather than an RFC, and still *emerging* rather
+than adopted, so the multi-hop problem remains one of the layer's genuinely hard, unsettled
+challenges. Cross-organization multi-hop
 (the §06 cross-org multi-agent dream) is harder still, because it involves trust across
 organizational boundaries, not just technical delegation.
 
@@ -189,19 +275,38 @@ and the agent (even if hijacked) cannot exceed that mandate. The competing propo
 
 ![Agentic payment protocols: a contested new layer](../assets/charts/13_payment_protocols.png)
 
+*Nov 2026 update: UCP added. ACP lowered (Instant Checkout wound down), Mastercard raised (US + EU
+issuer enablement). Maturity scores are analyst judgment (inferred).*
+
 - **AP2 (Agent Payments Protocol)** — Google-originated (with payment networks), using signed
   *mandates* that cryptographically define what an agent is authorized to spend (amount, merchant,
   conditions), so the agent presents a verifiable authorization rather than holding your full
-  payment credentials. Introduced in §06 as the payments layer of the interop stack.
+  payment credentials. Introduced in §06 as the payments layer of the interop stack. In April 2026
+  Google **donated AP2 to the FIDO Alliance** and shipped v0.2 with "human-not-present" mandates.
+- **Universal Commerce Protocol (UCP)** — Google's open commerce/checkout protocol (Jan 2026). It
+  carries AP2 for payment authorization and exposes A2A/MCP bindings, and is now the merchant-facing
+  layer of Google's stack (Universal Cart, announced at I/O 2026). Mastercard has reportedly backed it.
 - **Agentic Commerce Protocol (ACP)** — OpenAI + Stripe, enabling agent-driven checkout via delegated
   payment tokens (note: *this* ACP is distinct from AGNTCY's Agent Communication Protocol in §06 —
-  an unfortunate name collision). It powers agent-initiated purchases within a controlled checkout.
+  an unfortunate name collision). It was launched to power agent-initiated purchases within a
+  controlled checkout, but in **March 2026 OpenAI wound down ChatGPT Instant Checkout** after weak
+  uptake. ACP has since been refocused on merchant feeds and discovery, with merchants keeping
+  their own checkout; the April 2026 spec added MCP compatibility. Stripe's Shared Payment Tokens
+  remain the delegated-credential piece.
 - **x402** — Coinbase's revival of the dormant HTTP 402 "Payment Required" status code for
   *stablecoin micropayments*, enabling agents (and services) to pay per-request with crypto —
   attractive for agent-to-agent and API micropayments where traditional card rails are too heavy.
+  It is now governed by an x402 Foundation hosted at the Linux Foundation, with Cloudflare and AWS
+  CloudFront edge support and (Nov 2026) Block's Lightning support. Analysts warn, though, that most
+  on-chain "transactions" are protocol signaling and that real commercial volume is small and
+  falling.
 - **Card-network schemes** — Visa Intelligent Commerce and Mastercard Agent Pay, where the card
   networks issue *tokenized, agent-specific credentials* with spending controls, bringing the
-  existing payment rails and trust infrastructure to agent commerce.
+  existing payment rails and trust infrastructure to agent commerce. Mastercard reports all US
+  cardholders enabled since late 2025 and European issuers enabled at network level by mid-2026,
+  plus a "Verifiable Intent" trust layer built with Google. Visa has an OpenAI partnership
+  (June 2026) and agent signatures via its Trusted Agent Protocol on Cloudflare's Web Bot Auth, but
+  said in September 2026 that Intelligent Commerce was still being deployed.
 
 The competitive dynamic is a genuine land-grab: **card networks (Visa, Mastercard), platforms
 (OpenAI/Stripe, Google), and crypto (Coinbase) are all racing to be how agents pay**, and none is
@@ -211,7 +316,12 @@ are high because payments is where agent autonomy meets real money, and the secu
 (authorization limits that hold even against a hijacked agent) are stringent. This sub-layer is
 firmly **proposed-to-emerging** — real proposals with real backers, minimal production adoption — and
 it is one of the most-watched frontiers because agentic commerce is a huge potential market gated on
-getting the trust and authorization right.
+getting the trust and authorization right. *Nov 2026 read:* the 2026 shake-out sorted the field
+into layers more than it picked a winner. Authorization/mandates (AP2, now at FIDO; Mastercard
+Verifiable Intent), merchant/checkout protocols (UCP, ACP), agent identification at the edge
+(Visa TAP / Web Bot Auth) and settlement rails (card tokens, x402) increasingly stack together
+instead of competing head-on. The flagship consumer checkout (ChatGPT Instant Checkout) was pulled
+for lack of conversions, a reminder that demand, not just trust, is a gate.
 
 ---
 
@@ -226,28 +336,38 @@ favoring domains — but where agent-native startups are carving space.
 
 | Player | Category | Maturity | Focus | Notable (confidence) | Differentiator | Competitors |
 |---|---|---|---|---|---|---|
-| **Okta / Auth0** | Identity provider | shipped-reliable | Delegated agent auth | Cross App Access (XAA); Auth for GenAI (official) | Cross-app agent delegation; token vaulting | Microsoft Entra, WorkOS |
-| **Microsoft Entra Agent ID** | Identity provider | shipped-reliable | Agent as first-class identity | Entra agent identities (official) | Agents governed in enterprise IAM | Okta, Google |
+| **Okta / Auth0** | Identity provider | shipped-reliable | Delegated agent auth | Cross App Access (XAA); Auth for GenAI; Agent SSO + Okta for AI Agents (Sep 2026); acquiring Permiso (~$200M reported, Jul 2026) (official) | Cross-app agent delegation; token vaulting; agent gateway | Microsoft Entra, WorkOS |
+| **Microsoft Entra Agent ID** | Identity provider | shipped-reliable | Agent as first-class identity | GA spring 2026 with Agent 365; Conditional Access/ID Protection for agents GA Jul–Aug 2026 (official) | Agents governed in enterprise IAM | Okta, Google |
+| **CyberArk (Palo Alto Networks)** | PAM / identity security | shipped-reliable | Privileged access for agent identities | ~$25B acquisition closed Feb 2026 (inferred) | Treats every agent as a privileged identity | Okta, SailPoint |
+| **Oasis Security (Cyera)** | NHI / agent identity | shipped-reliable | Non-human & agent access governance | Cyera acquiring for ~$1B, Jul 2026 (inferred) | NHI discovery + agent access management | Astrix (Cisco), Entro (SailPoint) |
+| **SGNL (CrowdStrike)** | Authorization | shipped-reliable | Context-aware runtime authorization | ~$740M acquisition announced Jan 2026 (official) | Zero-standing-privilege for human/machine/agent | Okta, CyberArk |
 | **WorkOS** | Identity infra | shipped-reliable | Auth infra for AI apps | Multi-hop delegation work (inferred) | Developer-first agent auth infra | Stytch, Descope |
 | **Stytch** | Auth infra | shipped-reliable | Agent/user auth | Agent auth features (inferred) | Embedded agent + user auth | WorkOS, Descope |
-| **Descope** | Auth infra | shipped-reliable | Agentic auth flows | Agentic identity (inferred) | Flow-based agent auth | Stytch, WorkOS |
+| **Descope** | Auth infra | shipped-reliable | Agentic auth flows | Agentic identity; XAA / ID-JAG support Sep 2026 (official) | Flow-based agent auth | Stytch, WorkOS |
 | **Arcade.dev** | Tool auth | shipped-reliable | Per-user tool OAuth | Auth-centric tool platform (inferred) | Delegated auth for agent tools (§04) | Composio, native OAuth |
-| **OAuth 2.1 / OIDC** | Standard | shipped-reliable | Delegated authorization | IETF; MCP-required (official) | The foundation everything extends | (none — standard) |
+| **OAuth 2.1 / OIDC** | Standard | shipped-reliable | Delegated authorization | IETF; MCP-required, hardened in MCP 2026-07-28 (iss validation, issuer binding) (official) | The foundation everything extends | (none — standard) |
+| **ID-JAG / MCP Enterprise-Managed Authorization** | Standard | demoed-brittle | Cross-app agent delegation | IETF draft; MCP extension stable Jun 2026; Okta, Auth0, Descope support (inferred) | IdP-brokered agent access without per-app consent | RFC 8693 token exchange |
+| **NIST NCCoE agent identity project** | Standards/guidance | research-only | Reference architecture | Concept paper Feb 2026; 10 design tenets Oct 2026 (official) | Neutral government baseline for agent IAM | (none — guidance) |
 | **SPIFFE/SVID** | Standard | shipped-reliable | Machine identity | CNCF (official) | Workload/agent machine identity | client-credentials |
-| **AP2** | Payment standard | demoed-brittle | Agent payments | Google + networks (official) | Signed spend mandates | ACP, card schemes |
-| **Agentic Commerce Protocol** | Payment standard | demoed-brittle | Agent checkout | OpenAI + Stripe (official) | Delegated checkout tokens | AP2, x402 |
-| **x402** | Payment standard | demoed-brittle | Crypto micropayments | Coinbase (official) | HTTP 402 stablecoin payments | AP2, card schemes |
-| **Visa Intelligent Commerce** | Payment network | demoed-brittle | Agent card credentials | Visa (official) | Tokenized agent card credentials | Mastercard, ACP |
-| **Mastercard Agent Pay** | Payment network | demoed-brittle | Agent payments | Mastercard (official) | Agent Pay tokens on card rails | Visa, ACP |
+| **AP2** | Payment standard | demoed-brittle | Agent payments | Google + networks; donated to FIDO Alliance, v0.2, Apr 2026 (inferred) | Signed spend mandates | ACP, card schemes |
+| **Universal Commerce Protocol (UCP)** | Commerce standard | demoed-brittle | Agent checkout/commerce | Google, Jan 2026; carries AP2 (official) | Merchant-facing protocol with A2A/MCP bindings | ACP |
+| **Agentic Commerce Protocol** | Payment standard | demoed-brittle | Agent checkout | OpenAI + Stripe (official); ChatGPT Instant Checkout wound down Mar 2026 (inferred) | Delegated checkout tokens; now feed/discovery-led | AP2/UCP, x402 |
+| **x402** | Payment standard | demoed-brittle | Crypto micropayments | Coinbase; x402 Foundation (Linux Foundation); Cloudflare/AWS edge (inferred) | HTTP 402 stablecoin payments | AP2, card schemes |
+| **Visa Intelligent Commerce** | Payment network | demoed-brittle | Agent card credentials | Visa (official); OpenAI partnership Jun 2026, still deploying Sep 2026 (inferred) | Tokenized agent card credentials + Trusted Agent Protocol | Mastercard, ACP |
+| **Mastercard Agent Pay** | Payment network | demoed-brittle | Agent payments | Mastercard (official); US cardholders and EU issuers enabled; Verifiable Intent (inferred) | Agent Pay tokens on card rails | Visa, ACP |
 | **Stripe (agent tooling)** | Payments platform | shipped-reliable | Agent commerce infra | Stripe agent tools + ACP (official) | Developer payment infra for agents | card networks |
 
-That is fourteen entries — well past ten, spanning identity providers, auth infra startups,
-standards, and payment providers. The structural read: **identity is incumbency-favoring (Okta,
+That is twenty entries after the November 2026 update, spanning identity providers, identity-
+security acquirers, auth infra startups, standards, and payment providers. The structural read: **identity is incumbency-favoring (Okta,
 Microsoft, the card networks lead because trust favors incumbents), agent-native startups (WorkOS,
 Stytch, Descope, Arcade) build the developer infrastructure, and the payment sub-layer is a fresh
 contested land-grab.** The whole layer is early — the foundations are solid (OAuth/OIDC), the
 agent-native extensions are emerging (XAA, Entra Agent ID), and payments are barely started — which
-is exactly the 3.0-maturity, high-contestedness picture the executive summary paints.
+is exactly the 3.0-maturity, high-contestedness picture the executive summary paints. The 2026
+addition to that picture is **consolidation**. Palo Alto/CyberArk, CrowdStrike/SGNL,
+SailPoint/Entro, Cisco/Astrix (reported), Okta/Permiso and Cyera/Oasis all bought agent or
+non-human-identity capability within about ten months, so the incumbency advantage is being
+reinforced by acquisition.
 
 ---
 
@@ -279,7 +399,10 @@ incumbents extending to agents, plus non-human-identity specialists — are addr
 scaling problem: not just *how* an agent authenticates (the OAuth mechanics) but *how an enterprise
 governs a fleet of thousands of agent identities* without losing control. This governance layer is
 early but growing fast, because the sprawl is real and the incidents (orphaned or over-permissioned
-agents) are starting to bite.
+agents) are starting to bite. 2026 showed it in the deal flow. The NHI specialists are being
+absorbed by identity and security platforms (Oasis by Cyera for ~$1B, Entro by SailPoint, Astrix
+reportedly by Cisco, Permiso by Okta), and Okta now ships shadow-agent discovery as a product
+feature.
 
 ## Credential vaulting and secrets management
 
@@ -296,6 +419,10 @@ in the agent or its prompt. Auth0's token vaulting and similar features exemplif
 - **Audit and revocation.** Every credential use is logged (who/what/when), and access can be
   revoked centrally — the accountability and control the raw "give the agent an API key" approach
   lacks.
+
+The pattern is also attracting dedicated products: in October 2026 secrets-management vendor
+Infisical raised a $40M Series B partly to build an "Agent Vault" broker that keeps agents away
+from real credentials (inferred).
 
 The security value connects directly to §12: **keeping credentials out of the agent's context and
 in a vault limits what a hijacked agent can steal or misuse** — an injection can't exfiltrate a
@@ -446,7 +573,10 @@ land-grab. But the layer remains the least mature — the agent-native pieces (m
 trust, verifiable agent identity, payments) are emerging-to-proposed, not adopted. The arc is
 earlier than any other layer's because the problem itself is newest: identity for *acting-on-behalf-
 of-humans-across-systems agents* is a genuinely novel problem, and the field is inventing it in real
-time on top of the web-auth foundation. Its immaturity is why it gates so much (§04, §06, §12), and
+time on top of the web-auth foundation. The second half of 2026 added the first standards-body
+guidance (NIST's ten design tenets), a hardened MCP auth spec, a stable cross-app delegation
+extension, and a wave of identity-vendor acquisitions, but none of the agent-native pieces is yet
+an adopted standard. Its immaturity is why it gates so much (§04, §06, §12), and
 its maturation is a precondition for the autonomy, cross-org collaboration, and commerce that the
 rest of the stack is reaching toward.
 
@@ -454,21 +584,42 @@ rest of the stack is reaching toward.
 
 - **OAuth 2.1 + OIDC remain the delegated-auth foundation** *(official; high confidence).* The web-
   auth standards, extended for agents (MCP-required OAuth, PKCE, token exchange), are the settled
-  base; agent-native standards build on them.
+  base; agent-native standards build on them. — *Nov 2026: confirmed. MCP 2026-07-28 tightened
+  rather than replaced the OAuth profile.*
 - **Agents become first-class enterprise identities** *(official trend; high confidence).* Agent
   identity governance (Entra Agent ID, Okta/Auth0 agent features) matures — agents get owned,
-  scoped, audited, and lifecycle-managed like other principals.
+  scoped, audited, and lifecycle-managed like other principals. — *Nov 2026: confirmed. Entra
+  Agent ID is GA, Okta has Agent SSO, and NIST's tenets call for a separate agent identity
+  lifecycle.*
 - **Multi-hop and cross-app delegation standards emerge** *(inferred; medium confidence).* XAA and
   similar solve the multi-hop problem for common cases; cross-organization multi-hop stays harder,
-  gated on cross-org trust.
+  gated on cross-org trust. — *Nov 2026: partly. ID-JAG/Enterprise-Managed Authorization is stable
+  in MCP and shipping from three IdPs, but it is an intra-enterprise, IdP-brokered pattern; no
+  agent-specific OAuth draft has been adopted by an IETF working group, and cross-org delegation
+  is untouched.*
 - **Agentic payments consolidate slowly and contestedly** *(speculative; medium confidence).* The
   land-grab (AP2, ACP, x402, card schemes) resolves toward a few surviving approaches — likely the
   card networks' rails plus one or two platform/crypto options — over 2026–2027; agentic commerce
-  scales as authorization-limit trust is established.
+  scales as authorization-limit trust is established. — *Nov 2026: not yet, and the shape is
+  changing. Protocols are layering (AP2 mandates under UCP/ACP checkout over card or x402
+  settlement) rather than eliminating each other. AP2 moved to FIDO, OpenAI's Instant Checkout was
+  pulled, and x402's real volume is tiny. The card networks look strongest.*
 - **Identity/auth stays a gating constraint that gradually loosens** *(inferred; high confidence).*
   As the agent-native pieces mature, more autonomy (especially cross-org and transactional) becomes
   safely possible — this layer maturing is a precondition for the more ambitious multi-agent and
-  commerce visions.
+  commerce visions. — *Nov 2026: unchanged.*
+- **New (Nov 2026): Identity platforms become the agent control plane via M&A** *(inferred; high
+  confidence).* After the 2026 run of deals (CyberArk, SGNL, Entro, Oasis, Permiso), expect agent
+  discovery, kill switches and runtime authorization to be bundled into IAM suites by 2027. That
+  squeezes standalone NHI vendors.
+- **New (Nov 2026): NIST tenets become procurement language** *(speculative; medium confidence).*
+  NIST's ten agent-IAM design tenets and the NCCoE demonstration (now including software
+  development agents) are likely to be cited in US federal and regulated-industry requirements
+  ahead of any formal Special Publication.
+- **New (Nov 2026): Agent payments shift from "which protocol" to "who carries liability"**
+  *(speculative; medium confidence).* With mandates and agent tokens available, the open questions
+  are disputes, chargebacks and liability for agent-initiated purchases. Network rules (Visa,
+  Mastercard) will decide them sooner than protocol specs.
 
 ---
 
@@ -521,9 +672,11 @@ authorization technology that already works; the work is applying it to agents, 
 - The mature core is **scoped, consented, short-lived, revocable OAuth 2.1 delegation** (MCP-
   required), mapping directly to §12's least-privilege/blast-radius principles; **multi-hop
   delegation** (XAA, RFC 8693 token exchange) is the hard, emerging frontier.
-- **Agentic payments** is a contested new land-grab (AP2/Google, Agentic Commerce Protocol/OpenAI+
-  Stripe, x402/Coinbase, Visa/Mastercard schemes) — all requiring authorization limits that hold even
-  against a hijacked agent (§12); proposed-to-emerging, no winner yet.
+- **Agentic payments** is a contested new land-grab (AP2/Google, now at FIDO; UCP/Google;
+  Agentic Commerce Protocol/OpenAI+Stripe; x402/Coinbase; Visa/Mastercard schemes), all requiring
+  authorization limits that hold even against a hijacked agent (§12). It is proposed-to-emerging
+  with no winner yet, and by late 2026 the protocols were stacking into layers more than competing
+  (OpenAI's Instant Checkout retreat showed demand is a gate too).
 - The layer is **incumbency-favoring** (Okta, Microsoft, card networks lead; agent-native startups
   build developer infra) and **early** — foundations solid, agent-native extensions emerging,
   payments barely started — and its maturing is a precondition for ambitious autonomy.
@@ -546,4 +699,36 @@ authorization technology that already works; the work is applying it to agents, 
   for the autonomy, cross-org multi-agent, and agent-economy visions the rest of the stack reaches
   toward.
 
-*Word count target: 5,500. This section: ~5,550 (verified via `wc`).*
+*Word count target: 5,500. This section: ~7,300 after the November 2026 update (approx., via `wc`).*
+
+## Sources (November 2026 update)
+
+- https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/
+- https://workos.com/blog/mcp-2026-spec-agent-authentication
+- https://workos.com/blog/mcp-enterprise-managed-authorization-id-jag
+- https://www.descope.com/press-release/cross-app-access-xaa-support
+- https://guptadeepak.com/ciam-compass/changelog/cross-app-access-converges-2026/
+- https://csrc.nist.gov/pubs/other/2026/02/05/accelerating-the-adoption-of-software-and-ai-agent/ipd
+- https://www.nist.gov/news-events/news/2026/09/comments-software-and-agentic-ai-identity-concept-paper
+- https://www.nist.gov/blogs/cybersecurity-insights/design-tenets-agent-identity-management-systems
+- https://www.ietf.org/archive/id/draft-klrc-aiagent-auth-00.html
+- https://datatracker.ietf.org/doc/draft-oauth-ai-agents-on-behalf-of-user/
+- https://learn.microsoft.com/en-za/entra/agent-id/whats-new-agent-id
+- https://mc.merill.net/message/MC1395007
+- https://www.okta.com/newsroom/press-releases/okta-brings-first-class-identity-to-ai-agents-with-agent-sso/
+- https://www.forrester.com/blogs/oktane-2026-recap-okta-announces-a-unified-iam-control-plane-with-agent-governance-and-identity-details-remaining-unclear/
+- https://techcrunch.com/2026/07/30/okta-buys-ai-security-startup-permiso-source-says-for-about-200m/
+- https://thenextweb.com/news/cyera-oasis-security-1bn-ai-agent-identity-acquisition
+- https://siliconangle.com/2026/06/15/sailpoint-acquires-ai-agent-security-startup-entro-reported-200m/
+- https://www.businesswire.com/news/home/20260107999523/en/CrowdStrike-to-Acquire-SGNL-to-Transform-Identity-Security-for-the-AI-Era/
+- https://techinformed.com/palo-alto-closes-cyberark-deal-adds-identity-pillar/
+- https://pomegra.io/startups/infisical-raises-40m-at-600m-for-ai-agent-security-2026-2026-11-03
+- https://developers.googleblog.com/under-the-hood-universal-commerce-protocol-ucp/
+- https://www.tokenpost.com/news/technology/45562
+- https://digiday.com/marketing/shopify-says-purchases-are-coming-inside-chatgpt-through-agentic-storefronts-as-openai-retreats-on-instant-checkout/
+- https://usa.visa.com/about-visa/newsroom/press-releases.releaseId.22496.html
+- https://www.pymnts.com/partnerships/2026/visa-launches-agentic-commerce-partnership-with-tencent/
+- https://blog.cloudflare.com/secure-agentic-commerce/
+- https://www.mastercard.com/us/en/news-and-trends/stories/2025/agentic-commerce-momentum.html
+- https://finance.yahoo.com/markets/crypto/articles/x402-foundation-activated-27-old-152440828.html
+- https://www.infoq.com/news/2026/07/cloudflare-aws-x402-micropayment/

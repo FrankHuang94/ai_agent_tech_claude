@@ -3,9 +3,10 @@ OAuth 2.1 + PKCE,delegated user auth,9,adopted
 OIDC,identity,9,adopted
 RFC 8693 token exchange,scope reduction,7,adopted
 SPIFFE/SVID,machine identity,7,adopted
-MCP OAuth (spec-required),agent-server auth,6,emerging
-Okta Cross App Access (XAA),cross-app agent auth,4,emerging
-Microsoft Entra Agent ID,agent identity,5,emerging
-AP2 (agent payments),payments,3,proposed
+MCP OAuth (spec-required; hardened 2026-07-28),agent-server auth,7,emerging
+XAA / ID-JAG (MCP Enterprise-Managed Auth),cross-app agent auth,5,emerging
+Microsoft Entra Agent ID (GA 2026),agent identity,6,emerging
+AP2 (agent payments; now FIDO),payments,3,proposed
+Universal Commerce Protocol (UCP),commerce,3,proposed
 Agentic Commerce Protocol,commerce,3,proposed
 x402 (HTTP 402 stablecoin),micropayments,3,proposed

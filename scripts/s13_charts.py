@@ -30,7 +30,7 @@ ax.legend(handles, list(statuscolor.keys()), loc="lower right")
 ax.set_title("Agent identity & payment standards: adoption status", loc="left", pad=24)
 ax.text(0, 1.02, "Reused web-auth standards (OAuth 2.1, OIDC) are adopted; agent-native identity and payments are still emerging/proposed",
         transform=ax.transAxes, fontsize=9.0, color=MUTED)
-fig.text(0.01, 0.005, "Source: standards bodies / vendor announcements, July 2026 (existence official; maturity is analyst judgment).",
+fig.text(0.01, 0.005, "Source: standards bodies / vendor announcements, updated Nov 2026 (existence official; maturity is analyst judgment).",
          fontsize=8, color=MUTED)
 save(fig, os.path.join(OUT, "13_standards_adoption.png"))
 
@@ -46,8 +46,8 @@ ax.set_xlim(0, 8)
 ax.set_xlabel("Maturity (0 = proposed → 10 = adopted)")
 ax.grid(axis="x"); ax.grid(axis="y", visible=False)
 ax.set_title("Agentic payment protocols: a contested new layer", loc="left", pad=24)
-ax.text(0, 1.03, "Card networks, platforms, and crypto all racing to be how agents pay — none yet dominant",
+ax.text(0, 1.03, "Card networks, platforms, and crypto racing to be how agents pay — none dominant; by Nov 2026 the protocols are stacking into layers",
         transform=ax.transAxes, fontsize=9.4, color=MUTED)
-fig.text(0.01, 0.005, "Source: vendor announcements 2025–2026 (official for existence; maturity analyst judgment).",
+fig.text(0.01, 0.005, "Source: vendor announcements 2025–Nov 2026 (official for existence; maturity analyst judgment, updated Nov 2026).",
          fontsize=8, color=MUTED)
 save(fig, os.path.join(OUT, "13_payment_protocols.png"))

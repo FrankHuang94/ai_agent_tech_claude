@@ -33,22 +33,25 @@ save(fig, os.path.join(OUT, "12_injection_defenses.png"))
 # --- Chart 2: incident/vuln trend + acquisitions ---
 d = pd.read_csv(os.path.join(DATA, "12_incident_trend.csv"))
 fig, ax = plt.subplots(figsize=(11, 6.3))
-ax.bar(range(len(d)), d["disclosed_ai_vulns"], color=PALETTE[1], width=0.6, label="Disclosed AI/LLM vulnerabilities")
+ax.bar(range(len(d)), d["disclosed_ai_vulns"].fillna(0), color=PALETTE[1], width=0.6, label="Disclosed AI/LLM vulnerabilities")
 ax.set_xticks(range(len(d))); ax.set_xticklabels(d["period"])
 ax.set_ylabel("Disclosed AI/LLM vulnerabilities (approx.)")
 for i, v in enumerate(d["disclosed_ai_vulns"]):
-    ax.text(i, v + 8, str(v), ha="center", fontsize=9, color=INK)
+    if pd.isna(v):
+        ax.text(i, 8, "partial period:\nnot yet tallied", ha="center", fontsize=8, color=MUTED)
+    else:
+        ax.text(i, v + 8, str(int(v)), ha="center", fontsize=9, color=INK)
 ax2 = ax.twinx()
 ax2.plot(range(len(d)), d["cumulative_acquisitions"], marker="o", lw=2.6, color=PALETTE[4], label="Cumulative major AI-security acquisitions")
 ax2.set_ylabel("Cumulative major acquisitions", color=PALETTE[4])
-ax2.set_ylim(0, 9); ax2.grid(False)
+ax2.set_ylim(0, 13); ax2.grid(False)
 ax2.tick_params(axis="y", colors=PALETTE[4])
 ax.set_title("AI/agent security: rising vulnerabilities and a consolidating market", loc="left", pad=24)
-ax.text(0, 1.02, "Vulnerability disclosures climb as agents gain the ability to act; incumbents acquire the startups (Lakera, Protect AI, Robust Intelligence)",
+ax.text(0, 1.02, "Disclosures climb as agents gain the ability to act; acquirers widen from network/cloud (Lakera, Protect AI) to endpoint, identity and labs (2026)",
         transform=ax.transAxes, fontsize=8.8, color=MUTED)
 lines1, labels1 = ax.get_legend_handles_labels()
 lines2, labels2 = ax2.get_legend_handles_labels()
 ax.legend(lines1 + lines2, labels1 + labels2, loc="upper left", fontsize=9)
-fig.text(0.01, 0.005, "Source: illustrative of OWASP/CVE trends and public acquisitions 2023–2026 (inferred; approximate).",
+fig.text(0.01, 0.005, "Source: illustrative of OWASP/CVE trends and public acquisitions 2023–Nov 2026 (inferred; approximate). 2026-H2 adds Okta/Permiso, Cyera/Oasis, Anthropic/Opaque, CrowdStrike/Fiddler+Dreadnode.",
          fontsize=8, color=MUTED)
 save(fig, os.path.join(OUT, "12_incident_trend.png"))

@@ -1,6 +1,7 @@
 protocol,backer,mechanism,maturity
-AP2 (Agent Payments Protocol),Google + networks,Signed mandates / spend limits,3
-Agentic Commerce Protocol (ACP),OpenAI + Stripe,Delegated checkout tokens,4
-x402,Coinbase,HTTP 402 stablecoin micropayments,3
-Visa Intelligent Commerce,Visa,Tokenized card credentials for agents,4
-Mastercard Agent Pay,Mastercard,Agentic tokens / Agent Pay,4
+AP2 (Agent Payments Protocol),Google → FIDO Alliance (Apr 2026),Signed mandates / spend limits (v0.2 adds human-not-present),3
+Universal Commerce Protocol (UCP),Google (Jan 2026),Merchant checkout protocol carrying AP2,3
+Agentic Commerce Protocol (ACP),OpenAI + Stripe,Delegated checkout tokens (Instant Checkout wound down Mar 2026),3
+x402,Coinbase / x402 Foundation (Linux Foundation),HTTP 402 stablecoin micropayments (real volume small),3
+Visa Intelligent Commerce,Visa,Tokenized card credentials + Trusted Agent Protocol,4
+Mastercard Agent Pay,Mastercard,Agentic tokens (US + EU issuers enabled) + Verifiable Intent,5

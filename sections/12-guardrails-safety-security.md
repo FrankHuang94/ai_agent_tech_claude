@@ -2,7 +2,8 @@
 
 *The highest-severity bottleneck. Prompt injection, data exfiltration, permissioning, and
 sandboxing — why security is the gating factor for enterprise agent autonomy, and why it is
-unsolved. Target: 7,000 words.*
+unsolved. Target: 7,000 words. Snapshot July 22, 2026; updated for developments through
+early November 2026.*
 
 ---
 
@@ -38,6 +39,77 @@ about what happens when that manipulation is given autonomy): the risks transfor
 hijacking produces bad output" into "goal hijacking produces bad *actions*" — memory corruption,
 unsafe autonomous operations, tool manipulation, multi-step agent kill chains. The capability that
 makes agents valuable (acting on the world) is exactly what makes their compromise dangerous.
+
+---
+
+## What changed since July 2026 (November 2026 update)
+
+Nothing in the past four months changes the core thesis of this section: prompt injection is still
+unsolved, and the defenses that hold up are the architectural ones (scoping, structural gates,
+egress control, sandboxing). Three things did move. **Consolidation sped up and spread to new
+kinds of buyer.** Endpoint and identity incumbents (CrowdStrike, Okta, Cyera) and frontier labs
+(OpenAI, Anthropic, Cohere) are now acquiring agent-security and AI-security teams, alongside the
+network and cloud vendors that drove the 2024–2025 wave. **MCP became the main agent
+supply-chain attack surface.** It drew high-severity CVEs and a June government advisory, and the
+protocol responded with a spec release that hardens it. **Regulation split.** The EU Commission's
+enforcement powers over general-purpose AI models took effect on schedule on August 2, 2026, but
+the Digital Omnibus pushed the high-risk system obligations to late 2027. Items the July snapshot
+missed are included and marked.
+
+- **Mar 2026 (missed in July)** — OpenAI acquired red-teaming/eval tool **Promptfoo** to harden its
+  enterprise agent platform, so a frontier lab now owns a widely used open red-team harness
+  *(inferred; [Security Boulevard](https://securityboulevard.com/2026/03/openai-acquires-security-startup-promptfoo-to-fortify-ai-agents/))*.
+- **Apr 2026 (missed)** — The "Comment and Control" disclosure: a single prompt-injected pull-request
+  title got Claude Code, Gemini CLI and GitHub Copilot agents to leak secrets. At the time, no CNA
+  had issued a CVE for a coding-agent prompt injection *(inferred;
+  [VentureBeat](https://venturebeat.com/security/ai-agent-runtime-security-system-card-audit-comment-and-control-2026))*.
+- **Jun 2, 2026 (missed)** — The NSA published a Cybersecurity Information Sheet on MCP security design.
+  This is the first US-government guidance aimed at the agent-tool protocol *(official;
+  [NSA CSI](https://media.defense.gov/2026/Jun/02/2003943289/-1/-1/0/CSI_MCP_SECURITY.PDF))*.
+- **Jul 28, 2026** — MCP spec **2026-07-28** went final (stateless transport). Its security changes:
+  servers reject requests whose `Mcp-Method`/`Mcp-Name` headers disagree with the body; servers may
+  only send their own requests while handling a client request; implementations must not
+  auto-dereference external `$ref` URIs in tool schemas; and the authorization flow gains mix-up
+  protection (see §13) *(official; [MCP blog](https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/))*.
+- **Jul 27 / Aug 2, 2026** — The EU **Digital Omnibus on AI** entered into force just before the
+  original deadline. It moved Annex III high-risk obligations from Aug 2, 2026 to **Dec 2, 2027** and
+  Annex I (product-embedded) obligations to **Aug 2, 2028**. Separately, the **Commission's GPAI
+  enforcement powers went live on Aug 2, 2026**: it can request information, evaluate models, require
+  mitigations, and fine up to 3% of global turnover or €15M *(official for the dates;
+  [Sidley](https://datamatters.sidley.com/2026/06/22/eu-lawmakers-reach-provisional-agreement-to-delay-key-eu-ai-act-obligations/),
+  [Gibson Dunn](https://www.gibsondunn.com/eu-ai-act-omnibus-agreement-postponed-high-risk-deadlines/),
+  [WSGR](https://www.wsgrdataadvisor.com/2026/08/eu-ai-act-enforcement-phase-begins/))*.
+- **Aug 3–4, 2026** — OWASP published a **2026 edition of the Top 10 for LLM Applications** that
+  cross-links to the Agentic Top 10 (the Agentic list itself is still the Dec 2025 release). On Sep
+  1–2, OWASP took in a donated **Agent Control Standard** *(inferred; [CSA research note](https://labs.cloudsecurityalliance.org/research/csa-research-note-owasp-genai-top10-2026-agent-control-stand/))*.
+- **Aug 4, 2026** — **Obsidian Security** raised an $85M Series D at a $1.1B valuation to expand its
+  AI-agent security business *(official; [Obsidian](https://www.obsidiansecurity.com/news/unlocking-ai-potential-securely))*.
+- **Aug 2026** — **CVE-2026-75130**: a prompt injection in the Context7 MCP documentation server
+  (versions ≤2.1.2) that passes third-party "custom instructions" to the agent unsanitized. Its
+  documented impact is `.env` credential theft and file deletion; it is rated 9.0 under CVSS 3.1
+  and reportedly a regression of an earlier fix. A textbook MCP-poisoning case *(inferred;
+  [SentinelOne](https://www.sentinelone.com/vulnerability-database/cve-2026-75130/))*.
+- **Oct 8, 2026** — **Rein Security** raised a $25M Series A ($35M in total) to secure enterprise-built
+  agents *(official; [PR Newswire](https://www.prnewswire.com/news-releases/rein-security-raises-25-million-to-secure-the-ai-agents-enterprises-build-and-stop-the-ones-that-attack-them-302901591.html))*.
+- **Oct 13–15, 2026** — **Anthropic took on Opaque Systems** (confidential-computing AI). Opaque's team
+  is joining and the company is winding down; outlets disagree on whether it is a full acquisition or
+  a license-plus-hire. **Cohere signed an LOI to acquire AISLE** (AI vulnerability discovery) *(inferred;
+  [Constellation Research](https://www.constellationr.com/insights/news/anthropic-acquires-opaque),
+  [US News/Reuters](https://money.usnews.com/investing/news/articles/2026-10-15/cohere-moves-to-buy-ai-cybersecurity-startup-aisle))*.
+- **Nov 3, 2026** — **CrowdStrike agreed to acquire Fiddler AI** (agent observability → "Falcon
+  Observe") **and Dreadnode** (pre-deployment AI red-teaming → Falcon Guardian). The WSJ reported
+  about $495M combined; other reports split the price differently. CrowdStrike also launched an
+  **"AI Kill Switch"** that terminates unauthorized agents and cuts off their network access *(official
+  for the deal; price inferred; [CyberScoop](https://cyberscoop.com/crowdstrike-acquires-fiddler-dreadnode-ai-security/),
+  [SiliconANGLE](https://siliconangle.com/2026/11/03/crowdstrike-to-acquire-cybersecurity-startups-fiddler-ai-dreadnode-for-reported-495m/))*.
+- **Ongoing** — NIST/CAISI's AI Agent Standards Initiative (launched Feb 2026) is still pre-deliverable.
+  An agent interoperability profile is targeted for Q4 2026 and SP 800-53 overlays for agentic systems
+  are in progress. Joint UK AISI work found at least one successful hijack against every one of 13
+  frontier models tested *(inferred; [CSA research note](https://labs.cloudsecurityalliance.org/research/csa-research-note-nist-ai-agent-standards-initiative-2026040/))*.
+
+**Net read:** the attack-surface and consolidation trends this section predicted are confirmed and
+moving faster. The agent-identity buyers (Okta/Permiso, Cyera/Oasis; see §13) show that §12 and §13
+are merging commercially as well as architecturally.
 
 ---
 
@@ -195,7 +267,10 @@ Beyond the abstract, the concrete agent attack patterns security teams defend ag
 - **MCP tool poisoning** — a malicious or compromised MCP server (§04/§15) provides a tool whose
   *description* contains an injection, or whose *results* are malicious, hijacking any agent that
   connects to it. As the MCP ecosystem grows (18,000+ servers), the supply-chain risk of connecting
-  to untrusted MCP servers grows with it — a newer, agent-specific attack surface.
+  to untrusted MCP servers grows with it — a newer, agent-specific attack surface. By late 2026 this
+  was no longer theoretical: MCP servers were drawing critical-rated prompt-injection CVEs (e.g.
+  CVE-2026-75130 in the Context7 documentation server, which enabled `.env` credential theft), and
+  the NSA issued dedicated MCP security guidance (June 2026).
 - **Memory poisoning** — injection writes a false or malicious "fact" into the agent's long-term
   memory (§03), corrupting all future sessions — a persistent compromise, not a one-shot.
 - **Multi-step / multi-agent kill chains** — a compromise propagates across an agent's steps or
@@ -290,27 +365,38 @@ security. The players span **AI-security-native vendors**, **guardrail/runtime-d
 | **Lakera (Check Point)** | Runtime guardrails | shipped-reliable | Prompt-injection/policy defense | Acquired by Check Point, Nov 2025 (official) | Runtime injection detection; Gandalf red-team data | Prisma AIRS, HiddenLayer |
 | **Protect AI (Palo Alto)** | AI security platform | shipped-reliable | MLSecOps, model security | Acquired by Palo Alto (official) | Full ML/AI security lifecycle; now Prisma AIRS | Robust Intelligence, HiddenLayer |
 | **Robust Intelligence (Cisco)** | AI security | shipped-reliable | AI validation/firewall | Acquired by Cisco; now Cisco AI Defense (official) | AI firewall/validation, enterprise scale | Protect AI, Lakera |
+| **CrowdStrike (Pangea; Fiddler AI + Dreadnode pending)** | Incumbent platform | shipped-reliable | AI detection/response, agent observability, AI red-team | Pangea acquired 2025; Fiddler + Dreadnode deal announced Nov 3, 2026, ~$495M reported (official deal; inferred price) | Endpoint-incumbent agent runtime + "AI Kill Switch" | Palo Alto Prisma AIRS, Cisco AI Defense |
 | **HiddenLayer** | AI security | shipped-reliable | Model/AI threat detection | AI detection & response (inferred) | Model-focused threat detection | Protect AI, Lakera |
 | **Zenity** | Agent security | shipped-reliable | Agentic app security/governance | Agent-focused (inferred) | Security & governance for enterprise agents/copilots | Wiz, Straiker |
 | **Wiz (AI-SPM)** | Cloud/AI posture | shipped-reliable | AI security posture mgmt | Wiz platform (official) | AI-SPM within cloud security | Palo Alto, orca |
 | **Cisco AI Defense** | Incumbent platform | shipped-reliable | Runtime AI protection | Cisco (official) | Enterprise network + AI defense | Palo Alto Prisma AIRS |
 | **Palo Alto Prisma AIRS** | Incumbent platform | shipped-reliable | AI runtime security | Palo Alto (official) | Integrated AI security in Prisma | Cisco AI Defense |
 | **Mindgard** | AI red-teaming | shipped-reliable | Offensive AI testing | Automated red-team (inferred) | Continuous AI red-teaming | Lakera, garak |
-| **Straiker / newer agent-sec** | Agent runtime security | demoed-brittle | Agentic runtime defense | Agent kill-chain focus (inferred) | Full-chain agent telemetry | Zenity, Lakera |
+| **Promptfoo (OpenAI)** | AI red-teaming / evals | shipped-reliable | Open red-team + eval harness | Acquired by OpenAI, Mar 2026 (inferred) | Widely used OSS red-team harness, now lab-owned | garak, Mindgard, Dreadnode |
+| **Obsidian Security** | SaaS / agent security | shipped-reliable | SaaS + AI-agent posture and threat detection | $85M Series D at $1.1B, Aug 2026 (official) | Agent security from the SaaS-identity side | Zenity, Wiz |
+| **Straiker / newer agent-sec (Rein, Geordie)** | Agent runtime security | demoed-brittle | Agentic runtime defense | Agent kill-chain focus; Rein $25M Series A Oct 2026 (official), Geordie $30M Series A May 2026 (inferred) | Full-chain agent telemetry and agent governance | Zenity, Lakera |
 | **garak (OSS)** | Red-team scanner | shipped-reliable | LLM vulnerability scanning | Open-source (official) | Free LLM vuln/red-team scanner | Mindgard |
 | **NeMo Guardrails / Guardrails AI** | OSS guardrails | shipped-reliable | Programmable guardrails | NVIDIA / Guardrails AI (official) | Open, composable output/policy guardrails | Lakera, LLM Guard |
 | **LLM Guard (Protect AI)** | OSS guardrails | shipped-reliable | Input/output filtering | OSS (official) | Open-source guardrail toolkit | Guardrails AI, NeMo |
-| **OWASP (GenAI/Agentic Top 10)** | Standard/framework | shipped-reliable | Risk taxonomy | Community (official) | The canonical agent-risk taxonomy | (none — standard) |
-| **Model-vendor safety (Anthropic/OpenAI/Google)** | Native | shipped-reliable | Built-in safety + injection robustness | Vendor safety teams (official) | Instruction hierarchy, robustness training | each other |
+| **OWASP (GenAI/Agentic Top 10)** | Standard/framework | shipped-reliable | Risk taxonomy | Community (official); LLM Top 10 2026 edition Aug 2026 and donated Agent Control Standard Sep 2026 (inferred) | The canonical agent-risk taxonomy | (none — standard) |
+| **Model-vendor safety (Anthropic/OpenAI/Google)** | Native | shipped-reliable | Built-in safety + injection robustness | Vendor safety teams (official); labs now buying security teams (OpenAI/Promptfoo, Anthropic/Opaque, Cohere/AISLE LOI; inferred) | Instruction hierarchy, robustness training | each other |
 
-That is fifteen entries — well past ten. The structural read, visible in the trend chart:
+That is eighteen entries after the November 2026 update. The structural read, visible in the
+trend chart:
 
 ![AI/agent security: rising vulnerabilities and a consolidating market](../assets/charts/12_incident_trend.png)
+
+*Nov 2026 update: the chart adds a partial 2026-H2 period. Only acquisitions are counted for it
+(Okta/Permiso, Cyera/Oasis, Anthropic/Opaque, CrowdStrike/Fiddler + Dreadnode); the disclosure
+tally for the half-year is not yet complete (inferred).*
 
 **AI security is consolidating into mainstream enterprise security** — Check Point bought Lakera,
 Palo Alto bought Protect AI, Cisco bought Robust Intelligence, all within about two years — because
 the security incumbents recognize AI/agent security as a category they must own, and it's faster to
-acquire the specialists than build. Meanwhile vulnerability disclosures climb as agents gain the
+acquire the specialists than build. The second half of 2026 widened the buyer pool. Endpoint
+(CrowdStrike/Fiddler + Dreadnode, Nov 2026) and identity/data-security incumbents (Okta/Permiso,
+Cyera/Oasis, Jul 2026; §13) joined in, and so did the frontier labs themselves (OpenAI/Promptfoo,
+Anthropic/Opaque, Cohere/AISLE). Meanwhile vulnerability disclosures climb as agents gain the
 ability to act, and a newer wave of *agent-specific* security startups (Zenity, Straiker) targets
 the 2026 agentic surface (tool manipulation, MCP poisoning, kill chains) that the earlier
 LLM-focused tools weren't built for. The market is young, consolidating, and racing to keep up with
@@ -355,7 +441,8 @@ illustrates the core lesson viscerally: **the defense is not making the model re
 
 Because you can't prove the absence of vulnerabilities, **red-teaming** — actively attacking your own
 agent to find weaknesses before adversaries do — is an essential security practice, and a growing
-part of the tooling (Mindgard, garak, Lakera's Gandalf, and the model vendors' internal red teams):
+part of the tooling (Mindgard, garak, Lakera's Gandalf, Promptfoo — now OpenAI's — Dreadnode — being
+acquired by CrowdStrike — and the model vendors' internal red teams):
 
 - **Automated red-teaming.** Tools that systematically generate injection attempts, jailbreaks, and
   adversarial inputs at scale, probing for vulnerabilities — the security analogue of §11's
@@ -407,7 +494,13 @@ regime that shapes enterprise deployment:
 - **The EU AI Act** and analogous emerging regulation impose obligations on AI systems (risk
   classification, transparency, human oversight, documentation) that agents must satisfy —
   particularly for high-risk applications. Compliance is becoming a real constraint on how
-  autonomously agents can operate in regulated contexts.
+  autonomously agents can operate in regulated contexts. *Nov 2026 status:* the Commission's
+  enforcement powers over general-purpose AI model providers (including fines of up to 3% of global
+  turnover or €15M) began on **Aug 2, 2026**. The **Digital Omnibus on AI** (in force late July 2026)
+  moved standalone (Annex III) high-risk obligations to **Dec 2, 2027** and product-embedded
+  (Annex I) obligations to **Aug 2, 2028**. Transparency duties were not deferred. For agent
+  deployers the binding high-risk deadline is now about a year further out, but GPAI-level
+  scrutiny of the underlying models is live.
 - **Sector regulation.** Financial services, healthcare (HIPAA), and other regulated sectors impose
   data-handling, audit, and accountability requirements that agents processing sensitive data must
   meet — driving the demand for auditable, permission-scoped, human-overseen agent architectures.
@@ -468,7 +561,9 @@ the mainstream security conversation, and the security incumbents began acquirin
 the current state: OWASP shifted to an *Agentic* Top 10 recognizing the transformed risk surface,
 agent-specific attacks (MCP poisoning, kill chains) emerged, the market consolidated into mainstream
 security, and — crucially — the field internalized that **prompt injection is not getting solved, so
-the answer is assume-compromise architecture**. The arc is sobering: security is the one layer where
+the answer is assume-compromise architecture**. In the second half of 2026, MCP-server CVEs and
+coding-agent secret leaks became routine disclosures, and the acquirers broadened to endpoint,
+identity, and frontier-lab buyers. The arc is sobering: security is the one layer where
 the trajectory is *not* toward a solution but toward *managing an unsolvable problem better* — which
 is a different and harder kind of progress than the capability layers enjoy.
 
@@ -598,21 +693,41 @@ via a legitimate-looking tool call.
 - **Prompt injection stays unsolved; defense-in-depth is the state of the art** *(inferred; high
   confidence).* No robust fix is on the horizon; the field converges on assume-compromise,
   limit-blast-radius architecture. This is the single most important, most durable security fact.
+  — *Nov 2026: confirmed. No robust fix has appeared. Joint UK AISI/CAISI testing hijacked every one
+  of 13 frontier models at least once, and coding-agent and MCP injection disclosures kept coming.*
 - **Architectural defenses (scoping, gating, egress) become standard practice** *(inferred; high
   confidence).* The trifecta framing and least-privilege scoping move from expert knowledge into
   default agent-design practice, because they're the only defenses that work against an unsolvable
-  attack.
+  attack. — *Nov 2026: partly. These controls are moving into protocols and products (MCP 2026-07-28
+  hardening, CrowdStrike's agent kill switch, Okta's agent gateway), but configuration is still
+  left to the deploying team.*
 - **Agent-specific security tooling matures** *(inferred; medium-high confidence).* Tooling for the
   2026 agentic surface (MCP poisoning, tool manipulation, kill chains, full-chain telemetry) grows;
-  the earlier LLM-focused guardrails extend into agent-runtime security.
+  the earlier LLM-focused guardrails extend into agent-runtime security. — *Nov 2026: confirmed.
+  Agent-runtime and agent-observability vendors raised large rounds (Obsidian at $1.1B, Rein) or were
+  bought (Fiddler, Dreadnode).*
 - **Security incumbents own AI security** *(official trend; high confidence).* The
   Lakera/Protect AI/Robust Intelligence acquisitions signal that AI security folds into mainstream
   enterprise security platforms; standalone AI-security startups get acquired or specialize on the
-  agentic edge.
+  agentic edge. — *Nov 2026: confirmed and broadened. CrowdStrike, Okta, Cyera, SailPoint and the
+  frontier labs (OpenAI, Anthropic, Cohere) all bought AI or agent-security teams in 2026.*
 - **Security remains the enterprise-autonomy gate** *(inferred; high confidence).* Until injection
   is meaningfully more defensible, high-stakes *unattended* autonomy stays gated by the need for
   human oversight and blast-radius limitation — semi-autonomous, not autonomous, for consequential
-  work. This is the field's central constraint on agent deployment.
+  work. This is the field's central constraint on agent deployment. — *Nov 2026: unchanged.*
+- **New (Nov 2026): MCP-server supply chain becomes a CVE-tracked category** *(inferred; medium-high
+  confidence).* Expect coding-agent and MCP prompt-injection flaws to get routine CVE assignment and
+  scanner coverage through 2027. Registries and gateways will compete on server vetting and
+  signing.
+- **New (Nov 2026): Frontier labs internalize security tooling** *(inferred; medium confidence).*
+  After OpenAI/Promptfoo, Anthropic/Opaque and Cohere/AISLE, more security capability is likely to
+  ship inside model platforms (red-teaming, confidential inference, agent policy). That squeezes
+  standalone guardrail vendors toward the cross-vendor runtime and governance layer.
+- **New (Nov 2026): Regulatory pressure arrives via GPAI first, agents later** *(official dates;
+  inferred effect).* EU GPAI enforcement has been live since Aug 2026, but high-risk obligations
+  were deferred to Dec 2027/Aug 2028. NIST/CAISI agent deliverables (an interoperability profile,
+  SP 800-53 overlays) are due from late 2026. Agent-specific compliance requirements are therefore
+  a 2027 story.
 
 ---
 
@@ -687,8 +802,9 @@ enterprise can go in the near term. Progress here — even the un-glamorous prog
 - **Sandboxing** contains code-execution and computer-use agents; **permissioning/scoping** (tied to
   identity, §13) is the heart of the defense; **monitoring** (§11) is a security control.
 - The market is **consolidating into mainstream security** (Check Point/Lakera, Palo Alto/Protect
-  AI, Cisco/Robust Intelligence), with a newer wave targeting the agent-specific surface (MCP
-  poisoning, kill chains) — while the attack surface expands with every new agent capability.
+  AI, Cisco/Robust Intelligence; in 2026 also CrowdStrike/Fiddler + Dreadnode, Okta/Permiso,
+  OpenAI/Promptfoo), with a newer wave targeting the agent-specific surface (MCP poisoning, kill
+  chains) — while the attack surface expands with every new agent capability.
 
 - **Architect with explicit trust boundaries**: treat all external content, third-party tools/MCP
   servers, and each privilege level as across a hostile boundary, and place the load-bearing controls
@@ -704,4 +820,30 @@ enterprise can go in the near term. Progress here — even the un-glamorous prog
   un-glamorous "manage the unsolvable problem better" kind) unlocks autonomy no capability gain alone
   can.
 
-*Word count target: 7,000. This section: ~7,050 (verified via `wc`).*
+*Word count target: 7,000. This section: ~8,300 after the November 2026 update (approx., via `wc`).*
+
+## Sources (November 2026 update)
+
+- https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/
+- https://media.defense.gov/2026/Jun/02/2003943289/-1/-1/0/CSI_MCP_SECURITY.PDF
+- https://www.sentinelone.com/vulnerability-database/cve-2026-75130/
+- https://labs.cloudsecurityalliance.org/research/csa-research-note-mcp-security-crisis-20260504-csa-styled/
+- https://venturebeat.com/security/ai-agent-runtime-security-system-card-audit-comment-and-control-2026
+- https://securityboulevard.com/2026/03/openai-acquires-security-startup-promptfoo-to-fortify-ai-agents/
+- https://datamatters.sidley.com/2026/06/22/eu-lawmakers-reach-provisional-agreement-to-delay-key-eu-ai-act-obligations/
+- https://www.gibsondunn.com/eu-ai-act-omnibus-agreement-postponed-high-risk-deadlines/
+- https://labs.cloudsecurityalliance.org/research/csa-research-note-eu-ai-act-high-risk-deadline-omnibus-20260/
+- https://www.wsgrdataadvisor.com/2026/08/eu-ai-act-enforcement-phase-begins/
+- https://labs.cloudsecurityalliance.org/research/csa-research-note-eu-ai-act-gpai-enforcement-20260803-csa-st/
+- https://labs.cloudsecurityalliance.org/research/csa-research-note-owasp-genai-top10-2026-agent-control-stand/
+- https://labs.cloudsecurityalliance.org/research/csa-research-note-nist-ai-agent-standards-initiative-2026040/
+- https://www.obsidiansecurity.com/news/unlocking-ai-potential-securely
+- https://www.prnewswire.com/news-releases/rein-security-raises-25-million-to-secure-the-ai-agents-enterprises-build-and-stop-the-ones-that-attack-them-302901591.html
+- https://fortune.com/2026/05/28/geordie-security-governance-ai-agents/
+- https://www.constellationr.com/insights/news/anthropic-acquires-opaque
+- https://money.usnews.com/investing/news/articles/2026-10-15/cohere-moves-to-buy-ai-cybersecurity-startup-aisle
+- https://cyberscoop.com/crowdstrike-acquires-fiddler-dreadnode-ai-security/
+- https://siliconangle.com/2026/11/03/crowdstrike-to-acquire-cybersecurity-startups-fiddler-ai-dreadnode-for-reported-495m/
+- https://businesswire.com/news/home/20250916577598/en/CrowdStrike-to-Acquire-Pangea-to-Secure-Every-Layer-of-Enterprise-AI
+- https://techcrunch.com/2026/07/30/okta-buys-ai-security-startup-permiso-source-says-for-about-200m/
+- https://thenextweb.com/news/cyera-oasis-security-1bn-ai-agent-identity-acquisition
